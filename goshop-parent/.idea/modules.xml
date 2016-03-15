@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/goshop-common/goshop-common.iml" filepath="$PROJECT_DIR$/goshop-common/goshop-common.iml" />
+      <module fileurl="file://D:/goshop-manager/goshop-manager.iml" filepath="D:/goshop-manager/goshop-manager.iml" />
+      <module fileurl="file://D:/goshop-manager/goshop-manager-mapper/goshop-manager-mapper.iml" filepath="D:/goshop-manager/goshop-manager-mapper/goshop-manager-mapper.iml" />
+      <module fileurl="file://D:/goshop-manager/goshop-manager-pojo/goshop-manager-pojo.iml" filepath="D:/goshop-manager/goshop-manager-pojo/goshop-manager-pojo.iml" />
+      <module fileurl="file://D:/goshop-manager/goshop-manager-service/goshop-manager-service.iml" filepath="D:/goshop-manager/goshop-manager-service/goshop-manager-service.iml" />
+      <module fileurl="file://D:/goshop-manager/goshop-manager-web/goshop-manager-web.iml" filepath="D:/goshop-manager/goshop-manager-web/goshop-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/goshop-parent.iml" filepath="$PROJECT_DIR$/goshop-parent.iml" />
+      <module fileurl="file://D:/goshop-security/goshop-security.iml" filepath="D:/goshop-security/goshop-security.iml" />
+      <module fileurl="file://D:/goshop-security/goshop-security-mapper/goshop-security-mapper.iml" filepath="D:/goshop-security/goshop-security-mapper/goshop-security-mapper.iml" />
+      <module fileurl="file://D:/goshop-security/goshop-security-pojo/goshop-security-pojo.iml" filepath="D:/goshop-security/goshop-security-pojo/goshop-security-pojo.iml" />
+      <module fileurl="file://D:/goshop-security/goshop-security-service/goshop-security-service.iml" filepath="D:/goshop-security/goshop-security-service/goshop-security-service.iml" />
+      <module fileurl="file://D:/goshop-security/goshop.security.web/goshop.security.web.iml" filepath="D:/goshop-security/goshop.security.web/goshop.security.web.iml" />
+    </modules>
+  </component>
+</project>

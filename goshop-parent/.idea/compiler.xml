@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-manage-pojo" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-common" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-common" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-manager-mapper" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-manager-web" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-manager-web" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-manager-pojo" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-manager-pojo" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-manager-service" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-manager-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-security-service" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-security-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-security-pojo" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-security-pojo" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-security-web" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop.security.web" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop.security.web" />
+      </profile>
+      <profile default="false" name="Annotation profile for goshop-security-mapper" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="goshop-security-mapper" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="goshop-common" target="1.7" />
+      <module name="goshop-manage" target="1.5" />
+      <module name="goshop-manage-pojo" target="1.5" />
+      <module name="goshop-manager" target="1.5" />
+      <module name="goshop-manager-mapper" target="1.7" />
+      <module name="goshop-manager-pojo" target="1.7" />
+      <module name="goshop-manager-service" target="1.7" />
+      <module name="goshop-manager-web" target="1.7" />
+      <module name="goshop-parent" target="1.5" />
+      <module name="goshop-security" target="1.5" />
+      <module name="goshop-security-mapper" target="1.7" />
+      <module name="goshop-security-pojo" target="1.7" />
+      <module name="goshop-security-service" target="1.7" />
+      <module name="goshop-security-web" target="1.7" />
+      <module name="goshop.security.web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
