@@ -22,13 +22,14 @@
 		<!-- 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径
 		<property name="successUrl" value="/first"/>-->
 		<!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
-		<property name="unauthorizedUrl" value="/refuse.do" />
+		<property name="unauthorizedUrl" value="/refuse" />
 
 		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- 对静态资源设置匿名访问 -->
 				/static/** = anon
+				/refuse = anon
 				<!-- 请求 logout.action地址，shiro去清除session-->
 				/logout = logout
 				/login.do = authc
@@ -60,10 +61,10 @@
 	</bean>
 
 	<!-- realm -->
-	<bean id="customRealm" class="com.goshop.shiro.filter.CustomRealm">
+	<bean id="customRealm" class="com.goshop.shiro.service.CustomRealm">
 		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
 		<property name="credentialsMatcher" ref="credentialsMatcher"/>
-
+		<property name="userService" ref="userService"/>
 	</bean>
 
 

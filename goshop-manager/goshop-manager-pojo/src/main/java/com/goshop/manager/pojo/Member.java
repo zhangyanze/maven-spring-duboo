@@ -1,9 +1,10 @@
 package com.goshop.manager.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Member {
+public class Member implements Serializable {
     private Long memberId;
 
     private Long userId;

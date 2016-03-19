@@ -11,7 +11,7 @@
 </@shiro.guest>
 
 <@shiro.user>
-欢迎[<@shiro.principal property="loginName"/>]登录，<a href="${S_URL}/logout">退出</a>
+欢迎[<@shiro.principal property="loginName"/>]登录，<a href="${S_URL}/logout.html">退出</a>
 </@shiro.user>
 </body>
 </html>

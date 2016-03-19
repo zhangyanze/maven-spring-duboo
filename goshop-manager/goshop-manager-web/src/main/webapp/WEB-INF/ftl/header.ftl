@@ -4,9 +4,9 @@
     <!-- Top navigation -->
     <div class="top-nav" id="topnav">
         <ul>
-            <li title="您好:admin" class="adminid">您好&nbsp;:&nbsp;<strong>admin</strong></li>
+            <li title="您好:<@shiro.principal property="loginName"/>" class="adminid">您好&nbsp;:&nbsp;<strong><@shiro.principal property="loginName"/></strong></li>
             <li><a target="workspace" href="index.php?act=index&amp;op=modifypw"><span>修改密码</span></a></li>
-            <li><a title="退出" href="index.php?act=index&amp;op=logout"><span>退出</span></a></li>
+            <li><a title="退出" href="logout"><span>退出</span></a></li>
             <li><a title="商城首页" target="_blank" href="http://localhost/shopnc/shop"><span>商城首页</span></a></li>
         </ul>
     </div>

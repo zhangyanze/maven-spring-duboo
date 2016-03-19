@@ -79,4 +79,13 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/static/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>validationCode</servlet-name>
+        <servlet-class>com.goshop.common.context.ValidationCodeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>validationCode</servlet-name>
+        <url-pattern>/validationCodeServlet.png</url-pattern>
+    </servlet-mapping>
 </web-app>

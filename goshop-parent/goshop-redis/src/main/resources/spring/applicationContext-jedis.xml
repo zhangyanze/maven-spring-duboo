@@ -37,8 +37,7 @@
 		<constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
 	</bean>
 	<bean id="jedisClient" class="com.goshop.redis.service.JedisClientSingleImpl"/>
-	
-	
+
 	<!-- jedis集群版配置
 	<bean id="redisClient" class="redis.clients.jedis.JedisCluster">
 		<constructor-arg name="nodes">

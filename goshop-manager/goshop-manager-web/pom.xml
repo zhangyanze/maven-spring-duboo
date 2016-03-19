@@ -18,9 +18,34 @@
         </dependency>
         <dependency>
             <groupId>com.goshop</groupId>
-            <artifactId>goshop-security-service</artifactId>
+            <artifactId>goshop-common-service</artifactId>
             <version>${goshop.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.goshop</groupId>
+            <artifactId>goshop-common-context</artifactId>
+            <version>${goshop.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+        </dependency>
+        <!--<dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.6</version>
+        </dependency>-->
+
         <!-- JSP相关 -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -32,7 +57,6 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
-
 
 
     </dependencies>

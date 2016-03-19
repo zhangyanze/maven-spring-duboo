@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping(value = "/login")
 public class LoginController {
 
     private static String shiroLoginFailure="shiroLoginFailure";
     /**
      * 用户登陆
      */
-    @RequestMapping
+    @RequestMapping("/login")
     public String login(Model model,HttpServletRequest request) {
         //如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
         String exceptionClassName = (String) request.getAttribute(shiroLoginFailure);
