@@ -24,4 +24,13 @@ public class TestRegexValidateUtil {
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("admin")==false);
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("a1234567890")==true);
     }
+
+    @Test
+    public void testCheckEmail(){
+        Assert.assertTrue(RegexValidateUtil.checkEmail(null)==false);
+       Assert.assertTrue(RegexValidateUtil.checkEmail("")==false);
+        Assert.assertTrue(RegexValidateUtil.checkEmail("a@")==false);
+        Assert.assertTrue(RegexValidateUtil.checkEmail("ad@126")==false);
+        Assert.assertTrue(RegexValidateUtil.checkEmail("pzh_gugu@126.com")==true);
+    }
 }

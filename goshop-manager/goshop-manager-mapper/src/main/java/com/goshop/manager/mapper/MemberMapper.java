@@ -16,4 +16,6 @@ public interface MemberMapper {
     int updateByPrimaryKeyWithBLOBs(Member record);
 
     int updateByPrimaryKey(Member record);
+
+    int findByMemberEmailCount(String memberEmail);
 }

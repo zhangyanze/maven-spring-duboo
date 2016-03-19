@@ -412,4 +412,11 @@
       member_areainfo = #{memberAreainfo,jdbcType=VARCHAR}
     where member_id = #{memberId,jdbcType=BIGINT}
   </update>
+
+  <select id="findByMemberEmailCount" resultType="int" parameterType="string" >
+    SELECT
+    count(*)
+    FROM  gs_member
+    where member_email = #{memberEmail,jdbcType=VARCHAR}
+  </select>
 </mapper>

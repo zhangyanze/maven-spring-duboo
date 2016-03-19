@@ -84,6 +84,18 @@ public class ValidationCodeServlet extends HttpServlet {
         outputStream.close();
     }
 
+    public static Boolean isCaptcha(HttpServletRequest request){
+        if (request.getParameterMap().containsKey(ValidationCodeServlet.VALIDATION_NAME)) {
+            String captcha = request.getParameter(ValidationCodeServlet.VALIDATION_NAME);
+            HttpSession session = request.getSession(true);
+            String validationCode = (String) session.getAttribute(ValidationCodeServlet.VALIDATION_CODE);
+            if (!captcha.equals(validationCode)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Servlet初始化方法
      */

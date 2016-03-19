@@ -41,6 +41,18 @@ public class RegexValidateUtil {
         regex = "^[a-zA-z][a-zA-Z0-9_]{2,9}$";
         return check(loginUser, regex) ? false : true;
     }
+
+    /**
+     * 验证密码
+     *
+     * @param password
+     * @return
+     *  以字母开头，长度在6~18之间，只能包含字符、数字和下划线。
+     */
+    public static boolean checkPassword(String password) {
+        regex = "^[a-zA-Z]\\w{5,17}$";
+        return check(password, regex) ? false : true;
+    }
     /**
      * 验证邮箱
      *
@@ -48,7 +60,7 @@ public class RegexValidateUtil {
      * @return
      */
     public static boolean checkEmail(String email) {
-        String regex = "^\\w+[-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$ ";
+        String regex = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
         return check(email, regex);
     }
     /**

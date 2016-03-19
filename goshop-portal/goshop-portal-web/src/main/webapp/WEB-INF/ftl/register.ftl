@@ -116,48 +116,7 @@ catch(e){}
 
 <div id="append_parent"></div>
 <div id="ajaxwaitid"></div>
-<div class="public-top-layout w">
-    <div class="topbar wrapper">
-        <div class="user-entry">
-            您好，欢迎来到 <a alt="首页" title="首页" href="#">电商测试</a>
-            <span>[<a href="#">登录</a>]</span>
-            <span>[<a href="#">注册</a>]</span>
-            <span class="seller-login"><a title="登录商家管理中心" target="_blank" href="#"><i
-                    class="icon-signin"></i>商家管理中心</a></span></div>
 
-        <div class="quick-menu">
-            <dl>
-                <dt><a href="#">我的订单</a><i></i></dt>
-                <dd>
-                    <ul>
-                        <li><a href="#">待付款订单</a></li>
-                        <li><a href="#">待确认收货</a></li>
-                        <li><a href="#">待评价交易</a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt><a href="#">我的收藏</a><i></i></dt>
-                <dd>
-                    <ul>
-                        <li><a href="#">商品收藏</a></li>
-                        <li><a href="#">店铺收藏</a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt>客户服务<i></i></dt>
-                <dd>
-                    <ul>
-                        <li><a href="#">帮助中心</a></li>
-                        <li><a href="#">售后服务</a></li>
-                        <li><a href="#">客服中心</a></li>
-                    </ul>
-                </dd>
-            </dl>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     $(function () {
         $(".quick-menu dl").hover(function () {
@@ -244,7 +203,7 @@ catch(e){}
                         <img border="0" class="fl ml5" id="codeimage" name="codeimage" title=""
                              src="${S_URL}/validationCodeServlet.png">
                         <a onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();"
-                           class="ml5" href="javascript:void(0)">看不清，换一张</a>
+                           class="ml5" href="javascript:void(0);return;">看不清，换一张</a>
                         <label></label></dd>
                 </dl>
                 <dl>
@@ -258,8 +217,6 @@ catch(e){}
                         <label></label>
                     </dd>
                 </dl>
-                <input type="hidden" name="ref_url" value="">
-                <input type="hidden" value="b62a356c" name="nchash">
             </form>
             <div class="clear"></div>
         </div>
@@ -292,7 +249,7 @@ catch(e){}
             if ($("#register_form").valid()) {
                 ajaxpost('register_form', '', '', 'onerror');
             } else {
-                document.getElementById('codeimage').src = 'http://localhost/shopnc/shop/index.php?act=seccode&op=makecode&nchash=b62a356c&t=' + Math.random();
+                document.getElementById('codeimage').src = '${S_URL}/validationCodeServlet.png?t=' + Math.random();
             }
         });
         jQuery.validator.addMethod("lettersonly", function (value, element) {
@@ -320,10 +277,11 @@ catch(e){}
                     lettersmax: true,
                     lettersonly: true,
                     remote: {
-                        url: 'index.php?act=login&op=check_member&column=ok',
+                        url: 'http://localhost:8080/prest/register/check/name',
                         type: 'get',
+                        dataType:"jsonp",
                         data: {
-                            user_name: function () {
+                            value: function () {
                                 return $('#user_name').val();
                             }
                         }
@@ -341,8 +299,9 @@ catch(e){}
                 email: {
                     required: true,
                     email: true,
+                    dataType:"jsonp",
                     remote: {
-                        url: 'index.php?act=login&op=check_email',
+                        url: 'http://localhost:8080/prest/register/check/email',
                         type: 'get',
                         data: {
                             email: function () {
@@ -355,7 +314,7 @@ catch(e){}
                     required: true,
                     minlength: 4,
                     remote: {
-                        url: 'index.php?act=seccode&op=check&nchash=b62a356c',
+                        url: 'http://localhost:8080/shop/register/check/captcha.html',
                         type: 'get',
                         data: {
                             captcha: function () {

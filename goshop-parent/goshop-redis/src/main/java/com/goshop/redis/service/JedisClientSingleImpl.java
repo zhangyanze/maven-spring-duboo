@@ -10,7 +10,7 @@ import java.util.Set;
 public class JedisClientSingleImpl implements JedisClient{
 	
 	@Autowired
-	private JedisPool jedisPool; 
+	private JedisPool jedisPool;
 	
 	@Override
 	public String get(String key) {
@@ -18,8 +18,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try{
 			value = jedis.get(key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return value;
 	}
@@ -30,8 +32,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try{
 			value = jedis.get(key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return value;
 	}
@@ -41,10 +45,11 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try {
 			value = jedis.set(key, value);
+		}catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
-		jedis.close();
 		return value;
 	}
 
@@ -56,8 +61,10 @@ public class JedisClientSingleImpl implements JedisClient{
 			if (expire != 0) {
 				jedis.expire(key, expire);
 			}
+		}catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return value;
 	}
@@ -68,8 +75,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		String v=null;
 		try {
 			v =jedis.set(key, value);
+		}catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return v;
 	}
@@ -83,8 +92,10 @@ public class JedisClientSingleImpl implements JedisClient{
 			if (expire != 0) {
 				jedis.expire(key, expire);
 			}
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return v;
 	}
@@ -95,8 +106,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try{
 			value = jedis.hget(hkey, key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return value;
 	}
@@ -107,8 +120,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result =null;
 		try{
 			result= jedis.hset(hkey, key, value);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -119,8 +134,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.incr(key);
+		}catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -131,8 +148,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.expire(key, second);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -143,8 +162,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.ttl(key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -155,8 +176,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.del(key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -167,8 +190,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.del(key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -179,8 +204,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Long result = null;
 		try{
 			result = jedis.hdel(hkey, key);
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedis.close();
+			jedisPool.returnResource(jedis);
 		}
 		return result;
 	}
@@ -191,8 +218,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try {
 			keys = jedis.keys(pattern.getBytes());
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedisPool.close();
+			jedisPool.returnResource(jedis);
 		}
 		return keys;
 	}
@@ -202,8 +231,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try {
 			jedis.flushDB();
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedisPool.close();
+			jedisPool.returnResource(jedis);
 		}
 	}
 
@@ -213,8 +244,10 @@ public class JedisClientSingleImpl implements JedisClient{
 		Jedis jedis = jedisPool.getResource();
 		try {
 			dbSize = jedis.dbSize();
+		} catch (Exception e) {
+			jedisPool.returnBrokenResource(jedis);
 		} finally {
-			jedisPool.close();
+			jedisPool.returnResource(jedis);
 		}
 		return dbSize;
 	}
