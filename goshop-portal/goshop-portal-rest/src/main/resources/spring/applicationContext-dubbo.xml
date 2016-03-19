@@ -6,7 +6,7 @@
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"  default-lazy-init="true">
 
     <!-- 系统标识 -->
-    <dubbo:application name="go_portal_web"/>
+    <dubbo:application name="go_portal_rest"/>
 
     <!-- 强制检查服务 -->
     <dubbo:consumer check="false" timeout="5000" />
@@ -19,13 +19,13 @@
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false" />-->
 
     <!--通讯配置-->
-    <dubbo:protocol name="dubbo"  dispatcher="all" threadpool="fixed" threads="20" port="28883" />
+    <dubbo:protocol name="dubbo"  dispatcher="all" threadpool="fixed" threads="20" port="28882" />
 
 
     <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
     <dubbo:reference id="userService"
                      interface="com.goshop.manager.i.UserService" />
 
-    <dubbo:reference id="registerService" interface="com.goshop.portal.i.RegisterService" />
+    <dubbo:service interface="com.goshop.portal.i.RegisterService" ref="registerService" />
 
 </beans>

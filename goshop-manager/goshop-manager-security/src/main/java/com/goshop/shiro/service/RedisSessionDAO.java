@@ -58,7 +58,11 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         byte[] key = getByteKey(session.getId());
         byte[] value = SerializeUtils.serialize(session);
         session.setTimeout(this.expire*1000);
-        this.jedisClient.set(key, value, this.expire);
+        try {
+            this.jedisClient.set(key, value, this.expire);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -75,13 +79,16 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     @Override
     public Collection<Session> getActiveSessions() {
         Set<Session> sessions = new HashSet<Session>();
-
-        Set<byte[]> keys = jedisClient.keys(this.keyPrefix + "*");
-        if(keys != null && keys.size()>0){
-            for(byte[] key:keys){
-                Session s = (Session)SerializeUtils.deserialize(jedisClient.get(key));
-                sessions.add(s);
+        try {
+            Set<byte[]> keys = jedisClient.keys(this.keyPrefix + "*");
+            if (keys != null && keys.size() > 0) {
+                for (byte[] key : keys) {
+                    Session s = (Session) SerializeUtils.deserialize(jedisClient.get(key));
+                    sessions.add(s);
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         return sessions;
@@ -101,12 +108,17 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             logger.error("session id is null");
             return null;
         }
-        byte[] c=jedisClient.get(this.getByteKey(sessionId));
-        if(c==null){
+        try {
+            byte[] c = jedisClient.get(this.getByteKey(sessionId));
+            if (c == null) {
+                return null;
+            }
+            Session s = (Session) SerializeUtils.deserialize(c);
+            return s;
+        }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
-        Session s = (Session)SerializeUtils.deserialize(c);
-        return s;
     }
 
     /**

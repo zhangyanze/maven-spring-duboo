@@ -23,4 +23,6 @@ public interface UserMapper {
     User findOfRoleOne(Long id);
 
     List<Permission> findPermissionListByUserId(Long userId);
+
+    int findByLoginNameCount(String loginName);
 }

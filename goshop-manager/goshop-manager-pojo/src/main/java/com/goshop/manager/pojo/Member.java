@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Member implements Serializable {
+public class Member extends User implements Serializable {
     private Long memberId;
 
     private Long userId;

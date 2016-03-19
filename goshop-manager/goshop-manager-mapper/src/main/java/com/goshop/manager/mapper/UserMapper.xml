@@ -186,4 +186,11 @@ LEFT JOIN gs_permission p ON rp.per_id = p.id
 WHERE
 	u.id  =  #{id,jdbcType=BIGINT} and p.id  IS NOT NULL
   </select>
+
+  <select id="findByLoginNameCount" resultType="int" parameterType="string" >
+    SELECT
+    count(*)
+    FROM  gs_user
+    where login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
 </mapper>
