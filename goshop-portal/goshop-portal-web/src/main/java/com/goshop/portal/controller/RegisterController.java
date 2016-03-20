@@ -41,18 +41,18 @@ public class RegisterController {
                        User user,
                        String password_confirm,
                        HttpServletRequest request,
-                       HttpServletResponse resopnse) {
+                       HttpServletResponse response) {
         String url = request.getContextPath() + "/register.html";
         if (!TokenUtils.getInstance().verifyToken(request)) {
-            ResponseMessageUtils.xmlCDataOut(resopnse, "你已提交了用户数据！", url);
+            ResponseMessageUtils.xmlCDataOut(response, "你已提交了用户数据！", url);
         }
 
         if (!(password_confirm != null && password_confirm.equals(user.getPassword()))) {
-            ResponseMessageUtils.xmlCDataOut(resopnse, "两次密码不同！", url);
+            ResponseMessageUtils.xmlCDataOut(response, "两次密码不同！", url);
         }
 
         if (!ValidationCodeServlet.isCaptcha(request)) {
-            ResponseMessageUtils.xmlCDataOut(resopnse, "验证码错误！", url);
+            ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
         }
 
         String password = user.getPassword();
@@ -60,7 +60,7 @@ public class RegisterController {
             user=registerService.saveMember(member,user);
         }catch (Exception e){
             e.printStackTrace();
-            ResponseMessageUtils.xmlCDataOut(resopnse, "保存用户错误请联系管理员", url);
+            ResponseMessageUtils.xmlCDataOut(response, "保存用户错误请联系管理员", url);
         }
 
 
@@ -72,7 +72,7 @@ public class RegisterController {
         subject.login(token);
 
         url = request.getContextPath() + "/home.html";
-        ResponseMessageUtils.xmlCDataOut(resopnse, "欢迎来到电商测试建议您尽快完善资料，祝您购物愉快！", url);
+        ResponseMessageUtils.xmlCDataOut(response, "欢迎来到电商测试建议您尽快完善资料，祝您购物愉快！", url);
         return null;
     }
 
