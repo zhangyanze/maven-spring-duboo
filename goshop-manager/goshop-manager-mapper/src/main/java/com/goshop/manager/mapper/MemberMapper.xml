@@ -56,7 +56,7 @@
     delete from gs_member
     where member_id = #{memberId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.goshop.manager.pojo.Member" >
+  <insert id="insert" parameterType="com.goshop.manager.pojo.Member" useGeneratedKeys="true" keyProperty="memberId">
     insert into gs_member (member_id, user_id, member_truename, 
       member_avatar, member_sex, member_birthday, 
       member_email, member_qq, member_ww, 
@@ -78,7 +78,7 @@
       #{memberAreaid,jdbcType=INTEGER}, #{memberCityid,jdbcType=INTEGER}, #{memberProvinceid,jdbcType=INTEGER}, 
       #{memberAreainfo,jdbcType=VARCHAR}, #{memberQqinfo,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Member" >
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Member" useGeneratedKeys="true" keyProperty="memberId">
     insert into gs_member
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="memberId != null" >

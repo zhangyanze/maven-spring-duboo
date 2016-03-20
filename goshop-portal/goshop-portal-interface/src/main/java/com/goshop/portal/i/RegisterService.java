@@ -12,7 +12,7 @@ public interface RegisterService {
      * @param member
      * @return
      */
-    int saveMember(Member member);
+    User saveMember(Member member,User user);
 
     /**
      * 检测邮件

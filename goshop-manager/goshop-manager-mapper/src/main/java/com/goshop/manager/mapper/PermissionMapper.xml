@@ -24,7 +24,7 @@
     delete from gs_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.goshop.manager.pojo.Permission" >
+  <insert id="insert" parameterType="com.goshop.manager.pojo.Permission" useGeneratedKeys="true" keyProperty="id">
     insert into gs_permission (id, name, type, 
       url, per_code, parent_id, 
       sort, enable)
@@ -32,7 +32,7 @@
       #{url,jdbcType=VARCHAR}, #{perCode,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
       #{sort,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Permission" >
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Permission" useGeneratedKeys="true" keyProperty="id">
     insert into gs_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

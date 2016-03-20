@@ -47,7 +47,7 @@ catch(e){}
     </script>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery-browser.js"></script>
-    <script charset="utf-8" src="${S_COMMON_URL}/scripts/shop/common.js"></script>
+    <script src="${S_COMMON_URL}/scripts/shop/common.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery-ui/jquery.ui.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery.validation.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery.masonry.js"></script>
@@ -164,14 +164,14 @@ catch(e){}
             <h3>用户注册</h3>
         </div>
         <div class="nc-login-content">
-            <form action="${S_URL}/register/save" method="post"
+            <form action="register/save.html?for=json" method="post"
                   id="register_form">
                 <input type="hidden" value="${S_TOKEN}" name="S_TOKEN">
                 <dl>
                     <dt>用户名</dt>
                     <dd style="min-height:54px;">
-                        <input type="text" title="3-20位字符，可由中文、英文、数字及“_”、“-”组成" class="text tip error" name="user_name"
-                               id="user_name">
+                        <input type="text" title="3-20位字符，可由中文、英文、数字及“_”、“-”组成" class="text tip error" name="loginName"
+                               id="loginName">
                         <label></label></dd>
                 </dl>
                 <dl>
@@ -191,8 +191,8 @@ catch(e){}
                 <dl>
                     <dt>邮箱</dt>
                     <dd style="min-height:54px;">
-                        <input type="text" title="请输入常用的邮箱，将用来找回密码、接受订单通知等" class="text tip error" name="email"
-                               id="email">
+                        <input type="text" title="请输入常用的邮箱，将用来找回密码、接受订单通知等" class="text tip error" name="memberEmail"
+                               id="memberEmail">
                         <label></label></dd>
                 </dl>
                 <dl>
@@ -200,10 +200,10 @@ catch(e){}
                     <dd style="min-height:54px;">
                         <input type="text" title="请输入验证码，不区分大小写" size="10" maxlength="4" class="text w50 fl tip error"
                                name="captcha" id="captcha">
-                        <img border="0" class="fl ml5" id="codeimage" name="codeimage" title=""
+                        <img border="0" class="fl ml5" id="codeimage" name="codeimage" onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();"
                              src="${S_URL}/validationCodeServlet.png">
                         <a onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();"
-                           class="ml5" href="javascript:void(0);return;">看不清，换一张</a>
+                           class="ml5" href="javascript:void(0)">看不清，换一张</a>
                         <label></label></dd>
                 </dl>
                 <dl>
@@ -271,7 +271,7 @@ catch(e){}
                 ajaxpost('register_form', '', '', 'onerror')
             },
             rules: {
-                user_name: {
+                loginName: {
                     required: true,
                     lettersmin: true,
                     lettersmax: true,
@@ -282,7 +282,7 @@ catch(e){}
                         dataType:"jsonp",
                         data: {
                             value: function () {
-                                return $('#user_name').val();
+                                return $('#loginName').val();
                             }
                         }
                     }
@@ -296,16 +296,16 @@ catch(e){}
                     required: true,
                     equalTo: '#password'
                 },
-                email: {
+                memberEmail: {
                     required: true,
                     email: true,
-                    dataType:"jsonp",
                     remote: {
                         url: 'http://localhost:8080/prest/register/check/email',
                         type: 'get',
+                        dataType:"jsonp",
                         data: {
-                            email: function () {
-                                return $('#email').val();
+                            memberEmail: function () {
+                                return $('#memberEmail').val();
                             }
                         }
                     }
@@ -328,7 +328,7 @@ catch(e){}
                 }
             },
             messages: {
-                user_name: {
+                loginName: {
                     required: '用户名不能为空',
                     lettersmin: '用户名必须在3-15个字符之间',
                     lettersmax: '用户名必须在3-15个字符之间',
@@ -344,7 +344,7 @@ catch(e){}
                     required: '请再次输入您的密码',
                     equalTo: '两次输入的密码不一致'
                 },
-                email: {
+                memberEmail: {
                     required: '电子邮箱不能为空',
                     email: '这不是一个有效的电子邮箱',
                     remote: '该电子邮箱已经存在'

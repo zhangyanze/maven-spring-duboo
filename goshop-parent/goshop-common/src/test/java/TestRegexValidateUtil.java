@@ -21,7 +21,7 @@ public class TestRegexValidateUtil {
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("")==true);
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("a")==true);
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("ad")==true);
-        Assert.assertTrue(RegexValidateUtil.checkLoginUser("admin")==false);
+        Assert.assertTrue(RegexValidateUtil.checkLoginUser("gugu")==false);
         Assert.assertTrue(RegexValidateUtil.checkLoginUser("a1234567890")==true);
     }
 

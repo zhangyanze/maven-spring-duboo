@@ -14,9 +14,13 @@ public class User implements Serializable {
     private String password;
 
     private String salt;
-
+    /**
+     * 是否停用，1：正常，2：关闭
+     */
     private Integer enable;
-
+    /**
+     * 用户类型(1:注册用户，2：管理员添加)
+     */
     private Integer type;
 
     private Date created;

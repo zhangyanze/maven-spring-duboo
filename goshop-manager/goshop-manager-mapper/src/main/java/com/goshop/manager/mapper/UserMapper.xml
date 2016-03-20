@@ -42,7 +42,7 @@
     delete from gs_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.goshop.manager.pojo.User" >
+  <insert id="insert" parameterType="com.goshop.manager.pojo.User" useGeneratedKeys="true" keyProperty="id">
     insert into gs_user (id, user_name, login_name, 
       password, salt, enable, 
       type, created, upcreated)
@@ -50,7 +50,7 @@
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{enable,jdbcType=INTEGER}, 
       #{type,jdbcType=INTEGER}, #{created,jdbcType=DATE}, #{upcreated,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.User" >
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.User" useGeneratedKeys="true" keyProperty="id">
     insert into gs_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

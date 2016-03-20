@@ -32,13 +32,13 @@
     delete from gs_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.goshop.manager.pojo.Role" >
+  <insert id="insert" parameterType="com.goshop.manager.pojo.Role" useGeneratedKeys="true" keyProperty="id">
     insert into gs_role (id, name, alias, 
       enable, type)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, 
       #{enable,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Role" >
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Role" useGeneratedKeys="true" keyProperty="id">
     insert into gs_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
