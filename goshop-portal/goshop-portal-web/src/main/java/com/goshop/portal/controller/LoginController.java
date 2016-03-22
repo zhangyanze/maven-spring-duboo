@@ -1,24 +1,34 @@
 package com.goshop.portal.controller;
 
-import com.goshop.common.constant.Public;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
+import com.goshop.common.context.ValidationCodeServlet;
+import com.goshop.common.utils.ResponseMessageUtils;
+import com.goshop.common.utils.TokenUtils;
+import com.goshop.portal.i.MemberService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    MemberService memberService;
 
     private static String shiroLoginFailure="shiroLoginFailure";
     /**
      * 用户登陆
      */
     @RequestMapping("/login")
-    public String login(Model model,HttpServletRequest request) {
+    public String login(Model model,HttpServletRequest request,HttpServletResponse response) {
         //如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
         String exceptionClassName = (String) request.getAttribute(shiroLoginFailure);
         //根据shiro返回的异常类路径判断，抛出指定异常信息
@@ -31,13 +41,52 @@ public class LoginController {
                 model.addAttribute("P_EXCEPTION","用户名/密码错误");
             } else if("randomCodeError".equals(exceptionClassName)){
                 model.addAttribute("P_EXCEPTION","验证码错误");
+            }else if(LockedAccountException.class.getName().equals(exceptionClassName)){
+                model.addAttribute("P_EXCEPTION", "账号已被锁定，请与系统管理员联系!");
+            }else if(AuthenticationException.class.getName().equals(exceptionClassName)){
+                model.addAttribute("P_EXCEPTION", "您没有授权！");
             }else {
-                //throw new Exception("");//最终在异常处理器生成未知错误
+                model.addAttribute("P_EXCEPTION", "未知异常！");
             }
         }
         //此方法不处理登陆成功（认证成功），shiro认证成功会自动跳转到上一个请求路径
         //登陆失败还到login页面
         return "login";
+    }
+
+    /**
+     * 用户登陆
+     */
+    @RequestMapping("/ajax/login")
+    @ResponseBody
+    public Object ajaxLogin(String username,String password,boolean rememberMe,
+                            HttpServletRequest request,HttpServletResponse response) {
+        //根据shiro返回的异常类路径判断，抛出指定异常信息
+        String url = request.getContextPath() + "/login.html";
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            token.setRememberMe(rememberMe);
+
+            try{
+                currentUser.login(token);
+            }catch(UnknownAccountException ex){
+                ResponseMessageUtils.xmlCDataOut(response, "账号不存在！", url);
+                return null;
+            }catch(IncorrectCredentialsException ex){
+                ResponseMessageUtils.xmlCDataOut(response, "密码错误！", url);
+                return null;
+            }catch(LockedAccountException ex){
+                ResponseMessageUtils.xmlCDataOut(response, "账号已被锁定，请与系统管理员联系！", url);
+                return null;
+            }catch(AuthenticationException ex){
+                ResponseMessageUtils.xmlCDataOut(response, "您没有授权！", url);
+                return null;
+            }
+        }
+        ResponseMessageUtils.xmlCDataOut(response, "登录成功！", request.getContextPath() + "/home.html");
+        //返回json数据
+        return null;
     }
 
     /**
@@ -49,8 +98,41 @@ public class LoginController {
         return "refuse";
     }
 
-/*    @RequestMapping("logout")
-    public String logout(){
-        return "redirect:/home.html";
-    }*/
+    @RequestMapping("forget_password")
+    public String forgetPassword(HttpServletRequest request){
+        TokenUtils.getInstance().saveToken(request);
+        return "forget_password";
+    }
+
+    @RequestMapping("/find_password")
+    @ResponseBody
+    public Object findPassword(String username,
+            String email,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+        String url = request.getContextPath() + "/forget_password.html";
+        if (!TokenUtils.getInstance().verifyToken(request)) {
+            ResponseMessageUtils.xmlCDataOut(response, "你已提交了用户数据！", url);
+        }else if (!ValidationCodeServlet.isCaptcha(request)) {
+            ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
+        }else if(memberService.checkLoginName(username)){
+            ResponseMessageUtils.xmlCDataOut(response, "系统没有此用户！", url);
+        }else if(memberService.checkLoginNameByEmail(username,email)){
+            ResponseMessageUtils.xmlCDataOut(response, "该用户没有注册此电子邮件！", url);
+        }else {
+            try {
+                memberService.sendEmailFindPassword(username, email);
+            }catch (Exception e){
+                ResponseMessageUtils.xmlCDataOut(response, "邮件发送失败，请联系管理员！", url);
+            }
+            ResponseMessageUtils.xmlCDataOut(response, "邮件发送成功！", request.getContextPath() + "/login.html");
+        }
+        return null;
+    }
+
+    @RequestMapping("/password/update")
+    public String passwordUpdate(String key,HttpServletRequest request){
+        TokenUtils.getInstance().saveToken(request);
+        return "password_update";
+    }
 }

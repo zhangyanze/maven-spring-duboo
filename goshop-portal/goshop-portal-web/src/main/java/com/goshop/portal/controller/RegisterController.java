@@ -1,32 +1,29 @@
 package com.goshop.portal.controller;
 
 import com.goshop.common.context.ValidationCodeServlet;
-import com.goshop.common.exception.PageException;
 import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
 import com.goshop.manager.pojo.Member;
 import com.goshop.manager.pojo.User;
-import com.goshop.portal.i.RegisterService;
+import com.goshop.portal.i.MemberService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/register")
 public class RegisterController {
 
     @Autowired
-    RegisterService registerService;
+    MemberService memberService;
 
 
     @RequestMapping
@@ -57,7 +54,7 @@ public class RegisterController {
 
         String password = user.getPassword();
         try {
-            user=registerService.saveMember(member,user);
+            memberService.saveMember(member,user);
         }catch (Exception e){
             e.printStackTrace();
             ResponseMessageUtils.xmlCDataOut(response, "保存用户错误请联系管理员", url);
@@ -67,7 +64,7 @@ public class RegisterController {
 
         //注册用户自动登录
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(),password,user.getSalt());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(),password);
         token.setRememberMe(true);
         subject.login(token);
 

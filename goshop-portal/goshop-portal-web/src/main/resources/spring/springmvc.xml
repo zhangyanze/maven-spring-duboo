@@ -44,6 +44,9 @@
             <map>
                 <entry key="xml_escape" value-ref="fmXmlEscape" />
                 <entry key="S_COMMON_URL" value="${COMMON_URL}"></entry>
+                <entry key="PREST_URL" value="${PREST_URL}"></entry>
+                <entry key="MANAGER_URL" value="${MANAGER_URL}"></entry>
+                <entry key="SHOP_URL" value="${SHOP_URL}"></entry>
             </map>
         </property>
         <property name="freemarkerSettings" ref="freemarkerConfiguration">

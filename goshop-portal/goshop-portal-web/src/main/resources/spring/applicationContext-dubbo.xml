@@ -26,6 +26,6 @@
     <dubbo:reference id="userService"
                      interface="com.goshop.manager.i.UserService" />
 
-    <dubbo:reference id="registerService" interface="com.goshop.portal.i.RegisterService" />
+    <dubbo:reference id="memberService" interface="com.goshop.portal.i.MemberService" />
 
 </beans>

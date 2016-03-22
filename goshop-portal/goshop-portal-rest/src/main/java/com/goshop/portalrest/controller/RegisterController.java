@@ -1,7 +1,6 @@
 package com.goshop.portalrest.controller;
 
-import com.goshop.common.pojo.GoShopResult;
-import com.goshop.portal.i.RegisterService;
+import com.goshop.portal.i.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by Administrator on 2016/3/19.
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class RegisterController {
 
     @Autowired
-    RegisterService registerService;
+    MemberService memberService;
 
     @RequestMapping("/check/{type}")
     @ResponseBody
@@ -28,10 +26,10 @@ public class RegisterController {
         Boolean isCheck = false;
         switch (type){
            case  "name":
-               isCheck=registerService.checkLoginName(value);
+               isCheck=memberService.checkLoginName(value);
                break;
            case  "email":
-               isCheck=registerService.checkEmail(value);
+               isCheck=memberService.checkEmail(value);
                break;
            default:
 

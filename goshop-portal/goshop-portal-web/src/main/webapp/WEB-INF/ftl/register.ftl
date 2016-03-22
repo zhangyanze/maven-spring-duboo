@@ -65,78 +65,15 @@ catch(e){}
 
         -->
     </style>
-    <style type="text/css" id="poshytip-css-tip-yellowsimple">div.tip-yellowsimple {
-        visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
 
-    div.tip-yellowsimple table, div.tip-yellowsimple td {
-        margin: 0;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        font-style: inherit;
-        font-variant: inherit;
-    }
-
-    div.tip-yellowsimple td.tip-bg-image span {
-        display: block;
-        font: 1px/1px sans-serif;
-        height: 10px;
-        width: 10px;
-        overflow: hidden;
-    }
-
-    div.tip-yellowsimple td.tip-right {
-        background-position: 100% 0;
-    }
-
-    div.tip-yellowsimple td.tip-bottom {
-        background-position: 100% 100%;
-    }
-
-    div.tip-yellowsimple td.tip-left {
-        background-position: 0 100%;
-    }
-
-    div.tip-yellowsimple div.tip-inner {
-        background-position: -10px -10px;
-    }
-
-    div.tip-yellowsimple div.tip-arrow {
-        visibility: hidden;
-        position: absolute;
-        overflow: hidden;
-        font: 1px/1px sans-serif;
-    }</style>
 </head>
 <body>
 
 <div id="append_parent"></div>
 <div id="ajaxwaitid"></div>
 
-<script type="text/javascript">
-    $(function () {
-        $(".quick-menu dl").hover(function () {
-                    $(this).addClass("hover");
-                },
-                function () {
-                    $(this).removeClass("hover");
-                });
 
-    });
-</script>
-<!-- PublicHeadLayout Begin -->
-<p></p>
-
-<div class="header-wrap">
-    <header class="public-head-layout wrapper">
-        <h1 class="site-logo"><a href="${S_URL}"><img class="pngFix" src="${S_COMMON_URL}/images/shop/logo.png"></a>
-        </h1>
-    </header>
-</div>
+<#include "simple_header.ftl"/>
 <!-- PublicHeadLayout End -->
 
 
@@ -236,8 +173,8 @@ catch(e){}
         <h3 class="mt20">如果您是本站用户</h3>
 
         <div class="nc-login-now mt10"><span class="ml20">我已经注册过帐号，立即<a class="register" title=""
-                                                                        href="#">登录</a></span><span>或是<a
-                href="index.php?act=login&op=forget_password" class="forget">找回密码？</a></span></div>
+                                                                        href="${S_URL}/login.html">登录</a></span><span>或是<a
+                href="${S_URL}/forget_password.html" class="forget">找回密码？</a></span></div>
     </div>
 </div>
 <script charset="utf-8" src="${S_COMMON_URL}/scripts/jquery/jquery.poshytip.js" type="text/javascript"></script>
@@ -277,7 +214,7 @@ catch(e){}
                     lettersmax: true,
                     lettersonly: true,
                     remote: {
-                        url: 'http://localhost:8080/prest/register/check/name',
+                        url: '${PREST_URL}/register/check/name',
                         type: 'get',
                         dataType:"jsonp",
                         data: {
@@ -300,7 +237,7 @@ catch(e){}
                     required: true,
                     email: true,
                     remote: {
-                        url: 'http://localhost:8080/prest/register/check/email',
+                        url: '${PREST_URL}/register/check/email',
                         type: 'get',
                         dataType:"jsonp",
                         data: {
@@ -314,7 +251,7 @@ catch(e){}
                     required: true,
                     minlength: 4,
                     remote: {
-                        url: 'http://localhost:8080/shop/register/check/captcha.html',
+                        url: '${S_URL}/register/check/captcha.html',
                         type: 'get',
                         data: {
                             captcha: function () {
@@ -363,24 +300,7 @@ catch(e){}
 </script>
 
 
-<div class="wrapper" id="footer">
-    <p><a href="http://localhost/shopnc/shop">首页</a>
-        | <a href="http://127.0.0.1/shop/index.php?act=article&article_id=24">招聘英才</a>
-        | <a href="http://127.0.0.1/shop/index.php?act=article&article_id=25">合作及洽谈</a>
-        | <a href="http://127.0.0.1/shop/index.php?act=article&article_id=23">联系我们</a>
-        | <a href="http://127.0.0.1/shop/index.php?act=article&article_id=22">关于ShopNC</a>
-    </p>
-    Copyright 2007-2014 ShopNC Inc.,All rights reserved.<br>
-    Powered by <span class="vol"><font class="b">Shop</font><font class="o">NC</font></span> <br>
-</div>
-<script src="${S_COMMON_URL}/scripts/jquery/jquery.cookie.js" type="text/javascript"></script>
-<script src="${S_COMMON_URL}/scripts/jquery/perfect-scrollbar.js" type="text/javascript"></script>
-<script src="${S_COMMON_URL}/scripts/jquery/jquery.mousewheel.js" type="text/javascript"></script>
-<script language="javascript">
-    $(function () {
-        // Membership card
-        $('[nctype="mcard"]').membershipCard({type: 'shop'});
-    });
-</script>
+<#include "footer.ftl" />
+
 </body>
 </html>
