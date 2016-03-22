@@ -2,6 +2,7 @@ package com.goshop.manager.pojo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Member implements Serializable {
@@ -25,9 +26,9 @@ public class Member implements Serializable {
 
     private Integer memberLoginNum;
 
-    private Date memberTime;
+    private Timestamp memberTime;
 
-    private Date memberLoginTime;
+    private Timestamp memberLoginTime;
 
     private String memberOldLoginTime;
 
@@ -143,19 +144,19 @@ public class Member implements Serializable {
         this.memberLoginNum = memberLoginNum;
     }
 
-    public Date getMemberTime() {
+    public Timestamp getMemberTime() {
         return memberTime;
     }
 
-    public void setMemberTime(Date memberTime) {
+    public void setMemberTime(Timestamp memberTime) {
         this.memberTime = memberTime;
     }
 
-    public Date getMemberLoginTime() {
+    public Timestamp getMemberLoginTime() {
         return memberLoginTime;
     }
 
-    public void setMemberLoginTime(Date memberLoginTime) {
+    public void setMemberLoginTime(Timestamp memberLoginTime) {
         this.memberLoginTime = memberLoginTime;
     }
 

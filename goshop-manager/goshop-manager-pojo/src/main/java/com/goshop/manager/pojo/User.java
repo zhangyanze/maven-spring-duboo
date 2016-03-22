@@ -1,6 +1,7 @@
 package com.goshop.manager.pojo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class User implements Serializable {
      */
     private Integer type;
 
-    private Date created;
+    private Timestamp created;
 
-    private Date upcreated;
+    private Timestamp upcreated;
 
     private List<Role> roleList;
 
@@ -93,19 +94,19 @@ public class User implements Serializable {
         this.type = type;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getUpcreated() {
+    public Timestamp getUpcreated() {
         return upcreated;
     }
 
-    public void setUpcreated(Date upcreated) {
+    public void setUpcreated(Timestamp upcreated) {
         this.upcreated = upcreated;
     }
 }

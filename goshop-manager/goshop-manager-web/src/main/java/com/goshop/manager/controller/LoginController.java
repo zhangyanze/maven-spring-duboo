@@ -1,6 +1,9 @@
 package com.goshop.manager.controller;
 
+import com.goshop.manager.utils.JumpException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +25,23 @@ public class LoginController {
         String exceptionClassName = (String) request.getAttribute(shiroLoginFailure);
         //根据shiro返回的异常类路径判断，抛出指定异常信息
         if(StringUtils.hasText(exceptionClassName)){
+            String returnUrl= request.getContextPath() + "/login";
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
                 //最终会抛给异常处理器
-                model.addAttribute("P_EXCEPTION","账号不存在");
+                return JumpException.get(returnUrl, "账号不存在!");
             } else if (IncorrectCredentialsException.class.getName().equals(
                     exceptionClassName)) {
-                model.addAttribute("P_EXCEPTION","用户名/密码错误");
+                return JumpException.get(returnUrl, "用户名/密码错误!");
             } else if("randomCodeError".equals(exceptionClassName)){
-                model.addAttribute("P_EXCEPTION","验证码错误");
+                return JumpException.get(returnUrl, "验证码错误!");
+            }else if(LockedAccountException.class.getName().equals(exceptionClassName)){
+                return JumpException.get(returnUrl, "账号已被锁定，请与系统管理员联系!");
+            }else if(AuthenticationException.class.getName().equals(exceptionClassName)){
+                return JumpException.get(returnUrl, "您没有授权！");
             }else {
-                //throw new Exception("");//最终在异常处理器生成未知错误
+                return JumpException.get(returnUrl, "未知异常！");
             }
+
         }
         //此方法不处理登陆成功（认证成功），shiro认证成功会自动跳转到上一个请求路径
         //登陆失败还到login页面
