@@ -1,27 +1,24 @@
 package com.goshop.portal.service;
 
-import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.RandomUtils;
 import com.goshop.common.utils.RegexValidateUtil;
 import com.goshop.manager.mapper.MemberMapper;
 import com.goshop.manager.mapper.UserMapper;
 import com.goshop.manager.pojo.Member;
 import com.goshop.manager.pojo.User;
-import com.goshop.portal.i.RegisterService;
+import com.goshop.portal.i.MemberService;
 import com.goshop.shiro.service.PasswordService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
-@Service("registerService")
-public class RegisterServiceImpl implements RegisterService {
+@Service("memberService")
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     MemberMapper memberMapper;
@@ -32,8 +29,14 @@ public class RegisterServiceImpl implements RegisterService {
     @Autowired
     PasswordService passwordService;
 
+    @Autowired
+    FindPasswordService findPasswordService;
+
+    @Autowired
+    EMailService eMailService;
+
     @Override
-    public User saveMember(Member member,User user) {
+    public int saveMember(Member member,User user) {
         //判断用户名是否符合规范
         Assert.isTrue(RegexValidateUtil.checkLoginUser(user.getLoginName())==false,"登录名不能为空，并且在字母开头2~9为数字或字母的组合！");
         //判断登录名是否重复
@@ -49,13 +52,12 @@ public class RegisterServiceImpl implements RegisterService {
         user=this.setDefaultUser(user);
         userMapper.insert(user);
         member=this.setDefaultMember(member,user.getId());
-        memberMapper.insert(member);
-        return user;
+        return memberMapper.insert(member);
 
     }
 
     @Override
-    public boolean checkEmail(String memberEmail) {
+    public Boolean checkEmail(String memberEmail) {
         int count=memberMapper.findByMemberEmailCount(memberEmail);
         if(count>0){
             return false;
@@ -64,12 +66,27 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public boolean checkLoginName(String loginName) {
+    public Boolean checkLoginName(String loginName) {
         int count=userMapper.findByLoginNameCount(loginName);
         if(count>0){
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Boolean checkLoginNameByEmail(String loginName, String email) {
+        int count=memberMapper.checkLoginNameByEmail(loginName,email);
+        if(count>0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void sendEmailFindPassword(String username, String email) {
+        String emailContent = findPasswordService.getContent(username);
+        eMailService.send(email,"找回密码",emailContent);
     }
 
     /**
@@ -88,8 +105,8 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     public User setDefaultUser(User user) {
-        user.setUpcreated(new Date());
-        user.setCreated(new Date());
+        user.setUpcreated(new Timestamp(System.currentTimeMillis()));
+        user.setCreated(new Timestamp(System.currentTimeMillis()));
         user.setType(1);
         user.setEnable(1);
         return user;
@@ -97,7 +114,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     public Member setDefaultMember(Member member,Long userId) {
         member.setUserId(userId);
-        member.setMemberTime(new Date());
+        member.setMemberTime(new Timestamp(System.currentTimeMillis()));
         //是否允许举报(1可以/2不可以)
         member.setInformAllow(true);
         //会员是否有购买权限 1为开启 0为关闭
@@ -116,4 +133,5 @@ public class RegisterServiceImpl implements RegisterService {
         member.setMemberCredit(0);
         return member;
     }
+
 }
