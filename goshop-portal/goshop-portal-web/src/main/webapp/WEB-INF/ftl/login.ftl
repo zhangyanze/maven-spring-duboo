@@ -120,10 +120,9 @@ catch(e){}
                     <dt>验证码</dt>
                     <dd style="min-height:54px;">
                         <input type="text" size="10" maxlength="4" id="captcha" class="text w50 fl" name="captcha">
-                        <img border="0" class="fl ml5" id="codeimage" name="codeimage" onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();"
-                             src="${S_URL}/validationCodeServlet.png">
-                        <a onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();"
-                           class="ml5" href="javascript:void(0)">看不清，换一张</a>
+                        <img border="0" class="fl ml5" id="codeimage" name="codeimage" src="${S_URL}/validationCodeServlet.png">
+                        <a onclick="javascript:codeImage();"
+                           class="ml5" href="javascript:void(0);">看不清，换一张</a>
                         <label></label>
                     </dd>
                 </dl>
@@ -187,6 +186,9 @@ catch(e){}
             }
         });
     });
+    function codeImage(){
+        $('#codeimage').attr("src",'${S_URL}/validationCodeServlet.png?t=' + Math.random());
+    }
 </script>
 
 

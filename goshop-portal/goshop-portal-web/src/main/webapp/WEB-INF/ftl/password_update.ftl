@@ -82,8 +82,9 @@ catch(e){}
             <h3>修改密码</h3>
         </div>
         <div id="demo-form-site" class="nc-login-content">
-            <form id="find_password_form" method="POST" action="find_password.html?for=json">
+            <form id="find_password_form" method="POST" action="password/update.html?for=json">
                 <input type="hidden" value="${S_TOKEN}" name="S_TOKEN">
+                <input type="hidden" value="${P_KEY}" name="key">
                 <dl>
                     <dt>设置密码</dt>
                     <dd style="min-height:54px;">

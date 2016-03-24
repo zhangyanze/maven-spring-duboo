@@ -42,4 +42,6 @@ public interface MemberService {
      * @param email
      */
     void sendEmailFindPassword(String username, String email);
+
+    void updatePassword(String key,String password) throws Exception;
 }

@@ -1,6 +1,7 @@
 package com.goshop.portal.controller;
 
 import com.goshop.common.context.ValidationCodeServlet;
+import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
 import com.goshop.portal.i.MemberService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,9 +132,33 @@ public class LoginController {
         return null;
     }
 
-    @RequestMapping("/password/update")
-    public String passwordUpdate(String key,HttpServletRequest request){
+    @RequestMapping(value="/password/update",method = RequestMethod.GET)
+    public String passwordUpdatePage(String key,Model model,HttpServletRequest request){
         TokenUtils.getInstance().saveToken(request);
+        model.addAttribute("P_KEY",key);
         return "password_update";
+    }
+
+    @RequestMapping(value="/password/update" ,method = RequestMethod.POST)
+    @ResponseBody
+    public String passwordUpdate(String key,
+                                 String password,
+                                 String password_confirm,
+                                 HttpServletRequest request,HttpServletResponse response){
+        TokenUtils.getInstance().saveToken(request);
+        String url = request.getContextPath() + "/password/update.html?key="+key;
+        if(!password.equals(password_confirm)){
+            ResponseMessageUtils.xmlCDataOut(response, "两次密码输入不一样，请检查！", url);
+        }
+        if (!ValidationCodeServlet.isCaptcha(request)) {
+            ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
+        }
+        try{
+            memberService.updatePassword(key,password);
+        }catch (Exception e){
+            ResponseMessageUtils.xmlCDataOut(response, e.getMessage(), url);
+        }
+        ResponseMessageUtils.xmlCDataOut(response, "密码修改成功，请登陆！", request.getContextPath() + "/login.html");
+        return null;
     }
 }

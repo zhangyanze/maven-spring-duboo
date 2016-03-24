@@ -12,8 +12,6 @@
     <script src="${S_COMMON_URL}/scripts/utils/html5shiv.js" type="text/javascript"></script>
     <script src="${S_COMMON_URL}/scripts/utils/respond.min.js" type="text/javascript"></script>
     <![endif]-->
-    <script src="${S_COMMON_URL}/scripts/jquery/jquery.js" type="text/javascript"></script>
-    <script src="${S_COMMON_URL}/scripts/jquery/jquery.js" type="text/javascript"></script>
 
     <script>
         //

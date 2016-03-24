@@ -49,7 +49,7 @@
               <img border="0" id="codeimage" name="codeimage" src="${S_URL}/validationCodeServlet.png">
           </div>
           <a title="关闭" class="close" id="hide" href="JavaScript:void(0);"><i></i></a>
-          <a title="看不清,点击更换验证码" class="change" onclick="javascript:document.getElementById('codeimage').src='${S_URL}/validationCodeServlet.png?t=' + Math.random();" href="JavaScript:void(0);"><i></i></a> </div>
+          <a title="看不清,点击更换验证码" class="change" onclick="javascript:codeImage();" href="JavaScript:void(0);"><i></i></a> </div>
       <input type="text" value="" autocomplete="off" title="验证码为4个字符" pattern="[A-z0-9]{4}" placeholder="输入验证" id="captcha" class="input-code" required="" name="captcha">
       </span> <span>
 
@@ -80,5 +80,8 @@
         $('#username').focus();
         $("#captcha").nc_placeholder();
     });
+    function codeImage(){
+        $('#codeimage').attr("src",'${S_URL}/validationCodeServlet.png?t=' + Math.random());
+    }
 </script>
 </body></html>

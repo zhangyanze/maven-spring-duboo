@@ -9,6 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>goshop-common-service</artifactId>
+    <groupId>com.goshop</groupId>
+    <artifactId>goshop-seller</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>goshop-seller-interface</module>
+        <module>goshop-seller-rest</module>
+        <module>goshop-seller-web</module>
+    </modules>
+    <packaging>pom</packaging>
 </project>

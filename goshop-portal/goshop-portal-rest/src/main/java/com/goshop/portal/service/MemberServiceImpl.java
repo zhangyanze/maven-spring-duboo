@@ -2,6 +2,7 @@ package com.goshop.portal.service;
 
 import com.goshop.common.utils.RandomUtils;
 import com.goshop.common.utils.RegexValidateUtil;
+import com.goshop.manager.mapper.FindPasswordMapper;
 import com.goshop.manager.mapper.MemberMapper;
 import com.goshop.manager.mapper.UserMapper;
 import com.goshop.manager.pojo.Member;
@@ -34,6 +35,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     EMailService eMailService;
+
+    @Autowired
+    FindPasswordMapper findPasswordMapper;
 
     @Override
     public int saveMember(Member member,User user) {
@@ -76,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Boolean checkLoginNameByEmail(String loginName, String email) {
-        int count=memberMapper.checkLoginNameByEmail(loginName,email);
+        int count=memberMapper.checkLoginNameByEmail(loginName, email);
         if(count>0){
             return false;
         }
@@ -87,6 +91,21 @@ public class MemberServiceImpl implements MemberService {
     public void sendEmailFindPassword(String username, String email) {
         String emailContent = findPasswordService.getContent(username);
         eMailService.send(email,"找回密码",emailContent);
+    }
+
+    @Override
+    public void updatePassword(String key, String password) throws Exception {
+        findPasswordMapper.deleteInvalid();
+        String loginName=findPasswordMapper.findByKey(key);
+        if(StringUtils.hasText(loginName)){
+            User user=userMapper.findByLoginName(loginName);
+            user.setPassword(password);
+            userMapper.updateByPrimaryKey(passWordUser(user));
+            findPasswordMapper.delete(key);
+        }else{
+            throw new Exception("此链接已过期！");
+        }
+
     }
 
     /**
@@ -133,5 +152,6 @@ public class MemberServiceImpl implements MemberService {
         member.setMemberCredit(0);
         return member;
     }
+
 
 }
