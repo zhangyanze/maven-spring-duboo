@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goshop.manager.mapper.StoreClassMapper" >
+  <resultMap id="BaseResultMap" type="com.goshop.manager.pojo.StoreClass" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="displayOrder" property="displayorder" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="LAYER" property="layer" jdbcType="INTEGER" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, alias, displayOrder, name, LAYER, PARENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gs_store_class
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gs_store_class
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.goshop.manager.pojo.StoreClass" >
+    insert into gs_store_class (id, alias, displayOrder, 
+      name, LAYER, PARENT_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{displayorder,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{layer,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.StoreClass" >
+    insert into gs_store_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="displayorder != null" >
+        displayOrder,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="layer != null" >
+        LAYER,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null" >
+        #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null" >
+        #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.goshop.manager.pojo.StoreClass" >
+    update gs_store_class
+    <set >
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null" >
+        displayOrder = #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null" >
+        LAYER = #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.goshop.manager.pojo.StoreClass" >
+    update gs_store_class
+    set alias = #{alias,jdbcType=VARCHAR},
+      displayOrder = #{displayorder,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      LAYER = #{layer,jdbcType=INTEGER},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

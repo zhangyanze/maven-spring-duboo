@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>电商测试</title>
-    <link href="${S_URL}/static/styles/skin_0.css" rel="stylesheet" type="text/css">
+    <link href="${S_COMMON_URL}/styles/shop/skin_0.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="page">

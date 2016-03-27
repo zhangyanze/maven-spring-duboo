@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goshop.manager.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.goshop.manager.pojo.Store" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="credentials_Image" property="credentialsImage" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="grade_Id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="license_Image" property="licenseImage" jdbcType="VARCHAR" />
+    <result column="member_Id" property="memberId" jdbcType="VARCHAR" />
+    <result column="member_Name" property="memberName" jdbcType="VARCHAR" />
+    <result column="name_Auth" property="nameAuth" jdbcType="INTEGER" />
+    <result column="sc_Id" property="scId" jdbcType="VARCHAR" />
+    <result column="area_Id" property="areaId" jdbcType="VARCHAR" />
+    <result column="store_Address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="store_Audit" property="storeAudit" jdbcType="INTEGER" />
+    <result column="store_Auth" property="storeAuth" jdbcType="INTEGER" />
+    <result column="store_Banner" property="storeBanner" jdbcType="VARCHAR" />
+    <result column="store_Center_Quicklink" property="storeCenterQuicklink" jdbcType="VARCHAR" />
+    <result column="store_Close_Info" property="storeCloseInfo" jdbcType="VARCHAR" />
+    <result column="store_End_Time" property="storeEndTime" jdbcType="TIMESTAMP" />
+    <result column="store_Code" property="storeCode" jdbcType="VARCHAR" />
+    <result column="store_Collect" property="storeCollect" jdbcType="INTEGER" />
+    <result column="store_Credit" property="storeCredit" jdbcType="INTEGER" />
+    <result column="store_Description" property="storeDescription" jdbcType="VARCHAR" />
+    <result column="store_Domain" property="storeDomain" jdbcType="VARCHAR" />
+    <result column="store_Domain_Times" property="storeDomainTimes" jdbcType="INTEGER" />
+    <result column="store_Keywords" property="storeKeywords" jdbcType="VARCHAR" />
+    <result column="store_Label" property="storeLabel" jdbcType="VARCHAR" />
+    <result column="store_Msn" property="storeMsn" jdbcType="VARCHAR" />
+    <result column="store_Owner_Card" property="storeOwnerCard" jdbcType="VARCHAR" />
+    <result column="store_QQ" property="storeQq" jdbcType="VARCHAR" />
+    <result column="store_Recommend" property="storeRecommend" jdbcType="INTEGER" />
+    <result column="store_Slide" property="storeSlide" jdbcType="VARCHAR" />
+    <result column="store_Slide_Url" property="storeSlideUrl" jdbcType="VARCHAR" />
+    <result column="store_State" property="storeState" jdbcType="VARCHAR" />
+    <result column="store_Tel" property="storeTel" jdbcType="VARCHAR" />
+    <result column="store_Theme" property="storeTheme" jdbcType="VARCHAR" />
+    <result column="store_WW" property="storeWw" jdbcType="VARCHAR" />
+    <result column="store_Zip" property="storeZip" jdbcType="VARCHAR" />
+    <result column="store_Company_Name" property="storeCompanyName" jdbcType="VARCHAR" />
+    <result column="grade_Name" property="gradeName" jdbcType="VARCHAR" />
+    <result column="praise_Rate" property="praiseRate" jdbcType="DECIMAL" />
+    <result column="store_Delivery_credit" property="storeDeliveryCredit" jdbcType="INTEGER" />
+    <result column="store_Desc_credit" property="storeDescCredit" jdbcType="INTEGER" />
+    <result column="store_Service_credit" property="storeServiceCredit" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.goshop.manager.pojo.Store" extends="BaseResultMap" >
+    <result column="store_Zy" property="storeZy" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created, store_name, sort, credentials_Image, description, grade_Id, license_Image, 
+    member_Id, member_Name, name_Auth, sc_Id, area_Id, store_Address, store_Audit, store_Auth, 
+    store_Banner, store_Center_Quicklink, store_Close_Info, store_End_Time, store_Code, 
+    store_Collect, store_Credit, store_Description, store_Domain, store_Domain_Times, 
+    store_Keywords, store_Label, store_Msn, store_Owner_Card, store_QQ, store_Recommend, 
+    store_Slide, store_Slide_Url, store_State, store_Tel, store_Theme, store_WW, store_Zip, 
+    store_Company_Name, grade_Name, praise_Rate, store_Delivery_credit, store_Desc_credit, 
+    store_Service_credit
+  </sql>
+  <sql id="Blob_Column_List" >
+    store_Zy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gs_store
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gs_store
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.goshop.manager.pojo.Store" >
+    insert into gs_store (id, created, store_name, 
+      sort, credentials_Image, description, 
+      grade_Id, license_Image, member_Id, 
+      member_Name, name_Auth, sc_Id, 
+      area_Id, store_Address, store_Audit, 
+      store_Auth, store_Banner, store_Center_Quicklink, 
+      store_Close_Info, store_End_Time, store_Code, 
+      store_Collect, store_Credit, store_Description, 
+      store_Domain, store_Domain_Times, store_Keywords, 
+      store_Label, store_Msn, store_Owner_Card, 
+      store_QQ, store_Recommend, store_Slide, 
+      store_Slide_Url, store_State, store_Tel, 
+      store_Theme, store_WW, store_Zip, 
+      store_Company_Name, grade_Name, praise_Rate, 
+      store_Delivery_credit, store_Desc_credit, store_Service_credit, 
+      store_Zy)
+    values (#{id,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{storeName,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{credentialsImage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{gradeId,jdbcType=VARCHAR}, #{licenseImage,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{nameAuth,jdbcType=INTEGER}, #{scId,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{storeAddress,jdbcType=VARCHAR}, #{storeAudit,jdbcType=INTEGER}, 
+      #{storeAuth,jdbcType=INTEGER}, #{storeBanner,jdbcType=VARCHAR}, #{storeCenterQuicklink,jdbcType=VARCHAR}, 
+      #{storeCloseInfo,jdbcType=VARCHAR}, #{storeEndTime,jdbcType=TIMESTAMP}, #{storeCode,jdbcType=VARCHAR}, 
+      #{storeCollect,jdbcType=INTEGER}, #{storeCredit,jdbcType=INTEGER}, #{storeDescription,jdbcType=VARCHAR}, 
+      #{storeDomain,jdbcType=VARCHAR}, #{storeDomainTimes,jdbcType=INTEGER}, #{storeKeywords,jdbcType=VARCHAR}, 
+      #{storeLabel,jdbcType=VARCHAR}, #{storeMsn,jdbcType=VARCHAR}, #{storeOwnerCard,jdbcType=VARCHAR}, 
+      #{storeQq,jdbcType=VARCHAR}, #{storeRecommend,jdbcType=INTEGER}, #{storeSlide,jdbcType=VARCHAR}, 
+      #{storeSlideUrl,jdbcType=VARCHAR}, #{storeState,jdbcType=VARCHAR}, #{storeTel,jdbcType=VARCHAR}, 
+      #{storeTheme,jdbcType=VARCHAR}, #{storeWw,jdbcType=VARCHAR}, #{storeZip,jdbcType=VARCHAR}, 
+      #{storeCompanyName,jdbcType=VARCHAR}, #{gradeName,jdbcType=VARCHAR}, #{praiseRate,jdbcType=DECIMAL}, 
+      #{storeDeliveryCredit,jdbcType=INTEGER}, #{storeDescCredit,jdbcType=INTEGER}, #{storeServiceCredit,jdbcType=INTEGER}, 
+      #{storeZy,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Store" >
+    insert into gs_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="credentialsImage != null" >
+        credentials_Image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="gradeId != null" >
+        grade_Id,
+      </if>
+      <if test="licenseImage != null" >
+        license_Image,
+      </if>
+      <if test="memberId != null" >
+        member_Id,
+      </if>
+      <if test="memberName != null" >
+        member_Name,
+      </if>
+      <if test="nameAuth != null" >
+        name_Auth,
+      </if>
+      <if test="scId != null" >
+        sc_Id,
+      </if>
+      <if test="areaId != null" >
+        area_Id,
+      </if>
+      <if test="storeAddress != null" >
+        store_Address,
+      </if>
+      <if test="storeAudit != null" >
+        store_Audit,
+      </if>
+      <if test="storeAuth != null" >
+        store_Auth,
+      </if>
+      <if test="storeBanner != null" >
+        store_Banner,
+      </if>
+      <if test="storeCenterQuicklink != null" >
+        store_Center_Quicklink,
+      </if>
+      <if test="storeCloseInfo != null" >
+        store_Close_Info,
+      </if>
+      <if test="storeEndTime != null" >
+        store_End_Time,
+      </if>
+      <if test="storeCode != null" >
+        store_Code,
+      </if>
+      <if test="storeCollect != null" >
+        store_Collect,
+      </if>
+      <if test="storeCredit != null" >
+        store_Credit,
+      </if>
+      <if test="storeDescription != null" >
+        store_Description,
+      </if>
+      <if test="storeDomain != null" >
+        store_Domain,
+      </if>
+      <if test="storeDomainTimes != null" >
+        store_Domain_Times,
+      </if>
+      <if test="storeKeywords != null" >
+        store_Keywords,
+      </if>
+      <if test="storeLabel != null" >
+        store_Label,
+      </if>
+      <if test="storeMsn != null" >
+        store_Msn,
+      </if>
+      <if test="storeOwnerCard != null" >
+        store_Owner_Card,
+      </if>
+      <if test="storeQq != null" >
+        store_QQ,
+      </if>
+      <if test="storeRecommend != null" >
+        store_Recommend,
+      </if>
+      <if test="storeSlide != null" >
+        store_Slide,
+      </if>
+      <if test="storeSlideUrl != null" >
+        store_Slide_Url,
+      </if>
+      <if test="storeState != null" >
+        store_State,
+      </if>
+      <if test="storeTel != null" >
+        store_Tel,
+      </if>
+      <if test="storeTheme != null" >
+        store_Theme,
+      </if>
+      <if test="storeWw != null" >
+        store_WW,
+      </if>
+      <if test="storeZip != null" >
+        store_Zip,
+      </if>
+      <if test="storeCompanyName != null" >
+        store_Company_Name,
+      </if>
+      <if test="gradeName != null" >
+        grade_Name,
+      </if>
+      <if test="praiseRate != null" >
+        praise_Rate,
+      </if>
+      <if test="storeDeliveryCredit != null" >
+        store_Delivery_credit,
+      </if>
+      <if test="storeDescCredit != null" >
+        store_Desc_credit,
+      </if>
+      <if test="storeServiceCredit != null" >
+        store_Service_credit,
+      </if>
+      <if test="storeZy != null" >
+        store_Zy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="credentialsImage != null" >
+        #{credentialsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAuth != null" >
+        #{nameAuth,jdbcType=INTEGER},
+      </if>
+      <if test="scId != null" >
+        #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAudit != null" >
+        #{storeAudit,jdbcType=INTEGER},
+      </if>
+      <if test="storeAuth != null" >
+        #{storeAuth,jdbcType=INTEGER},
+      </if>
+      <if test="storeBanner != null" >
+        #{storeBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCenterQuicklink != null" >
+        #{storeCenterQuicklink,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCloseInfo != null" >
+        #{storeCloseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeEndTime != null" >
+        #{storeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeCode != null" >
+        #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCollect != null" >
+        #{storeCollect,jdbcType=INTEGER},
+      </if>
+      <if test="storeCredit != null" >
+        #{storeCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeDescription != null" >
+        #{storeDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomain != null" >
+        #{storeDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomainTimes != null" >
+        #{storeDomainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storeKeywords != null" >
+        #{storeKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLabel != null" >
+        #{storeLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="storeMsn != null" >
+        #{storeMsn,jdbcType=VARCHAR},
+      </if>
+      <if test="storeOwnerCard != null" >
+        #{storeOwnerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storeQq != null" >
+        #{storeQq,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRecommend != null" >
+        #{storeRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="storeSlide != null" >
+        #{storeSlide,jdbcType=VARCHAR},
+      </if>
+      <if test="storeSlideUrl != null" >
+        #{storeSlideUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="storeState != null" >
+        #{storeState,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTel != null" >
+        #{storeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTheme != null" >
+        #{storeTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="storeWw != null" >
+        #{storeWw,jdbcType=VARCHAR},
+      </if>
+      <if test="storeZip != null" >
+        #{storeZip,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCompanyName != null" >
+        #{storeCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseRate != null" >
+        #{praiseRate,jdbcType=DECIMAL},
+      </if>
+      <if test="storeDeliveryCredit != null" >
+        #{storeDeliveryCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeDescCredit != null" >
+        #{storeDescCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeServiceCredit != null" >
+        #{storeServiceCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeZy != null" >
+        #{storeZy,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.goshop.manager.pojo.Store" >
+    update gs_store
+    <set >
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="credentialsImage != null" >
+        credentials_Image = #{credentialsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        grade_Id = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        license_Image = #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_Id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        member_Name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAuth != null" >
+        name_Auth = #{nameAuth,jdbcType=INTEGER},
+      </if>
+      <if test="scId != null" >
+        sc_Id = #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_Id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        store_Address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAudit != null" >
+        store_Audit = #{storeAudit,jdbcType=INTEGER},
+      </if>
+      <if test="storeAuth != null" >
+        store_Auth = #{storeAuth,jdbcType=INTEGER},
+      </if>
+      <if test="storeBanner != null" >
+        store_Banner = #{storeBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCenterQuicklink != null" >
+        store_Center_Quicklink = #{storeCenterQuicklink,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCloseInfo != null" >
+        store_Close_Info = #{storeCloseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeEndTime != null" >
+        store_End_Time = #{storeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeCode != null" >
+        store_Code = #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCollect != null" >
+        store_Collect = #{storeCollect,jdbcType=INTEGER},
+      </if>
+      <if test="storeCredit != null" >
+        store_Credit = #{storeCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeDescription != null" >
+        store_Description = #{storeDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomain != null" >
+        store_Domain = #{storeDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomainTimes != null" >
+        store_Domain_Times = #{storeDomainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storeKeywords != null" >
+        store_Keywords = #{storeKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLabel != null" >
+        store_Label = #{storeLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="storeMsn != null" >
+        store_Msn = #{storeMsn,jdbcType=VARCHAR},
+      </if>
+      <if test="storeOwnerCard != null" >
+        store_Owner_Card = #{storeOwnerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storeQq != null" >
+        store_QQ = #{storeQq,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRecommend != null" >
+        store_Recommend = #{storeRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="storeSlide != null" >
+        store_Slide = #{storeSlide,jdbcType=VARCHAR},
+      </if>
+      <if test="storeSlideUrl != null" >
+        store_Slide_Url = #{storeSlideUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="storeState != null" >
+        store_State = #{storeState,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTel != null" >
+        store_Tel = #{storeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTheme != null" >
+        store_Theme = #{storeTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="storeWw != null" >
+        store_WW = #{storeWw,jdbcType=VARCHAR},
+      </if>
+      <if test="storeZip != null" >
+        store_Zip = #{storeZip,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCompanyName != null" >
+        store_Company_Name = #{storeCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        grade_Name = #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseRate != null" >
+        praise_Rate = #{praiseRate,jdbcType=DECIMAL},
+      </if>
+      <if test="storeDeliveryCredit != null" >
+        store_Delivery_credit = #{storeDeliveryCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeDescCredit != null" >
+        store_Desc_credit = #{storeDescCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeServiceCredit != null" >
+        store_Service_credit = #{storeServiceCredit,jdbcType=INTEGER},
+      </if>
+      <if test="storeZy != null" >
+        store_Zy = #{storeZy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.goshop.manager.pojo.Store" >
+    update gs_store
+    set created = #{created,jdbcType=TIMESTAMP},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      credentials_Image = #{credentialsImage,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      grade_Id = #{gradeId,jdbcType=VARCHAR},
+      license_Image = #{licenseImage,jdbcType=VARCHAR},
+      member_Id = #{memberId,jdbcType=VARCHAR},
+      member_Name = #{memberName,jdbcType=VARCHAR},
+      name_Auth = #{nameAuth,jdbcType=INTEGER},
+      sc_Id = #{scId,jdbcType=VARCHAR},
+      area_Id = #{areaId,jdbcType=VARCHAR},
+      store_Address = #{storeAddress,jdbcType=VARCHAR},
+      store_Audit = #{storeAudit,jdbcType=INTEGER},
+      store_Auth = #{storeAuth,jdbcType=INTEGER},
+      store_Banner = #{storeBanner,jdbcType=VARCHAR},
+      store_Center_Quicklink = #{storeCenterQuicklink,jdbcType=VARCHAR},
+      store_Close_Info = #{storeCloseInfo,jdbcType=VARCHAR},
+      store_End_Time = #{storeEndTime,jdbcType=TIMESTAMP},
+      store_Code = #{storeCode,jdbcType=VARCHAR},
+      store_Collect = #{storeCollect,jdbcType=INTEGER},
+      store_Credit = #{storeCredit,jdbcType=INTEGER},
+      store_Description = #{storeDescription,jdbcType=VARCHAR},
+      store_Domain = #{storeDomain,jdbcType=VARCHAR},
+      store_Domain_Times = #{storeDomainTimes,jdbcType=INTEGER},
+      store_Keywords = #{storeKeywords,jdbcType=VARCHAR},
+      store_Label = #{storeLabel,jdbcType=VARCHAR},
+      store_Msn = #{storeMsn,jdbcType=VARCHAR},
+      store_Owner_Card = #{storeOwnerCard,jdbcType=VARCHAR},
+      store_QQ = #{storeQq,jdbcType=VARCHAR},
+      store_Recommend = #{storeRecommend,jdbcType=INTEGER},
+      store_Slide = #{storeSlide,jdbcType=VARCHAR},
+      store_Slide_Url = #{storeSlideUrl,jdbcType=VARCHAR},
+      store_State = #{storeState,jdbcType=VARCHAR},
+      store_Tel = #{storeTel,jdbcType=VARCHAR},
+      store_Theme = #{storeTheme,jdbcType=VARCHAR},
+      store_WW = #{storeWw,jdbcType=VARCHAR},
+      store_Zip = #{storeZip,jdbcType=VARCHAR},
+      store_Company_Name = #{storeCompanyName,jdbcType=VARCHAR},
+      grade_Name = #{gradeName,jdbcType=VARCHAR},
+      praise_Rate = #{praiseRate,jdbcType=DECIMAL},
+      store_Delivery_credit = #{storeDeliveryCredit,jdbcType=INTEGER},
+      store_Desc_credit = #{storeDescCredit,jdbcType=INTEGER},
+      store_Service_credit = #{storeServiceCredit,jdbcType=INTEGER},
+      store_Zy = #{storeZy,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.goshop.manager.pojo.Store" >
+    update gs_store
+    set created = #{created,jdbcType=TIMESTAMP},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      credentials_Image = #{credentialsImage,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      grade_Id = #{gradeId,jdbcType=VARCHAR},
+      license_Image = #{licenseImage,jdbcType=VARCHAR},
+      member_Id = #{memberId,jdbcType=VARCHAR},
+      member_Name = #{memberName,jdbcType=VARCHAR},
+      name_Auth = #{nameAuth,jdbcType=INTEGER},
+      sc_Id = #{scId,jdbcType=VARCHAR},
+      area_Id = #{areaId,jdbcType=VARCHAR},
+      store_Address = #{storeAddress,jdbcType=VARCHAR},
+      store_Audit = #{storeAudit,jdbcType=INTEGER},
+      store_Auth = #{storeAuth,jdbcType=INTEGER},
+      store_Banner = #{storeBanner,jdbcType=VARCHAR},
+      store_Center_Quicklink = #{storeCenterQuicklink,jdbcType=VARCHAR},
+      store_Close_Info = #{storeCloseInfo,jdbcType=VARCHAR},
+      store_End_Time = #{storeEndTime,jdbcType=TIMESTAMP},
+      store_Code = #{storeCode,jdbcType=VARCHAR},
+      store_Collect = #{storeCollect,jdbcType=INTEGER},
+      store_Credit = #{storeCredit,jdbcType=INTEGER},
+      store_Description = #{storeDescription,jdbcType=VARCHAR},
+      store_Domain = #{storeDomain,jdbcType=VARCHAR},
+      store_Domain_Times = #{storeDomainTimes,jdbcType=INTEGER},
+      store_Keywords = #{storeKeywords,jdbcType=VARCHAR},
+      store_Label = #{storeLabel,jdbcType=VARCHAR},
+      store_Msn = #{storeMsn,jdbcType=VARCHAR},
+      store_Owner_Card = #{storeOwnerCard,jdbcType=VARCHAR},
+      store_QQ = #{storeQq,jdbcType=VARCHAR},
+      store_Recommend = #{storeRecommend,jdbcType=INTEGER},
+      store_Slide = #{storeSlide,jdbcType=VARCHAR},
+      store_Slide_Url = #{storeSlideUrl,jdbcType=VARCHAR},
+      store_State = #{storeState,jdbcType=VARCHAR},
+      store_Tel = #{storeTel,jdbcType=VARCHAR},
+      store_Theme = #{storeTheme,jdbcType=VARCHAR},
+      store_WW = #{storeWw,jdbcType=VARCHAR},
+      store_Zip = #{storeZip,jdbcType=VARCHAR},
+      store_Company_Name = #{storeCompanyName,jdbcType=VARCHAR},
+      grade_Name = #{gradeName,jdbcType=VARCHAR},
+      praise_Rate = #{praiseRate,jdbcType=DECIMAL},
+      store_Delivery_credit = #{storeDeliveryCredit,jdbcType=INTEGER},
+      store_Desc_credit = #{storeDescCredit,jdbcType=INTEGER},
+      store_Service_credit = #{storeServiceCredit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

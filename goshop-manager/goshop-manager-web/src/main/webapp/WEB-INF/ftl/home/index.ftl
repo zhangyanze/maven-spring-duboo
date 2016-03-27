@@ -6,7 +6,6 @@
 </head>
 <body>
 
-${commonUrl}
 
 <#import "top.ftl" as top />
 ${top.username}

@@ -13,10 +13,16 @@ public class HomeController {
     /**
      * 打开首页
      */
-    @RequestMapping()
+    @RequestMapping
     public String showIndex() {
 
         return "framework";
+    }
+
+    @RequestMapping("index")
+    public String index() {
+
+        return "home/index";
     }
 
     /**

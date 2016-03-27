@@ -2,7 +2,6 @@ package com.goshop.shiro.service;
 
 
 import com.goshop.manager.i.UserService;
-import com.goshop.manager.pojo.ActiveUser;
 import com.goshop.manager.pojo.Permission;
 import com.goshop.manager.pojo.User;
 import org.apache.shiro.SecurityUtils;
@@ -15,7 +14,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,15 +67,15 @@ public class CustomRealm extends AuthorizingRealm {
         // 如果查询到返回认证信息AuthenticationInfo
 
         //activeUser就是用户身份信息
-        ActiveUser activeUser = new ActiveUser();
+       /* ActiveUser activeUser = new ActiveUser();
 
         activeUser.setUserId(user.getId());
         activeUser.setLoginName(user.getLoginName());
-        activeUser.setUserName(user.getUserName());
+        activeUser.setUserName(user.getUserName());*/
 
         //将activeUser设置simpleAuthenticationInfo
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
-                activeUser, password,ByteSource.Util.bytes(salt), this.getName());
+                user, password,ByteSource.Util.bytes(salt), this.getName());
 
         return simpleAuthenticationInfo;
     }
@@ -90,13 +88,13 @@ public class CustomRealm extends AuthorizingRealm {
             PrincipalCollection principals) {
         //从 principals获取主身份信息
         //将getPrimaryPrincipal方法返回值转为真实身份类型（在上边的doGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo中身份类型），
-        ActiveUser activeUser =  (ActiveUser) principals.getPrimaryPrincipal();
+        User activeUser =  (User) principals.getPrimaryPrincipal();
 
         //根据身份信息获取权限信息
         //从数据库获取到权限数据
         List<Permission> permissionList = null;
         try {
-            permissionList = userService.findPermissionListByUserId(activeUser.getUserId());
+            permissionList = userService.findPermissionListByUserId(activeUser.getId());
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -26,6 +26,11 @@
             <artifactId>goshop-common-context</artifactId>
             <version>${goshop.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.goshop</groupId>
+            <artifactId>goshop-common-attachment</artifactId>
+            <version>${goshop.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

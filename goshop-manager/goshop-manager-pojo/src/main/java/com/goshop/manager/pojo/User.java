@@ -1,11 +1,12 @@
 package com.goshop.manager.pojo;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-public class User implements Serializable {
+public class User implements Principal, Serializable {
     private Long id;
 
     private String userName;
@@ -108,5 +109,10 @@ public class User implements Serializable {
 
     public void setUpcreated(Timestamp upcreated) {
         this.upcreated = upcreated;
+    }
+
+    @Override
+    public String getName() {
+        return loginName;
     }
 }

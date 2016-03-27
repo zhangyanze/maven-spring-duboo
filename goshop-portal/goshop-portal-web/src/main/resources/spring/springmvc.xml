@@ -10,6 +10,8 @@
     <context:component-scan base-package="com.goshop.*.controller"/>
     <mvc:annotation-driven/>
 
+    <bean id="exceptionResolver" class="com.goshop.portal.context.ExceptionHandler" />
+
     <context:property-placeholder location="classpath:resource/*.properties" />
     <bean id="freemarkerConfiguration"
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -44,9 +46,10 @@
             <map>
                 <entry key="xml_escape" value-ref="fmXmlEscape" />
                 <entry key="S_COMMON_URL" value="${COMMON_URL}"></entry>
-                <entry key="PREST_URL" value="${PREST_URL}"></entry>
                 <entry key="MANAGER_URL" value="${MANAGER_URL}"></entry>
                 <entry key="SHOP_URL" value="${SHOP_URL}"></entry>
+                <entry key="SHOP_REST_URL" value="${SHOP_REST_URL}"></entry>
+                <entry key="SELLER_URL" value="${SELLER_URL}"></entry>
             </map>
         </property>
         <property name="freemarkerSettings" ref="freemarkerConfiguration">
@@ -62,4 +65,6 @@
         <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
         <property name="maxUploadSize" value="5242880"></property>
     </bean>
+
+    <bean id="attachmentService" class="com.goshop.common.attachment.LocalhostAttachmentImpl" />
 </beans>
