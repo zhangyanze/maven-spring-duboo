@@ -11,8 +11,10 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>goshop-manager-interface</module>
         <module>goshop-manager-pojo</module>
         <module>goshop-manager-mapper</module>
+        <module>goshop-manager-security</module>
         <module>goshop-manager-service</module>
         <module>goshop-manager-web</module>
     </modules>

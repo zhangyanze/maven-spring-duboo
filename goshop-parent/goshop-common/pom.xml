@@ -12,6 +12,11 @@
     <artifactId>goshop-common</artifactId>
     <!-- jar包的依赖 -->
     <dependencies>
+        <!-- 邮件发送 -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
         <!-- 时间操作组件 -->
         <dependency>
             <groupId>joda-time</groupId>

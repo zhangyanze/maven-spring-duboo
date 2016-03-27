@@ -1,6 +1,7 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.Member;
+import org.apache.ibatis.annotations.Param;
 
 public interface MemberMapper {
     int deleteByPrimaryKey(Long memberId);
@@ -18,4 +19,6 @@ public interface MemberMapper {
     int updateByPrimaryKey(Member record);
 
     int findByMemberEmailCount(String memberEmail);
+
+    int checkLoginNameByEmail(@Param("loginName")String loginName, @Param("memberEmail")String memberEmail);
 }

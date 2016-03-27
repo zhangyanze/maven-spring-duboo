@@ -419,4 +419,11 @@
     FROM  gs_member
     where member_email = #{memberEmail,jdbcType=VARCHAR}
   </select>
+
+  <select id="checkLoginNameByEmail" resultType="int">
+    SELECT
+    count(*)
+    FROM  gs_member m,gs_user u
+    where u.id=m.user_id and u.login_name=#{loginName,jdbcType=VARCHAR} and m.member_email = #{memberEmail,jdbcType=VARCHAR}
+  </select>
 </mapper>
