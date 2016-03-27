@@ -28,4 +28,6 @@
 
     <dubbo:service interface="com.goshop.portal.i.MemberService" ref="memberService" />
 
+    <dubbo:service interface="com.goshop.portal.i.StoreJoinService" ref="storeJoinService" />
+
 </beans>
