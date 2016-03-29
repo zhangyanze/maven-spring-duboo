@@ -1,6 +1,7 @@
 package com.goshop.portal.controller;
 
 import com.goshop.common.context.RedirectAttributesEx;
+import com.goshop.common.context.ThreadLocalMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,8 +20,8 @@ public class ExceptionController {
         if(StringUtils.hasText(message)){
             model.addAttribute("P_MESSAGE", message);
         }else {
-            RedirectAttributesEx rae = new RedirectAttributesEx(request);
-            model.addAttribute("P_MESSAGE", rae.getAttribute("ERROR_MESSAGE"));
+            String m = ThreadLocalMessage.get();
+            model.addAttribute("P_MESSAGE", m);
         }
         model.addAttribute("P_RETURN_URL", returnUrl);
         return "exception_message";

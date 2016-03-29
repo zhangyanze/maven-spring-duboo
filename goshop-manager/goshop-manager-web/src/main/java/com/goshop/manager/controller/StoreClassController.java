@@ -12,4 +12,10 @@ public class StoreClassController {
 
         return "store/store_class";
     }
+
+    @RequestMapping("/add_page")
+    public String addPage() {
+
+        return "store/store_add";
+    }
 }

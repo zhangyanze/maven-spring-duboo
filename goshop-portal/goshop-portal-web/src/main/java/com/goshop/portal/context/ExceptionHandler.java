@@ -1,6 +1,7 @@
 package com.goshop.portal.context;
 
 import com.goshop.common.context.RedirectAttributesEx;
+import com.goshop.common.context.ThreadLocalMessage;
 import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.RequestUtils;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -28,8 +29,9 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 					.getHeader("X-Requested-With"))) {// 不是ajax请求
 
 				String message = ex.getMessage();
-				RedirectAttributesEx rae=new RedirectAttributesEx(request);
-				rae.setAttribute("ERROR_MESSAGE", message);
+				/*RedirectAttributesEx rae=new RedirectAttributesEx(request);
+				rae.setAttribute("ERROR_MESSAGE", message);*/
+				ThreadLocalMessage.set(message);
 				ModelAndView mav=new ModelAndView();
 				mav.setViewName("redirect:/exc/jump.html");
 				return mav;

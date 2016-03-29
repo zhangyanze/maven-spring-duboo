@@ -1,5 +1,6 @@
 package com.goshop.common.utils;
 
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.util.ReflectionUtils;
 
@@ -30,7 +31,7 @@ public class BeanUtils {
                 Iterator names = ((Map) orig).keySet().iterator();  
                 while (names.hasNext()) {  
                     String name = (String) names.next();  
-                    if (PropertyUtils.isWriteable(dest, name)) {  
+                    if (PropertyUtils.isWriteable(dest, name)) {
                         Object value = ((Map) orig).get(name);  
                         if (value != null) {  
                             PropertyUtils.setSimpleProperty(dest, name, value);  
@@ -41,7 +42,7 @@ public class BeanUtils {
                 Field[] fields = orig.getClass().getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {  
                     String name = fields[i].getName();
-                    Field destField=ReflectionUtils.findField(dest.getClass(), name);
+                    Field destField= ReflectionUtils.findField(dest.getClass(), name);
                     if(destField==null){
                         continue;
                     }

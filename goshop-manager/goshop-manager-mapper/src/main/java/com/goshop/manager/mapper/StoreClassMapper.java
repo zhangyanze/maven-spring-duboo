@@ -2,6 +2,8 @@ package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.StoreClass;
 
+import java.util.List;
+
 public interface StoreClassMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface StoreClassMapper {
     int updateByPrimaryKeySelective(StoreClass record);
 
     int updateByPrimaryKey(StoreClass record);
+
+    List findAll();
 }

@@ -27,6 +27,11 @@
             <version>${goshop.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.goshop</groupId>
+            <artifactId>goshop-common-solr</artifactId>
+            <version>${goshop.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>

@@ -77,4 +77,5 @@
         <servlet-name>validationCode</servlet-name>
         <url-pattern>/validationCodeServlet.png</url-pattern>
     </servlet-mapping>
+
 </web-app>
