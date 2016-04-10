@@ -1,7 +1,6 @@
-package com.goshop.portal.controller;
+package com.goshop.manager.controller;
 
 import com.goshop.common.context.MessageInfo;
-import com.goshop.common.context.RedirectAttributesEx;
 import com.goshop.common.context.ThreadLocalMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping(value =  "/exc")
-public class ExceptionController {
+@RequestMapping(value =  "/msg")
+public class MessageController {
 
-    @RequestMapping(value =  "/jump")
+    @RequestMapping
     public String Message(String message,
                           String returnUrl,
             Model model,HttpServletRequest request) {
@@ -23,11 +22,11 @@ public class ExceptionController {
         }else {
             MessageInfo m = ThreadLocalMessage.get();
             model.addAttribute("P_MESSAGE", m.getMessage());
-            model.addAttribute("P_MESSAGE", m.getReturnUrl());
+            model.addAttribute("P_RETURN_URL", m.getReturnUrl());
         }
         if(StringUtils.hasText(returnUrl)) {
             model.addAttribute("P_RETURN_URL", returnUrl);
         }
-        return "exception_message";
+        return "message";
     }
 }

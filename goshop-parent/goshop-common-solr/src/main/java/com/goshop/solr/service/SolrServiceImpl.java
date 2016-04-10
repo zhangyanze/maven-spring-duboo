@@ -120,4 +120,33 @@ public class SolrServiceImpl implements SolrService {
         return pageInfo;
     }
 
+    @Override
+    public PageInfoFacet queryFacet(String core, SolrQuery query, RowBounds rowBounds) throws IOException, SolrServerException {
+        HttpSolrClient client =this.getHttpSolrClient(core);
+        if(rowBounds!=null){
+            query.setStart(rowBounds.getOffset()-1);
+            query.setRows(rowBounds.getLimit());
+        }else {
+            Integer start = query.getStart();
+            if(start==null){
+                start=1;
+            }
+            Integer rows = query.getRows();
+            Assert.notNull(start, "请设置分页条数rows");
+            rowBounds = new RowBounds(start,rows);
+        }
+        QueryResponse response = client.query(query);
+        SolrDocumentList documentList=response.getResults();
+        List list =(List)documentList;
+        Page page = new Page(rowBounds.getOffset(),rowBounds.getLimit());
+        page.setTotal(documentList.getNumFound());
+        page.addAll(list);
+        PageInfo pageInfo = new PageInfo(page);
+
+        PageInfoFacet pageInfoFacet = new PageInfoFacet();
+        pageInfoFacet.setPageInfo(pageInfo);
+        pageInfoFacet.setFacetFieldList(response.getFacetFields());
+        return pageInfoFacet;
+    }
+
 }

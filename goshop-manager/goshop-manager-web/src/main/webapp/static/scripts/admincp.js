@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-//×Ô¶¨ÒåradioÑùÊ½
+//è‡ªå®šä¹‰radioæ ·å¼
 $(document).ready( function(){
 	$(".cb-enable").click(function(){
 		var parent = $(this).parents('.onoff');
@@ -18,7 +18,7 @@ $(document).ready( function(){
 });
 
 
-//Í¼Æ¬±ÈÀıËõ·Å¿ØÖÆ
+//å›¾ç‰‡æ¯”ä¾‹ç¼©æ”¾æ§åˆ¶
 function DrawImage(ImgD, FitWidth, FitHeight) {
 	var image = new Image();
 	image.src = ImgD.src;
@@ -45,7 +45,7 @@ function DrawImage(ImgD, FitWidth, FitHeight) {
 
 
 $(function(){
-	// ÏÔÊ¾Òş²ØÔ¤ÀÀÍ¼ start
+	// æ˜¾ç¤ºéšè—é¢„è§ˆå›¾ start
 	$('.show_image').hover(
 		function(){
 			$(this).next().css('display','block');
@@ -55,7 +55,7 @@ $(function(){
 		}
 	);
 
-	// È«Ñ¡ start
+	// å…¨é€‰ start
 	$('.checkall').click(function(){
 		$('.checkall').attr('checked',$(this).attr('checked') == 'checked');
 		$('.checkitem').each(function(){
@@ -63,7 +63,7 @@ $(function(){
 		});
 	});
 
-	// ±í¸ñÊó±êĞüÍ£±äÉ« start
+	// è¡¨æ ¼é¼ æ ‡æ‚¬åœå˜è‰² start
 	$("tbody tr").hover(
 		function(){
 			$(this).css({background:"#FBFBFB"} );
@@ -72,7 +72,7 @@ $(function(){
 			$(this).css({background:"#FFF"} );
 		});
 
-	// ¿É±à¼­ÁĞ£¨input£©±äÉ«
+	// å¯ç¼–è¾‘åˆ—ï¼ˆinputï¼‰å˜è‰²
 	$('.editable').hover(
 		function(){
 			$(this).removeClass('editable').addClass('editable2');
@@ -82,7 +82,7 @@ $(function(){
 		}
 	);
 
-	// ÌáÊ¾²Ù×÷ Õ¹¿ªÓëÒş²Ø
+	// æç¤ºæ“ä½œ å±•å¼€ä¸éšè—
 	$("#prompt tr:odd").addClass("odd");
 	$("#prompt tr:not(.odd)").hide();
 	$("#prompt tr:first-child").show();
@@ -94,7 +94,7 @@ $(function(){
 
 	});
 
-	// ¿É±à¼­ÁĞ£¨area£©±äÉ«
+	// å¯ç¼–è¾‘åˆ—ï¼ˆareaï¼‰å˜è‰²
 	$('.editable-tarea').hover(
 		function(){
 			$(this).removeClass('editable-tarea').addClass('editable-tarea2');
@@ -106,7 +106,7 @@ $(function(){
 
 });
 
-/* »ğºüÏÂÈ¡±¾µØÈ«Â·¾¶ */
+/* ç«ç‹ä¸‹å–æœ¬åœ°å…¨è·¯å¾„ */
 function getFullPath(obj)
 {
 	if(obj)

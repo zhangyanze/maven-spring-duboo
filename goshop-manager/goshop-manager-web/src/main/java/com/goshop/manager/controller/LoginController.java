@@ -1,6 +1,6 @@
 package com.goshop.manager.controller;
 
-import com.goshop.manager.utils.JumpException;
+import com.goshop.manager.utils.Jump;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -28,18 +28,18 @@ public class LoginController {
             String returnUrl= request.getContextPath() + "/login";
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
                 //最终会抛给异常处理器
-                return JumpException.get(returnUrl, "账号不存在!");
+                return Jump.get(returnUrl, "账号不存在!");
             } else if (IncorrectCredentialsException.class.getName().equals(
                     exceptionClassName)) {
-                return JumpException.get(returnUrl, "用户名/密码错误!");
+                return Jump.get(returnUrl, "用户名/密码错误!");
             } else if("randomCodeError".equals(exceptionClassName)){
-                return JumpException.get(returnUrl, "验证码错误!");
+                return Jump.get(returnUrl, "验证码错误!");
             }else if(LockedAccountException.class.getName().equals(exceptionClassName)){
-                return JumpException.get(returnUrl, "账号已被锁定，请与系统管理员联系!");
+                return Jump.get(returnUrl, "账号已被锁定，请与系统管理员联系!");
             }else if(AuthenticationException.class.getName().equals(exceptionClassName)){
-                return JumpException.get(returnUrl, "您没有授权！");
+                return Jump.get(returnUrl, "您没有授权！");
             }else {
-                return JumpException.get(returnUrl, "未知异常！");
+                return Jump.get(returnUrl, "未知异常！");
             }
 
         }

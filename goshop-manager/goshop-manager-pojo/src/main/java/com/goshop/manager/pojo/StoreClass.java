@@ -1,40 +1,33 @@
 package com.goshop.manager.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StoreClass {
-    private String id;
+    private Long id;
 
-    private String alias;
-
-    private Integer displayorder;
+    private Integer sort;
 
     private String name;
 
-    private Integer layer;
+    private Long parentId;
 
-    private String parentId;
+    private List<StoreClass> children = new ArrayList<StoreClass>();
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAlias() {
-        return alias;
+    public Integer getSort() {
+        return sort;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias == null ? null : alias.trim();
-    }
-
-    public Integer getDisplayorder() {
-        return displayorder;
-    }
-
-    public void setDisplayorder(Integer displayorder) {
-        this.displayorder = displayorder;
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public String getName() {
@@ -45,19 +38,19 @@ public class StoreClass {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getLayer() {
-        return layer;
-    }
-
-    public void setLayer(Integer layer) {
-        this.layer = layer;
-    }
-
-    public String getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId == null ? null : parentId.trim();
+    public void setParentId(Long parentId) {
+        this.parentId = parentId ;
+    }
+
+    public List<StoreClass> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<StoreClass> children) {
+        this.children = children;
     }
 }

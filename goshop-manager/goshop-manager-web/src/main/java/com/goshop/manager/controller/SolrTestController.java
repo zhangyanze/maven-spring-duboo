@@ -1,10 +1,12 @@
 package com.goshop.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.goshop.solr.service.PageInfoFacet;
 import com.goshop.solr.service.SolrService;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.Group;
 import org.apache.solr.client.solrj.response.GroupCommand;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -103,14 +105,17 @@ public class SolrTestController {
                 query.setFilterQueries("type:" + att_type);
             }
         }
-
+        query.setFacet(true).addFacetField("type");
         if(p==null){
             p=1;
         }
         try {
             RowBounds rowBounds =new RowBounds(p,20);
-            PageInfo pageInfo=solrService.query("att_core",query,rowBounds);
-            model.addAttribute("P_PAGE",pageInfo);
+            PageInfoFacet pageInfoFacet=solrService.queryFacet("att_core", query, rowBounds);
+            model.addAttribute("P_PAGE", pageInfoFacet.getPageInfo());
+            FacetField facetField=pageInfoFacet.getFacetFieldList().get(0);
+            List values=facetField.getValues();
+            model.addAttribute("P_FACET",values);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SolrServerException e) {

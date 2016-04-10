@@ -36,10 +36,11 @@
         <div class="item-title">
             <h3>附件搜索</h3>
             <ul class="tab-base">
-                <li><a class="current" href="JavaScript:void(0);"><span>所有附件</span></a></li>
-                <li><a href="#"><span>图片</span></a></li>
-                <li><a href="#"><span>EXCEL</span></a></li>
-                <li><a href="#"><span>PDF</span></a></li>
+                <li><a class="current" href="${S_URL}/solr/att/list"><span>所有附件</span></a></li>
+
+                <#list P_FACET as facet>
+                <li><a href="${S_URL}/solr/att/list?att_type=${facet.name}"><span>${facet}</span></a></li>
+                </#list>
             </ul>
         </div>
     </div>

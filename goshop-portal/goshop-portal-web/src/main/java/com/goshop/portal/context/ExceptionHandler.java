@@ -1,5 +1,6 @@
 package com.goshop.portal.context;
 
+import com.goshop.common.context.MessageInfo;
 import com.goshop.common.context.RedirectAttributesEx;
 import com.goshop.common.context.ThreadLocalMessage;
 import com.goshop.common.exception.PageException;
@@ -31,7 +32,9 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 				String message = ex.getMessage();
 				/*RedirectAttributesEx rae=new RedirectAttributesEx(request);
 				rae.setAttribute("ERROR_MESSAGE", message);*/
-				ThreadLocalMessage.set(message);
+				MessageInfo info = new MessageInfo();
+				info.setMessage(message);
+				ThreadLocalMessage.set(info);
 				ModelAndView mav=new ModelAndView();
 				mav.setViewName("redirect:/exc/jump.html");
 				return mav;

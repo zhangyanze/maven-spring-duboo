@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.manager.mapper.StoreClassMapper;
 import com.goshop.manager.pojo.StoreClass;
-import com.goshop.manager.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class PageHelperTest {
     public void test(){
         //1、设置分页
         PageHelper.startPage(1, 5);
-        List list= storeClassMapper.findAll();
+        List list= storeClassMapper.findAllOrderBySort();
         //4、取分页后结果
         PageInfo<StoreClass> pageInfo = new PageInfo<>(list);
         long longtotal = pageInfo.getTotal();

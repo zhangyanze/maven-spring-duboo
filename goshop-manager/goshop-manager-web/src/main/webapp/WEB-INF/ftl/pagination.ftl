@@ -6,7 +6,7 @@
     <ul>
         <#if pageInfo.hasPreviousPage>
             <li><a href="${url}1" class="demo"> <span>首页</span></a></li>
-            <li><a href="${url}${pageInfo.pageNum}" class="demo"><span>上一页</span></a></li>
+            <li><a href="${url}${pageInfo.pageNum-1}" class="demo"><span>上一页</span></a></li>
         <#else>
             <li><span>首页</span></li>
             <li><span>上一页</span></li>

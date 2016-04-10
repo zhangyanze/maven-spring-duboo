@@ -29,43 +29,31 @@
             <h3>店铺分类</h3>
             <ul class="tab-base">
                 <li><a href="${S_URL}/store_class/store_class"><span>管理</span></a></li>
-                <li><a class="current" href="JavaScript:void(0);"><span>新增</span></a></li>
+                <li><a href="${S_URL}/store_class/save"><span>新增</span></a></li>
+                <li><a class="current" href="JavaScript:void(0);"><span>编辑</span></a></li>
                 <li><a href="#"><span>导出</span></a></li>
                 <li><a href="#"><span>导入</span></a></li>
             </ul>
         </div>
     </div>
     <div class="fixed-empty"></div>
-    <form method="post" id="store_class_form">
-
+    <form method="post" id="store_class_form" action="${S_URL}/store_class/update">
+        <input type="hidden" value="${P_STORE_CLASS.parentId!''}" name="parentId" id="parentId">
+        <input type="hidden" value="${RequestParameters['sc_id']}" name="id" id="id">
         <table class="table tb-type2">
             <tbody>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2"><label for="name" class="validation">分类名称:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="name" name="name" value=""></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="name" name="name" value="${P_STORE_CLASS.name}"></td>
                 <td class="vatop tips"></td>
-            </tr>
-            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2"><label>上级分类:</label></td>
-            </tr>
-            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform">
-                    <select id="parentId" name="parentId" class="valid">
-                    <option value="">请选择...</option>
-                    <#list P_STORE_CLASS as storeClass>
-                    <option value="${storeClass.id}" <#if (P_PARENT_ID??)&&(storeClass.id==P_PARENT_ID) > selected="selected" </#if>>&nbsp;&nbsp;${storeClass.name}</option>
-                    </#list>
-                </select>
-                </td>
-                <td class="vatop tips">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</td>
             </tr>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2"><label for="sort">排序:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="sort" name="sort" value="255"></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="sort" name="sort" value="${P_STORE_CLASS.sort}"></td>
                 <td class="vatop tips">数字范围为0~255，数字越小越靠前</td>
             </tr>
             </tbody>
@@ -105,7 +93,9 @@
                             parentId : function() {
                                 return $('#parentId').val();
                             },
-                            sc_id : ''
+                            id : function(){
+                                return $('#id').val();
+                            }
                         }
                     }
                 },

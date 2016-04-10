@@ -57,4 +57,6 @@ public interface SolrService {
     <T>PageInfo query(String core,Class<T> clazz, SolrQuery query,RowBounds rowBounds) throws IOException, SolrServerException;
 
     PageInfo query(String core, SolrQuery query, RowBounds rowBounds) throws IOException, SolrServerException;
+
+    PageInfoFacet queryFacet(String core, SolrQuery query, RowBounds rowBounds) throws IOException, SolrServerException;
 }

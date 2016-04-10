@@ -16,7 +16,7 @@ $(document).ready(function(){
 			sort = arr[1];
 		}
 	}
-	//¸øĞèÒªĞŞ¸ÄµÄÎ»ÖÃÌí¼ÓĞŞ¸ÄĞĞÎª
+	//ç»™éœ€è¦ä¿®æ”¹çš„ä½ç½®æ·»åŠ ä¿®æ”¹è¡Œä¸º
 	$('span[nc_type="inline_edit"]').click(function(){
 		var s_value  = $(this).text();
 		var s_name   = $(this).attr('fieldname');
@@ -35,34 +35,34 @@ $(document).ready(function(){
 				{
 					if(req)
 					{
-						if(!required($(this).attr('value'),s_value,$(this)))
+						if(!required($(this).val(),s_value,$(this)))
 						{
 							return;
 						}
 					}
 					if(type)
 					{
-						if(!check_type(type,$(this).attr('value'),s_value,$(this)))
+						if(!check_type(type,$(this).val(),s_value,$(this)))
 						{
 							return;
 						}
 					}
 					if(max)
 					{
-						if(!check_max($(this).attr('value'),s_value,max,$(this)))
+						if(!check_max($(this).val(),s_value,max,$(this)))
 						{
 							return;
 						}
 					}
 					$(this).prev('span').show().text($(this).attr("value"));
-					//branch ajax ·ÖÖ§
-					//id ĞŞ¸ÄÄÚÈİË÷Òı±êÊ¶
-					//column ĞŞ¸Ä×Ö¶ÎÃû
-					//value ĞŞ¸ÄÄÚÈİ
-					$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).attr('value')},function(data){
+					//branch ajax åˆ†æ”¯
+					//id ä¿®æ”¹å†…å®¹ç´¢å¼•æ ‡è¯†
+					//column ä¿®æ”¹å­—æ®µå
+					//value ä¿®æ”¹å†…å®¹
+					$.get('inline_edit?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).val()},function(data){
 						if(data === 'false')
 						{
-							alert('Ãû³ÆÒÑ¾­´æÔÚ£¬ÇëÄú»»Ò»¸ö');
+							alert('åç§°å·²ç»å­˜åœ¨ï¼Œè¯·æ‚¨æ¢ä¸€ä¸ª');
 							$('span[fieldname="'+s_name+'"][fieldid="'+s_id+'"]').text(s_value);
 							return;
 						}
@@ -73,30 +73,30 @@ $(document).ready(function(){
 			.blur(function(){
 				if(req)
 				{
-					if(!required($(this).attr('value'),s_value,$(this)))
+					if(!required($(this).val(),s_value,$(this)))
 					{
 						return;
 					}
 				}
 				if(type)
 				{
-					if(!check_type(type,$(this).attr('value'),s_value,$(this)))
+					if(!check_type(type,$(this).val(),s_value,$(this)))
 					{
 						return;
 					}
 				}
 				if(max)
 				{
-					if(!check_max($(this).attr('value'),s_value,max,$(this)))
+					if(!check_max($(this).val(),s_value,max,$(this)))
 					{
 						return;
 					}
 				}
-				$(this).prev('span').show().text($(this).attr('value'));
-				$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).attr('value')},function(data){
+				$(this).prev('span').show().text($(this).val());
+				$.get('inline_edit?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).val()},function(data){
 					if(data === 'false')
 					{
-						alert('Ãû³ÆÒÑ¾­´æÔÚ£¬ÇëÄú»»Ò»¸ö');
+						alert('åç§°å·²ç»å­˜åœ¨ï¼Œè¯·æ‚¨æ¢ä¸€ä¸ª');
 						$('span[fieldname="'+s_name+'"][fieldid="'+s_id+'"]').text(s_value);
 						return;
 					}
@@ -125,34 +125,34 @@ $(document).ready(function(){
 				{
 					if(req)
 					{
-						if(!required($(this).attr('value'),s_value,$(this)))
+						if(!required($(this).val(),s_value,$(this)))
 						{
 							return;
 						}
 					}
 					if(type)
 					{
-						if(!check_type(type,$(this).attr('value'),s_value,$(this)))
+						if(!check_type(type,$(this).val(),s_value,$(this)))
 						{
 							return;
 						}
 					}
 					if(max)
 					{
-						if(!check_max($(this).attr('value'),s_value,max,$(this)))
+						if(!check_max($(this).val(),s_value,max,$(this)))
 						{
 							return;
 						}
 					}
 					$(this).prev('span').show().text($(this).attr("value"));
-					//branch ajax ·ÖÖ§
-					//id ĞŞ¸ÄÄÚÈİË÷Òı±êÊ¶
-					//column ĞŞ¸Ä×Ö¶ÎÃû
-					//value ĞŞ¸ÄÄÚÈİ
-					$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).attr('value')},function(data){
+					//branch ajax åˆ†æ”¯
+					//id ä¿®æ”¹å†…å®¹ç´¢å¼•æ ‡è¯†
+					//column ä¿®æ”¹å­—æ®µå
+					//value ä¿®æ”¹å†…å®¹
+					$.get('inline_edit_textarea?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).val()},function(data){
 						if(data === 'false')
 						{
-							alert('Ãû³ÆÒÑ¾­´æÔÚ£¬ÇëÄú»»Ò»¸ö');
+							alert('åç§°å·²ç»å­˜åœ¨ï¼Œè¯·æ‚¨æ¢ä¸€ä¸ª');
 							$('span[fieldname="'+s_name+'"][fieldid="'+s_id+'"]').text(s_value);
 							return;
 						}
@@ -163,30 +163,30 @@ $(document).ready(function(){
 			.blur(function(){
 				if(req)
 				{
-					if(!required($(this).attr('value'),s_value,$(this)))
+					if(!required($(this).val(),s_value,$(this)))
 					{
 						return;
 					}
 				}
 				if(type)
 				{
-					if(!check_type(type,$(this).attr('value'),s_value,$(this)))
+					if(!check_type(type,$(this).val(),s_value,$(this)))
 					{
 						return;
 					}
 				}
 				if(max)
 				{
-					if(!check_max($(this).attr('value'),s_value,max,$(this)))
+					if(!check_max($(this).val(),s_value,max,$(this)))
 					{
 						return;
 					}
 				}
-				$(this).prev('span').show().text($(this).attr('value'));
-				$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).attr('value')},function(data){
+				$(this).prev('span').show().text($(this).val());
+				$.get('inline_edit_textarea?act='+act+'&op=ajax',{branch:ajax_branch,id:s_id,column:s_name,value:$(this).val()},function(data){
 					if(data === 'false')
 					{
-						alert('Ãû³ÆÒÑ¾­´æÔÚ£¬ÇëÄú»»Ò»¸ö');
+						alert('åç§°å·²ç»å­˜åœ¨ï¼Œè¯·æ‚¨æ¢ä¸€ä¸ª');
 						$('span[fieldname="'+s_name+'"][fieldid="'+s_id+'"]').text(s_value);
 						return;
 					}
@@ -196,7 +196,7 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	//¸øĞèÒªĞŞ¸ÄµÄÍ¼Æ¬Ìí¼ÓÒì²½ĞŞ¸ÄĞĞÎª
+	//ç»™éœ€è¦ä¿®æ”¹çš„å›¾ç‰‡æ·»åŠ å¼‚æ­¥ä¿®æ”¹è¡Œä¸º
 	$('img[nc_type="inline_edit"]').click(function(){
 		var i_id    = $(this).attr('fieldid');
 		var i_name  = $(this).attr('fieldname');
@@ -204,7 +204,7 @@ $(document).ready(function(){
 		var i_val   = ($(this).attr('fieldvalue'))== 0 ? 1 : 0;
 		var ajax_branch      = $(this).attr('ajax_branch');
 
-		$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:i_id,column:i_name,value:i_val},function(data){
+		$.get('inline_edit?act='+act+'&op=ajax',{branch:ajax_branch,id:i_id,column:i_name,value:i_val},function(data){
 			if(data == 'true')
 			{
 				if(i_val == 0)
@@ -225,38 +225,38 @@ $(document).ready(function(){
 		var i_val   = ($(this).attr('fieldvalue'))== 0 ? 1 : 0;
 		var ajax_branch      = $(this).attr('ajax_branch');
 
-		$.get('index.php?act='+act+'&op=ajax',{branch:ajax_branch,id:i_id,column:i_name,value:i_val},function(data){
+		$.get('inline_edit?act='+act+'&op=ajax',{branch:ajax_branch,id:i_id,column:i_name,value:i_val},function(data){
 			if(data == 'true')
 			{
 				if(i_val == 0){
-					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('enabled','disabled'),'title':('¿ªÆô','¹Ø±Õ'),'fieldvalue':i_val});
+					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('enabled','disabled'),'title':('å¼€å¯','å…³é—­'),'fieldvalue':i_val});
 				}else{
-					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('disabled','enabled'),'title':('¹Ø±Õ','¿ªÆô'),'fieldvalue':i_val});
+					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('disabled','enabled'),'title':('å…³é—­','å¼€å¯'),'fieldvalue':i_val});
 				}
 			}else{
-				alert('ÏìÓ¦Ê§°Ü');
+				alert('å“åº”å¤±è´¥');
 			}
 		});
 	});
-	//¸øÃ¿¸ö¿É±à¼­µÄĞ¡Í¼Æ¬µÄ¸¸ÔªËØÌí¼Ó¿É±à¼­±êÌâ $('img[nc_type="inline_edit"]').parent().attr('title','¿É±à¼­');
+	//ç»™æ¯ä¸ªå¯ç¼–è¾‘çš„å°å›¾ç‰‡çš„çˆ¶å…ƒç´ æ·»åŠ å¯ç¼–è¾‘æ ‡é¢˜ $('img[nc_type="inline_edit"]').parent().attr('title','å¯ç¼–è¾‘');
 
-	//¸øÁĞ±íÓĞÅÅĞòĞĞÎªµÄÁĞÌí¼ÓÊó±êÊÖĞÍĞ§¹û
+	//ç»™åˆ—è¡¨æœ‰æ’åºè¡Œä¸ºçš„åˆ—æ·»åŠ é¼ æ ‡æ‰‹å‹æ•ˆæœ
 	$('span[nc_type="order_by"]').hover(function(){$(this).css({cursor:'pointer'});},function(){});
 
 });
-//¼ì²éÌá½»ÄÚÈİµÄ±ØĞëÏî
+//æ£€æŸ¥æäº¤å†…å®¹çš„å¿…é¡»é¡¹
 function required(str,s_value,jqobj)
 {
 	if(str == '')
 	{
 		jqobj.prev('span').show().text(s_value);
 		jqobj.remove();
-		alert('´ËÏî²»ÄÜÎª¿Õ');
+		alert('æ­¤é¡¹ä¸èƒ½ä¸ºç©º');
 		return 0;
 	}
 	return 1;
 }
-//¼ì²éÌá½»ÄÚÈİµÄÀàĞÍÊÇ·ñºÏ·¨
+//æ£€æŸ¥æäº¤å†…å®¹çš„ç±»å‹æ˜¯å¦åˆæ³•
 function check_type(type, value, s_value, jqobj)
 {
 	if(type == 'number')
@@ -265,7 +265,7 @@ function check_type(type, value, s_value, jqobj)
 		{
 			jqobj.prev('span').show().text(s_value);
 			jqobj.remove();
-			alert('´ËÏî½öÄÜÎªÊı×Ö');
+			alert('æ­¤é¡¹ä»…èƒ½ä¸ºæ•°å­—');
 			return 0;
 		}
 	}
@@ -276,7 +276,7 @@ function check_type(type, value, s_value, jqobj)
 		{
 			jqobj.prev('span').show().text(s_value);
 			jqobj.remove();
-			alert('´ËÏî½öÄÜÎªÕûÊı');
+			alert('æ­¤é¡¹ä»…èƒ½ä¸ºæ•´æ•°');
 			return 0;
 		}
 	}
@@ -287,7 +287,7 @@ function check_type(type, value, s_value, jqobj)
 		{
 			jqobj.prev('span').show().text(s_value);
 			jqobj.remove();
-			alert('´ËÏî½öÄÜÎªÕıÕûÊı');
+			alert('æ­¤é¡¹ä»…èƒ½ä¸ºæ­£æ•´æ•°');
 			return 0;
 		}
 	}
@@ -298,7 +298,7 @@ function check_type(type, value, s_value, jqobj)
 		{
 			jqobj.prev('span').show().text(s_value);
 			jqobj.remove();
-			alert('´ËÏî½öÄÜÎªÕıÕûÊı');
+			alert('æ­¤é¡¹ä»…èƒ½ä¸ºæ­£æ•´æ•°');
 			return 0;
 		}
 	}
@@ -309,27 +309,27 @@ function check_type(type, value, s_value, jqobj)
 		{
 			jqobj.prev('span').show().text(s_value);
 			jqobj.remove();
-			alert('Ö»ÄÜÊÇ0.1-9.9Ö®¼äµÄÊı×Ö');
+			alert('åªèƒ½æ˜¯0.1-9.9ä¹‹é—´çš„æ•°å­—');
 			return 0;
 		}
 	}
 	return 1;
 }
-//¼ì²éËùÌîÏîµÄ×î´óÖµ
+//æ£€æŸ¥æ‰€å¡«é¡¹çš„æœ€å¤§å€¼
 function check_max(str,s_value,max,jqobj)
 {
 	if(parseInt(str) > parseInt(max))
 	{
 		jqobj.prev('span').show().text(s_value);
 		jqobj.remove();
-		alert('´ËÏîÓ¦Ğ¡ÓÚµÈÓÚ'+max);
+		alert('æ­¤é¡¹åº”å°äºç­‰äº'+max);
 		return 0;
 	}
 	return 1;
 }
 
 
-//ĞÂµÄinline_editµ÷ÓÃ·½·¨
+//æ–°çš„inline_editè°ƒç”¨æ–¹æ³•
 //javacript
 //$('span[nc_type="class_sort"]').inline_edit({act: 'microshop',op: 'update_class_sort'});
 //html
@@ -337,7 +337,7 @@ function check_max(str,s_value,max,jqobj)
 //php
 //$result = array();
 //$result['result'] = FALSE;/TURE
-//$result['message'] = '´íÎó';
+//$result['message'] = 'é”™è¯¯';
 //echo json_encode($result);
 
 (function($) {
@@ -359,7 +359,7 @@ function check_max(str,s_value,max,jqobj)
 				.blur(function(){
 					var new_value = $(this).attr("value");
 					if(new_value != '') {
-						$.get('index.php?act='+settings.act+'&op='+settings.op+'&branch=ajax',{id:column_id,value:new_value},function(data){
+						$.get('inline_edit?act='+settings.act+'&op='+settings.op+'&branch=ajax',{id:column_id,value:new_value},function(data){
 							data = $.parseJSON(data);
 							if(data.result) {
 								span.show().text(new_value);
@@ -390,8 +390,8 @@ function check_max(str,s_value,max,jqobj)
 			var old_value = $(this).text();
 			var column_id = $(this).attr("column_id");
 			var $input = $('<input type="text">');
-			var $btn_submit = $('<a class="inline-edit-submit" href="JavaScript:;">È·ÈÏ</a>');
-			var $btn_cancel = $('<a class="inline-edit-cancel" href="JavaScript:;">È¡Ïû</a>');
+			var $btn_submit = $('<a class="inline-edit-submit" href="JavaScript:;">ç¡®è®¤</a>');
+			var $btn_cancel = $('<a class="inline-edit-cancel" href="JavaScript:;">å–æ¶ˆ</a>');
 
 			$input.insertAfter($span).focus().select().val(old_value);
 			$btn_submit.insertAfter($input);
@@ -401,7 +401,7 @@ function check_max(str,s_value,max,jqobj)
 			$btn_submit.click(function(){
 				var new_value = $input.attr("value");
 				if(new_value !== '' && new_value !== old_value) {
-					$.post('index.php?act=' + settings.act + '&op=' + settings.op, {id:column_id, value:new_value}, function(data) {
+					$.post('inline_edit?act=' + settings.act + '&op=' + settings.op, {id:column_id, value:new_value}, function(data) {
 						data = $.parseJSON(data);
 						if(data.result) {
 							$span.text(new_value);
