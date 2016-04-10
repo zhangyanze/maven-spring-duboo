@@ -39,7 +39,7 @@ public class StoreClassController {
         List<StoreClass> storeClassList=storeClassService.findByParentId(null);
         model.addAttribute("P_STORE_CLASS", storeClassList);
         model.addAttribute("P_PARENT_ID", sc_parent_id);
-        return "store/store_add";
+        return "store/store_class_add";
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class StoreClassController {
         StoreClass storeClass=storeClassService.findOne(id);
         Assert.notNull(storeClass, "没有此id可编辑！");
         model.addAttribute("P_STORE_CLASS", storeClass);
-        return "store/store_edit";
+        return "store/store_class_edit";
     }
 
     @RequestMapping(value="/save" ,method = RequestMethod.POST)
