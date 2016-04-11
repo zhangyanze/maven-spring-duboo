@@ -111,7 +111,8 @@ public class SolrTestController {
         }
         try {
             RowBounds rowBounds =new RowBounds(p,20);
-            PageInfoFacet pageInfoFacet=solrService.queryFacet("att_core", query, rowBounds);
+            //PageInfoFacet pageInfoFacet=solrService.queryFacet("att_core", query, rowBounds);
+            PageInfoFacet pageInfoFacet=solrService.queryFacet("att_core2", query, rowBounds);
             model.addAttribute("P_PAGE", pageInfoFacet.getPageInfo());
             FacetField facetField=pageInfoFacet.getFacetFieldList().get(0);
             List values=facetField.getValues();

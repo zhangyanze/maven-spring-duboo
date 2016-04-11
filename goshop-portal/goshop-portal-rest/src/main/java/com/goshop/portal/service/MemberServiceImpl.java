@@ -46,11 +46,11 @@ public class MemberServiceImpl implements MemberService {
         //判断登录名是否重复
         Assert.isTrue(this.checkLoginName(user.getLoginName()), "登录名已经存在！");
         //判断邮件是否符合规范
-        Assert.isTrue(RegexValidateUtil.checkEmail(member.getMemberEmail()),"邮件填写错误！");
+        Assert.isTrue(RegexValidateUtil.checkEmail(member.getMemberEmail()),"邮件填写错误!");
         //判断邮件是否重复
         Assert.isTrue(this.checkEmail(member.getMemberEmail()), "此邮件已经注册！");
         //验证密码格式
-        Assert.isTrue(RegexValidateUtil.checkPassword(user.getPassword()), "以字母开头，长度在6~18之间，只能包含字符、数字和下划线！");
+        Assert.isTrue(RegexValidateUtil.checkPassword(user.getPassword()), "以字母开头,长度在6~18之间,只能包含字符、数字和下划线!");
         //密码加密、设置盐值
         user=this.passWordUser(user);
         user=this.setDefaultUser(user);
@@ -103,7 +103,7 @@ public class MemberServiceImpl implements MemberService {
             userMapper.updateByPrimaryKey(passWordUser(user));
             findPasswordMapper.delete(key);
         }else{
-            throw new Exception("此链接已过期！");
+            throw new Exception("此链接已过期!");
         }
 
     }

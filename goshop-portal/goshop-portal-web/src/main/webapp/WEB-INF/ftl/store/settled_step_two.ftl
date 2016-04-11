@@ -31,7 +31,7 @@
 
             <div class="apply-credentials-info" id="apply_credentials_info">
                 <div class="note"><i></i>以下所需要上传的电子版资质文件仅支持JPG\GIF\PNG格式图片，大小请控制在1M之内。</div>
-                <form enctype="multipart/form-data" method="post" action="${S_URL}/storejoinin/step3"
+                <form enctype="multipart/form-data" method="post" action="${S_URL}/store_join/step3.html"
                       id="form_credentials_info">
                     <table cellspacing="0" cellpadding="0" border="0" class="all">
                         <thead>

@@ -146,7 +146,7 @@ public class StoreJoinController {
             model.addAttribute("P_PARENT_GOODSCLASS", storeInfoModel.getGoodsClassParentList());
             model.addAttribute("P_STOREGRADE", storeInfoModel.getStoreGradeList());
         }catch (Exception e){
-            throw new PageException(e.getMessage());
+            throw new PageException("保存财务信息错误："+e.toString());
         }
 
         model.addAttribute("P_STEP", 3);

@@ -67,4 +67,6 @@
     </bean>
 
     <bean id="attachmentService" class="com.goshop.common.attachment.LocalhostAttachmentImpl" />
+
+    <bean id="message" class="com.goshop.common.context.RedisMessage" />
 </beans>

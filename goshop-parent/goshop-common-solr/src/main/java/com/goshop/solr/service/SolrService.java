@@ -3,6 +3,7 @@ package com.goshop.solr.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -22,7 +23,7 @@ public interface SolrService {
      * @param core
      * @return
      */
-    HttpSolrClient getHttpSolrClient(String core);
+    SolrClient getHttpSolrClient(String core);
     /**
      * 增加单个实体
      * @param core 域名

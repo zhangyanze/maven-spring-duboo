@@ -7,13 +7,13 @@ $(document).ready( function(){
 		var parent = $(this).parents('.onoff');
 		$('.cb-disable',parent).removeClass('selected');
 		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', true);
+		$('.checkbox',parent).prop('checked', true);
 	});
 	$(".cb-disable").click(function(){
 		var parent = $(this).parents('.onoff');
 		$('.cb-enable',parent).removeClass('selected');
 		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', false);
+		$('.checkbox',parent).prop('checked', false);
 	});
 });
 
@@ -57,9 +57,9 @@ $(function(){
 
 	// 全选 start
 	$('.checkall').click(function(){
-		$('.checkall').attr('checked',$(this).attr('checked') == 'checked');
+		$('.checkall').prop('checked',$(this).prop('checked'));
 		$('.checkitem').each(function(){
-			$(this).attr('checked',$('.checkall').attr('checked') == 'checked');
+			$(this).prop('checked',$('.checkall').prop('checked'));
 		});
 	});
 

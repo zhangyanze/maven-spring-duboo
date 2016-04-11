@@ -35,4 +35,6 @@ public interface StoreClassService {
     List<StoreClass> findByParentId(Long parentId);
 
     int delete(Long id);
+
+    void delete(Long[] ids);
 }

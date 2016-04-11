@@ -23,17 +23,17 @@ public class StoreJoinServiceImpl implements StoreJoinService {
     @Override
     public void applySeller(User user,StoreJoin storeJoin) {
         StoreJoin userStoreJoin = this.getCurrentUserStoreJoin(user.getId());
+        storeJoin.setMemberId(user.getId());
         if (userStoreJoin == null) {
-            storeJoin.setMemberId(user.getId());
             storeJoin.setMemberName(user.getUserName());
             storeJoinMapper.insert(storeJoin);
         } else {
-            try {
+            /*try {
                 BeanUtils.applyIf(userStoreJoin, storeJoin);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-            storeJoinMapper.updateByPrimaryKey(userStoreJoin);
+            }*/
+            storeJoinMapper.updateByPrimaryKeySelective(userStoreJoin);
         }
 
     }
@@ -42,12 +42,13 @@ public class StoreJoinServiceImpl implements StoreJoinService {
     public StoreInfoModel applySellerThree(User user, StoreJoin storeJoin) {
         StoreJoin userStoreJoin = getCurrentUserStoreJoin(user.getId());
         Assert.notNull(userStoreJoin, "请先执行第一步！");
-        try {
+        /*try {
             BeanUtils.applyIf(userStoreJoin, storeJoin);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        storeJoinMapper.updateByPrimaryKey(userStoreJoin);
+        }*/
+        storeJoin.setMemberId(user.getId());
+        storeJoinMapper.updateByPrimaryKeySelective(storeJoin);
 
         return null;
     }

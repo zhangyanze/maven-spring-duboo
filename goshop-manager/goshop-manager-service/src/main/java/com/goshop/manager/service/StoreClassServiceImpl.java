@@ -111,4 +111,11 @@ public class StoreClassServiceImpl implements StoreClassService {
     public int delete(Long id) {
         return storeClassMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void delete(Long[] ids) {
+        for(Long id:ids){
+            this.delete(id);
+        }
+    }
 }

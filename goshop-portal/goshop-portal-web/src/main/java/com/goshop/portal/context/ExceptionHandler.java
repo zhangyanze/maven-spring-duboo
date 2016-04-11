@@ -1,10 +1,9 @@
 package com.goshop.portal.context;
 
+import com.goshop.common.context.MessageService;
 import com.goshop.common.context.MessageInfo;
-import com.goshop.common.context.RedirectAttributesEx;
-import com.goshop.common.context.ThreadLocalMessage;
 import com.goshop.common.exception.PageException;
-import com.goshop.common.utils.RequestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ExceptionHandler implements HandlerExceptionResolver {
 
+	@Autowired
+	MessageService messageService;
+
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
@@ -28,15 +30,14 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 		if (ex instanceof PageException ||ex instanceof IllegalArgumentException) {
 			if (!"XMLHttpRequest".equalsIgnoreCase(request
 					.getHeader("X-Requested-With"))) {// 不是ajax请求
-
-				String message = ex.getMessage();
 				/*RedirectAttributesEx rae=new RedirectAttributesEx(request);
 				rae.setAttribute("ERROR_MESSAGE", message);*/
 				MessageInfo info = new MessageInfo();
-				info.setMessage(message);
-				ThreadLocalMessage.set(info);
+				info.setMessage(ex.getMessage());
+
+				messageService.set(request.getSession().getId(),info);
 				ModelAndView mav=new ModelAndView();
-				mav.setViewName("redirect:/exc/jump.html");
+				mav.setViewName("redirect:/msg.html");
 				return mav;
 
 			} else {

@@ -26,12 +26,20 @@ public class StoreClassController {
     @Autowired
     StoreClassService storeClassService;
 
-    @RequestMapping("/store_class")
+    @RequestMapping(value = "/store_class",method = RequestMethod.GET)
     public String index(@RequestParam(value="p",required=false) Integer curPage,
                         Model model, HttpServletRequest request) {
         PageInfo<StoreClass> page=storeClassService.findTreePageByParentId(curPage, 20, null);
         model.addAttribute("P_PAGE",page);
         return "store/store_class";
+    }
+
+    @RequestMapping(value = "/store_class",method = RequestMethod.POST)
+    public String delete(Long[] check_sc_id,
+                        Model model, HttpServletRequest request) {
+        String url = request.getContextPath();
+        storeClassService.delete(check_sc_id);
+        return Jump.get(url + "/store_class/store_class", "删除成功！");
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.GET)

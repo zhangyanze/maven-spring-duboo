@@ -53,7 +53,6 @@
         </tbody>
     </table>
     <form method="post">
-        <input type="hidden" value="ok" name="form_submit">
         <table class="table tb-type2 nobdb">
             <thead>
             <tr class="thead">
@@ -66,7 +65,7 @@
             <tbody>
 <#list P_PAGE.list as o>
             <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w36"><input type="checkbox" class="checkitem" value="4" name="check_sc_id[]">
+                <td class="w36"><input type="checkbox" class="checkitem" value="${o.id}" name="check_sc_id">
                     <#if (o.children?size>0) >
                         <img nc_type="flex" src="${S_URL}/static/images/tv-expandable.gif"  status="open"  fieldid="${o.id}">
                     </#if>

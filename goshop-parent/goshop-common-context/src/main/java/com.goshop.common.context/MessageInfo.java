@@ -1,9 +1,11 @@
 package com.goshop.common.context;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/3/29.
  */
-public class MessageInfo {
+public class MessageInfo implements Serializable {
 
     private  String message;
 
