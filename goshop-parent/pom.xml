@@ -11,10 +11,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>goshop-common</module>
+        <module>goshop-common-attachment</module>
         <module>goshop-common-context</module>
+        <module>goshop-common-solr</module>
         <module>goshop-common-web</module>
         <module>goshop-redis</module>
-        <module>goshop-common-solr</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->

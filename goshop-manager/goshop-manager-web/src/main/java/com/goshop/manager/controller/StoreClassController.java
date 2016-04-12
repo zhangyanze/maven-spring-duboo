@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.manager.model.StoreClassModel;
 import com.goshop.manager.pojo.StoreClass;
-import com.goshop.manager.service.StoreClassService;
+import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

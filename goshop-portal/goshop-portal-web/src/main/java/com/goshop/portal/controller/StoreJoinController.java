@@ -151,7 +151,7 @@ public class StoreJoinController {
 
         model.addAttribute("P_STEP", 3);
         model.addAttribute("P_SIDEBAR", 3);
-        return "settled_step_three";
+        return "store/settled_step_three";
 
     }
 

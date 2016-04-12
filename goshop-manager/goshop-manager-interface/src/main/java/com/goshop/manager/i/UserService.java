@@ -1,7 +1,9 @@
 package com.goshop.manager.i;
 
 
+import com.github.pagehelper.PageInfo;
 import com.goshop.manager.pojo.Permission;
+import com.goshop.manager.pojo.StoreGrade;
 import com.goshop.manager.pojo.User;
 
 import java.util.List;
@@ -28,4 +30,5 @@ public interface UserService {
     User findOfRoleOne(Long id);
 
     List<Permission> findPermissionListByUserId(Long userId);
+
 }

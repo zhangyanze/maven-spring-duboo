@@ -1,9 +1,10 @@
 package com.goshop.manager.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreClass {
+public class StoreClass implements Serializable {
     private Long id;
 
     private Integer sort;

@@ -1,6 +1,8 @@
 package com.goshop.manager.pojo;
 
-public class StoreGrade {
+import java.io.Serializable;
+
+public class StoreGrade implements Serializable {
     private Integer sgId;
     /**
      * 等级名称

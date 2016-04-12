@@ -1,10 +1,11 @@
 package com.goshop.manager.pojo;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class FindPassword {
+public class FindPassword implements Serializable {
     private String loginName;
 
     private Timestamp created;

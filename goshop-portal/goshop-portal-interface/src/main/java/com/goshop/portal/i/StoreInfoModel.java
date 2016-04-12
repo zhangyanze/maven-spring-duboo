@@ -4,12 +4,13 @@ import com.goshop.manager.pojo.StoreClass;
 import com.goshop.manager.pojo.StoreGoodsClass;
 import com.goshop.manager.pojo.StoreGrade;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/3/27.
  */
-public class StoreInfoModel {
+public class StoreInfoModel implements Serializable {
 
     //店铺分类
     private List<StoreClass> storeClassParentList;

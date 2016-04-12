@@ -2,8 +2,9 @@ package com.goshop.manager.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.pojo.ResponseStatus;
+import com.goshop.manager.i.StoreGradeService;
+import com.goshop.manager.i.UserService;
 import com.goshop.manager.pojo.StoreGrade;
-import com.goshop.manager.service.StoreGradeService;
 import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

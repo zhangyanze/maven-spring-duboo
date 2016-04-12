@@ -1,4 +1,4 @@
-package com.goshop.manager.service;
+package com.goshop.manager.i;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.manager.pojo.StoreClass;
@@ -37,4 +37,6 @@ public interface StoreClassService {
     int delete(Long id);
 
     void delete(Long[] ids);
+
+    List<StoreClass> findTreeByParentId(Long parentId);
 }

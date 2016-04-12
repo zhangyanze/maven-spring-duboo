@@ -25,7 +25,12 @@
     <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
     <dubbo:reference id="userService"
                      interface="com.goshop.manager.i.UserService" />
+    <dubbo:reference id="storeClassService"
+                     interface="com.goshop.manager.i.StoreClassService" />
+    <dubbo:reference id="storeGradeService"
+                     interface="com.goshop.manager.i.StoreGradeService" />
 
+    <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.goshop.portal.i.MemberService" ref="memberService" />
 
     <dubbo:service interface="com.goshop.portal.i.StoreJoinService" ref="storeJoinService" />

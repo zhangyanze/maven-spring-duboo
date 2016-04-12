@@ -1,6 +1,8 @@
 package com.goshop.manager.pojo;
 
-public class StoreGoodsClass {
+import java.io.Serializable;
+
+public class StoreGoodsClass implements Serializable {
     private Integer stcId;
 
     private String stcName;

@@ -103,4 +103,18 @@
       stc_sort = #{stcSort,jdbcType=INTEGER}
     where stc_id = #{stcId,jdbcType=INTEGER}
   </update>
+
+  <select id="findByStcParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_store_goods_class
+    where
+    <if test="parentId != null" >
+      stc_parent_id = #{parentId,jdbcType=INTEGER}
+    </if>
+    <if test="parentId == null" >
+      stc_parent_id is null
+    </if>
+    order by stc_sort
+  </select>
 </mapper>

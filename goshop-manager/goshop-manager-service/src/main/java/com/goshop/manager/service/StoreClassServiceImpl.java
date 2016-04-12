@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
 import com.goshop.common.exception.PageException;
+import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.mapper.StoreClassMapper;
 import com.goshop.manager.pojo.StoreClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-@Service
+@Service("storeClassService")
 public class StoreClassServiceImpl implements StoreClassService {
 
     @Autowired
@@ -117,5 +118,10 @@ public class StoreClassServiceImpl implements StoreClassService {
         for(Long id:ids){
             this.delete(id);
         }
+    }
+
+    @Override
+    public List<StoreClass> findTreeByParentId(Long parentId) {
+        return storeClassMapper.findTreeByParentId(parentId);
     }
 }
