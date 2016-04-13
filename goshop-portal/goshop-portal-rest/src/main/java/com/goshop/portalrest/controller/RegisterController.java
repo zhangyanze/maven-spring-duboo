@@ -1,5 +1,6 @@
 package com.goshop.portalrest.controller;
 
+import com.goshop.common.utils.JsonUtils;
 import com.goshop.portal.i.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -34,8 +35,6 @@ public class RegisterController {
            default:
 
         }
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(isCheck);
-        mappingJacksonValue.setJsonpFunction(callback);
-        return mappingJacksonValue;
+        return JsonUtils.jsonp(isCheck, callback);
     }
 }

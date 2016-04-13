@@ -609,4 +609,18 @@
       paying_money_certificate_explain = #{payingMoneyCertificateExplain,jdbcType=VARCHAR}
     where member_id = #{memberId,jdbcType=BIGINT}
   </update>
+
+  <select id="findBySellerName" resultMap="BaseResultMap" parameterType="string" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_store_join
+    where seller_name = #{sellerName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findByStoreName" resultMap="BaseResultMap" parameterType="string" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_store_join
+    where store_name = #{storeName,jdbcType=VARCHAR}
+  </select>
 </mapper>

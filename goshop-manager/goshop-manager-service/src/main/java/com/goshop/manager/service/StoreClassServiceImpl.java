@@ -124,4 +124,21 @@ public class StoreClassServiceImpl implements StoreClassService {
     public List<StoreClass> findTreeByParentId(Long parentId) {
         return storeClassMapper.findTreeByParentId(parentId);
     }
+
+    @Override
+    public PageInfo<StoreClass> findGradeByParentId(Integer curPage, Integer pageSize, Long parentId) {
+        //1、设置分页
+        if(curPage==null){
+            curPage=1;
+        }
+        if(pageSize==null){
+            pageSize=20;
+        }
+        PageHelper.startPage(curPage, pageSize);
+        //2、查询结果
+        List<StoreClass> list=storeClassMapper.findGradeByParentId(parentId);
+        //3、取分页后结果
+        PageInfo<StoreClass> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
 }

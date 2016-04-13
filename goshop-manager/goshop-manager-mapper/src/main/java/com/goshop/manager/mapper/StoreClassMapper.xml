@@ -6,6 +6,7 @@
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
     <collection property="children" ofType="com.goshop.manager.pojo.StoreClass" column="PARENT_ID">
       <id column="c_id" property="id" jdbcType="BIGINT" />
       <result column="c_sort" property="sort" jdbcType="INTEGER" />
@@ -165,5 +166,23 @@
       PARENT_ID is null
     </if>
     order by sort
+  </select>
+
+  <select id="findGradeByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT
+	leaf.*, COUNT(entity.id) AS grade
+FROM
+	gs_store_class leaf
+LEFT JOIN gs_store_class entity ON leaf.id = entity.PARENT_ID
+WHERE
+    <if test="parentId == null" >
+      leaf.PARENT_ID  is null
+    </if>
+    <if test="parentId != null" >
+      leaf.PARENT_ID  = #{parentId,jdbcType=BIGINT}
+    </if>
+GROUP BY
+	leaf.id
+    order by leaf.sort,leaf.id
   </select>
 </mapper>

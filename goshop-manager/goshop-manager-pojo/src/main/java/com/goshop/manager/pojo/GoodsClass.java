@@ -1,30 +1,53 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GoodsClass  implements Serializable {
+    @JsonProperty("gc_id")
     private Integer gcId;
-
+    @JsonProperty("gc_name")
     private String gcName;
-
+    @JsonProperty("type_id")
     private Integer typeId;
-
+    @JsonProperty("type_name")
+    @JsonInclude(JsonInclude.Include.ALWAYS)
     private String typeName;
-
+    @JsonProperty("gc_parent_id")
     private Integer gcParentId;
-
+    @JsonProperty("gc_sort")
     private Integer gcSort;
-
+    @JsonProperty("gc_title")
     private String gcTitle;
-
+    @JsonProperty("gc_keywords")
     private String gcKeywords;
-
+    @JsonProperty("gc_description")
     private String gcDescription;
+    @JsonProperty("sc_pic")
+    private String gcPic;
+    //虚拟字段
+    private Integer grade;
 
-    private Date solrUpdateTime;
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    public String getGcPic() {
+        return gcPic;
+    }
+
+    public void setGcPic(String gcPic) {
+        this.gcPic = gcPic;
+    }
 
     private List<GoodsClass> children = new ArrayList<GoodsClass>();
 
@@ -108,11 +131,4 @@ public class GoodsClass  implements Serializable {
         this.gcDescription = gcDescription == null ? null : gcDescription.trim();
     }
 
-    public Date getSolrUpdateTime() {
-        return solrUpdateTime;
-    }
-
-    public void setSolrUpdateTime(Date solrUpdateTime) {
-        this.solrUpdateTime = solrUpdateTime;
-    }
 }

@@ -39,4 +39,6 @@ public interface StoreClassService {
     void delete(Long[] ids);
 
     List<StoreClass> findTreeByParentId(Long parentId);
+
+    PageInfo<StoreClass> findGradeByParentId(Integer curPage,Integer pageSize,Long parentId);
 }

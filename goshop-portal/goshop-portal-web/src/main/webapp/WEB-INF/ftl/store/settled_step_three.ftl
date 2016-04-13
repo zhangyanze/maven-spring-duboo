@@ -16,6 +16,7 @@
     <script src="${S_COMMON_URL}/scripts/jquery-ui/jquery.ui.js"></script>
     <script src="${S_COMMON_URL}/scripts/utils/area_array.js"></script>
     <script src="${S_COMMON_URL}/scripts/shop/common.js"></script>
+    <script src="${S_COMMON_URL}/scripts/shop/common_select.js"></script>
 </head>
 
 <body>
@@ -95,7 +96,7 @@
                                     <select id="gcategory_class1" class="valid">
                                         <option value="0">请选择</option>
                                         <#list P_PARENT_GOODSCLASS as goodsClass>
-                                            <option value="${goodsClass.stcId}">${goodsClass.stcName}</option>
+                                            <option value="${goodsClass.gcId}">${goodsClass.gcName}</option>
                                         </#list>
                                     </select>
                                     <input type="button" value="确认" id="btn_add_category">
@@ -135,43 +136,10 @@
     <#include "../button.ftl"/>
     <#include "../footer.ftl"/>
     <script type="text/javascript">
-        var SITEURL = '${S_URL}';
+        SITEURL = '${S_URL}';
+        SELECT_URL="${SHOP_REST_URL}";
         $(document).ready(function () {
             gcategoryInit("gcategory");
-
-            jQuery.validator.addMethod("sellerName_exist", function (value, element, params) {
-                var result = true;
-                $.ajax({
-                    type: "GET",
-                    url: '${S_URL}/storejoinin/verification/sellerName',
-                    async: false,
-                    data: {sellerName: $('#sellerName').val()},
-                    success: function (data) {
-                        if (data == true) {
-                            $.validator.messages.sellerName_exist = "卖家帐号已存在";
-                            result = false;
-                        }
-                    }
-                });
-                return result;
-            }, '');
-
-            jQuery.validator.addMethod("storeName_exist", function (value, element, params) {
-                var result = true;
-                $.ajax({
-                    type: "GET",
-                    url: '${S_URL}/storejoinin/verification/storeName',
-                    async: false,
-                    data: {storeName: $('#storeName').val()},
-                    success: function (data) {
-                        if (data == true) {
-                            $.validator.messages.storeName_exist = "店铺名称已存在";
-                            result = false;
-                        }
-                    }
-                });
-                return result;
-            }, '');
 
             $('#form_store_info').validate({
                 errorPlacement: function (error, element) {
@@ -181,12 +149,22 @@
                     sellerName: {
                         required: true,
                         maxlength: 50,
-                        sellerName_exist: true
+                        remote   : {
+                            url :'${SHOP_REST_URL}/store_join/verification/sellerName',
+                            type:'get',
+                            dataType:'jsonp',
+                            data: {storeName: $('#sellerName').val()}
+                        }
                     },
                     storeName: {
                         required: true,
                         maxlength: 50,
-                        storeName_exist: true
+                        remote   : {
+                            url :'${SHOP_REST_URL}/store_join/verification/storeName',
+                            type:'get',
+                            dataType:'jsonp',
+                            data: {storeName: $('#storeName').val()}
+                        }
                     },
                     sgName: {
                         required: true
@@ -202,11 +180,13 @@
                 messages: {
                     sellerName: {
                         required: '请填写卖家用户名',
-                        maxlength: jQuery.validator.format("最多{0}个字")
+                        maxlength: jQuery.validator.format("最多{0}个字"),
+                        remote:"卖家帐号已存在"
                     },
                     storeName: {
                         required: '请填写店铺名称',
-                        maxlength: jQuery.validator.format("最多{0}个字")
+                        maxlength: jQuery.validator.format("最多{0}个字"),
+                        remote:"店铺名称已存在"
                     },
                     sgName: {
                         required: '请选择店铺等级'

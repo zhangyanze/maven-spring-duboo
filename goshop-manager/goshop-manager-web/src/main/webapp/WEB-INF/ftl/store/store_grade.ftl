@@ -81,19 +81,16 @@
 </#list>
             </tbody>
             <tfoot>
-            <#if (P_PAGE.pages>1)>
-            <tr class="tfoot">
-                <td colspan="4">
-                    <#import "../pagination.ftl" as pagination />
-                    <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
 
-                </td>
-            </tr>
-            </#if>
             <tr class="tfoot">
                 <td><input type="checkbox" id="checkallBottom" class="checkall"></td>
                 <td colspan="15"><label for="checkallBottom">全选</label>
-                    &nbsp;&nbsp;<a onclick="if(confirm('您确定要删除该店铺等级吗？')){$('#form_grade').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a></td>
+                    &nbsp;&nbsp;<a onclick="if(confirm('您确定要删除该店铺等级吗？')){$('#form_grade').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a>
+                <#if (P_PAGE.pages>1)>
+                    <#import "../pagination.ftl" as pagination />
+                    <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
+                </#if>
+                </td>
             </tr>
 
             </tfoot>

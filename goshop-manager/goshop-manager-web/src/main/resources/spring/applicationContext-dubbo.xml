@@ -29,5 +29,6 @@
     <dubbo:service interface="com.goshop.manager.i.StoreClassService" ref="storeClassService" />
     <!-- 店铺等级 -->
     <dubbo:service interface="com.goshop.manager.i.StoreGradeService" ref="storeGradeService" />
-
+    <!-- 商品分类 -->
+    <dubbo:service interface="com.goshop.manager.i.GoodsClassService" ref="goodsClassService" />
 </beans>

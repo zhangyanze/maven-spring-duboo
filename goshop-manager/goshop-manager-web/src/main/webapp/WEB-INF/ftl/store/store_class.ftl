@@ -65,11 +65,12 @@
             <tbody>
 <#list P_PAGE.list as o>
             <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w36"><input type="checkbox" class="checkitem" value="${o.id}" name="check_sc_id">
-                    <#if (o.children?size>0) >
+                <td class="w48">
+                    <input type="checkbox" class="checkitem" value="${o.id}" name="check_gc_id[]">
+                    <#if (o.grade>0) >
                         <img nc_type="flex" src="${S_URL}/static/images/tv-expandable.gif"  status="open"  fieldid="${o.id}">
                     </#if>
-                 </td>
+                </td>
                 <td class="w48 sort">
                     <span class="editable" nc_type="inline_edit" fieldname="sc_sort" fieldid="${o.id}" datatype="number" ajax_branch="store_class_sort" title="可编辑">${o.sort}</span>
                 </td>
@@ -83,19 +84,12 @@
             </tbody>
             <tfoot>
 
-<#if (P_PAGE.pages>1)>
-            <tr class="tfoot">
-                <td colspan="4">
-                <#import "../pagination.ftl" as pagination />
-                    <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
-
-                </td>
-            </tr>
-</#if>
             <tr id="batchAction">
                 <td><input type="checkbox" id="checkallBottom" class="checkall"></td>
                 <td id="dataFuncs" colspan="16"><label for="checkallBottom">全选</label>
-                    &nbsp;&nbsp;<a onclick="if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗')){$('form:first').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a></td>
+                    &nbsp;&nbsp;<a onclick="if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗')){$('form:first').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a>
+
+                </td>
             </tr>
             </tfoot>
         </table>

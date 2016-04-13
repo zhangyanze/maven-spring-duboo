@@ -1,6 +1,9 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.StoreJoin;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StoreJoinMapper {
     int deleteByPrimaryKey(Long memberId);
@@ -14,4 +17,8 @@ public interface StoreJoinMapper {
     int updateByPrimaryKeySelective(StoreJoin record);
 
     int updateByPrimaryKey(StoreJoin record);
+
+    List<StoreJoin> findBySellerName(@Param("sellerName")String sellerName);
+
+    List<StoreJoin> findByStoreName(@Param("storeName")String storeName);
 }

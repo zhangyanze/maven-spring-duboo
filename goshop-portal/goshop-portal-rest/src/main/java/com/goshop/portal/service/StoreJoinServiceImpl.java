@@ -1,6 +1,8 @@
 package com.goshop.portal.service;
 
+import com.goshop.common.exception.MapperException;
 import com.goshop.common.utils.BeanUtils;
+import com.goshop.manager.i.GoodsClassService;
 import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.i.StoreGradeService;
 import com.goshop.manager.mapper.StoreJoinMapper;
@@ -30,7 +32,7 @@ public class StoreJoinServiceImpl implements StoreJoinService {
     StoreGradeService storeGradeService;
 
     @Autowired
-    StoreGoodsClassService storeGoodsClassService;
+    GoodsClassService goodsClassService;
 
     @Override
     public void applySeller(User user,StoreJoin storeJoin) {
@@ -56,13 +58,39 @@ public class StoreJoinServiceImpl implements StoreJoinService {
         //店铺等级
         List<StoreGrade> storeGradeList = storeGradeService.findAll();
         //经营类目
-        List<StoreGoodsClass> goodsClassParentList = storeGoodsClassService.findByStcParentId(null);
+        List<GoodsClass> goodsClassParentList = goodsClassService.findByGcParentId(0);
 
         StoreInfoModel storeInfoModel = new StoreInfoModel();
         storeInfoModel.setStoreClassParentList(storeClassParentList);
         storeInfoModel.setStoreGradeList(storeGradeList);
         storeInfoModel.setGoodsClassParentList(goodsClassParentList);
         return storeInfoModel;
+    }
+
+    @Override
+    public boolean verificationSellerName(String sellerName,Long userId) {
+        List<StoreJoin> list=storeJoinMapper.findBySellerName(sellerName);
+        if(list.size()>1){
+            throw new MapperException("数据异常");
+        }else if(list.size()==1){
+            if(list.get(0).getMemberId()!=userId){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean verificationStoreName(String storeName,Long userId) {
+        List<StoreJoin> list=storeJoinMapper.findByStoreName(storeName);
+        if(list.size()>1){
+            throw new MapperException("数据异常");
+        }else if(list.size()==1){
+            if(list.get(0).getMemberId()!=userId){
+                return false;
+            }
+        }
+        return true;
     }
 
     private StoreJoin getCurrentUserStoreJoin(Long userId) {

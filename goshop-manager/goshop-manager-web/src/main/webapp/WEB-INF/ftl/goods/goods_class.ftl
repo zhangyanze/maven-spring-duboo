@@ -17,6 +17,8 @@
     <link id="cssfile2" type="text/css" rel="stylesheet" href="${S_URL}/static/styles/skin_0.css">
     <script type="text/javascript">
         SITEURL = '${S_URL}';
+        ADMIN_TEMPLATES_URL= '${S_URL}';
+        RESOURCE_SITE_URL= '${S_URL}';
     </script>
 </head>
 
@@ -67,190 +69,45 @@
             </tr>
             </thead>
             <tbody>
+            <#list P_PAGE.list as o>
             <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w48"><input type="checkbox" class="checkitem" value="1" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="1">
+                <td class="w48">
+                    <input type="checkbox" class="checkitem" value="${o.gcId}" name="check_gc_id[]">
+                    <#if (o.grade>0) >
+                        <img nc_type="flex" src="${S_URL}/static/images/tv-expandable.gif"  status="open"  fieldid="${o.gcId}">
+                    </#if>
                 </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="1" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
+                <td class="w48 sort">
+                    <span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="${o.gcId}" datatype="number" ajax_branch="goods_class_sort" title="可编辑">${o.gcSort}</span></td>
                 <td class="w50pre name">
-                    <span class="editable" nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="1" required="1" title="可编辑">服饰鞋帽6</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=1" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
+                    <span class="editable" nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="${o.gcId}" required="1" title="可编辑">${o.gcName}</span>
+                    <a href="save?gc_parent_id=${o.gcId}" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
                 </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=1">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=1';">删除</a></td>
+                <td>${o.typeName!""}</td>
+                <td class="w84"><a href="save?gc_id=${o.gcId}">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'delete?gc_id=${o.gcId}';">删除</a></td>
             </tr>
-            <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w48"><input type="checkbox" class="checkitem" value="2" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="2">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="2" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable" nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="2" required="1" title="可编辑">礼品箱包</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=2" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=2">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=2';">删除</a></td>
-            </tr>
-            <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w48"><input type="checkbox" class="checkitem" value="3" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="3">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="3" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable" nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="3" required="1" title="可编辑">家居家装</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=3" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=3">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=3';">删除</a></td>
-            </tr>
-            <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="w48"><input type="checkbox" class="checkitem" value="256" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="256">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="256" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable" nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="256" required="1" title="可编辑">数码办公</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=256" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=256">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=256';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="308" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="308">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="308" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="308" required="1" title="可编辑">家用电器</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=308" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=308">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=308';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="470" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="470">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="470" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="470" required="1" title="可编辑">个护化妆</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=470" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=470">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=470';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="530" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="530">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="530" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="530" required="1" title="可编辑">珠宝手表</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=530" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=530">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=530';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="593" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="593">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="593" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="593" required="1" title="可编辑">食品饮料</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=593" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td>食品通用</td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=593">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=593';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="662" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="662">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="662" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="662" required="1" title="可编辑">运动健康</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=662" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=662">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=662';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="730" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="730">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="730" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="730" required="1" title="可编辑">汽车用品</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=730" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=730">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=730';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="825" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="825">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="825" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="825" required="1" title="可编辑">玩具乐器</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=825" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=825">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=825';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="888" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="888">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="888" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="888" required="1" title="可编辑">厨具</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=888" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=888">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=888';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="959" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="959">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="959" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="959" required="1" title="可编辑">母婴用品</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=959" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=959">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=959';">删除</a></td>
-            </tr>
-            <tr class="hover edit">
-                <td class="w48"><input type="checkbox" class="checkitem" value="1037" name="check_gc_id[]">
-                    <img src="http://localhost/shopnc/admin/templates/default/images/tv-expandable.gif" nc_type="flex" status="open" fieldid="1037">
-                </td>
-                <td class="w48 sort"><span class="editable " nc_type="inline_edit" fieldname="gc_sort" fieldid="1037" datatype="number" ajax_branch="goods_class_sort" title="可编辑">255</span></td>
-                <td class="w50pre name">
-                    <span class="editable " nc_type="inline_edit" fieldname="gc_name" ajax_branch="goods_class_name" fieldid="1037" required="1" title="可编辑">虚拟充值</span>
-                    <a href="index.php?act=goods_class&amp;op=goods_class_add&amp;gc_parent_id=1037" class="btn-add-nofloat marginleft"><span>新增下级</span></a>
-                </td>
-                <td></td>
-                <td class="w84"><a href="index.php?act=goods_class&amp;op=goods_class_edit&amp;gc_id=1037">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'index.php?act=goods_class&amp;op=goods_class_del&amp;gc_id=1037';">删除</a></td>
-            </tr>
+            </#list>
             </tbody>
             <tfoot>
+
             <tr class="tfoot">
                 <td><input type="checkbox" id="checkall_2" class="checkall"></td>
                 <td colspan="15" id="batchAction"><span class="all_checkbox">
             <label for="checkall_2">全选</label>
             </span>&nbsp;&nbsp;<a onclick="if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗')){$('#submit_type').val('del');$('form:first').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a>
+            <#if (P_PAGE.pages>1)>
+                    <#import "../pagination.ftl" as pagination />
+                    <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
+            </#if>
                 </td>
             </tr>
+
             </tfoot>
         </table>
     </form>
 </div>
-<script charset="utf-8" src="http://localhost/shopnc/data/resource/js/jquery.edit.js" type="text/javascript"></script>
-<script charset="utf-8" src="http://localhost/shopnc/data/resource/js/jquery.goods_class.js" type="text/javascript"></script>
-
+<script charset="utf-8" src="${S_URL}/static/scripts/jquery.edit.js" type="text/javascript"></script>
+<script charset="utf-8" src="${S_URL}/static/scripts/jquery.goods_class.js" type="text/javascript"></script>
 </body>
 
 </html>

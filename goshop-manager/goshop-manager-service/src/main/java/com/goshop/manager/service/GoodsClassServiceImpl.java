@@ -1,5 +1,8 @@
 package com.goshop.manager.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.goshop.common.exception.MapperException;
 import com.goshop.manager.i.GoodsClassService;
 import com.goshop.manager.mapper.GoodsClassMapper;
 import com.goshop.manager.pojo.GoodsClass;
@@ -17,5 +20,76 @@ public class GoodsClassServiceImpl implements GoodsClassService {
     @Override
     public List<GoodsClass> findTreeByGcParentId(Integer gcParentId) {
         return goodsClassMapper.findTreeByGcParentId(gcParentId);
+    }
+
+    @Override
+    public List<GoodsClass> findByGcParentId(Integer parentId) {
+        if(parentId==null){
+            parentId=0;
+        }
+        return goodsClassMapper.findByGcParentId(parentId);
+    }
+
+    @Override
+    public int save(GoodsClass goodsClass) {
+        return goodsClassMapper.insert(goodsClass);
+    }
+
+    @Override
+    public boolean checkByIdNameParentId(Integer gcId, String gcName, Integer gcParentId) {
+        List<GoodsClass> list = goodsClassMapper.findByGcNameGcParentId(gcName,gcParentId);
+        if(list.size()>1){
+            throw new MapperException("数据异常");
+        }else if(list.size()==1){
+            if(gcId==null){
+                return false;
+            }else if(list.get(0).getGcId()!=gcId){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public PageInfo<GoodsClass> findAll(Integer curPage, Integer pageSize) {
+        //1、设置分页
+        if(curPage==null){
+            curPage=1;
+        }
+        if(pageSize==null){
+            pageSize=20;
+        }
+        PageHelper.startPage(curPage, pageSize);
+        List<GoodsClass> list=goodsClassMapper.findAll();
+        return new PageInfo<GoodsClass>(list);
+    }
+
+    @Override
+    public PageInfo<GoodsClass> findGradeByGcParentId(Integer gcParentId, Integer curPage, Integer pageSize) {
+        //1、设置分页
+        if(curPage==null){
+            curPage=1;
+        }
+        if(pageSize==null){
+            pageSize=20;
+        }
+        PageHelper.startPage(curPage, pageSize);
+        List<GoodsClass> list=goodsClassMapper.findGradeByGcParentId(gcParentId);
+        return new PageInfo<GoodsClass>(list);
+    }
+
+    @Override
+    public List<GoodsClass> findGradeByGcParentId(Integer gcParentId) {
+        return goodsClassMapper.findGradeByGcParentId(gcParentId);
+    }
+
+    @Override
+    public GoodsClass findOne(Integer gcId) {
+        return goodsClassMapper.selectByPrimaryKey(gcId);
+    }
+
+    @Override
+    public int delete(Integer id) {
+        return goodsClassMapper.deleteByPrimaryKey(id);
     }
 }

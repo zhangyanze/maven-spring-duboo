@@ -2,7 +2,6 @@ package com.goshop.manager.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.pojo.ResponseStatus;
-import com.goshop.manager.model.StoreClassModel;
 import com.goshop.manager.pojo.StoreClass;
 import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.utils.Jump;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,7 +27,7 @@ public class StoreClassController {
     @RequestMapping(value = "/store_class",method = RequestMethod.GET)
     public String index(@RequestParam(value="p",required=false) Integer curPage,
                         Model model, HttpServletRequest request) {
-        PageInfo<StoreClass> page=storeClassService.findTreePageByParentId(curPage, 20, null);
+        PageInfo<StoreClass> page=storeClassService.findGradeByParentId(curPage, 20, null);
         model.addAttribute("P_PAGE",page);
         return "store/store_class";
     }
@@ -114,17 +112,6 @@ public class StoreClassController {
     @ResponseBody
     public Object children(Long sc_parent_id,
                              HttpServletRequest request) {
-        List<StoreClass> list =storeClassService.findByParentId(sc_parent_id);
-        List<StoreClassModel> models = new ArrayList<>();
-        for(StoreClass sc:list){
-            StoreClassModel scm = new StoreClassModel();
-            scm.setSc_id(sc.getId());
-            scm.setDeep(2);
-            scm.setSc_name(sc.getName());
-            scm.setSc_parent_id(sc.getParentId());
-            scm.setSc_sort(sc.getSort());
-            models.add(scm);
-        }
-        return models;
+        return storeClassService.findByParentId(sc_parent_id);
     }
 }

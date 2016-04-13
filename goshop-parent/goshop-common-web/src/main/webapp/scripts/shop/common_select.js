@@ -97,8 +97,8 @@ function gcategoryChange()
 	if (!!this.value)
     {
         var _self = this;
-		var url = SITEURL + '/cl/goodsclass/jsonclass?callback=?';
-        $.getJSON(url, {'gc_id':this.value}, function(data){
+		var url = SELECT_URL + '/goods_class/json_class?callback=?';
+        $.getJSON(url, {'gc_parent_id':this.value}, function(data){
             if (data)
             {
                 if (data.length > 0)

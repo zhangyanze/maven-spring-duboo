@@ -29,6 +29,8 @@
                      interface="com.goshop.manager.i.StoreClassService" />
     <dubbo:reference id="storeGradeService"
                      interface="com.goshop.manager.i.StoreGradeService" />
+    <dubbo:reference id="goodsClassService"
+                     interface="com.goshop.manager.i.GoodsClassService" />
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.goshop.portal.i.MemberService" ref="memberService" />

@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.converter.json.MappingJacksonValue;
 
 /**
  * 淘淘商城自定义响应结构
@@ -66,6 +67,12 @@ public class JsonUtils {
 		}
     	
     	return null;
+    }
+
+    public static MappingJacksonValue jsonp(Object value,String callback){
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(value);
+        mappingJacksonValue.setJsonpFunction(callback);
+        return mappingJacksonValue;
     }
     
 }

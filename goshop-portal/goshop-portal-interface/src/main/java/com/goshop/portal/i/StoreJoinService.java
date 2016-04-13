@@ -20,4 +20,8 @@ public interface StoreJoinService {
      * @return
      */
     StoreInfoModel applySellerThree(User user, StoreJoin storeJoin);
+
+    boolean verificationSellerName(String sellerName,Long userId);
+
+    boolean verificationStoreName(String storeName,Long userId);
 }

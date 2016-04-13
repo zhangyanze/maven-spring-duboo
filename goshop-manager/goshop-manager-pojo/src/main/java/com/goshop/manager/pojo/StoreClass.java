@@ -1,18 +1,35 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StoreClass implements Serializable {
+    @JsonProperty("sc_id")
     private Long id;
-
+    @JsonProperty("sc_sort")
     private Integer sort;
-
+    @JsonProperty("sc_name")
     private String name;
-
+    @JsonProperty("sc_parent_id")
     private Long parentId;
 
+    //ÐéÄâ×Ö¶Î
+    private Integer grade;
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    @JsonIgnore
     private List<StoreClass> children = new ArrayList<StoreClass>();
 
     public Long getId() {

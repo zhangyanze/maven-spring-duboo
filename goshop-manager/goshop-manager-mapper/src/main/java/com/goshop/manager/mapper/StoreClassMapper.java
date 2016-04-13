@@ -31,4 +31,6 @@ public interface StoreClassMapper {
     int updateName(@Param("id")Long id, @Param("name")String name);
 
     List<StoreClass> findByParentId(@Param("parentId")Long parentId);
+
+    List<StoreClass> findGradeByParentId(@Param("parentId")Long parentId);
 }
