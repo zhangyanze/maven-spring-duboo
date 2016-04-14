@@ -2,7 +2,6 @@ package com.goshop.portal.i;
 
 import com.goshop.manager.pojo.GoodsClass;
 import com.goshop.manager.pojo.StoreClass;
-import com.goshop.manager.pojo.StoreGoodsClass;
 import com.goshop.manager.pojo.StoreGrade;
 
 import java.io.Serializable;

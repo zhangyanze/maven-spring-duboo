@@ -623,4 +623,10 @@
     from gs_store_join
     where store_name = #{storeName,jdbcType=VARCHAR}
   </select>
+
+  <select id="findAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_store_join
+  </select>
 </mapper>

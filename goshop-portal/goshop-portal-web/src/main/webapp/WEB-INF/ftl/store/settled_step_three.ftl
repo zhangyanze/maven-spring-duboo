@@ -279,7 +279,7 @@
 
             $('#btn_apply_store_next').on('click', function () {
                 if ($('#form_store_info').valid()) {
-                    $('#form_store_info').submit();
+                    $('#form_store_info')[0].submit();
                 }
             });
         });

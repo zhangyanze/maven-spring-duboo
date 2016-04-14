@@ -21,4 +21,6 @@ public interface StoreJoinMapper {
     List<StoreJoin> findBySellerName(@Param("sellerName")String sellerName);
 
     List<StoreJoin> findByStoreName(@Param("storeName")String storeName);
+
+    List<StoreJoin> findAll();
 }

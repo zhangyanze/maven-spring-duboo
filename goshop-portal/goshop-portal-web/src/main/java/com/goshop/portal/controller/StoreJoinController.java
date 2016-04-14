@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/store_join")
@@ -35,10 +34,11 @@ public class StoreJoinController {
 
     @RequestMapping("/agreement")
     public String agreement(Model model,
+                            User user,
                             @RequestParam(value = "state", required = false) String statePage,
                             HttpServletRequest request,
                             HttpServletResponse response) {
-        String jump = jump(statePage);
+        String jump = jump(user,statePage);
         if (jump != null) {
             return jump;
         }
@@ -47,20 +47,20 @@ public class StoreJoinController {
 
     }
 
-    public String jump(String statePage) {
-        /*Store store = storeService.getCurrentStore();
+    public String jump(User user,String statePage) {
+        Store store = storeJoinService.getCurrentStore(user);
         if (store != null) {
             return "redirect:/se/goods/addstep/one";
         }
-        StoreJoinin storeJoinin = storeJoininService.getCurrentUserStoreJoinin();
-        if (storeJoinin != null) {
-            String state = storeJoinin.getJoininState();
+        StoreJoin storeJoin = storeJoinService.getCurrentUserStoreJoin(user);
+        if (storeJoin != null) {
+            String state = storeJoin.getJoininState();
             if (StringUtils.hasText(state) && state.equals("30") && !StringUtils.hasText(statePage)) {
-                return "redirect:/storejoinin/step1";
+                return "redirect:/store_join/step1.html";
             } else if (StringUtils.hasText(state)) {
-                return "redirect:/storejoinin/step4";
+                return "redirect:/store_join/step4.html";
             }
-        }*/
+        }
 
         return null;
     }
@@ -155,4 +155,37 @@ public class StoreJoinController {
 
     }
 
+    @RequestMapping(value = "/step4", method = RequestMethod.POST)
+    public String stepFour(User user,StoreJoin storeJoin,
+                           @RequestParam(value = "store_class_ids[]",required = false) String[] ids,
+                           @RequestParam(value = "store_class_names[]",required = false) String[] names,
+                           Model model, HttpServletRequest request,
+                           HttpServletResponse response) {
+
+        StoreJoin dataBase = storeJoinService.save(user,storeJoin, ids, names);
+
+        model.addAttribute("P_STEP", 4);
+        model.addAttribute("P_SIDEBAR", 4);
+        model.addAttribute("P_STORE_JOIN", dataBase);
+        return "store/settled_step_four";
+
+    }
+
+    @RequestMapping(value = "/step4", method = RequestMethod.GET)
+    public String stepFour(User user,Model model, HttpServletRequest request,
+                           HttpServletResponse response) {
+
+        StoreJoin storeJoinin = storeJoinService.getCurrentUserStoreJoin(user);
+
+        Store store = storeJoinService.getCurrentStore(user);
+        if (store != null) {
+            return "redirect:/se/goods/addstep/one";
+        }
+
+        model.addAttribute("P_STEP", 4);
+        model.addAttribute("P_SIDEBAR", 4);
+        model.addAttribute("P_STORE_JOIN", storeJoinin);
+        return "store/settled_step_four";
+
+    }
 }

@@ -1,116 +1,104 @@
 package com.goshop.manager.pojo;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
-public class Store implements Serializable {
-    private String id;
-
-    private Date created;
+public class Store {
+    private Integer storeId;
 
     private String storeName;
 
-    private Integer sort;
+    private Boolean storeAuth;
 
-    private String credentialsImage;
+    private Boolean nameAuth;
 
-    private String description;
+    private Integer gradeId;
 
-    private String gradeId;
-
-    private String licenseImage;
-
-    private String memberId;
+    private Long memberId;
 
     private String memberName;
 
-    private Integer nameAuth;
-
-    private String scId;
-
-    private String areaId;
-
-    private String storeAddress;
-
-    private Integer storeAudit;
-
-    private Integer storeAuth;
-
-    private String storeBanner;
-
-    private String storeCenterQuicklink;
-
-    private String storeCloseInfo;
-
-    private Date storeEndTime;
-
-    private String storeCode;
-
-    private Integer storeCollect;
-
-    private Integer storeCredit;
-
-    private String storeDescription;
-
-    private String storeDomain;
-
-    private Integer storeDomainTimes;
-
-    private String storeKeywords;
-
-    private String storeLabel;
-
-    private String storeMsn;
+    private String sellerName;
 
     private String storeOwnerCard;
 
-    private String storeQq;
-
-    private Integer storeRecommend;
-
-    private String storeSlide;
-
-    private String storeSlideUrl;
-
-    private String storeState;
-
-    private String storeTel;
-
-    private String storeTheme;
-
-    private String storeWw;
-
-    private String storeZip;
+    private Integer scId;
 
     private String storeCompanyName;
 
-    private String gradeName;
+    private Integer areaId;
 
-    private BigDecimal praiseRate;
+    private String areaInfo;
 
-    private Integer storeDeliveryCredit;
+    private String storeAddress;
 
-    private Integer storeDescCredit;
+    private String storeZip;
 
-    private Integer storeServiceCredit;
+    private String storeTel;
 
-    private String storeZy;
+    private String storeImage;
 
-    public String getId() {
-        return id;
+    private String storeImage1;
+
+    private Boolean storeState;
+
+    private String storeCloseInfo;
+
+    private Integer storeSort;
+
+    private String storeTime;
+
+    private String storeEndTime;
+
+    private String storeLabel;
+
+    private String storeBanner;
+
+    private String storeKeywords;
+
+    private String storeDescription;
+
+    private String storeQq;
+
+    private String storeWw;
+
+    private String storeDomain;
+
+    private Boolean storeDomainTimes;
+
+    private Boolean storeRecommend;
+
+    private String storeTheme;
+
+    private Integer storeCredit;
+
+    private Float praiseRate;
+
+    private Float storeDesccredit;
+
+    private Float storeServicecredit;
+
+    private Float storeDeliverycredit;
+
+    private Integer storeCollect;
+
+    private String storeStamp;
+
+    private String storePrintdesc;
+
+    private Integer storeSales;
+
+    private String storeWorkingtime;
+
+    private BigDecimal storeFreePrice;
+
+    private Byte storeStorageAlarm;
+
+    public Integer getStoreId() {
+        return storeId;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 
     public String getStoreName() {
@@ -121,52 +109,36 @@ public class Store implements Serializable {
         this.storeName = storeName == null ? null : storeName.trim();
     }
 
-    public Integer getSort() {
-        return sort;
+    public Boolean getStoreAuth() {
+        return storeAuth;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setStoreAuth(Boolean storeAuth) {
+        this.storeAuth = storeAuth;
     }
 
-    public String getCredentialsImage() {
-        return credentialsImage;
+    public Boolean getNameAuth() {
+        return nameAuth;
     }
 
-    public void setCredentialsImage(String credentialsImage) {
-        this.credentialsImage = credentialsImage == null ? null : credentialsImage.trim();
+    public void setNameAuth(Boolean nameAuth) {
+        this.nameAuth = nameAuth;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
-    public String getGradeId() {
+    public Integer getGradeId() {
         return gradeId;
     }
 
-    public void setGradeId(String gradeId) {
-        this.gradeId = gradeId == null ? null : gradeId.trim();
+    public void setGradeId(Integer gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public String getLicenseImage() {
-        return licenseImage;
-    }
-
-    public void setLicenseImage(String licenseImage) {
-        this.licenseImage = licenseImage == null ? null : licenseImage.trim();
-    }
-
-    public String getMemberId() {
+    public Long getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId == null ? null : memberId.trim();
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getMemberName() {
@@ -177,156 +149,12 @@ public class Store implements Serializable {
         this.memberName = memberName == null ? null : memberName.trim();
     }
 
-    public Integer getNameAuth() {
-        return nameAuth;
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public void setNameAuth(Integer nameAuth) {
-        this.nameAuth = nameAuth;
-    }
-
-    public String getScId() {
-        return scId;
-    }
-
-    public void setScId(String scId) {
-        this.scId = scId == null ? null : scId.trim();
-    }
-
-    public String getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(String areaId) {
-        this.areaId = areaId == null ? null : areaId.trim();
-    }
-
-    public String getStoreAddress() {
-        return storeAddress;
-    }
-
-    public void setStoreAddress(String storeAddress) {
-        this.storeAddress = storeAddress == null ? null : storeAddress.trim();
-    }
-
-    public Integer getStoreAudit() {
-        return storeAudit;
-    }
-
-    public void setStoreAudit(Integer storeAudit) {
-        this.storeAudit = storeAudit;
-    }
-
-    public Integer getStoreAuth() {
-        return storeAuth;
-    }
-
-    public void setStoreAuth(Integer storeAuth) {
-        this.storeAuth = storeAuth;
-    }
-
-    public String getStoreBanner() {
-        return storeBanner;
-    }
-
-    public void setStoreBanner(String storeBanner) {
-        this.storeBanner = storeBanner == null ? null : storeBanner.trim();
-    }
-
-    public String getStoreCenterQuicklink() {
-        return storeCenterQuicklink;
-    }
-
-    public void setStoreCenterQuicklink(String storeCenterQuicklink) {
-        this.storeCenterQuicklink = storeCenterQuicklink == null ? null : storeCenterQuicklink.trim();
-    }
-
-    public String getStoreCloseInfo() {
-        return storeCloseInfo;
-    }
-
-    public void setStoreCloseInfo(String storeCloseInfo) {
-        this.storeCloseInfo = storeCloseInfo == null ? null : storeCloseInfo.trim();
-    }
-
-    public Date getStoreEndTime() {
-        return storeEndTime;
-    }
-
-    public void setStoreEndTime(Date storeEndTime) {
-        this.storeEndTime = storeEndTime;
-    }
-
-    public String getStoreCode() {
-        return storeCode;
-    }
-
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode == null ? null : storeCode.trim();
-    }
-
-    public Integer getStoreCollect() {
-        return storeCollect;
-    }
-
-    public void setStoreCollect(Integer storeCollect) {
-        this.storeCollect = storeCollect;
-    }
-
-    public Integer getStoreCredit() {
-        return storeCredit;
-    }
-
-    public void setStoreCredit(Integer storeCredit) {
-        this.storeCredit = storeCredit;
-    }
-
-    public String getStoreDescription() {
-        return storeDescription;
-    }
-
-    public void setStoreDescription(String storeDescription) {
-        this.storeDescription = storeDescription == null ? null : storeDescription.trim();
-    }
-
-    public String getStoreDomain() {
-        return storeDomain;
-    }
-
-    public void setStoreDomain(String storeDomain) {
-        this.storeDomain = storeDomain == null ? null : storeDomain.trim();
-    }
-
-    public Integer getStoreDomainTimes() {
-        return storeDomainTimes;
-    }
-
-    public void setStoreDomainTimes(Integer storeDomainTimes) {
-        this.storeDomainTimes = storeDomainTimes;
-    }
-
-    public String getStoreKeywords() {
-        return storeKeywords;
-    }
-
-    public void setStoreKeywords(String storeKeywords) {
-        this.storeKeywords = storeKeywords == null ? null : storeKeywords.trim();
-    }
-
-    public String getStoreLabel() {
-        return storeLabel;
-    }
-
-    public void setStoreLabel(String storeLabel) {
-        this.storeLabel = storeLabel == null ? null : storeLabel.trim();
-    }
-
-    public String getStoreMsn() {
-        return storeMsn;
-    }
-
-    public void setStoreMsn(String storeMsn) {
-        this.storeMsn = storeMsn == null ? null : storeMsn.trim();
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName == null ? null : sellerName.trim();
     }
 
     public String getStoreOwnerCard() {
@@ -337,76 +165,12 @@ public class Store implements Serializable {
         this.storeOwnerCard = storeOwnerCard == null ? null : storeOwnerCard.trim();
     }
 
-    public String getStoreQq() {
-        return storeQq;
+    public Integer getScId() {
+        return scId;
     }
 
-    public void setStoreQq(String storeQq) {
-        this.storeQq = storeQq == null ? null : storeQq.trim();
-    }
-
-    public Integer getStoreRecommend() {
-        return storeRecommend;
-    }
-
-    public void setStoreRecommend(Integer storeRecommend) {
-        this.storeRecommend = storeRecommend;
-    }
-
-    public String getStoreSlide() {
-        return storeSlide;
-    }
-
-    public void setStoreSlide(String storeSlide) {
-        this.storeSlide = storeSlide == null ? null : storeSlide.trim();
-    }
-
-    public String getStoreSlideUrl() {
-        return storeSlideUrl;
-    }
-
-    public void setStoreSlideUrl(String storeSlideUrl) {
-        this.storeSlideUrl = storeSlideUrl == null ? null : storeSlideUrl.trim();
-    }
-
-    public String getStoreState() {
-        return storeState;
-    }
-
-    public void setStoreState(String storeState) {
-        this.storeState = storeState == null ? null : storeState.trim();
-    }
-
-    public String getStoreTel() {
-        return storeTel;
-    }
-
-    public void setStoreTel(String storeTel) {
-        this.storeTel = storeTel == null ? null : storeTel.trim();
-    }
-
-    public String getStoreTheme() {
-        return storeTheme;
-    }
-
-    public void setStoreTheme(String storeTheme) {
-        this.storeTheme = storeTheme == null ? null : storeTheme.trim();
-    }
-
-    public String getStoreWw() {
-        return storeWw;
-    }
-
-    public void setStoreWw(String storeWw) {
-        this.storeWw = storeWw == null ? null : storeWw.trim();
-    }
-
-    public String getStoreZip() {
-        return storeZip;
-    }
-
-    public void setStoreZip(String storeZip) {
-        this.storeZip = storeZip == null ? null : storeZip.trim();
+    public void setScId(Integer scId) {
+        this.scId = scId;
     }
 
     public String getStoreCompanyName() {
@@ -417,51 +181,275 @@ public class Store implements Serializable {
         this.storeCompanyName = storeCompanyName == null ? null : storeCompanyName.trim();
     }
 
-    public String getGradeName() {
-        return gradeName;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public void setGradeName(String gradeName) {
-        this.gradeName = gradeName == null ? null : gradeName.trim();
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public BigDecimal getPraiseRate() {
+    public String getAreaInfo() {
+        return areaInfo;
+    }
+
+    public void setAreaInfo(String areaInfo) {
+        this.areaInfo = areaInfo == null ? null : areaInfo.trim();
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress == null ? null : storeAddress.trim();
+    }
+
+    public String getStoreZip() {
+        return storeZip;
+    }
+
+    public void setStoreZip(String storeZip) {
+        this.storeZip = storeZip == null ? null : storeZip.trim();
+    }
+
+    public String getStoreTel() {
+        return storeTel;
+    }
+
+    public void setStoreTel(String storeTel) {
+        this.storeTel = storeTel == null ? null : storeTel.trim();
+    }
+
+    public String getStoreImage() {
+        return storeImage;
+    }
+
+    public void setStoreImage(String storeImage) {
+        this.storeImage = storeImage == null ? null : storeImage.trim();
+    }
+
+    public String getStoreImage1() {
+        return storeImage1;
+    }
+
+    public void setStoreImage1(String storeImage1) {
+        this.storeImage1 = storeImage1 == null ? null : storeImage1.trim();
+    }
+
+    public Boolean getStoreState() {
+        return storeState;
+    }
+
+    public void setStoreState(Boolean storeState) {
+        this.storeState = storeState;
+    }
+
+    public String getStoreCloseInfo() {
+        return storeCloseInfo;
+    }
+
+    public void setStoreCloseInfo(String storeCloseInfo) {
+        this.storeCloseInfo = storeCloseInfo == null ? null : storeCloseInfo.trim();
+    }
+
+    public Integer getStoreSort() {
+        return storeSort;
+    }
+
+    public void setStoreSort(Integer storeSort) {
+        this.storeSort = storeSort;
+    }
+
+    public String getStoreTime() {
+        return storeTime;
+    }
+
+    public void setStoreTime(String storeTime) {
+        this.storeTime = storeTime == null ? null : storeTime.trim();
+    }
+
+    public String getStoreEndTime() {
+        return storeEndTime;
+    }
+
+    public void setStoreEndTime(String storeEndTime) {
+        this.storeEndTime = storeEndTime == null ? null : storeEndTime.trim();
+    }
+
+    public String getStoreLabel() {
+        return storeLabel;
+    }
+
+    public void setStoreLabel(String storeLabel) {
+        this.storeLabel = storeLabel == null ? null : storeLabel.trim();
+    }
+
+    public String getStoreBanner() {
+        return storeBanner;
+    }
+
+    public void setStoreBanner(String storeBanner) {
+        this.storeBanner = storeBanner == null ? null : storeBanner.trim();
+    }
+
+    public String getStoreKeywords() {
+        return storeKeywords;
+    }
+
+    public void setStoreKeywords(String storeKeywords) {
+        this.storeKeywords = storeKeywords == null ? null : storeKeywords.trim();
+    }
+
+    public String getStoreDescription() {
+        return storeDescription;
+    }
+
+    public void setStoreDescription(String storeDescription) {
+        this.storeDescription = storeDescription == null ? null : storeDescription.trim();
+    }
+
+    public String getStoreQq() {
+        return storeQq;
+    }
+
+    public void setStoreQq(String storeQq) {
+        this.storeQq = storeQq == null ? null : storeQq.trim();
+    }
+
+    public String getStoreWw() {
+        return storeWw;
+    }
+
+    public void setStoreWw(String storeWw) {
+        this.storeWw = storeWw == null ? null : storeWw.trim();
+    }
+
+    public String getStoreDomain() {
+        return storeDomain;
+    }
+
+    public void setStoreDomain(String storeDomain) {
+        this.storeDomain = storeDomain == null ? null : storeDomain.trim();
+    }
+
+    public Boolean getStoreDomainTimes() {
+        return storeDomainTimes;
+    }
+
+    public void setStoreDomainTimes(Boolean storeDomainTimes) {
+        this.storeDomainTimes = storeDomainTimes;
+    }
+
+    public Boolean getStoreRecommend() {
+        return storeRecommend;
+    }
+
+    public void setStoreRecommend(Boolean storeRecommend) {
+        this.storeRecommend = storeRecommend;
+    }
+
+    public String getStoreTheme() {
+        return storeTheme;
+    }
+
+    public void setStoreTheme(String storeTheme) {
+        this.storeTheme = storeTheme == null ? null : storeTheme.trim();
+    }
+
+    public Integer getStoreCredit() {
+        return storeCredit;
+    }
+
+    public void setStoreCredit(Integer storeCredit) {
+        this.storeCredit = storeCredit;
+    }
+
+    public Float getPraiseRate() {
         return praiseRate;
     }
 
-    public void setPraiseRate(BigDecimal praiseRate) {
+    public void setPraiseRate(Float praiseRate) {
         this.praiseRate = praiseRate;
     }
 
-    public Integer getStoreDeliveryCredit() {
-        return storeDeliveryCredit;
+    public Float getStoreDesccredit() {
+        return storeDesccredit;
     }
 
-    public void setStoreDeliveryCredit(Integer storeDeliveryCredit) {
-        this.storeDeliveryCredit = storeDeliveryCredit;
+    public void setStoreDesccredit(Float storeDesccredit) {
+        this.storeDesccredit = storeDesccredit;
     }
 
-    public Integer getStoreDescCredit() {
-        return storeDescCredit;
+    public Float getStoreServicecredit() {
+        return storeServicecredit;
     }
 
-    public void setStoreDescCredit(Integer storeDescCredit) {
-        this.storeDescCredit = storeDescCredit;
+    public void setStoreServicecredit(Float storeServicecredit) {
+        this.storeServicecredit = storeServicecredit;
     }
 
-    public Integer getStoreServiceCredit() {
-        return storeServiceCredit;
+    public Float getStoreDeliverycredit() {
+        return storeDeliverycredit;
     }
 
-    public void setStoreServiceCredit(Integer storeServiceCredit) {
-        this.storeServiceCredit = storeServiceCredit;
+    public void setStoreDeliverycredit(Float storeDeliverycredit) {
+        this.storeDeliverycredit = storeDeliverycredit;
     }
 
-    public String getStoreZy() {
-        return storeZy;
+    public Integer getStoreCollect() {
+        return storeCollect;
     }
 
-    public void setStoreZy(String storeZy) {
-        this.storeZy = storeZy == null ? null : storeZy.trim();
+    public void setStoreCollect(Integer storeCollect) {
+        this.storeCollect = storeCollect;
+    }
+
+    public String getStoreStamp() {
+        return storeStamp;
+    }
+
+    public void setStoreStamp(String storeStamp) {
+        this.storeStamp = storeStamp == null ? null : storeStamp.trim();
+    }
+
+    public String getStorePrintdesc() {
+        return storePrintdesc;
+    }
+
+    public void setStorePrintdesc(String storePrintdesc) {
+        this.storePrintdesc = storePrintdesc == null ? null : storePrintdesc.trim();
+    }
+
+    public Integer getStoreSales() {
+        return storeSales;
+    }
+
+    public void setStoreSales(Integer storeSales) {
+        this.storeSales = storeSales;
+    }
+
+    public String getStoreWorkingtime() {
+        return storeWorkingtime;
+    }
+
+    public void setStoreWorkingtime(String storeWorkingtime) {
+        this.storeWorkingtime = storeWorkingtime == null ? null : storeWorkingtime.trim();
+    }
+
+    public BigDecimal getStoreFreePrice() {
+        return storeFreePrice;
+    }
+
+    public void setStoreFreePrice(BigDecimal storeFreePrice) {
+        this.storeFreePrice = storeFreePrice;
+    }
+
+    public Byte getStoreStorageAlarm() {
+        return storeStorageAlarm;
+    }
+
+    public void setStoreStorageAlarm(Byte storeStorageAlarm) {
+        this.storeStorageAlarm = storeStorageAlarm;
     }
 }

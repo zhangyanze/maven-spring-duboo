@@ -1,11 +1,14 @@
 package com.goshop.portal.service;
 
 import com.goshop.common.exception.MapperException;
-import com.goshop.common.utils.BeanUtils;
+import com.goshop.common.utils.JsonUtils;
 import com.goshop.manager.i.GoodsClassService;
 import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.i.StoreGradeService;
 import com.goshop.manager.mapper.StoreJoinMapper;
+import com.goshop.manager.mapper.StoreMapper;
+import com.goshop.manager.model.JsonManagement;
+import com.goshop.manager.model.JsonManagementClass;
 import com.goshop.manager.pojo.*;
 import com.goshop.portal.i.StoreInfoModel;
 import com.goshop.portal.i.StoreJoinService;
@@ -15,12 +18,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("storeJoinService")
 public class StoreJoinServiceImpl implements StoreJoinService {
 
     protected final Log logger = LogFactory.getLog(this.getClass());
+
+    //已提交申请
+    private static String JOIN_STATIC_APPLY = "10";
+    //缴费完成
+    private static String JOIN_STATIC_PAY = "11";
+    //审核成功
+    private static String JOIN_STATIC_EXMINE_YES = "20";
+    //审核失败
+    private static String JOIN_STATIC_EXMINE_NO = "30";
+    //缴费审核失败
+    private static String JOIN_STATIC_PAY_NO = "31";
+    //审核通过开店
+    private static String JOIN_STATIC_YES = "40";
 
     @Autowired
     StoreJoinMapper storeJoinMapper;
@@ -34,12 +51,15 @@ public class StoreJoinServiceImpl implements StoreJoinService {
     @Autowired
     GoodsClassService goodsClassService;
 
+    @Autowired
+    StoreMapper storeMapper;
+
     @Override
     public void applySeller(User user,StoreJoin storeJoin) {
         StoreJoin userStoreJoin = this.getCurrentUserStoreJoin(user.getId());
         storeJoin.setMemberId(user.getId());
         if (userStoreJoin == null) {
-            storeJoin.setMemberName(user.getUserName());
+            storeJoin.setMemberName(user.getLoginName());
             storeJoinMapper.insert(storeJoin);
         } else {
             storeJoinMapper.updateByPrimaryKeySelective(userStoreJoin);
@@ -91,6 +111,68 @@ public class StoreJoinServiceImpl implements StoreJoinService {
             }
         }
         return true;
+    }
+
+    @Override
+    public StoreJoin save(User user,StoreJoin storeJoin, String[] ids, String[] names) {
+        StoreJoin userStoreJoin = getCurrentUserStoreJoin(user.getId());
+        Assert.notNull(userStoreJoin, "请先执行第一步!");
+        Assert.isTrue(ids.length == names.length, "经营类目,数据异常!");
+        storeJoin.setMemberId(user.getId());
+
+        List<JsonManagement> jsonManagementList = new ArrayList<>();
+
+
+        for (int i = 0; i < ids.length; i++) {
+            JsonManagement jm = new JsonManagement();
+
+            String[] idArray = ids[i].split(",");
+            String[] nameArray = names[i].split(",");
+            if (ids.length == 4 && idArray.length == 1) {
+                List<JsonManagementClass> JsonManagementClassList = new ArrayList<>();
+                for (int y = 0; y < 3; y++) {
+                    try {
+                        JsonManagementClass jsonManagementClass = new JsonManagementClass();
+                        jsonManagementClass.setId(ids[y]);
+                        jsonManagementClass.setName(names[y]);
+                        JsonManagementClassList.add(jsonManagementClass);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                jm.setJmcs(JsonManagementClassList);
+                jsonManagementList.add(jm);
+                break;
+            } else {
+                List<JsonManagementClass> JsonManagementClassList = new ArrayList<>();
+                for (int y = 0; y < idArray.length; y++) {
+                    try {
+                        JsonManagementClass jsonManagementClass = new JsonManagementClass();
+                        jsonManagementClass.setId(idArray[y]);
+                        jsonManagementClass.setName(nameArray[y]);
+                        JsonManagementClassList.add(jsonManagementClass);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                jm.setJmcs(JsonManagementClassList);
+                jsonManagementList.add(jm);
+            }
+        }
+        storeJoin.setStoreClassIds(JsonUtils.objectToJson(jsonManagementList));
+        storeJoin.setJoininState(JOIN_STATIC_APPLY);
+        storeJoinMapper.updateByPrimaryKeySelective(storeJoin);
+        return storeJoinMapper.selectByPrimaryKey(user.getId());
+    }
+
+    @Override
+    public Store getCurrentStore(User user) {
+        return storeMapper.findByMemberId(user.getId());
+    }
+
+    @Override
+    public StoreJoin getCurrentUserStoreJoin(User user) {
+        return storeJoinMapper.selectByPrimaryKey(user.getId());
     }
 
     private StoreJoin getCurrentUserStoreJoin(Long userId) {

@@ -4,7 +4,7 @@
 <head>
     <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <title>电商测试</title>
+    <title>店铺等级</title>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery/jquery-browser.js"></script>
     <script src="${S_COMMON_URL}/scripts/jquery/waypoints.js"></script>

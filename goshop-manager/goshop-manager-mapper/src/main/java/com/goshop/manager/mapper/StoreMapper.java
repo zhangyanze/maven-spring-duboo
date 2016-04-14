@@ -1,19 +1,27 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.Store;
+import com.goshop.manager.pojo.StoreWithBLOBs;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StoreMapper {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer storeId);
 
-    int insert(Store record);
+    int insert(StoreWithBLOBs record);
 
-    int insertSelective(Store record);
+    int insertSelective(StoreWithBLOBs record);
 
-    Store selectByPrimaryKey(String id);
+    StoreWithBLOBs selectByPrimaryKey(Integer storeId);
 
-    int updateByPrimaryKeySelective(Store record);
+    int updateByPrimaryKeySelective(StoreWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(Store record);
+    int updateByPrimaryKeyWithBLOBs(StoreWithBLOBs record);
 
     int updateByPrimaryKey(Store record);
+
+    Store findByMemberId(@Param("memberId")Long memberId);
+
+    List<Store> findAll();
 }
