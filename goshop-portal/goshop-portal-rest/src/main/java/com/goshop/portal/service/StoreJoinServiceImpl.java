@@ -26,19 +26,6 @@ public class StoreJoinServiceImpl implements StoreJoinService {
 
     protected final Log logger = LogFactory.getLog(this.getClass());
 
-    //已提交申请
-    private static String JOIN_STATIC_APPLY = "10";
-    //缴费完成
-    private static String JOIN_STATIC_PAY = "11";
-    //审核成功
-    private static String JOIN_STATIC_EXMINE_YES = "20";
-    //审核失败
-    private static String JOIN_STATIC_EXMINE_NO = "30";
-    //缴费审核失败
-    private static String JOIN_STATIC_PAY_NO = "31";
-    //审核通过开店
-    private static String JOIN_STATIC_YES = "40";
-
     @Autowired
     StoreJoinMapper storeJoinMapper;
 
@@ -62,9 +49,8 @@ public class StoreJoinServiceImpl implements StoreJoinService {
             storeJoin.setMemberName(user.getLoginName());
             storeJoinMapper.insert(storeJoin);
         } else {
-            storeJoinMapper.updateByPrimaryKeySelective(userStoreJoin);
+            storeJoinMapper.updateByPrimaryKeySelective(storeJoin);
         }
-
     }
 
     @Override
@@ -160,7 +146,7 @@ public class StoreJoinServiceImpl implements StoreJoinService {
             }
         }
         storeJoin.setStoreClassIds(JsonUtils.objectToJson(jsonManagementList));
-        storeJoin.setJoininState(JOIN_STATIC_APPLY);
+        storeJoin.setJoininState(StoreJoinMapper.JOIN_STATIC_APPLY);
         storeJoinMapper.updateByPrimaryKeySelective(storeJoin);
         return storeJoinMapper.selectByPrimaryKey(user.getId());
     }
@@ -173,6 +159,12 @@ public class StoreJoinServiceImpl implements StoreJoinService {
     @Override
     public StoreJoin getCurrentUserStoreJoin(User user) {
         return storeJoinMapper.selectByPrimaryKey(user.getId());
+    }
+
+    @Override
+    public int paySave(StoreJoin storeJoin) {
+        storeJoin.setJoininState(storeJoinMapper.JOIN_STATIC_PAY);
+        return storeJoinMapper.updateByPrimaryKey(storeJoin);
     }
 
     private StoreJoin getCurrentUserStoreJoin(Long userId) {

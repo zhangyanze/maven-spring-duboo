@@ -10,4 +10,6 @@ public interface StoreJoinManageService {
     PageInfo<StoreJoin> findAll(Integer curPage, Integer pageSize);
 
     StoreJoin find(Long memberId);
+
+    void saveVerify(Long member_id, String verify_type, String join_message, String[] commis_rate);
 }

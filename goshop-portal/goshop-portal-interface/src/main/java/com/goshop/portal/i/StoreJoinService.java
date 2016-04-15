@@ -31,4 +31,6 @@ public interface StoreJoinService {
     Store getCurrentStore(User user);
 
     StoreJoin getCurrentUserStoreJoin(User user);
+
+    int paySave(StoreJoin storeJoin);
 }

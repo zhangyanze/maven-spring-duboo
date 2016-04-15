@@ -1,18 +1,24 @@
 package com.goshop.portal.controller;
 
 import com.goshop.common.attachment.AttachmentService;
+import com.goshop.common.context.CustomTimestampEditor;
 import com.goshop.common.exception.PageException;
+import com.goshop.common.utils.JsonUtils;
+import com.goshop.manager.model.JsonManagement;
 import com.goshop.manager.pojo.Store;
 import com.goshop.manager.pojo.StoreJoin;
 import com.goshop.manager.pojo.User;
 import com.goshop.portal.i.StoreInfoModel;
 import com.goshop.portal.i.StoreJoinService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/store_join")
@@ -31,6 +39,23 @@ public class StoreJoinController {
 
     @Autowired
     AttachmentService attachmentService;
+
+    @InitBinder
+    protected void initBinder(HttpServletRequest request,
+                              ServletRequestDataBinder binder) throws Exception {
+        //对于需要转换为Date类型的属性，使用DateEditor进行处理
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+
+        SimpleDateFormat datetimeFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss");
+        datetimeFormat.setLenient(false);
+
+        binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(
+                dateFormat, true));
+        binder.registerCustomEditor(java.sql.Timestamp.class,
+                new CustomTimestampEditor(datetimeFormat, true));
+    }
 
     @RequestMapping("/agreement")
     public String agreement(Model model,
@@ -55,11 +80,11 @@ public class StoreJoinController {
         StoreJoin storeJoin = storeJoinService.getCurrentUserStoreJoin(user);
         if (storeJoin != null) {
             String state = storeJoin.getJoininState();
-            if (StringUtils.hasText(state) && state.equals("30") && !StringUtils.hasText(statePage)) {
-                return "redirect:/store_join/step1.html";
-            } else if (StringUtils.hasText(state)) {
+            //if (StringUtils.hasText(state) && state.equals("30") && !StringUtils.hasText(statePage)) {
+            //    return "redirect:/store_join/step1.html";
+            //} else if (StringUtils.hasText(state)) {
                 return "redirect:/store_join/step4.html";
-            }
+           // }
         }
 
         return null;
@@ -186,6 +211,52 @@ public class StoreJoinController {
         model.addAttribute("P_SIDEBAR", 4);
         model.addAttribute("P_STORE_JOIN", storeJoinin);
         return "store/settled_step_four";
+
+    }
+
+    @RequestMapping(value = "/pay")
+    public String pay(User user,Model model, HttpServletRequest request,
+                      HttpServletResponse response) {
+        StoreJoin storeJoin = storeJoinService.getCurrentUserStoreJoin(user);
+        if (!storeJoin.getJoininState().equals("20") && !storeJoin.getJoininState().equals("31")) {
+            return "redirect:/store_join/agreement";
+        }
+        String scIds = storeJoin.getStoreClassIds();
+        List<JsonManagement> jsonManagementList = JsonUtils.jsonToList(scIds, JsonManagement.class);
+
+        model.addAttribute("P_CLASS_LIST", jsonManagementList);
+        model.addAttribute("P_STEP", 5);
+        model.addAttribute("P_SIDEBAR", 5);
+        model.addAttribute("P_STORE_JOIN", storeJoin);
+        return "store/settled_pay";
+
+    }
+
+
+    @RequestMapping(value = "/pay_save")
+    public String paySave(User user,
+            @RequestParam("paying_money_certificate") MultipartFile certificate,//上传付款凭证
+            @RequestParam("paying_money_certificate_explain") String explain,//备注
+            Model model, HttpServletRequest request,
+            HttpServletResponse response) {
+        StoreJoin storeJoin = storeJoinService.getCurrentUserStoreJoin(user);
+        if (!storeJoin.getJoininState().equals("20") && !storeJoin.getJoininState().equals("31")) {
+            return "redirect:/store_join/agreement";
+        }
+        storeJoin.setPayingMoneyCertificateExplain(explain);
+
+        Assert.isTrue(certificate.getSize() > 0, "请上传付款凭证电子版！");
+        Assert.isTrue(certificate.getSize() < 1000000, "付款凭证电子版文件超过了1M，请编辑后重新上传！");
+
+        try {
+            String certificateStr= attachmentService.upload(certificate);
+            storeJoin.setPayingMoneyCertificate(certificateStr);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new PageException("文件保存错误！");
+        }
+        storeJoinService.paySave(storeJoin);
+        return "redirect:/store_join/step4.html";
 
     }
 }

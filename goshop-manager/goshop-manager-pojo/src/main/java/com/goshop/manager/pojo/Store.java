@@ -1,8 +1,9 @@
 package com.goshop.manager.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Store {
+public class Store  implements Serializable {
     private Integer storeId;
 
     private String storeName;
@@ -39,7 +40,7 @@ public class Store {
 
     private String storeImage1;
 
-    private Boolean storeState;
+    private Integer storeState;
 
     private String storeCloseInfo;
 
@@ -237,11 +238,11 @@ public class Store {
         this.storeImage1 = storeImage1 == null ? null : storeImage1.trim();
     }
 
-    public Boolean getStoreState() {
+    public Integer getStoreState() {
         return storeState;
     }
 
-    public void setStoreState(Boolean storeState) {
+    public void setStoreState(Integer storeState) {
         this.storeState = storeState;
     }
 

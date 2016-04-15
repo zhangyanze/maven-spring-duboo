@@ -1,12 +1,15 @@
 package com.goshop.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.JsonUtils;
 import com.goshop.manager.i.StoreGradeService;
 import com.goshop.manager.i.StoreJoinManageService;
 import com.goshop.manager.model.JsonManagement;
 import com.goshop.manager.pojo.StoreGrade;
 import com.goshop.manager.pojo.StoreJoin;
+import com.goshop.manager.pojo.User;
+import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,4 +52,18 @@ public class StoreJoinManageController {
         return "store/store_join_detail";
     }
 
+    @RequestMapping("/verify")
+    public String verify(Long member_id,
+                         String verify_type,
+                         String join_message,
+                         String[] commis_rate,
+                         Model model, HttpServletRequest request) {
+        String url = request.getContextPath();
+        try {
+            storeJoinManageService.saveVerify(member_id, verify_type, join_message, commis_rate);
+        }catch (Exception e){
+            throw new PageException("审核失败："+e.getMessage());
+        }
+        return Jump.get(url + "/store_join", "审核成功！");
+    }
 }

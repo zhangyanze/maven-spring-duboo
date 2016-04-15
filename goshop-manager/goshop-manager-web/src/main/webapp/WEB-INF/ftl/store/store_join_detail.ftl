@@ -30,7 +30,7 @@
         $('a[nctype="nyroModal"]').nyroModal();
 
         $('#btn_fail').on('click', function() {
-            if($('#joinin_message').val() == '') {
+            if($('#join_message').val() == '') {
                 $('#validation_message').text('请输入审核意见');
                 $('#validation_message').show();
                 return false;
@@ -75,7 +75,7 @@
         <div class="item-title">
             <h3>店铺</h3>
             <ul class="tab-base">
-                <li><a href="${S_URL}/store"><span>管理</span></a></li>
+                <li><a href="${S_URL}/store/store"><span>管理</span></a></li>
                 <li><a href="${S_URL}/store_join"><span>开店申请</span></a></li>
                 <li><a class="current" href="JavaScript:void(0);"><span>审核</span></a></li>
             </ul>
@@ -132,7 +132,7 @@
             <td>${P_STORE_JOIN.businessLicenceAddress}</td></tr><tr>
 
             <th>营业执照有效期：</th>
-            <td>${P_STORE_JOIN.businessLicenceStart!""} - ${P_STORE_JOIN.businessLicenceEnd!""}</td>
+            <td>${(P_STORE_JOIN.businessLicenceStart?string("yyyy-MM-dd"))!} - ${(P_STORE_JOIN.businessLicenceEnd?string("yyyy-MM-dd"))!}</td>
         </tr>
         <tr>
             <th>法定经营范围：</th>
@@ -273,9 +273,9 @@
         </tr>
         </tbody>
     </table>
-    <form method="post" action="index.php?act=store&amp;op=store_joinin_verify" id="form_store_verify">
+    <form method="post" action="verify" id="form_store_verify">
         <input type="hidden" name="verify_type" id="verify_type">
-        <input type="hidden" value="4" name="member_id">
+        <input type="hidden" value="${P_STORE_JOIN.memberId}" name="member_id">
         <table cellspacing="0" cellpadding="0" border="0" class="store-joinin">
             <thead>
             <tr>
@@ -317,21 +317,36 @@
                             <td>${c.name}</td>
                         </#list>
                         <td>
-                            <input type="text" class="w100" name="commis_rate[]" value="" nctype="commis_rate">%
+                        <#if P_STORE_JOIN.joininState=='10'>
+                            <input type="text" class="w100" name="commis_rate" value="" nctype="commis_rate">%
+                        </#if>
                         </td>
                     </tr>
                     </#list>
                     </tbody>
                 </table></td>
             </tr>
+<#if P_STORE_JOIN.joininState=='11'||P_STORE_JOIN.joininState=='31'||P_STORE_JOIN.joininState=='40'>
+<tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+    <th>付款凭证：</th>
+    <td><a href="${S_URL}/att?path=${P_STORE_JOIN.payingMoneyCertificate}" nctype="nyroModal">
+        <img alt="" src="${S_URL}/att?path=${P_STORE_JOIN.payingMoneyCertificate}"> </a></td>
+</tr>
+<tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+    <th>付款凭证说明：</th>
+    <td>${P_STORE_JOIN.payingMoneyCertificateExplain}</td>
+</tr>
+</#if>
             <tr>
                 <th>审核意见：</th>
-                <td colspan="2"><textarea name="joinin_message" id="joinin_message"></textarea></td>
+                <td colspan="2"><textarea name="join_message" id="join_message">${P_STORE_JOIN.joininMessage}</textarea></td>
             </tr>
             </tbody>
         </table>
         <div style="color:red;display:none;" id="validation_message"></div>
+<#if P_STORE_JOIN.joininState!='40'>
         <div><a href="JavaScript:void(0);" class="btn" id="btn_fail"><span>拒绝</span></a> <a href="JavaScript:void(0);" class="btn" id="btn_pass"><span>通过</span></a></div>
+</#if>
     </form>
 </div>
 

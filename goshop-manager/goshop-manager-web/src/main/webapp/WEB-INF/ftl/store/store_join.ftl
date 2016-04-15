@@ -28,7 +28,7 @@
         <div class="item-title">
             <h3>店铺</h3>
             <ul class="tab-base">
-                <li><a href="${S_URL}/store"><span>管理</span></a></li>
+                <li><a href="${S_URL}/store/store"><span>管理</span></a></li>
                 <li><a class="current" href="JavaScript:void(0);"><span>开店申请</span></a></li>
             </ul>
         </div>
@@ -113,7 +113,11 @@
                     </#if>
                 </td>
                 <td class="w72 align-center">
-                    <a href="store_join/detail?member_id=${o.memberId}">审核</a>
+    <#if o.joininState=='40'>
+            <a href="store_join/detail?member_id=${o.memberId}">查看</a>
+        <#else>
+            <a href="store_join/detail?member_id=${o.memberId}">审核</a>
+    </#if>
                 </td>
             </tr>
 </#list>
