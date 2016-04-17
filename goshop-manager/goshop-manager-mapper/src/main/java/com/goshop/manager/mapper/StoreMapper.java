@@ -24,4 +24,16 @@ public interface StoreMapper {
     Store findByMemberId(@Param("memberId")Long memberId);
 
     List<Store> findAll();
+
+    /**
+     *
+     * @param gradeId 等级
+     * @param sellerName 店主
+     * @param storeName 店铺
+     * @param storeState 店铺状态
+     * @param isExpire 是否即将过期
+     * @param isExpired 是否过期
+     * @return
+     */
+    List<Store> find(@Param("gradeId")Integer gradeId, @Param("sellerName")String sellerName, @Param("storeName")String storeName, @Param("storeState")Integer storeState, @Param("isExpire")Boolean isExpire,@Param("isExpired") Boolean isExpired);
 }

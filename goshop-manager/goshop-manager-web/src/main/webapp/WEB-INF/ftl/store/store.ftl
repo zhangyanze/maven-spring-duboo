@@ -35,8 +35,6 @@
     </div>
     <div class="fixed-empty"></div>
     <form id="formSearch" name="formSearch" method="get">
-        <input type="hidden" name="act" value="store">
-        <input type="hidden" name="op" value="store">
         <table class="tb-type1 noborder search">
             <tbody>
             <tr><th><label>所属等级</label></th>
@@ -92,53 +90,34 @@
             </tr>
             </thead>
             <tbody>
+
+<#list P_PAGE.list as o>
             <tr class="hover edit open" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td>
-                    <a target="_blank" href="http://localhost/shopnc/shop/index.php?act=show_store&amp;op=index&amp;store_id=1">
-                        官方店铺                (平台)          	</a></td>
-                <td>shopnc</td>
-                <td>shopnc_seller</td>
-                <td class="align-center">钻石店铺</td>
-                <td class="nowarp align-center">无限制</td>
-                <td class="align-center w72">开启</td>
+                    <a target="_blank" href="#">${o.storeName}</a></td>
+                <td>${o.memberName}</td>
+                <td>${o.sellerName}</td>
+                <td class="align-center">${P_STORE_GRADE_MAP[o.gradeId+'']}</td>
+                <td class="nowarp align-center">${(o.storeEndTime?string("yyyy-MM-dd"))!"无限制"}</td>
+                <td class="align-center w72"><#if o.storeState==0>关闭
+                <#elseif o.storeState==1>开启
+                <#else>审核中
+                </#if></td>
                 <td class="align-center w120">
-                    <a href="index.php?act=store&amp;op=store_joinin_detail&amp;member_id=1">查看</a>&nbsp;&nbsp;<a href="index.php?act=store&amp;op=store_edit&amp;store_id=1">编辑</a>&nbsp;&nbsp;
+                    <a href="show?storeId=${o.storeId}">查看</a>&nbsp;&nbsp;<a href="edit?storeId=${o.storeId}">编辑</a>&nbsp;&nbsp;
                 </td>
             </tr>
-            <tr class="hover edit open" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td>
-                    <a target="_blank" href="http://localhost/shopnc/shop/index.php?act=show_store&amp;op=index&amp;store_id=2">
-                        111111111111                          	</a></td>
-                <td>gugu</td>
-                <td>11111</td>
-                <td class="align-center">系统默认</td>
-                <td class="nowarp align-center">无限制</td>
-                <td class="align-center w72">开启</td>
-                <td class="align-center w120">
-                    <a href="index.php?act=store&amp;op=store_joinin_detail&amp;member_id=2">查看</a>&nbsp;&nbsp;<a href="index.php?act=store&amp;op=store_edit&amp;store_id=2">编辑</a>&nbsp;&nbsp;
-                    <a href="index.php?act=store&amp;op=store_bind_class&amp;store_id=2">经营类目</a>
-                </td>
-            </tr>
-            <tr class="hover edit open" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td>
-                    <a target="_blank" href="http://localhost/shopnc/shop/index.php?act=show_store&amp;op=index&amp;store_id=3">
-                        我的店铺                          	</a></td>
-                <td>gyj</td>
-                <td>商家帐号</td>
-                <td class="align-center">系统默认</td>
-                <td class="nowarp align-center">无限制</td>
-                <td class="align-center w72">开启</td>
-                <td class="align-center w120">
-                    <a href="index.php?act=store&amp;op=store_joinin_detail&amp;member_id=4">查看</a>&nbsp;&nbsp;<a href="index.php?act=store&amp;op=store_edit&amp;store_id=3">编辑</a>&nbsp;&nbsp;
-                    <a href="index.php?act=store&amp;op=store_bind_class&amp;store_id=3">经营类目</a>
-                </td>
-            </tr>
+</#list>
             </tbody>
             <tfoot>
             <tr class="tfoot">
                 <td></td>
                 <td colspan="16">
-                    <div class="pagination"><ul><li><span>首页</span></li><li><span>上一页</span></li><li><span class="currentpage">1</span></li><li><span>下一页</span></li><li><span>末页</span></li></ul></div></td>
+                <#if (P_PAGE.pages>1)>
+                    <#import "../pagination.ftl" as pagination />
+                    <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
+                </#if>
+                </td>
             </tr>
             </tfoot>
         </table>

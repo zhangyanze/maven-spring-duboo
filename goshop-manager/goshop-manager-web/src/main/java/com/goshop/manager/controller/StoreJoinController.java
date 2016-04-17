@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/store_join")
-public class StoreJoinManageController {
+public class StoreJoinController {
 
     @Autowired
     StoreJoinManageService storeJoinManageService;

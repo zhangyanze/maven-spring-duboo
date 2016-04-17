@@ -2,6 +2,7 @@ package com.goshop.manager.pojo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Store  implements Serializable {
     private Integer storeId;
@@ -46,9 +47,9 @@ public class Store  implements Serializable {
 
     private Integer storeSort;
 
-    private String storeTime;
+    private Date storeTime;
 
-    private String storeEndTime;
+    private Date storeEndTime;
 
     private String storeLabel;
 
@@ -262,20 +263,20 @@ public class Store  implements Serializable {
         this.storeSort = storeSort;
     }
 
-    public String getStoreTime() {
+    public Date getStoreTime() {
         return storeTime;
     }
 
-    public void setStoreTime(String storeTime) {
-        this.storeTime = storeTime == null ? null : storeTime.trim();
+    public void setStoreTime(Date storeTime) {
+        this.storeTime = storeTime;
     }
 
-    public String getStoreEndTime() {
+    public Date getStoreEndTime() {
         return storeEndTime;
     }
 
-    public void setStoreEndTime(String storeEndTime) {
-        this.storeEndTime = storeEndTime == null ? null : storeEndTime.trim();
+    public void setStoreEndTime(Date storeEndTime) {
+        this.storeEndTime = storeEndTime ;
     }
 
     public String getStoreLabel() {

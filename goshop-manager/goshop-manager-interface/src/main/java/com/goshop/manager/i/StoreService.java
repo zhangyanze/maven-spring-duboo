@@ -22,4 +22,10 @@ public interface StoreService {
     int save(StoreWithBLOBs store);
 
     Store getCurrentStore(User user);
+
+    PageInfo<Store> find(Integer gradeId, String sellerName, String storeType, String storeName, Integer curPage, Integer size);
+
+    Store findOne(Integer storeId);
+
+    void update(StoreWithBLOBs store);
 }
