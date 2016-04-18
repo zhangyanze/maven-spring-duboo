@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -27,9 +28,8 @@ public interface AttachmentService {
 
     /**
      * 获取文件路径
-     * @param id
      */
-    String getPath(String id);
+    String getPath();
 
     /**
      * 通过id获取文件
@@ -37,4 +37,6 @@ public interface AttachmentService {
      * @return
      */
     File download(String id);
+
+    String upload(File file,String type) throws Exception;
 }

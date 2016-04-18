@@ -31,6 +31,56 @@ public class User implements Principal, Serializable {
 
     private List<Role> roleList;
 
+    private Integer loginNum;
+
+    private Timestamp loginTime;
+
+    private Timestamp oldLoginTime;
+
+    private String loginIp;
+
+    private String oldLoginIp;
+
+    public Integer getLoginNum() {
+        return loginNum;
+    }
+
+    public void setLoginNum(Integer loginNum) {
+        this.loginNum = loginNum;
+    }
+
+    public Timestamp getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Timestamp loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public Timestamp getOldLoginTime() {
+        return oldLoginTime;
+    }
+
+    public void setOldLoginTime(Timestamp oldLoginTime) {
+        this.oldLoginTime = oldLoginTime;
+    }
+
+    public String getLoginIp() {
+        return loginIp;
+    }
+
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
+    }
+
+    public String getOldLoginIp() {
+        return oldLoginIp;
+    }
+
+    public void setOldLoginIp(String oldLoginIp) {
+        this.oldLoginIp = oldLoginIp;
+    }
+
     public List<Role> getRoleList() {
         return roleList;
     }

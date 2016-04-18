@@ -14,7 +14,7 @@ public class Member implements Serializable {
 
     private String memberAvatar;
 
-    private Boolean memberSex;
+    private Integer memberSex;
 
     private Date memberBirthday;
 
@@ -24,17 +24,7 @@ public class Member implements Serializable {
 
     private String memberWw;
 
-    private Integer memberLoginNum;
-
     private Timestamp memberTime;
-
-    private Timestamp memberLoginTime;
-
-    private String memberOldLoginTime;
-
-    private String memberLoginIp;
-
-    private String memberOldLoginIp;
 
     private String memberQqopenid;
 
@@ -44,13 +34,13 @@ public class Member implements Serializable {
 
     private BigDecimal freezePredeposit;
 
-    private Boolean informAllow;
+    private Integer informAllow;
 
-    private Boolean isBuy;
+    private Integer isBuy;
 
-    private Boolean isAllowtalk;
+    private Integer isAllowtalk;
 
-    private Boolean memberState;
+    private Integer memberState;
 
     private Integer memberCredit;
 
@@ -63,6 +53,56 @@ public class Member implements Serializable {
     private String memberAreainfo;
 
     private String memberQqinfo;
+    //虚拟user字段
+    private String userName;
+    //虚拟user字段
+    private String loginName;
+    //虚拟user字段
+    private Integer loginNum;
+    //虚拟user字段
+    private Timestamp loginTime;
+    //虚拟user字段
+    private String loginIp;
+
+    public Integer getLoginNum() {
+        return loginNum;
+    }
+
+    public void setLoginNum(Integer loginNum) {
+        this.loginNum = loginNum;
+    }
+
+    public Timestamp getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Timestamp loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public String getLoginIp() {
+        return loginIp;
+    }
+
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
 
     public Long getMemberId() {
         return memberId;
@@ -96,11 +136,11 @@ public class Member implements Serializable {
         this.memberAvatar = memberAvatar == null ? null : memberAvatar.trim();
     }
 
-    public Boolean getMemberSex() {
+    public Integer getMemberSex() {
         return memberSex;
     }
 
-    public void setMemberSex(Boolean memberSex) {
+    public void setMemberSex(Integer memberSex) {
         this.memberSex = memberSex;
     }
 
@@ -136,52 +176,12 @@ public class Member implements Serializable {
         this.memberWw = memberWw == null ? null : memberWw.trim();
     }
 
-    public Integer getMemberLoginNum() {
-        return memberLoginNum;
-    }
-
-    public void setMemberLoginNum(Integer memberLoginNum) {
-        this.memberLoginNum = memberLoginNum;
-    }
-
     public Timestamp getMemberTime() {
         return memberTime;
     }
 
     public void setMemberTime(Timestamp memberTime) {
         this.memberTime = memberTime;
-    }
-
-    public Timestamp getMemberLoginTime() {
-        return memberLoginTime;
-    }
-
-    public void setMemberLoginTime(Timestamp memberLoginTime) {
-        this.memberLoginTime = memberLoginTime;
-    }
-
-    public String getMemberOldLoginTime() {
-        return memberOldLoginTime;
-    }
-
-    public void setMemberOldLoginTime(String memberOldLoginTime) {
-        this.memberOldLoginTime = memberOldLoginTime == null ? null : memberOldLoginTime.trim();
-    }
-
-    public String getMemberLoginIp() {
-        return memberLoginIp;
-    }
-
-    public void setMemberLoginIp(String memberLoginIp) {
-        this.memberLoginIp = memberLoginIp == null ? null : memberLoginIp.trim();
-    }
-
-    public String getMemberOldLoginIp() {
-        return memberOldLoginIp;
-    }
-
-    public void setMemberOldLoginIp(String memberOldLoginIp) {
-        this.memberOldLoginIp = memberOldLoginIp == null ? null : memberOldLoginIp.trim();
     }
 
     public String getMemberQqopenid() {
@@ -216,35 +216,35 @@ public class Member implements Serializable {
         this.freezePredeposit = freezePredeposit;
     }
 
-    public Boolean getInformAllow() {
+    public Integer getInformAllow() {
         return informAllow;
     }
 
-    public void setInformAllow(Boolean informAllow) {
+    public void setInformAllow(Integer informAllow) {
         this.informAllow = informAllow;
     }
 
-    public Boolean getIsBuy() {
+    public Integer getIsBuy() {
         return isBuy;
     }
 
-    public void setIsBuy(Boolean isBuy) {
+    public void setIsBuy(Integer isBuy) {
         this.isBuy = isBuy;
     }
 
-    public Boolean getIsAllowtalk() {
+    public Integer getIsAllowtalk() {
         return isAllowtalk;
     }
 
-    public void setIsAllowtalk(Boolean isAllowtalk) {
+    public void setIsAllowtalk(Integer isAllowtalk) {
         this.isAllowtalk = isAllowtalk;
     }
 
-    public Boolean getMemberState() {
+    public Integer getMemberState() {
         return memberState;
     }
 
-    public void setMemberState(Boolean memberState) {
+    public void setMemberState(Integer memberState) {
         this.memberState = memberState;
     }
 

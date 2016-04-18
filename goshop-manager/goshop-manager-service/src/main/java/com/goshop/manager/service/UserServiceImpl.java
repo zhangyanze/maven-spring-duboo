@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service("userService")
@@ -55,6 +56,19 @@ public class UserServiceImpl implements UserService {
     public List<Permission> findPermissionListByUserId(Long userId) {
         return userMapper.findPermissionListByUserId(userId);
     }
+
+    @Override
+    public void updateLoginInfo(User user, String ip) {
+        User loginUserInfo = new User();
+        loginUserInfo.setId(user.getId());
+        loginUserInfo.setLoginNum(user.getLoginNum() + 1);
+        loginUserInfo.setLoginIp(ip);
+        loginUserInfo.setOldLoginIp(user.getLoginIp());
+        loginUserInfo.setLoginTime(new Timestamp(System.currentTimeMillis()));
+        loginUserInfo.setOldLoginTime(user.getLoginTime());
+        userMapper.updateLoginInfo(loginUserInfo);
+    }
+
 
     /**
      * 将密码加密

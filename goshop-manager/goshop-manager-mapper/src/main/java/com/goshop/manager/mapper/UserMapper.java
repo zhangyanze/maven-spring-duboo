@@ -2,7 +2,9 @@ package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.Permission;
 import com.goshop.manager.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserMapper {
@@ -25,4 +27,6 @@ public interface UserMapper {
     List<Permission> findPermissionListByUserId(Long userId);
 
     int findByLoginNameCount(String loginName);
+
+    void updateLoginInfo(User user);
 }

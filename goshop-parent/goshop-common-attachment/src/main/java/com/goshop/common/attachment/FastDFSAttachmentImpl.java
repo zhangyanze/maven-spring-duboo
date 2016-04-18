@@ -31,12 +31,17 @@ public class FastDFSAttachmentImpl implements AttachmentService {
     }
 
     @Override
-    public String getPath(String id) {
+    public String getPath() {
         return null;
     }
 
     @Override
     public File download(String id) {
+        return null;
+    }
+
+    @Override
+    public String upload(File file,String type) throws Exception {
         return null;
     }
 }

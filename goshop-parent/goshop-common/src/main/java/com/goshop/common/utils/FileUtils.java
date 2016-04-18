@@ -219,8 +219,8 @@ public class FileUtils {
         outStream.write(data);  
         //关闭输出流  
         outStream.close();     
-    }     
-	
+    }
+
 	public static void saveFile(byte[] buffer,String path) throws Exception
     {      
         //new一个文件对象用来保存图片，默认保存当前工程根目录  

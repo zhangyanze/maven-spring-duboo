@@ -11,6 +11,11 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="created" property="created" jdbcType="DATE" />
     <result column="upcreated" property="upcreated" jdbcType="DATE" />
+    <result column="login_num" property="loginNum" jdbcType="INTEGER" />
+    <result column="login_time" property="loginTime" jdbcType="TIME" />
+    <result column="old_login_time" property="oldLoginTime" jdbcType="TIME" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="old_login_ip" property="oldLoginIp" jdbcType="VARCHAR" />
     <collection property="roleList" ofType="com.goshop.manager.pojo.Role">
       <id column="r_id" property="id" jdbcType="BIGINT" />
       <result column="r_name" property="name" jdbcType="VARCHAR" />
@@ -30,7 +35,8 @@
     <result column="enable" property="enable" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, login_name, password, salt, enable, type, created, upcreated
+    id, user_name, login_name, password, salt, enable, type, created, upcreated,login_num,login_time,
+    old_login_time, login_ip,old_login_ip
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -45,10 +51,13 @@
   <insert id="insert" parameterType="com.goshop.manager.pojo.User" useGeneratedKeys="true" keyProperty="id">
     insert into gs_user (id, user_name, login_name, 
       password, salt, enable, 
-      type, created, upcreated)
+      type, created, upcreated,login_num,login_time,
+    old_login_time, login_ip,old_login_ip)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{enable,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{created,jdbcType=DATE}, #{upcreated,jdbcType=DATE})
+      #{type,jdbcType=INTEGER}, #{created,jdbcType=DATE}, #{upcreated,jdbcType=DATE},
+      {loginNum,jdbcType=INTEGER},{loginTime,jdbcType=TIME},{oldLoginTime,jdbcType=TIME},
+      {loginIp,jdbcType=VARCHAR},{oldLoginIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.goshop.manager.pojo.User" useGeneratedKeys="true" keyProperty="id">
     insert into gs_user
@@ -80,6 +89,21 @@
       <if test="upcreated != null" >
         upcreated,
       </if>
+      <if test="loginNum != null" >
+        login_num,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="oldLoginTime != null" >
+        old_login_time,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="oldLoginIp != null" >
+        old_login_ip,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -108,6 +132,21 @@
       </if>
       <if test="upcreated != null" >
         #{upcreated,jdbcType=DATE},
+      </if>
+      <if test="loginNum != null" >
+        #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIME},
+      </if>
+      <if test="oldLoginTime != null" >
+        #{oldLoginTime,jdbcType=TIME},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLoginIp != null" >
+        #{oldLoginIp,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,6 +177,21 @@
       <if test="upcreated != null" >
         upcreated = #{upcreated,jdbcType=DATE},
       </if>
+      <if test="loginNum != null" >
+        login_num = #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIME},
+      </if>
+      <if test="oldLoginTime != null" >
+        old_login_time = #{oldLoginTime,jdbcType=TIME},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLoginIp != null" >
+        old_login_ip = #{oldLoginIp,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -150,7 +204,12 @@
       enable = #{enable,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       created = #{created,jdbcType=DATE},
-      upcreated = #{upcreated,jdbcType=DATE}
+      upcreated = #{upcreated,jdbcType=DATE},
+      login_num = #{loginNum,jdbcType=INTEGER},
+      login_time = #{loginTime,jdbcType=TIME},
+      old_login_time = #{oldLoginTime,jdbcType=TIME},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      old_login_ip = #{oldLoginIp,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="findByLoginName" resultMap="BaseResultMap" parameterType="string">
@@ -193,4 +252,26 @@ WHERE
     FROM  gs_user
     where login_name = #{loginName,jdbcType=VARCHAR}
   </select>
+
+  <update id="updateLoginInfo" parameterType="com.goshop.manager.pojo.User" >
+    update gs_user
+    <set >
+      <if test="loginNum != null" >
+        login_num = #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIME},
+      </if>
+      <if test="oldLoginTime != null" >
+        old_login_time = #{oldLoginTime,jdbcType=TIME},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLoginIp != null" >
+        old_login_ip = #{oldLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

@@ -135,13 +135,13 @@ public class MemberServiceImpl implements MemberService {
         member.setUserId(userId);
         member.setMemberTime(new Timestamp(System.currentTimeMillis()));
         //是否允许举报(1可以/2不可以)
-        member.setInformAllow(true);
+        member.setInformAllow(1);
         //会员是否有购买权限 1为开启 0为关闭
-        member.setIsBuy(true);
+        member.setIsBuy(1);
         //会员是否有咨询和发送站内信的权限 1为开启 0为关闭
-        member.setIsAllowtalk(true);
+        member.setIsAllowtalk(1);
         //会员的开启状态 1为开启 0为关闭
-        member.setMemberState(true);
+        member.setMemberState(1);
         //会员积分
         member.setMemberPoints(0);
         //预存款可用金额

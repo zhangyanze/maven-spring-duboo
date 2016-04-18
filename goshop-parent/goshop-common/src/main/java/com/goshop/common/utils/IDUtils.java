@@ -1,6 +1,7 @@
 package com.goshop.common.utils;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * 各种id生成策略
@@ -49,4 +50,9 @@ public class IDUtils {
 		for(int i=0;i< 100;i++)
 		System.out.println(genItemId());
 	}
+
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
 }

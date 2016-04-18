@@ -31,4 +31,5 @@ public interface UserService {
 
     List<Permission> findPermissionListByUserId(Long userId);
 
+    void updateLoginInfo(User user, String ip);
 }
