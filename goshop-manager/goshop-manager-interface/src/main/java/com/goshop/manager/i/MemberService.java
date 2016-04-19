@@ -14,4 +14,12 @@ public interface MemberService {
     Member findOne(Long memberId);
 
     Boolean checkEmail(String memberEmail, Long memberId);
+
+    int update(String password, Member member);
+
+    PageInfo<Member> query(String searchFieldName, String searchFieldValue, String searchSort, String searchState, Integer curPage, Integer pageSize);
+
+    Boolean checkLoginName(String loginName);
+
+    int add(String loginName, String password, Member member);
 }

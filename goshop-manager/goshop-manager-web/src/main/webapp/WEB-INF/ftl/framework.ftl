@@ -257,7 +257,6 @@
         <dl>
             <dt>会员</dt>
             <dd><a onclick="openItem('member,member,member')" href="javascript:void(0)">会员管理</a></dd>
-            <dd><a onclick="openItem('membergrade,membergrade,member')" href="javascript:void(0)">会员等级</a></dd>
             <dd><a onclick="openItem('notice,notice,member')" href="javascript:void(0)">会员通知</a></dd>
             <dd><a onclick="openItem('addpoints,points,member')" href="javascript:void(0)">积分管理</a></dd>
             <dd><a onclick="openItem('predeposit,predeposit,member')" href="javascript:void(0)">预存款</a></dd>
@@ -266,8 +265,6 @@
             <dd><a onclick="openItem('class_list,sns_malbum,member')" href="javascript:void(0)">会员相册</a></dd>
             <dd><a onclick="openItem('tracelist,snstrace,member')" href="javascript:void(0)">买家动态</a></dd>
             <dd><a onclick="openItem('member_tag,sns_member,member')" href="javascript:void(0)">会员标签</a></dd>
-            <dd><a onclick="openItem('bank_type,bank,member')" href="javascript:void(0)">银行类型设置</a></dd>
-            <dd><a onclick="openItem('bank_manage,sns_bank,member')" href="javascript:void(0)">银行商户号管理</a></dd>
         </dl>
         <dl>
             <dt>交易</dt>

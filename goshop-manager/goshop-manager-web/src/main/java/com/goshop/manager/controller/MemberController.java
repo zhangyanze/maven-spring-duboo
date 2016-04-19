@@ -14,6 +14,7 @@ import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +38,15 @@ public class MemberController {
 
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public String index(@RequestParam(value = "p", required = false) Integer curPage,
+                        String search_field_name,String search_field_value,
+                        String search_sort,String search_state,
                         Model model, HttpServletRequest request) {
-        PageInfo<Member> page=memberService.findUserAll(curPage, 20);
+        PageInfo<Member> page=null;
+        if(StringUtils.hasText(search_field_name)||StringUtils.hasText(search_field_value)||StringUtils.hasText(search_sort)||StringUtils.hasText(search_state)) {
+            page=memberService.query(search_field_name,search_field_value,search_sort,search_state,curPage, 20);
+        }else{
+            page=memberService.findUserAll(curPage, 20);
+        }
         model.addAttribute("P_PAGE",page);
         return "member/member";
     }
@@ -55,6 +63,7 @@ public class MemberController {
     public String edit(String member_passwd,Member member,
                       Model model, HttpServletRequest request) {
         String url = request.getContextPath();
+        memberService.update(member_passwd, member);
         return Jump.get(url + "/member/member", "修改成功！");
     }
 
@@ -65,9 +74,10 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(String member_name,String member_passwd,Member member,
+    public String add(String loginName,String password,Member member,
                       Model model, HttpServletRequest request) {
         String url = request.getContextPath();
+        memberService.add(loginName,password, member);
         return Jump.get(url + "/member/member", "保存成功！");
     }
 
@@ -78,5 +88,10 @@ public class MemberController {
         return ResponseStatus.get(is);
     }
 
-
+    @RequestMapping("/check_user_name")
+    @ResponseBody
+    public Object checkLoginName(String loginName, Long memberId, HttpServletRequest request) {
+        Boolean is=memberService.checkLoginName(loginName);
+        return ResponseStatus.get(is);
+    }
 }

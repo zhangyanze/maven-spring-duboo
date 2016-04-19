@@ -237,12 +237,6 @@
               </a>
             </li>
             <li nc_type="">
-              <a onclick="openItem('membergrade,membergrade,member');" id="item_membergrademembergrade"
-                 name="item_membergrademembergrade" href="JavaScript:void(0);">
-                会员等级
-              </a>
-            </li>
-            <li nc_type="">
               <a onclick="openItem('notice,notice,member');" id="item_noticenotice"
                  name="item_noticenotice" href="JavaScript:void(0);">
                 会员通知
@@ -284,19 +278,6 @@
                 会员标签
               </a>
             </li>
-            <li nc_type="">
-              <a onclick="openItem('bank_type,sns_bank,member');" id="item_bank_typesns_bank"
-                 name="item_bank_typesns_bank" href="JavaScript:void(0);">
-                银行类型设置
-              </a>
-            </li>
-            <li nc_type="">
-              <a onclick="openItem('bank_manage,sns_bank,member');" id="item_bank_managesns_bank"
-                 name="item_bank_managesns_bank" href="JavaScript:void(0);">
-                银行商户号管理
-              </a>
-            </li>
-
           </ol>
         </dd>
       </dl>

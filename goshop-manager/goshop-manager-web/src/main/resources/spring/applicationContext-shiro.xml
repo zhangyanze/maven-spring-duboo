@@ -24,7 +24,6 @@
 		<!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
 		<property name="unauthorizedUrl" value="/refuse" />
 
-
 		<!-- 自定义filter配置 -->
 		<property name="filters">
 			<map>

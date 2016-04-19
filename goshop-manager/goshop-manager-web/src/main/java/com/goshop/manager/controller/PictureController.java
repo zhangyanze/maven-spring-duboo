@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.goshop.common.attachment.AttachmentService;
 import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.FileUtils;
+import com.goshop.common.utils.IDUtils;
 import com.goshop.common.utils.ImageUtils;
 import com.goshop.manager.pojo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +79,11 @@ public class PictureController {
 
         try {
             File file = attachmentService.download(url);
+            String type = FileUtils.getFileType(url).toLowerCase();
             InputStream is = new FileInputStream(file);
-            ImageUtils.abscut(is, x1, y1, width, height, file);
-            String path=attachmentService.upload(file,FileUtils.getFileType(url).toLowerCase());
+            File tempFile = File.createTempFile("temp_images_"+ IDUtils.getUuid(),"."+type);
+            ImageUtils.abscut(is, x1, y1, width, height, tempFile);
+            String path=attachmentService.upload(tempFile,type);
             return path;
         }catch (Exception e){
             throw new PageException("文件保存错误！");

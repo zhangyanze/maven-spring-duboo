@@ -19,7 +19,9 @@ public interface UserService {
      */
     int save(User user);
 
-    int updateByPrimaryKey(User user);
+    //int updateByPrimaryKey(User user);
+
+    int updateByPrimaryKeySelective(User user);
 
     User findOne(Long id);
 

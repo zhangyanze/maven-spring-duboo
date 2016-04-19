@@ -30,7 +30,7 @@
             <h3>会员管理</h3>
             <ul class="tab-base">
                 <li><a class="current" href="JavaScript:void(0);"><span>管理</span></a></li>
-                <li><a href="index.php?act=member&amp;op=member_add"><span>新增</span></a></li>
+                <li><a href="${S_URL}/member/add"><span>新增</span></a></li>
             </ul>
         </div>
     </div>
@@ -49,8 +49,8 @@
                 <td><input type="text" class="txt" name="search_field_value" value=""></td>
                 <td><select name="search_sort">
                     <option value="">排序</option>
-                    <option value="member_login_time desc">最后登录</option>
-                    <option value="member_login_num desc">登录次数</option>
+                    <option value="login_time desc">最后登录</option>
+                    <option value="login_num desc">登录次数</option>
                 </select></td>
                 <td><select name="search_state">
                     <option value="" selected="selected">会员状态</option>
@@ -105,9 +105,9 @@
                 <div class="im"><span class="email">
                                 <a title="电子邮箱:${o.memberEmail}" class=" yes" href="mailto:${o.memberEmail}">${o.memberEmail}</a></span>
                 </div></td>
-            <td class="align-center">3</td>
-            <td class="w150 align-center"><p>${o.loginTime?string("yyyy-MM-dd HH:mm:ss")}</p>
-                <p>${o.loginIp}</p></td>
+            <td class="align-center">${o.loginNum}</td>
+            <td class="w150 align-center"><p>${(o.loginTime?string("yyyy-MM-dd HH:mm:ss"))!}</p>
+                <p>${o.loginIp!}</p></td>
             <td class="align-center">${o.memberPoints}</td>
             <td class="align-center"><p>可用:&nbsp;<strong class="red">${o.availablePredeposit}</strong>&nbsp;元</p>
                 <p>冻结:&nbsp;<strong class="red">${o.freezePredeposit}</strong>&nbsp;元</p></td>

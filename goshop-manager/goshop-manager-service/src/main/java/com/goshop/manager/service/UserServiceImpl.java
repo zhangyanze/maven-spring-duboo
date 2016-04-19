@@ -1,5 +1,6 @@
 package com.goshop.manager.service;
 
+import com.goshop.common.exception.MapperException;
 import com.goshop.common.utils.RandomUtils;
 import com.goshop.manager.i.UserService;
 import com.goshop.manager.mapper.UserMapper;
@@ -24,12 +25,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int save(User user) {
-        return userMapper.insert(passWordUser(user));
+        User userDataBase=this.findByLoginName(user.getLoginName());
+        if(userDataBase!=null){
+            throw new MapperException("登录名称重复");
+        }
+        return userMapper.insertSelective(passWordUser(user));
     }
 
-    @Override
+    /*@Override
     public int updateByPrimaryKey(User user) {
         return userMapper.updateByPrimaryKey(passWordUser(user));
+    }
+*/
+    @Override
+    public int updateByPrimaryKeySelective(User user) {
+        return userMapper.updateByPrimaryKeySelective(passWordUser(user));
     }
 
     @Override
