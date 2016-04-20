@@ -42,6 +42,7 @@
 				/logout.html = logout
 				/login.do = authc
 				/store_join/** = authc
+				/member/** = authc
 				<!-- /** = authc 所有url都必须认证通过才可以访问
 				/home = -->
 				/** = anon

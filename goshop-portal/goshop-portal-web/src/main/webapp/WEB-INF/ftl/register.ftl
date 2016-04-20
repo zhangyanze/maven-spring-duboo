@@ -214,7 +214,7 @@ catch(e){}
                     lettersmax: true,
                     lettersonly: true,
                     remote: {
-                        url: '${PREST_URL}/register/check/name',
+                        url: '${SHOP_REST_URL}/register/check/name',
                         type: 'get',
                         dataType:"jsonp",
                         data: {
@@ -237,7 +237,7 @@ catch(e){}
                     required: true,
                     email: true,
                     remote: {
-                        url: '${PREST_URL}/register/check/email',
+                        url: '${SHOP_REST_URL}/register/check/email',
                         type: 'get',
                         dataType:"jsonp",
                         data: {

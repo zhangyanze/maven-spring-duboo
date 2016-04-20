@@ -44,4 +44,16 @@ public interface MemberService {
     void sendEmailFindPassword(String username, String email);
 
     void updatePassword(String key,String password) throws Exception;
+
+    void updatePassword(Long userId,String password) throws Exception;
+
+    Member findUserByUserId(Long userId);
+
+    int update(Member member);
+
+    int updateByUserId(Member member);
+
+    Boolean checkPassword(Long userId, String password);
+
+    int updateEmail(Long userId, String email);
 }

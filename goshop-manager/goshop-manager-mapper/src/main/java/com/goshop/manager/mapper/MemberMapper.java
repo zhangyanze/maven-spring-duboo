@@ -44,4 +44,10 @@ public interface MemberMapper {
                        @Param("memberTruename")String memberTruename, @Param("informAllow")Integer informAllow,
                        @Param("isBuy")Integer isBuy, @Param("isAllowtalk")Integer isAllowtalk,
                        @Param("memberState")Integer memberState, @Param("sort")String sort);
+
+    Member findUserByUserId(@Param("userId")Long userId);
+
+    int updateByUserId(Member member);
+
+    int updateEmail(@Param("userId")Long userId, @Param("memberEmail")String email);
 }

@@ -26,6 +26,7 @@
     <result column="member_provinceid" property="memberProvinceid" jdbcType="INTEGER" />
     <result column="member_areainfo" property="memberAreainfo" jdbcType="VARCHAR" />
     <result column="member_qqinfo" property="memberQqinfo" jdbcType="LONGVARCHAR" />
+    <result column="member_privacy" property="memberPrivacy" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
     <result column="login_num" property="loginNum" jdbcType="INTEGER" />
@@ -36,7 +37,8 @@
     member_id, user_id, member_truename, member_avatar, member_sex, member_birthday, 
     member_email, member_qq, member_ww, member_time, member_qqopenid, member_points,
     available_predeposit, freeze_predeposit, inform_allow, is_buy, is_allowtalk, member_state, 
-    member_credit, member_areaid, member_cityid, member_provinceid, member_areainfo,member_qqinfo
+    member_credit, member_areaid, member_cityid, member_provinceid, member_areainfo,member_qqinfo,
+    member_privacy
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
      select m.*,u.user_name,u.login_name,u.login_num,u.login_time,u.login_ip
@@ -55,7 +57,7 @@
       freeze_predeposit, inform_allow, is_buy, 
       is_allowtalk, member_state, member_credit, 
       member_areaid, member_cityid, member_provinceid, 
-      member_areainfo, member_qqinfo)
+      member_areainfo, member_qqinfo,member_privacy)
     values (#{memberId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{memberTruename,jdbcType=VARCHAR}, 
       #{memberAvatar,jdbcType=VARCHAR}, #{memberSex,jdbcType=BIT}, #{memberBirthday,jdbcType=DATE}, 
       #{memberEmail,jdbcType=VARCHAR}, #{memberQq,jdbcType=VARCHAR}, #{memberWw,jdbcType=VARCHAR}, 
@@ -64,7 +66,7 @@
       #{freezePredeposit,jdbcType=DECIMAL}, #{informAllow,jdbcType=BIT}, #{isBuy,jdbcType=BIT}, 
       #{isAllowtalk,jdbcType=BIT}, #{memberState,jdbcType=BIT}, #{memberCredit,jdbcType=INTEGER}, 
       #{memberAreaid,jdbcType=INTEGER}, #{memberCityid,jdbcType=INTEGER}, #{memberProvinceid,jdbcType=INTEGER}, 
-      #{memberAreainfo,jdbcType=VARCHAR}, #{memberQqinfo,jdbcType=LONGVARCHAR})
+      #{memberAreainfo,jdbcType=VARCHAR}, #{memberQqinfo,jdbcType=LONGVARCHAR},#{memberPrivacy,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.goshop.manager.pojo.Member" useGeneratedKeys="true" keyProperty="memberId">
     insert into gs_member
@@ -141,6 +143,9 @@
       <if test="memberQqinfo != null" >
         member_qqinfo,
       </if>
+      <if test="memberPrivacy != null" >
+        member_privacy,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="memberId != null" >
@@ -214,6 +219,9 @@
       </if>
       <if test="memberQqinfo != null" >
         #{memberQqinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberPrivacy != null" >
+        #{memberPrivacy,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -289,6 +297,9 @@
       <if test="memberQqinfo != null" >
         member_qqinfo = #{memberQqinfo,jdbcType=LONGVARCHAR},
       </if>
+      <if test="memberPrivacy != null" >
+        member_privacy = #{memberPrivacy,jdbcType=VARCHAR},
+      </if>
     </set>
     where member_id = #{memberId,jdbcType=BIGINT}
   </update>
@@ -315,7 +326,8 @@
       member_areaid = #{memberAreaid,jdbcType=INTEGER},
       member_cityid = #{memberCityid,jdbcType=INTEGER},
       member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
-      member_areainfo = #{memberAreainfo,jdbcType=VARCHAR}
+      member_areainfo = #{memberAreainfo,jdbcType=VARCHAR},
+      member_privacy = #{memberPrivacy,jdbcType=VARCHAR}
     where member_id = #{memberId,jdbcType=BIGINT}
   </update>
 
@@ -379,4 +391,94 @@
       order by u.#{sort,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <select id="findUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select m.*,u.user_name,u.login_name,u.login_num,u.login_time,u.login_ip
+    from gs_member m LEFT JOIN gs_user u on m.user_id=u.id
+    where m.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateByUserId" parameterType="com.goshop.manager.pojo.Member" >
+    update gs_member
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="memberTruename != null" >
+        member_truename = #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAvatar != null" >
+        member_avatar = #{memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        member_sex = #{memberSex,jdbcType=BIT},
+      </if>
+      <if test="memberBirthday != null" >
+        member_birthday = #{memberBirthday,jdbcType=DATE},
+      </if>
+      <if test="memberEmail != null" >
+        member_email = #{memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQq != null" >
+        member_qq = #{memberQq,jdbcType=VARCHAR},
+      </if>
+      <if test="memberWw != null" >
+        member_ww = #{memberWw,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTime != null" >
+        member_time = #{memberTime,jdbcType=TIME},
+      </if>
+      <if test="memberQqopenid != null" >
+        member_qqopenid = #{memberQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPoints != null" >
+        member_points = #{memberPoints,jdbcType=INTEGER},
+      </if>
+      <if test="availablePredeposit != null" >
+        available_predeposit = #{availablePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="freezePredeposit != null" >
+        freeze_predeposit = #{freezePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="informAllow != null" >
+        inform_allow = #{informAllow,jdbcType=BIT},
+      </if>
+      <if test="isBuy != null" >
+        is_buy = #{isBuy,jdbcType=BIT},
+      </if>
+      <if test="isAllowtalk != null" >
+        is_allowtalk = #{isAllowtalk,jdbcType=BIT},
+      </if>
+      <if test="memberState != null" >
+        member_state = #{memberState,jdbcType=BIT},
+      </if>
+      <if test="memberCredit != null" >
+        member_credit = #{memberCredit,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreaid != null" >
+        member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="memberCityid != null" >
+        member_cityid = #{memberCityid,jdbcType=INTEGER},
+      </if>
+      <if test="memberProvinceid != null" >
+        member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreainfo != null" >
+        member_areainfo = #{memberAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQqinfo != null" >
+        member_qqinfo = #{memberQqinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberPrivacy != null" >
+        member_privacy = #{memberPrivacy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateEmail" >
+    update gs_member set member_email = #{memberEmail,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
 </mapper>

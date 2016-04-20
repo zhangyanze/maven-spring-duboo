@@ -53,6 +53,11 @@ public class Member implements Serializable {
     private String memberAreainfo;
 
     private String memberQqinfo;
+
+    /**
+     * 隐私设定
+     */
+    private String memberPrivacy;
     //虚拟user字段
     private String userName;
     //虚拟user字段
@@ -63,6 +68,14 @@ public class Member implements Serializable {
     private Timestamp loginTime;
     //虚拟user字段
     private String loginIp;
+
+    public String getMemberPrivacy() {
+        return memberPrivacy;
+    }
+
+    public void setMemberPrivacy(String memberPrivacy) {
+        this.memberPrivacy = memberPrivacy;
+    }
 
     public Integer getLoginNum() {
         return loginNum;

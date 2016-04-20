@@ -1,5 +1,6 @@
 package com.goshop.portal.service;
 
+import com.goshop.common.exception.MapperException;
 import com.goshop.common.utils.RandomUtils;
 import com.goshop.common.utils.RegexValidateUtil;
 import com.goshop.manager.mapper.FindPasswordMapper;
@@ -106,6 +107,48 @@ public class MemberServiceImpl implements MemberService {
             throw new Exception("此链接已过期!");
         }
 
+    }
+
+    @Override
+    public void updatePassword(Long userId, String password) throws Exception {
+        User user=userMapper.selectByPrimaryKey(userId);
+        user.setPassword(password);
+        userMapper.updateByPrimaryKey(passWordUser(user));
+    }
+
+    @Override
+    public Member findUserByUserId(Long userId) {
+        return memberMapper.findUserByUserId(userId);
+    }
+
+    @Override
+    public int update(Member member) {
+        return memberMapper.updateByPrimaryKeySelective(member);
+    }
+
+    @Override
+    public int updateByUserId(Member member) {
+        return memberMapper.updateByUserId(member);
+    }
+
+    @Override
+    public Boolean checkPassword(Long userId, String password) {
+        User user=userMapper.selectByPrimaryKey(userId);
+        Assert.notNull(user,"没有此用户！");
+        String ciphertext=passwordService.encryptPassword(password,user.getSalt());
+        if(ciphertext.equals(user.getPassword())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int updateEmail(Long userId, String email) {
+        if(checkEmail(email)) {
+            return memberMapper.updateEmail(userId,email);
+        }else{
+            throw new MapperException("邮件已被使用！");
+        }
     }
 
     /**

@@ -195,7 +195,8 @@
         </table>
     </form>
 </div>
-<script charset="utf-8" id="dialog_js" src="${S_COMMON_URL}/scripts/dialog/dialog.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="http://localhost/shopnc/data/resource/js/dialog/dialog.css">
+<script charset="utf-8" id="dialog_js" src="${S_COMMON_URL}/scripts/dialog/dialog.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="${S_COMMON_URL}/scripts/dialog/dialog.css">
 <script src="${S_COMMON_URL}/scripts/jquery-ui/jquery.ui.js" type="text/javascript"></script>
 <script src="${S_COMMON_URL}/scripts/ajaxfileupload/ajaxfileupload.js" type="text/javascript"></script>
 <script src="${S_COMMON_URL}/scripts/jquery.Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
