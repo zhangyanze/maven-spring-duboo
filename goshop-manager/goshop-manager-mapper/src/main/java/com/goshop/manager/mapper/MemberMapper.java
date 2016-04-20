@@ -50,4 +50,6 @@ public interface MemberMapper {
     int updateByUserId(Member member);
 
     int updateEmail(@Param("userId")Long userId, @Param("memberEmail")String email);
+
+    int saveAvatar(@Param("userId")Long userId, @Param("memberAvatar")String memberAvatar);
 }

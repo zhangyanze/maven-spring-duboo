@@ -56,4 +56,6 @@ public interface MemberService {
     Boolean checkPassword(Long userId, String password);
 
     int updateEmail(Long userId, String email);
+
+    int saveAvatar(Long userId, String memberAvatar);
 }

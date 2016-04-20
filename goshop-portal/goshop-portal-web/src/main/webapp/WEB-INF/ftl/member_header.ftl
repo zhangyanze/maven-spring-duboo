@@ -7,7 +7,7 @@
                 <li><a title="个人主页" href="#" class="normal">个人主页</a></li>
                 <li><a title="好友" href="#" class="normal">好友</a></li>
                 <li><a title="站内信" href="#" class="normal">站内信        	</a></li>
-                <li><a title="设置" href="#" class="active">设置</a></li>
+                <li><a title="设置" href="${S_URL}/member/base_set.html" class="active">设置</a></li>
             </ul>
             <div class="search-box">
                 <form id="formSearch" action="#" method="get">

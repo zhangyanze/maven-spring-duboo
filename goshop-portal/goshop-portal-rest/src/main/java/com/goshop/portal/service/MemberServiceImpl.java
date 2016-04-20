@@ -151,6 +151,11 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
+    public int saveAvatar(Long userId, String memberAvatar) {
+        return memberMapper.saveAvatar(userId,memberAvatar);
+    }
+
     /**
      * 将密码加密
      * @param user

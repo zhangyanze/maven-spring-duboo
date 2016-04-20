@@ -11,7 +11,9 @@
 </@shiro.guest>
 
 <@shiro.user>
-欢迎[<@shiro.principal property="loginName"/>]登录，<a href="${S_URL}/logout.html">退出</a> , <a href="${S_URL}/store_join/agreement.html">店铺申请</a>
+欢迎[<@shiro.principal property="loginName"/>]登录，<a href="${S_URL}/logout.html">退出</a>
+, <a href="${S_URL}/store_join/agreement.html">店铺申请</a>
+,<a href="${S_URL}/member/base_set.html">个人中心</a>
 </@shiro.user>
 </body>
 </html>

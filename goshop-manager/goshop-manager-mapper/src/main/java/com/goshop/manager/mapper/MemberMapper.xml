@@ -481,4 +481,9 @@
     update gs_member set member_email = #{memberEmail,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+
+  <update id="saveAvatar" >
+    update gs_member set member_avatar = #{memberAvatar,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
 </mapper>

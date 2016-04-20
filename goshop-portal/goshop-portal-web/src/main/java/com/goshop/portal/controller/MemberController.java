@@ -1,9 +1,9 @@
 package com.goshop.portal.controller;
 
+import com.goshop.common.attachment.AttachmentService;
 import com.goshop.common.context.CustomTimestampEditor;
-import com.goshop.common.utils.BeanUtils;
-import com.goshop.common.utils.JsonUtils;
-import com.goshop.common.utils.ResponseMessageUtils;
+import com.goshop.common.exception.PageException;
+import com.goshop.common.utils.*;
 import com.goshop.manager.pojo.Member;
 import com.goshop.manager.pojo.User;
 import com.goshop.portal.i.MemberService;
@@ -16,14 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.JavaScriptUtils;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.text.SimpleDateFormat;
 
 @Controller
@@ -49,6 +50,9 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    AttachmentService attachmentService;
 
     @RequestMapping("/base_set")
     public String index(User user,Model model,
@@ -158,20 +162,76 @@ public class MemberController {
     }
 
     @RequestMapping(value="/avatar",method = RequestMethod.GET)
-    public String avatar(Model model,
+    public String avatar(User user,Model model,
                         HttpServletRequest request,
                         HttpServletResponse response){
+        Member member=memberService.findUserByUserId(user.getId());
         model.addAttribute("P_OP", "avatar");
+        model.addAttribute("P_MEMBER", member);
         return "member/set_avatar";
     }
 
+    @RequestMapping(value="/upload",method = RequestMethod.POST)
+    public String upload(Model model,
+                         @RequestParam(value = "pic") MultipartFile pic,
+                         HttpServletRequest request,
+                         HttpServletResponse response){
+        File file= null;
+        try {
+            file = ImageUtils.save(pic, 500);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new PageException("裁剪图片错误！");
+        }
+        String type = FileUtils.getFileType(pic.getOriginalFilename()).toLowerCase();
+        try {
+            String path=attachmentService.upload(file,type);
+            model.addAttribute("P_USER_IMAGE",path);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new PageException("上传图片错误！");
+        }
+        InputStream is= null;
+        try {
+            is = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedImage bi= null;
+        try {
+            bi = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("P_IMAGE_WIDTH",bi.getWidth());
+        model.addAttribute("P_IMAGE_HEIGHT",bi.getHeight());
+        model.addAttribute("P_OP", "avatar");
+        return "member/set_avatar_upload";
+    }
+
     @RequestMapping(value="/avatar",method = RequestMethod.POST)
-    @ResponseBody
-    public void avatarSave(User user,Model model,
+    public String avatarSave(User user,Model model,
+                           @RequestParam("x1")Integer x1,
+                           @RequestParam("y1")Integer y1,
+                           @RequestParam("x2")Integer x2,
+                           @RequestParam("y2")Integer y2,
+                           @RequestParam("w")Integer width,
+                           @RequestParam("h")Integer height,
+                           @RequestParam("newfile")String newFile,
                           HttpServletRequest request,
                           HttpServletResponse response){
-        String url = request.getContextPath() + "/member/avatar.html";
-        String name = "头像修改成功！";
-        ResponseMessageUtils.xmlCDataOut(response, name, url);
+        try {
+            File file = attachmentService.download(newFile);
+            String type = FileUtils.getFileType(newFile).toLowerCase();
+            InputStream is = new FileInputStream(file);
+            File tempFile = File.createTempFile("temp_images_"+ IDUtils.getUuid(),"."+type);
+            ImageUtils.abscut(is, x1, y1, width, height, tempFile);
+            String path=attachmentService.upload(tempFile,type);
+            memberService.saveAvatar(user.getId(),path);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw  new PageException("头像文件保存错误！");
+        }
+        return "redirect:/member/avatar.html";
     }
 }
