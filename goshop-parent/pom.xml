@@ -356,8 +356,6 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-
-
             </plugins>
         </pluginManagement>
     </build>
