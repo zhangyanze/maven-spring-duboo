@@ -67,7 +67,6 @@ public class MemberController {
             model.addAttribute("P_PRIVACY", new PrivacyModel());
         }
         model.addAttribute("P_MEMBER",member);
-        model.addAttribute("P_OP","base");
         return "member/set_base";
     }
 
@@ -99,7 +98,6 @@ public class MemberController {
     public String password(Model model,
                         HttpServletRequest request,
                         HttpServletResponse response){
-        model.addAttribute("P_OP", "passwd");
         return "member/set_password";
     }
 
@@ -137,7 +135,6 @@ public class MemberController {
     public String email(Model model,
                            HttpServletRequest request,
                            HttpServletResponse response){
-        model.addAttribute("P_OP", "email");
         return "member/set_email";
     }
 
@@ -166,7 +163,6 @@ public class MemberController {
                         HttpServletRequest request,
                         HttpServletResponse response){
         Member member=memberService.findUserByUserId(user.getId());
-        model.addAttribute("P_OP", "avatar");
         model.addAttribute("P_MEMBER", member);
         return "member/set_avatar";
     }
@@ -205,7 +201,6 @@ public class MemberController {
         }
         model.addAttribute("P_IMAGE_WIDTH",bi.getWidth());
         model.addAttribute("P_IMAGE_HEIGHT",bi.getHeight());
-        model.addAttribute("P_OP", "avatar");
         return "member/set_avatar_upload";
     }
 

@@ -47,6 +47,7 @@
         <maven.plugins>2.4.3</maven.plugins>
         <goshop.version>1.0-SNAPSHOT</goshop.version>
         <freemarker.version>2.3.20</freemarker.version>
+        <rapid-framework.version>4.0.6</rapid-framework.version>
         <patchca.version>0.0.1</patchca.version>
         <dubbo.version>2.5.3</dubbo.version>
         <zookeeper.version>3.4.6</zookeeper.version>
@@ -221,6 +222,17 @@
                 <version>${freemarker.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.googlecode.rapid-framework</groupId>
+                <artifactId>rapid-core</artifactId>
+                <version>${rapid-framework.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${jstl.version}</version>
@@ -297,6 +309,8 @@
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -315,6 +329,11 @@
                         <target>${java.version}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <showWarnings>true</showWarnings>
+                        <!--解决 程序包com.sun.image.codec.jpeg不存在 -->
+                        <compilerArguments>
+                            <verbose />
+                            <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+                        </compilerArguments>
                     </configuration>
                 </plugin>
 

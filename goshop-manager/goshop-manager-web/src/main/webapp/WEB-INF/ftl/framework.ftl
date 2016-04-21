@@ -331,8 +331,7 @@
             <dd><a onclick="openItem('cms_manage,cms_manage,cms')" href="javascript:void(0)">CMS管理</a></dd>
             <dd><a onclick="openItem('cms_index,cms_index,cms')" href="javascript:void(0)">首页管理</a></dd>
             <dd><a onclick="openItem('cms_article_list,cms_article,cms')" href="javascript:void(0)">文章管理</a></dd>
-            <dd><a onclick="openItem('articleList,cms,cms')"
-                   href="javascript:void(0)">文章分类</a></dd>
+            <dd><a onclick="openItem('index,cms_article_class,cms')"   href="javascript:void(0)">文章分类</a></dd>
             <dd><a onclick="openItem('cms_picture_list,cms_picture,cms')" href="javascript:void(0)">画报管理</a></dd>
             <dd><a onclick="openItem('cms_picture_class_list,cms_picture_class,cms')"
                    href="javascript:void(0)">画报分类</a></dd>

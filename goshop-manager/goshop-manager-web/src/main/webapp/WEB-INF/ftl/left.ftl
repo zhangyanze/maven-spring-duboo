@@ -579,8 +579,8 @@
               </a>
             </li>
             <li nc_type="">
-              <a onclick="openItem('articleList,cms,cms');" id="item_articleListcms"
-                 name="item_articleListcms" href="JavaScript:void(0);">
+              <a onclick="openItem('index,cms_article_class,cms');" id="item_indexcms_article_class"
+                 name="item_indexcms_article_class" href="JavaScript:void(0);">
                 文章分类
               </a>
             </li>
