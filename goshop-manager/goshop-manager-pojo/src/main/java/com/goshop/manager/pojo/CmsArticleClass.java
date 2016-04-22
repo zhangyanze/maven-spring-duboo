@@ -1,17 +1,20 @@
 package com.goshop.manager.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CmsArticleClass {
+    @JsonProperty("sc_id")
     private Long classId;
-
+    @JsonProperty("sc_parent_id")
     private Long parentId;
-
+    @JsonProperty("sc_name")
     private String className;
-
+    @JsonProperty("sc_sort")
     private Integer classSort;
 
     //虚拟字段

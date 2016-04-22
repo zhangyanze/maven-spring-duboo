@@ -66,7 +66,7 @@
 <#list P_PAGE.list as o>
             <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="w48">
-                    <input type="checkbox" class="checkitem" value="${o.id}" name="check_gc_id[]">
+                    <input type="checkbox" class="checkitem" value="${o.id}" name="check_gc_id">
                     <#if (o.grade>0) >
                         <img nc_type="flex" src="${S_URL}/static/images/tv-expandable.gif"  status="open"  fieldid="${o.id}">
                     </#if>

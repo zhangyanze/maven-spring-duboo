@@ -28,10 +28,8 @@
         <div class="item-title">
             <h3>店铺分类</h3>
             <ul class="tab-base">
-                <li><a href="${S_URL}/store_class/store_class"><span>管理</span></a></li>
+                <li><a href="${S_URL}/cms_article_class/index"><span>管理</span></a></li>
                 <li><a class="current" href="JavaScript:void(0);"><span>新增</span></a></li>
-                <li><a href="#"><span>导出</span></a></li>
-                <li><a href="#"><span>导入</span></a></li>
             </ul>
         </div>
     </div>
@@ -41,10 +39,10 @@
         <table class="table tb-type2">
             <tbody>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2"><label for="name" class="validation">分类名称:</label></td>
+                <td class="required" colspan="2"><label for="className" class="validation">分类名称:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="name" name="name" value=""></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="className" name="className" value=""></td>
                 <td class="vatop tips"></td>
             </tr>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
@@ -54,18 +52,18 @@
                 <td class="vatop rowform">
                     <select id="parentId" name="parentId" class="valid">
                     <option value="">请选择...</option>
-                    <#list P_STORE_CLASS as storeClass>
-                    <option value="${storeClass.id}" <#if (P_PARENT_ID??)&&(storeClass.id==P_PARENT_ID) > selected="selected" </#if>>&nbsp;&nbsp;${storeClass.name}</option>
+                    <#list P_CLASS_LIST as o>
+                    <option value="${o.classId}" <#if (P_PARENT_ID??)&&(o.classId==P_PARENT_ID) > selected="selected" </#if>>&nbsp;&nbsp;${o.className}</option>
                     </#list>
                 </select>
                 </td>
                 <td class="vatop tips">如果选择上级分类，那么新增的分类则为被选择上级分类的子分类</td>
             </tr>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2"><label for="sort">排序:</label></td>
+                <td class="required" colspan="2"><label for="classSort">排序:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="sort" name="sort" value="255"></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="classSort" name="classSort" value="255"></td>
                 <td class="vatop tips">数字范围为0~255，数字越小越靠前</td>
             </tr>
             </tbody>
@@ -93,14 +91,14 @@
             },
 
             rules : {
-                name : {
+                className : {
                     required : true,
                     remote   : {
                         url :'check_class_name?for=json',
                         type:'get',
                         data:{
-                            name : function(){
-                                return $('#name').val();
+                            className : function(){
+                                return $('#className').val();
                             },
                             parentId : function() {
                                 return $('#parentId').val();
@@ -109,16 +107,16 @@
                         }
                     }
                 },
-                sort : {
+                classSort : {
                     number   : true
                 }
             },
             messages : {
-                name : {
+                className : {
                     required : '分类名称不能为空',
                     remote   : '该分类名称已经存在了，请您换一个'
                 },
-                sort  : {
+                classSort  : {
                     number   : '分类排序仅能为数字'
                 }
             }

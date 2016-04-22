@@ -118,4 +118,30 @@
     </if>
     order by class_sort
   </select>
+
+
+  <select id="findByNameParentId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_cms_article_class
+    where class_name = #{className,jdbcType=VARCHAR} and
+    <if test="parentId != null" >
+      parent_id = #{parentId,jdbcType=BIGINT}
+    </if>
+    <if test="parentId == null" >
+      parent_id is null
+    </if>
+  </select>
+
+  <update id="updateClassSort" >
+    update gs_cms_article_class
+    set class_sort = #{classSort,jdbcType=INTEGER}
+    where class_id = #{classId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateClassName" >
+    update gs_cms_article_class
+    set class_name = #{className,jdbcType=VARCHAR}
+    where class_id = #{classId,jdbcType=BIGINT}
+  </update>
 </mapper>

@@ -16,7 +16,7 @@ $(document).ready(function(){
 					for(var i = 0; i < data.length; i++){
 						var tmp_vertline = "<img class='preimg' src='/static/images/vertline.gif'/>";
 						src += "<tr class='"+pr.attr('class')+" row"+id+"'>";
-						src += "<td class='w36'><input type='checkbox' name='check_ac_id[]' value='"+data[i].ac_id+"' class='checkitem' />";
+						src += "<td class='w36'><input type='checkbox' name='check_gc_id' value='"+data[i].sc_id+"' class='checkitem' />";
 						if(data[i].have_child == 1){
 							src += "<img fieldid='"+data[i].sc_id+"' status='open' nc_type='flex' src='"+SITEURL+"/static/images/tv-expandable.gif' />";
 						}else{

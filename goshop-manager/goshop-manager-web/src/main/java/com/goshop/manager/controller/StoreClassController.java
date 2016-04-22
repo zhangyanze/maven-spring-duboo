@@ -33,10 +33,10 @@ public class StoreClassController {
     }
 
     @RequestMapping(value = "/store_class",method = RequestMethod.POST)
-    public String delete(Long[] check_sc_id,
+    public String delete(Long[] check_gc_id,
                         Model model, HttpServletRequest request) {
         String url = request.getContextPath();
-        storeClassService.delete(check_sc_id);
+        storeClassService.delete(check_gc_id);
         return Jump.get(url + "/store_class/store_class", "删除成功！");
     }
 

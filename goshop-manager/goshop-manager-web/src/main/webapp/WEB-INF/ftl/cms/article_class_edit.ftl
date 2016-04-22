@@ -28,32 +28,30 @@
         <div class="item-title">
             <h3>店铺分类</h3>
             <ul class="tab-base">
-                <li><a href="${S_URL}/store_class/store_class"><span>管理</span></a></li>
-                <li><a href="${S_URL}/store_class/save"><span>新增</span></a></li>
+                <li><a href="${S_URL}/cms_article_class/index"><span>管理</span></a></li>
+                <li><a href="${S_URL}/cms_article_class/save"><span>新增</span></a></li>
                 <li><a class="current" href="JavaScript:void(0);"><span>编辑</span></a></li>
-                <li><a href="#"><span>导出</span></a></li>
-                <li><a href="#"><span>导入</span></a></li>
             </ul>
         </div>
     </div>
     <div class="fixed-empty"></div>
-    <form method="post" id="store_class_form" action="${S_URL}/store_class/update">
-        <input type="hidden" value="${P_STORE_CLASS.parentId!''}" name="parentId" id="parentId">
-        <input type="hidden" value="${RequestParameters['sc_id']}" name="id" id="id">
+    <form method="post" id="store_class_form" action="${S_URL}/cms_article_class/update">
+        <input type="hidden" value="${P_CLASS.parentId!''}" name="parentId" id="parentId">
+        <input type="hidden" value="${RequestParameters['sc_id']}" name="classId" id="classId">
         <table class="table tb-type2">
             <tbody>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2"><label for="name" class="validation">分类名称:</label></td>
+                <td class="required" colspan="2"><label for="className" class="validation">分类名称:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="name" name="name" value="${P_STORE_CLASS.name}"></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="className" name="className" value="${P_CLASS.className}"></td>
                 <td class="vatop tips"></td>
             </tr>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2"><label for="sort">排序:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="sort" name="sort" value="${P_STORE_CLASS.sort}"></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="classSort" name="classSort" value="${P_CLASS.classSort}"></td>
                 <td class="vatop tips">数字范围为0~255，数字越小越靠前</td>
             </tr>
             </tbody>
@@ -81,34 +79,34 @@
             },
 
             rules : {
-                name : {
+                className : {
                     required : true,
                     remote   : {
                         url :'check_class_name?for=json',
                         type:'get',
                         data:{
-                            name : function(){
-                                return $('#name').val();
+                            className : function(){
+                                return $('#className').val();
                             },
                             parentId : function() {
                                 return $('#parentId').val();
                             },
-                            id : function(){
-                                return $('#id').val();
+                            classId : function(){
+                                return $('#classId').val();
                             }
                         }
                     }
                 },
-                sort : {
+                classSort : {
                     number   : true
                 }
             },
             messages : {
-                name : {
+                className : {
                     required : '分类名称不能为空',
                     remote   : '该分类名称已经存在了，请您换一个'
                 },
-                sort  : {
+                classSort  : {
                     number   : '分类排序仅能为数字'
                 }
             }

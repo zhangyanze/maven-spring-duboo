@@ -1,6 +1,7 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.CmsArticleClass;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,7 +18,13 @@ public interface CmsArticleClassMapper {
 
     int updateByPrimaryKey(CmsArticleClass record);
 
-    List<CmsArticleClass> findGradeByParentId(Long parentId);
+    List<CmsArticleClass> findGradeByParentId(@Param("parentId")Long parentId);
 
-    List<CmsArticleClass> findByParentId(Long parentId);
+    List<CmsArticleClass> findByParentId(@Param("parentId")Long parentId);
+
+    List<CmsArticleClass> findByNameParentId(@Param("className")String className,@Param("parentId") Long parentId);
+
+    int updateClassSort(@Param("classId")Long classId, @Param("classSort")Integer classSort);
+
+    int updateClassName(@Param("classId")Long classId, @Param("className")String className);
 }
