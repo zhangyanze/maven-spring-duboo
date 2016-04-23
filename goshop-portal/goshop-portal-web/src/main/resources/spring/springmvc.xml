@@ -11,6 +11,7 @@
     <mvc:annotation-driven/>
 
     <bean id="exceptionResolver" class="com.goshop.portal.context.ExceptionHandler" />
+    <bean id="message" class="com.goshop.common.context.RedisMessage" />
 
     <context:property-placeholder location="classpath:resource/*.properties" />
     <bean id="freemarkerConfiguration"
@@ -79,5 +80,5 @@
 
     <bean id="attachmentService" class="com.goshop.common.attachment.LocalhostAttachmentImpl" />
 
-    <bean id="message" class="com.goshop.common.context.RedisMessage" />
+
 </beans>

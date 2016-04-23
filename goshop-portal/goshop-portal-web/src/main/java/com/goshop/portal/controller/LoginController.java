@@ -5,6 +5,7 @@ import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
 import com.goshop.portal.i.MemberService;
+import com.goshop.shiro.service.ShiroConfig;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -24,15 +25,13 @@ public class LoginController {
 
     @Autowired
     MemberService memberService;
-
-    private static String shiroLoginFailure="shiroLoginFailure";
     /**
      * 用户登陆
      */
     @RequestMapping("/login")
     public String login(Model model,HttpServletRequest request,HttpServletResponse response) {
         //如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
-        String exceptionClassName = (String) request.getAttribute(shiroLoginFailure);
+        String exceptionClassName = (String) request.getAttribute(ShiroConfig.shiroLoginFailure);
         //根据shiro返回的异常类路径判断，抛出指定异常信息
         if(StringUtils.hasText(exceptionClassName)){
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {

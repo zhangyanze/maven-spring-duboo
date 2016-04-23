@@ -92,6 +92,11 @@ catch(e){}
         }
 
     </script>
+    <style>
+        label.error {
+            color: #f30;
+        }
+    </style>
 </head>
 <body>
 <div class="ncsc-login-bg" id="loginBG01">
@@ -105,6 +110,9 @@ catch(e){}
         <h2>商家管理中心</h2>
     <span>请输入您注册商铺时申请的商家名称<br>
     登录密码为商城用户通用密码</span></div>
+<#if P_EXCEPTION?exists>
+    <label class="error"  style="padding-left: 100px;">${P_EXCEPTION}</label>
+</#if>
     <form method="post" action="${S_URL}/login.do" id="form_login">
 
         <div class="input">

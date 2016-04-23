@@ -31,7 +31,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         if(!ValidationCodeServlet.isCaptcha(httpServletRequest)){
             //如果校验失败，将验证码错误失败信息，通过shiroLoginFailure设置到request中
-            httpServletRequest.setAttribute("shiroLoginFailure", "randomCodeError");
+            httpServletRequest.setAttribute(ShiroConfig.shiroLoginFailure, "randomCodeError");
             //拒绝访问，不再校验账号和密码
             return true;
         }
