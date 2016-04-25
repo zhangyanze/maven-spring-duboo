@@ -1,24 +1,24 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.CmsArticle;
-import com.goshop.manager.pojo.CmsArticleClass;
+import com.goshop.manager.pojo.CmsArticleWithBLOBs;
 
 import java.util.List;
 
 public interface CmsArticleMapper {
     int deleteByPrimaryKey(Long articleId);
 
-    int insert(CmsArticle record);
+    int insert(CmsArticleWithBLOBs record);
 
-    int insertSelective(CmsArticle record);
+    int insertSelective(CmsArticleWithBLOBs record);
 
-    CmsArticle selectByPrimaryKey(Long articleId);
+    CmsArticleWithBLOBs selectByPrimaryKey(Long articleId);
 
-    int updateByPrimaryKeySelective(CmsArticle record);
+    int updateByPrimaryKeySelective(CmsArticleWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(CmsArticle record);
+    int updateByPrimaryKeyWithBLOBs(CmsArticleWithBLOBs record);
 
     int updateByPrimaryKey(CmsArticle record);
 
-    List<CmsArticleClass> findByArticleType(Integer articleType);
+    List<CmsArticle> findBaseByArticleState(Integer articleState);
 }

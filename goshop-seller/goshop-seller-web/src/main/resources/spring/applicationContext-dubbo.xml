@@ -26,4 +26,7 @@
     <dubbo:reference id="userService"
                      interface="com.goshop.manager.i.UserService" />
 
+    <dubbo:reference id="goodsClassService"
+                     interface="com.goshop.manager.i.GoodsClassService" />
+
 </beans>

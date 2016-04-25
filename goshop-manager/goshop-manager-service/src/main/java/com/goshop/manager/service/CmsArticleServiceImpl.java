@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.manager.i.CmsArticleService;
 import com.goshop.manager.mapper.CmsArticleMapper;
-import com.goshop.manager.pojo.CmsArticleClass;
+import com.goshop.manager.pojo.CmsArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
     CmsArticleMapper cmsArticleMapper;
 
     @Override
-    public PageInfo<CmsArticleClass> findByArticleType(Integer curPage, Integer pageSize, Integer articleType) {
+    public PageInfo<CmsArticle> findBaseByArticleState(Integer curPage, Integer pageSize, Integer articleType) {
         //1、设置分页
         if(curPage==null){
             curPage=1;
@@ -27,7 +27,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
             pageSize=20;
         }
         PageHelper.startPage(curPage, pageSize);
-        List<CmsArticleClass> list = cmsArticleMapper.findByArticleType(articleType);
+        List<CmsArticle> list = cmsArticleMapper.findBaseByArticleState(articleType);
         return new PageInfo<>(list);
     }
 }

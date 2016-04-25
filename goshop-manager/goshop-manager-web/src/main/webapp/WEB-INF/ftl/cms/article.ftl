@@ -90,9 +90,11 @@
         <div class="item-title">
             <h3>文章管理</h3>
             <ul class="tab-base">
-                <li><a class="current" href="index.php?act=cms_article&amp;op=cms_article_list"><span>发布箱</span></a></li>
-                <li><a href="index.php?act=cms_article&amp;op=cms_article_list_verify"><span>待审箱</span></a></li>
-                <li><a href="index.php?act=cms_article&amp;op=cms_article_list_published"><span>垃圾箱</span></a></li>
+                <li><a class="current" href="#"><span>已发布列表</span></a></li>
+                <li><a href="#"><span>草稿列表</span></a></li>
+                <li><a href="#"><span>待审核列表</span></a></li>
+                <li><a href="#"><span>回收站列表</span></a></li>
+                <li><a href="${S_URL}/cms_article/add"><span>发布信息</span></a></li>
             </ul>
         </div>
     </div>
@@ -160,9 +162,35 @@
             </tr>
             </thead>
             <tbody>
+
+            <#if (P_PAGE.size>0) >
+                <#list P_PAGE.list as o>
+            <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="w24"><input type="checkbox" class="checkitem" value="${o.articleId}"></td>
+                <td class="w48 sort"><span class="editable " title="可编辑" column_id="1" nc_type="article_sort">${o.articleSort!}</span>
+                </td><td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56">
+                <i></i>
+                <img width="56" height="43" src="<#if o.articleImage??>${S_URL}/att?path=${o.articleImage}<#else>${S_COMMON_URL}/images/cms/no_cover.png</#if>" onload="javascript:DrawImage(this,56,56);">
+            </span></div></td>
+                <td><p>${o.articleTitle}</p>
+                    <p>作者：${o.articleAuthor}</p></td>
+                <td class="w84"><#if (o.articleType==1)>管理员发布<#else>用户投稿</#if></td>
+                <td class="w48 sort"><span class="editable" title="可编辑" column_id="1" nc_type="article_click" style="display: inline-block;">${o.articleClick}</span>
+                </td><td class="w60 align-center yes-onoff"><a title="" fieldvalue="${o.articleCommendFlag}" fieldid="1" fieldname="article_commend_flag" nc_type="inline_edit" ajax_branch="article_commend" class="<#if o.articleCommendFlag==1>enabled<#else>disabled</#if>" href="JavaScript:void(0);"><img src="${S_COMMON_URL}/images/transparent.gif"></a></td>
+                <td class="w60 align-center yes-onoff"><a title="" fieldvalue="${o.articleCommendImageFlag}" fieldid="1" fieldname="article_commend_image_flag" nc_type="inline_edit" ajax_branch="article_commend_image" class="<#if o.articleCommendImageFlag==1>enabled<#else>disabled</#if>" href="JavaScript:void(0);"><img src="${S_COMMON_URL}/images/transparent.gif"></a></td>
+                <td class="w60 align-center yes-onoff"><a title="" fieldvalue="${o.articleCommentFlag}" fieldid="1" fieldname="article_comment_flag" nc_type="inline_edit" ajax_branch="article_comment" class="<#if o.articleCommentFlag==1>enabled<#else>disabled</#if>" href="JavaScript:void(0);"><img src="${S_COMMON_URL}/images/transparent.gif"></a></td>
+                <td class="w60 align-center yes-onoff"><a title="" fieldvalue="${o.articleAttitudeFlag}" fieldid="1" fieldname="article_attitude_flag" nc_type="inline_edit" ajax_branch="article_attitude" class="<#if o.articleAttitudeFlag==1>enabled<#else>disabled</#if>" href="JavaScript:void(0);"><img src="${S_COMMON_URL}/images/transparent.gif"></a></td>
+                <td class="w60 align-center"><#if o.articleState==1>草稿<#elseif o.articleState==2>待审核<#elseif o.articleState==3>已发布<#else>回收站</#if></td>
+                <td class="w108 align-center">
+                    <a target="_blank" href="#">查看</a>
+                    <a href="javascript:submit_delete(1)">删除</a></td>
+            </tr>
+                </#list>
+            <#else>
             <tr class="no_data" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td colspan="15">没有符合条件的记录</td>
             </tr>
+            </#if>
             </tbody>
         </table>
     </form>

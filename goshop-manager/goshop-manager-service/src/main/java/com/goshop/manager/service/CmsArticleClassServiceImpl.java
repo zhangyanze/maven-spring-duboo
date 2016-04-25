@@ -95,4 +95,9 @@ public class CmsArticleClassServiceImpl implements CmsArticleClassService{
             this.delete(id);
         }
     }
+
+    @Override
+    public List<CmsArticleClass> findTreeByParentId(Long parentId) {
+        return cmsArticleClassMapper.findTreeByParentId(parentId);
+    }
 }

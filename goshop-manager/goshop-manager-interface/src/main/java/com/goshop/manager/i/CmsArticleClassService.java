@@ -28,4 +28,6 @@ public interface CmsArticleClassService {
     int delete(Long classId);
 
     void delete(Long[] classIds);
+
+    List<CmsArticleClass> findTreeByParentId(Long parentId);
 }

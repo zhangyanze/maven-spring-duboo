@@ -314,6 +314,10 @@ KindEditor.plugin('multiimage', function(K) {
 
 (function() {
 
+if (window.SWFUpload) {
+	return;
+}
+
 window.SWFUpload = function (settings) {
 	this.initSWFUpload(settings);
 };
@@ -323,7 +327,7 @@ SWFUpload.prototype.initSWFUpload = function (settings) {
 		this.customSettings = {};	// A container where developers can place their own settings associated with this instance.
 		this.settings = settings;
 		this.eventQueue = [];
-		this.movieName = "KindEditor_SWFUpload_" + SWFUpload.movieCount++;
+		this.movieName = "SWFUpload_" + SWFUpload.movieCount++;
 		this.movieElement = null;
 
 

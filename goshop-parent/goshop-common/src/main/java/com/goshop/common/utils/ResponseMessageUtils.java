@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +84,7 @@ public class ResponseMessageUtils {
 		}
 	}
 
-	public static void setContentType(HttpServletResponse response){
+	public static void textPlainResponse(HttpServletResponse response,String context ){
 		response.reset();
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/plain;charset=UTF-8");
@@ -91,7 +92,11 @@ public class ResponseMessageUtils {
         PrintWriter writer = null;
         try {
             writer = response.getWriter();
-            writer.print("{}");
+			if(StringUtils.hasText(context)){
+				writer.print(context);
+			}else {
+				writer.print("{}");
+			}
             writer.flush();
         } catch (IOException e) {
         } finally {

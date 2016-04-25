@@ -23,7 +23,8 @@
     <script src="${S_COMMON_URL}/scripts/jquery/jquery.masonry.js"></script>
     <script src="${S_COMMON_URL}/scripts/shop/common_select.js"></script>
     <script src="${S_COMMON_URL}/scripts/qtip/jquery.qtip.min.js"></script>
-    <script src="${S_URL}/static/scripts/member.js"></script>
+    <script src="${S_COMMON_URL}/scripts/jquery/perfect-scrollbar.js"></script>
+    <script src="${S_COMMON_URL}/scripts/jquery/jquery.mousewheel.js"></script>
     <script charset="utf-8" id="dialog_js" src="${S_COMMON_URL}/scripts/dialog/dialog.js" type="text/javascript"></script>
     <link type="text/css" rel="stylesheet" href="${S_COMMON_URL}/scripts/dialog/dialog.css">
 

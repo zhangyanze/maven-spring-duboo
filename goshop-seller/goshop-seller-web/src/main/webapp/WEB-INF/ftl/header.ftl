@@ -36,7 +36,7 @@
                             <dt>商品</dt>
                             <dd class="selected"><i title="添加为常用功能菜单" class="icon-check"
                                                     data-quicklink-act="store_goods_add" nctype="btn_add_quicklink"></i><a
-                                    href="#"> 商品发布 </a></dd>
+                                    href="${S_URL}/goods_add/step_one"> 商品发布 </a></dd>
                             <dd class="selected"><i title="添加为常用功能菜单" class="icon-check"
                                                     data-quicklink-act="store_goods_online"
                                                     nctype="btn_add_quicklink"></i><a
@@ -206,10 +206,10 @@
             <dd class="arrow"></dd>
             </dl>
             <dl  <#if P_CURRENT_TOP=='goods'> class="current" </#if>>
-            <dt><a href="${S_URL}/se/goods/addstep/one">商品</a></dt>
+            <dt><a href="${S_URL}/goods_add/step_one">商品</a></dt>
             <dd>
                 <ul>
-                    <li><a href="${S_URL}/se/goods/addstep/one"> 商品发布 </a></li>
+                    <li><a href="${S_URL}/goods_add/step_one"> 商品发布 </a></li>
                     <li><a href="${S_URL}/se/goodsonline/list"> 出售中的商品 </a></li>
                     <li><a href="${S_URL}/se/goodsonline/list?goodsState=0"> 仓库中的商品 </a></li>
                     <li><a href="${S_URL}/se/warning/edit"> 库存警报 </a></li>

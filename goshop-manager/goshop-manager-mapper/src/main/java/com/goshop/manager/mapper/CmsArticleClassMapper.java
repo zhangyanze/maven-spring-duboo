@@ -27,4 +27,6 @@ public interface CmsArticleClassMapper {
     int updateClassSort(@Param("classId")Long classId, @Param("classSort")Integer classSort);
 
     int updateClassName(@Param("classId")Long classId, @Param("className")String className);
+
+    List<CmsArticleClass> findTreeByParentId(@Param("parentId")Long parentId);
 }

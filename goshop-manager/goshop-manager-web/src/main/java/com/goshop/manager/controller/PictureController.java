@@ -3,9 +3,7 @@ package com.goshop.manager.controller;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.attachment.AttachmentService;
 import com.goshop.common.exception.PageException;
-import com.goshop.common.utils.FileUtils;
-import com.goshop.common.utils.IDUtils;
-import com.goshop.common.utils.ImageUtils;
+import com.goshop.common.utils.*;
 import com.goshop.manager.pojo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +32,7 @@ public class PictureController {
 
     @RequestMapping("/avatar_save")
     @ResponseBody
-    public Object avatarSave(Model model,
+    public void avatarSave(Model model,
                              @RequestParam(value = "_pic") MultipartFile pic,
                              HttpServletRequest request,
                              HttpServletResponse response){
@@ -49,7 +47,7 @@ public class PictureController {
             e.printStackTrace();
             throw new PageException("保存图片错误！");
         }
-        return jsonMap;
+        ResponseMessageUtils.textPlainResponse(response, JsonUtils.objectToJson(jsonMap));
     }
 
     @RequestMapping(value = "/pic_cut",method = RequestMethod.GET)

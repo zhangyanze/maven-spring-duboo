@@ -44,7 +44,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
         String ip=request.getRemoteAddr();
         userService.updateLoginInfo(user,ip);
 
-        //删除上传链接
+        //删除上次链接
         Session session = subject.getSession();
         session.removeAttribute("shiroSavedRequest");
         this.issueSuccessRedirect(request, response);

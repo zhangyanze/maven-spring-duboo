@@ -58,7 +58,8 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+<#if (P_PAGE.size>0) >
+<tbody>
             <#list P_PAGE.list as o>
             <tr class="hover edit" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="w48">
@@ -77,17 +78,25 @@
                 <td class="w84"><span><a href="edit?sc_id=${o.classId}">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'delete?sc_id=${o.classId}';">删除</a> </span></td>
             </tr>
             </#list>
-            </tbody>
-            <tfoot>
+</tbody>
+    <tfoot>
 
-            <tr id="batchAction">
-                <td><input type="checkbox" id="checkallBottom" class="checkall"></td>
-                <td id="dataFuncs" colspan="16"><label for="checkallBottom">全选</label>
-                    &nbsp;&nbsp;<a onclick="if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗')){$('form:first').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a>
+    <tr id="batchAction">
+        <td><input type="checkbox" id="checkallBottom" class="checkall"></td>
+        <td id="dataFuncs" colspan="16"><label for="checkallBottom">全选</label>
+            &nbsp;&nbsp;<a onclick="if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗')){$('form:first').submit();}" class="btn" href="JavaScript:void(0);"><span>删除</span></a>
 
-                </td>
-            </tr>
-            </tfoot>
+        </td>
+    </tr>
+    </tfoot>
+<#else>
+<tbody>
+<tr class="no_data" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+    <td colspan="4">没有符合条件的记录</td>
+</tr>
+</tbody>
+</#if>
+
         </table>
     </form>
 </div>
