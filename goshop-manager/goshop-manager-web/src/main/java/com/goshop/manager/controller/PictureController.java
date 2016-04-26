@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -53,6 +55,18 @@ public class PictureController {
     @RequestMapping(value = "/pic_cut",method = RequestMethod.GET)
     public String index(Integer x,Integer y,Integer resize,
                         Integer ratio,String url,Model model, HttpServletRequest request) {
+        File file=attachmentService.download(url);
+        BufferedImage bi = null;
+        try {
+            bi = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new PageException("读取图片错误！");
+        }
+        int srcWidth = bi.getWidth(); // 源图宽度
+        int srcHeight = bi.getHeight();
+        model.addAttribute("width",srcWidth);
+        model.addAttribute("height",srcHeight);
         model.addAttribute("x",x==null?120:x);
         model.addAttribute("y",y==null?120:y);
         model.addAttribute("resize",resize==null?1:resize);

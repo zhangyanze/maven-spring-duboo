@@ -170,7 +170,7 @@
                 <td class="w48 sort"><span class="editable " title="可编辑" column_id="1" nc_type="article_sort">${o.articleSort!}</span>
                 </td><td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56">
                 <i></i>
-                <img width="56" height="43" src="<#if o.articleImage??>${S_URL}/att?path=${o.articleImage}<#else>${S_COMMON_URL}/images/cms/no_cover.png</#if>" onload="javascript:DrawImage(this,56,56);">
+                <img width="56" height="43" src="<#if ((o.articleImage??)&&(o.articleImage!=''))>${S_URL}/att?path=${o.articleImage}<#else>${S_COMMON_URL}/images/cms/no_cover.png</#if>" onload="javascript:DrawImage(this,56,56);">
             </span></div></td>
                 <td><p>${o.articleTitle}</p>
                     <p>作者：${o.articleAuthor}</p></td>

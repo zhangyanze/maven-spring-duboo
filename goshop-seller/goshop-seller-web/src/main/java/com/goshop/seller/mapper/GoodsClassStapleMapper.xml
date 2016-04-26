@@ -132,4 +132,11 @@
     from gs_goods_class_staple
     where member_id = #{memberId,jdbcType=INTEGER}
   </select>
+
+  <select id="findOneByGcId3AndMemberId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_goods_class_staple
+    where gc_id_3 = #{gcId3,jdbcType=INTEGER} and member_id = #{memberId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -377,8 +377,9 @@ Dialog.prototype = {
                     left = $(window).scrollLeft() + ($(window).width() - dialog_width) / 2;
 
                     /* top =滚动条的高度  + (当前可视区的高度 - 对话框的高度 ) / 2 */
-                    top  = $(window).scrollTop()  + ($(window).height() - dialog_height) / 2;
-
+                    var t =  ($(window).height() - dialog_height)>0?($(window).height() - dialog_height):100;
+                    top  = $(window).scrollTop()  + t/ 2;
+                    //top = $(window).scrollTop() +(document.clientHeight-dialog_height)/2
                     $(this.dom.wrapper).css({left:left + 'px', top:top + 'px'});
                 break;
             }

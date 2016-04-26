@@ -33,11 +33,11 @@
     function showPreview(coords)
     {
         if (parseInt(coords.w) > 0){
-            var rx = ${x} / coords.w;
-            var ry = ${y} / coords.h;
+            var rx = 120 / coords.w;
+            var ry = 120 / coords.h;
             $('#preview').css({
-                width: Math.round(rx * 500) + 'px',
-                height: Math.round(ry * 227) + 'px',
+                width: Math.round(rx * ${width}) + 'px',
+                height: Math.round(ry * ${height}) + 'px',
                 marginLeft: '-' + Math.round(rx * coords.x) + 'px',
                 marginTop: '-' + Math.round(ry * coords.y) + 'px'
             });

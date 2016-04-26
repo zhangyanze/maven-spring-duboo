@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.goshop.manager.i.CmsArticleService;
 import com.goshop.manager.mapper.CmsArticleMapper;
 import com.goshop.manager.pojo.CmsArticle;
+import com.goshop.manager.pojo.CmsArticleWithBLOBs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,15 @@ public class CmsArticleServiceImpl implements CmsArticleService {
         PageHelper.startPage(curPage, pageSize);
         List<CmsArticle> list = cmsArticleMapper.findBaseByArticleState(articleType);
         return new PageInfo<>(list);
+    }
+
+    @Override
+    public int save(CmsArticleWithBLOBs cmsArticle) {
+        return cmsArticleMapper.insertSelective(cmsArticle);
+    }
+
+    @Override
+    public int delete(Long articleId) {
+        return cmsArticleMapper.deleteByPrimaryKey(articleId);
     }
 }

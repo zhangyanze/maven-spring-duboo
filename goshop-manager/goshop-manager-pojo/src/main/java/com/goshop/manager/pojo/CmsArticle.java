@@ -1,5 +1,7 @@
 package com.goshop.manager.pojo;
 
+import java.sql.Timestamp;
+
 public class CmsArticle {
     private Long articleId;
 
@@ -21,11 +23,11 @@ public class CmsArticle {
 
     private String articleLink;
 
-    private Integer articleStartTime;
+    private Timestamp articleStartTime;
 
-    private Integer articleEndTime;
+    private Timestamp articleEndTime;
 
-    private Integer articlePublishTime;
+    private Timestamp articlePublishTime;
 
     private Integer articleClick;
 
@@ -39,19 +41,19 @@ public class CmsArticle {
 
     private String articleVerifyAdmin;
 
-    private Integer articleVerifyTime;
+    private Timestamp articleVerifyTime;
 
     private Integer articleState;
 
     private String articlePublisherName;
 
-    private Integer articlePublisherId;
+    private Long articlePublisherId;
 
     private Integer articleType;
 
     private String articleAttachmentPath;
 
-    private Integer articleModifyTime;
+    private Timestamp articleModifyTime;
 
     private String articleTag;
 
@@ -159,27 +161,27 @@ public class CmsArticle {
         this.articleLink = articleLink == null ? null : articleLink.trim();
     }
 
-    public Integer getArticleStartTime() {
+    public Timestamp getArticleStartTime() {
         return articleStartTime;
     }
 
-    public void setArticleStartTime(Integer articleStartTime) {
+    public void setArticleStartTime(Timestamp articleStartTime) {
         this.articleStartTime = articleStartTime;
     }
 
-    public Integer getArticleEndTime() {
+    public Timestamp getArticleEndTime() {
         return articleEndTime;
     }
 
-    public void setArticleEndTime(Integer articleEndTime) {
+    public void setArticleEndTime(Timestamp articleEndTime) {
         this.articleEndTime = articleEndTime;
     }
 
-    public Integer getArticlePublishTime() {
+    public Timestamp getArticlePublishTime() {
         return articlePublishTime;
     }
 
-    public void setArticlePublishTime(Integer articlePublishTime) {
+    public void setArticlePublishTime(Timestamp articlePublishTime) {
         this.articlePublishTime = articlePublishTime;
     }
 
@@ -231,11 +233,11 @@ public class CmsArticle {
         this.articleVerifyAdmin = articleVerifyAdmin == null ? null : articleVerifyAdmin.trim();
     }
 
-    public Integer getArticleVerifyTime() {
+    public Timestamp getArticleVerifyTime() {
         return articleVerifyTime;
     }
 
-    public void setArticleVerifyTime(Integer articleVerifyTime) {
+    public void setArticleVerifyTime(Timestamp articleVerifyTime) {
         this.articleVerifyTime = articleVerifyTime;
     }
 
@@ -255,11 +257,11 @@ public class CmsArticle {
         this.articlePublisherName = articlePublisherName == null ? null : articlePublisherName.trim();
     }
 
-    public Integer getArticlePublisherId() {
+    public Long getArticlePublisherId() {
         return articlePublisherId;
     }
 
-    public void setArticlePublisherId(Integer articlePublisherId) {
+    public void setArticlePublisherId(Long articlePublisherId) {
         this.articlePublisherId = articlePublisherId;
     }
 
@@ -279,11 +281,11 @@ public class CmsArticle {
         this.articleAttachmentPath = articleAttachmentPath == null ? null : articleAttachmentPath.trim();
     }
 
-    public Integer getArticleModifyTime() {
+    public Timestamp getArticleModifyTime() {
         return articleModifyTime;
     }
 
-    public void setArticleModifyTime(Integer articleModifyTime) {
+    public void setArticleModifyTime(Timestamp articleModifyTime) {
         this.articleModifyTime = articleModifyTime;
     }
 

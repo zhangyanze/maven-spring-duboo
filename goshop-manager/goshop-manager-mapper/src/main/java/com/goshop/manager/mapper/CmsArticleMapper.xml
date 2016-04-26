@@ -12,22 +12,22 @@
     <result column="article_image" property="articleImage" jdbcType="VARCHAR" />
     <result column="article_keyword" property="articleKeyword" jdbcType="VARCHAR" />
     <result column="article_link" property="articleLink" jdbcType="VARCHAR" />
-    <result column="article_start_time" property="articleStartTime" jdbcType="INTEGER" />
-    <result column="article_end_time" property="articleEndTime" jdbcType="INTEGER" />
-    <result column="article_publish_time" property="articlePublishTime" jdbcType="INTEGER" />
+    <result column="article_start_time" property="articleStartTime" jdbcType="TIMESTAMP" />
+    <result column="article_end_time" property="articleEndTime" jdbcType="TIMESTAMP" />
+    <result column="article_publish_time" property="articlePublishTime" jdbcType="TIMESTAMP" />
     <result column="article_click" property="articleClick" jdbcType="INTEGER" />
     <result column="article_sort" property="articleSort" jdbcType="BIT" />
     <result column="article_digest" property="articleDigest" jdbcType="BIT" />
     <result column="article_commend_flag" property="articleCommendFlag" jdbcType="BIT" />
     <result column="article_comment_flag" property="articleCommentFlag" jdbcType="BIT" />
     <result column="article_verify_admin" property="articleVerifyAdmin" jdbcType="VARCHAR" />
-    <result column="article_verify_time" property="articleVerifyTime" jdbcType="INTEGER" />
+    <result column="article_verify_time" property="articleVerifyTime" jdbcType="TIMESTAMP" />
     <result column="article_state" property="articleState" jdbcType="BIT" />
     <result column="article_publisher_name" property="articlePublisherName" jdbcType="VARCHAR" />
-    <result column="article_publisher_id" property="articlePublisherId" jdbcType="INTEGER" />
+    <result column="article_publisher_id" property="articlePublisherId" jdbcType="BIGINT" />
     <result column="article_type" property="articleType" jdbcType="BIT" />
     <result column="article_attachment_path" property="articleAttachmentPath" jdbcType="VARCHAR" />
-    <result column="article_modify_time" property="articleModifyTime" jdbcType="INTEGER" />
+    <result column="article_modify_time" property="articleModifyTime" jdbcType="TIMESTAMP" />
     <result column="article_tag" property="articleTag" jdbcType="VARCHAR" />
     <result column="article_comment_count" property="articleCommentCount" jdbcType="INTEGER" />
     <result column="article_attitude_1" property="articleAttitude1" jdbcType="INTEGER" />
@@ -91,12 +91,12 @@
     values (#{articleId,jdbcType=BIGINT}, #{articleTitle,jdbcType=VARCHAR}, #{articleClassId,jdbcType=BIGINT}, 
       #{articleOrigin,jdbcType=VARCHAR}, #{articleOriginAddress,jdbcType=VARCHAR}, #{articleAuthor,jdbcType=VARCHAR}, 
       #{articleAbstract,jdbcType=VARCHAR}, #{articleImage,jdbcType=VARCHAR}, #{articleKeyword,jdbcType=VARCHAR}, 
-      #{articleLink,jdbcType=VARCHAR}, #{articleStartTime,jdbcType=INTEGER}, #{articleEndTime,jdbcType=INTEGER}, 
-      #{articlePublishTime,jdbcType=INTEGER}, #{articleClick,jdbcType=INTEGER}, #{articleSort,jdbcType=BIT}, 
+      #{articleLink,jdbcType=VARCHAR}, #{articleStartTime,jdbcType=TIMESTAMP}, #{articleEndTime,jdbcType=TIMESTAMP}, 
+      #{articlePublishTime,jdbcType=TIMESTAMP}, #{articleClick,jdbcType=INTEGER}, #{articleSort,jdbcType=BIT}, 
       #{articleDigest,jdbcType=BIT}, #{articleCommendFlag,jdbcType=BIT}, #{articleCommentFlag,jdbcType=BIT}, 
-      #{articleVerifyAdmin,jdbcType=VARCHAR}, #{articleVerifyTime,jdbcType=INTEGER}, 
-      #{articleState,jdbcType=BIT}, #{articlePublisherName,jdbcType=VARCHAR}, #{articlePublisherId,jdbcType=INTEGER}, 
-      #{articleType,jdbcType=BIT}, #{articleAttachmentPath,jdbcType=VARCHAR}, #{articleModifyTime,jdbcType=INTEGER}, 
+      #{articleVerifyAdmin,jdbcType=VARCHAR}, #{articleVerifyTime,jdbcType=TIMESTAMP}, 
+      #{articleState,jdbcType=BIT}, #{articlePublisherName,jdbcType=VARCHAR}, #{articlePublisherId,jdbcType=BIGINT},
+      #{articleType,jdbcType=BIT}, #{articleAttachmentPath,jdbcType=VARCHAR}, #{articleModifyTime,jdbcType=TIMESTAMP}, 
       #{articleTag,jdbcType=VARCHAR}, #{articleCommentCount,jdbcType=INTEGER}, #{articleAttitude1,jdbcType=INTEGER}, 
       #{articleAttitude2,jdbcType=INTEGER}, #{articleAttitude3,jdbcType=INTEGER}, #{articleAttitude4,jdbcType=INTEGER}, 
       #{articleAttitude5,jdbcType=INTEGER}, #{articleAttitude6,jdbcType=INTEGER}, #{articleTitleShort,jdbcType=VARCHAR}, 
@@ -266,13 +266,13 @@
         #{articleLink,jdbcType=VARCHAR},
       </if>
       <if test="articleStartTime != null" >
-        #{articleStartTime,jdbcType=INTEGER},
+        #{articleStartTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleEndTime != null" >
-        #{articleEndTime,jdbcType=INTEGER},
+        #{articleEndTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articlePublishTime != null" >
-        #{articlePublishTime,jdbcType=INTEGER},
+        #{articlePublishTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleClick != null" >
         #{articleClick,jdbcType=INTEGER},
@@ -293,7 +293,7 @@
         #{articleVerifyAdmin,jdbcType=VARCHAR},
       </if>
       <if test="articleVerifyTime != null" >
-        #{articleVerifyTime,jdbcType=INTEGER},
+        #{articleVerifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleState != null" >
         #{articleState,jdbcType=BIT},
@@ -302,7 +302,7 @@
         #{articlePublisherName,jdbcType=VARCHAR},
       </if>
       <if test="articlePublisherId != null" >
-        #{articlePublisherId,jdbcType=INTEGER},
+        #{articlePublisherId,jdbcType=BIGINT},
       </if>
       <if test="articleType != null" >
         #{articleType,jdbcType=BIT},
@@ -311,7 +311,7 @@
         #{articleAttachmentPath,jdbcType=VARCHAR},
       </if>
       <if test="articleModifyTime != null" >
-        #{articleModifyTime,jdbcType=INTEGER},
+        #{articleModifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleTag != null" >
         #{articleTag,jdbcType=VARCHAR},
@@ -394,13 +394,13 @@
         article_link = #{articleLink,jdbcType=VARCHAR},
       </if>
       <if test="articleStartTime != null" >
-        article_start_time = #{articleStartTime,jdbcType=INTEGER},
+        article_start_time = #{articleStartTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleEndTime != null" >
-        article_end_time = #{articleEndTime,jdbcType=INTEGER},
+        article_end_time = #{articleEndTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articlePublishTime != null" >
-        article_publish_time = #{articlePublishTime,jdbcType=INTEGER},
+        article_publish_time = #{articlePublishTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleClick != null" >
         article_click = #{articleClick,jdbcType=INTEGER},
@@ -421,7 +421,7 @@
         article_verify_admin = #{articleVerifyAdmin,jdbcType=VARCHAR},
       </if>
       <if test="articleVerifyTime != null" >
-        article_verify_time = #{articleVerifyTime,jdbcType=INTEGER},
+        article_verify_time = #{articleVerifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleState != null" >
         article_state = #{articleState,jdbcType=BIT},
@@ -430,7 +430,7 @@
         article_publisher_name = #{articlePublisherName,jdbcType=VARCHAR},
       </if>
       <if test="articlePublisherId != null" >
-        article_publisher_id = #{articlePublisherId,jdbcType=INTEGER},
+        article_publisher_id = #{articlePublisherId,jdbcType=BIGINT},
       </if>
       <if test="articleType != null" >
         article_type = #{articleType,jdbcType=BIT},
@@ -439,7 +439,7 @@
         article_attachment_path = #{articleAttachmentPath,jdbcType=VARCHAR},
       </if>
       <if test="articleModifyTime != null" >
-        article_modify_time = #{articleModifyTime,jdbcType=INTEGER},
+        article_modify_time = #{articleModifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="articleTag != null" >
         article_tag = #{articleTag,jdbcType=VARCHAR},
@@ -503,22 +503,22 @@
       article_image = #{articleImage,jdbcType=VARCHAR},
       article_keyword = #{articleKeyword,jdbcType=VARCHAR},
       article_link = #{articleLink,jdbcType=VARCHAR},
-      article_start_time = #{articleStartTime,jdbcType=INTEGER},
-      article_end_time = #{articleEndTime,jdbcType=INTEGER},
-      article_publish_time = #{articlePublishTime,jdbcType=INTEGER},
+      article_start_time = #{articleStartTime,jdbcType=TIMESTAMP},
+      article_end_time = #{articleEndTime,jdbcType=TIMESTAMP},
+      article_publish_time = #{articlePublishTime,jdbcType=TIMESTAMP},
       article_click = #{articleClick,jdbcType=INTEGER},
       article_sort = #{articleSort,jdbcType=BIT},
       article_digest = #{articleDigest,jdbcType=BIT},
       article_commend_flag = #{articleCommendFlag,jdbcType=BIT},
       article_comment_flag = #{articleCommentFlag,jdbcType=BIT},
       article_verify_admin = #{articleVerifyAdmin,jdbcType=VARCHAR},
-      article_verify_time = #{articleVerifyTime,jdbcType=INTEGER},
+      article_verify_time = #{articleVerifyTime,jdbcType=TIMESTAMP},
       article_state = #{articleState,jdbcType=BIT},
       article_publisher_name = #{articlePublisherName,jdbcType=VARCHAR},
-      article_publisher_id = #{articlePublisherId,jdbcType=INTEGER},
+      article_publisher_id = #{articlePublisherId,jdbcType=BIGINT},
       article_type = #{articleType,jdbcType=BIT},
       article_attachment_path = #{articleAttachmentPath,jdbcType=VARCHAR},
-      article_modify_time = #{articleModifyTime,jdbcType=INTEGER},
+      article_modify_time = #{articleModifyTime,jdbcType=TIMESTAMP},
       article_tag = #{articleTag,jdbcType=VARCHAR},
       article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
       article_attitude_1 = #{articleAttitude1,jdbcType=INTEGER},
@@ -548,22 +548,22 @@
       article_image = #{articleImage,jdbcType=VARCHAR},
       article_keyword = #{articleKeyword,jdbcType=VARCHAR},
       article_link = #{articleLink,jdbcType=VARCHAR},
-      article_start_time = #{articleStartTime,jdbcType=INTEGER},
-      article_end_time = #{articleEndTime,jdbcType=INTEGER},
-      article_publish_time = #{articlePublishTime,jdbcType=INTEGER},
+      article_start_time = #{articleStartTime,jdbcType=TIMESTAMP},
+      article_end_time = #{articleEndTime,jdbcType=TIMESTAMP},
+      article_publish_time = #{articlePublishTime,jdbcType=TIMESTAMP},
       article_click = #{articleClick,jdbcType=INTEGER},
       article_sort = #{articleSort,jdbcType=BIT},
       article_digest = #{articleDigest,jdbcType=BIT},
       article_commend_flag = #{articleCommendFlag,jdbcType=BIT},
       article_comment_flag = #{articleCommentFlag,jdbcType=BIT},
       article_verify_admin = #{articleVerifyAdmin,jdbcType=VARCHAR},
-      article_verify_time = #{articleVerifyTime,jdbcType=INTEGER},
+      article_verify_time = #{articleVerifyTime,jdbcType=TIMESTAMP},
       article_state = #{articleState,jdbcType=BIT},
       article_publisher_name = #{articlePublisherName,jdbcType=VARCHAR},
-      article_publisher_id = #{articlePublisherId,jdbcType=INTEGER},
+      article_publisher_id = #{articlePublisherId,jdbcType=BIGINT},
       article_type = #{articleType,jdbcType=BIT},
       article_attachment_path = #{articleAttachmentPath,jdbcType=VARCHAR},
-      article_modify_time = #{articleModifyTime,jdbcType=INTEGER},
+      article_modify_time = #{articleModifyTime,jdbcType=TIMESTAMP},
       article_tag = #{articleTag,jdbcType=VARCHAR},
       article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
       article_attitude_1 = #{articleAttitude1,jdbcType=INTEGER},

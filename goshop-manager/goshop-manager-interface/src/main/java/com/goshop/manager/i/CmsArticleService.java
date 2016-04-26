@@ -2,6 +2,7 @@ package com.goshop.manager.i;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.manager.pojo.CmsArticle;
+import com.goshop.manager.pojo.CmsArticleWithBLOBs;
 
 /**
  * Created by Administrator on 2016/4/22.
@@ -24,4 +25,8 @@ public interface CmsArticleService {
      * @return
      */
     PageInfo<CmsArticle> findBaseByArticleState(Integer curPage, Integer pageSize, Integer articleType);
+
+    int save(CmsArticleWithBLOBs cmsArticle);
+
+    int delete(Long articleId);
 }

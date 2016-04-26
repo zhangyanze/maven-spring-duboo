@@ -2,6 +2,7 @@ package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.CmsArticle;
 import com.goshop.manager.pojo.CmsArticleWithBLOBs;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface CmsArticleMapper {
 
     int updateByPrimaryKey(CmsArticle record);
 
-    List<CmsArticle> findBaseByArticleState(Integer articleState);
+    List<CmsArticle> findBaseByArticleState(@Param("articleState")Integer articleState);
 }

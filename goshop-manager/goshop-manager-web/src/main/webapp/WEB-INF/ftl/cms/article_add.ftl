@@ -41,14 +41,14 @@
                 <td class="required" colspan="2"><label class="validation">标题:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="article_title" name="article_title" value=""></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="articleTitle" name="articleTitle" value=""></td>
                 <td class="vatop tips"></td>
             </tr>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2"><label for="cate_id" class="validation">所属分类:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><select id="ac_id" name="ac_id">
+                <td class="vatop rowform"><select id="articleClassId" name="articleClassId">
                     <option value="">请选择...</option>
                 <#list P_CLASS_LIST as articleClass>
                     <option value="${articleClass.classId}" >&nbsp;&nbsp;${articleClass.className}</option>
@@ -61,42 +61,70 @@
                 </select></td>
                 <td class="vatop tips"></td>
             </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td colspan="2" class="required"><label>标题图片:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform">
+			<span class="type-file-show">
+			<img class="show_image" src="${S_COMMON_URL}/images/preview.png">
+			<div class="type-file-preview" style="display: none;"><img id="view_img"> </div>
+			</span>
+            <span class="type-file-box">
+              <input type="text" name="articleImage" id="articleImage" class="type-file-text">
+              <input type="button" name="button" id="button" value="" class="type-file-button">
+              <input type="file" name="_pic" class="type-file-file" id="_pic" size="30" hidefocus="true">
+            </span>
+                </td>
+                <td class="vatop tips">支持格式gif,jpg,jpeg,png</td>
+            </tr>
+
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2"><label for="articleForm">链接:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="article_url" name="article_url" value=""></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="articleLink" name="articleLink" value=""></td>
                 <td class="vatop tips">当填写"链接"后点击文章标题将直接跳转至链接地址，不显示文章内容。链接格式请以http://开头</td>
             </tr>
+
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2"><label>显示:</label></td>
+                <td class="required" colspan="2">发布状态:</td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform onoff"><label class="cb-enable selected" for="article_show1"><span>是</span></label>
-                    <label class="cb-disable" for="article_show0"><span>否</span></label>
-                    <input type="radio" value="1" checked="checked" name="article_show" id="article_show1">
-                    <input type="radio" value="0" name="article_show" id="article_show0"></td>
+                <td class="vatop rowform"><ul>
+                    <li>
+                        <input type="radio" checked="checked" value="3" name="articleState">
+                        <label>已发布</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="1" name="articleState">
+                        <label>草稿</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="2" name="articleState">
+                        <label>待审核</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="4" name="articleState">
+                        <label>回收站</label>
+                    </li>
+                </ul></td>
                 <td class="vatop tips"></td>
             </tr>
-            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="required" colspan="2">排序:
-                </td></tr>
-            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="article_sort" name="article_sort" value="255"></td>
-                <td class="vatop tips"></td>
-            </tr>
+
             <tr>
                 <td class="required" colspan="2"><label class="validation">文章内容:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="vatop rowform" colspan="2">
-                    <textarea style="width: 700px; height: 300px; visibility: hidden; display: none;" name="article_content" id="article_content"></textarea>
+                    <textarea style="width: 700px; height: 300px; visibility: hidden; display: none;" name="articleContent" id="articleContent"></textarea>
                     <script charset="utf-8" src="${S_COMMON_URL}/scripts/kindeditor/kindeditor-min.js"></script>
                     <script charset="utf-8" src="${S_COMMON_URL}/scripts/kindeditor/lang/zh_CN.js"></script>
                     <script>
                         var KE;
                         KindEditor.ready(function(K) {
-                            KE = K.create("textarea[name='article_content']", {
+                            KE = K.create("textarea[name='articleContent']", {
                                 items : ['source', '|', 'fullscreen', 'undo', 'redo', 'print', 'cut', 'copy', 'paste',
                                     'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
                                     'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
@@ -104,6 +132,7 @@
                                     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
                                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'about'],
                                 cssPath : "${S_COMMON_URL}/scripts/kindeditor/themes/default/default.css",
+                                uploadJson: SITEURL + '/ke/upload',
                                 allowImageUpload : true,
                                 allowFlashUpload : false,
                                 allowMediaUpload : false,
@@ -149,6 +178,118 @@
 
                 </div></td>
             </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2">文章摘要:
+                </td></tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td colspan="2">
+                    <textarea name="articleAbstract" cols="100" rows="3" style="height:56px;"></textarea>
+                </td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label for="articleForm">文章来源:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><input type="text" class="txt" id="articleOrigin" name="articleOrigin" value=""></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label for="articleForm">文章来源链接:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><input type="text" class="txt" id="articleOriginAddress" name="articleOriginAddress" value=""></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label for="articleForm">文章作者:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><input type="text" class="txt" id="articleAuthor" name="articleAuthor" value=""></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label>推荐:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform onoff"><label class="cb-enable selected" for="articleCommendFlag1"><span>是</span></label>
+                    <label class="cb-disable" for="article_show0"><span>否</span></label>
+                    <input type="radio" value="1" checked="checked" name="articleCommendFlag" id="articleCommendFlag1">
+                    <input type="radio" value="0" name="articleCommendFlag" id="articleCommendFlag0"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2">精华等级:</td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><ul>
+                    <li>
+                        <input type="radio" checked="checked" value="0" name="articleDigest">
+                        <label>非精华</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="1" name="articleDigest">
+                        <label>精华I</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="2" name="articleDigest">
+                        <label>精华II</label>
+                    </li>
+                    <li>
+                        <input type="radio" value="3" name="articleDigest">
+                        <label>精华III</label>
+                    </li>
+                </ul></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label>评论:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform onoff"><label class="cb-enable selected" for="articleCommentFlag1"><span>是</span></label>
+                    <label class="cb-disable" for="article_show0"><span>否</span></label>
+                    <input type="radio" value="1" checked="checked" name="articleCommentFlag" id="articleCommentFlag1">
+                    <input type="radio" value="0" name="articleCommentFlag" id="articleCommentFlag0"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label>态度:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform onoff"><label class="cb-enable selected" for="articleAttitudeFlag1"><span>是</span></label>
+                    <label class="cb-disable" for="article_show0"><span>否</span></label>
+                    <input type="radio" value="1" checked="checked" name="articleAttitudeFlag" id="articleAttitudeFlag1">
+                    <input type="radio" value="0" name="articleAttitudeFlag" id="articleAttitudeFlag0"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label>图文推荐:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform onoff"><label class="cb-enable selected" for="articleCommendImageFlag1"><span>是</span></label>
+                    <label class="cb-disable" for="article_show0"><span>否</span></label>
+                    <input type="radio" value="1" checked="checked" name="articleCommendImageFlag" id="articleCommendImageFlag1">
+                    <input type="radio" value="0" name="articleCommendImageFlag" id="articleCommendImageFlag0"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2">排序:
+                </td></tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><input type="text" class="txt" id="articleSort" name="articleSort" value="255"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+
             </tbody>
             <tfoot>
             <tr class="tfoot">
@@ -161,7 +302,58 @@
 <script charset="utf-8" src="${S_COMMON_URL}/scripts/fileupload/jquery.iframe-transport.js" type="text/javascript"></script>
 <script charset="utf-8" src="${S_COMMON_URL}/scripts/fileupload/jquery.ui.widget.js" type="text/javascript"></script>
 <script charset="utf-8" src="${S_COMMON_URL}/scripts/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+
+<script charset="utf-8" id="dialog_js" src="${S_COMMON_URL}/scripts/dialog/dialog.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="${S_COMMON_URL}/scripts/dialog/dialog.css">
+<script src="${S_COMMON_URL}/scripts/ajaxfileupload/ajaxfileupload.js" type="text/javascript"></script>
+<script src="${S_COMMON_URL}/scripts/jquery.Jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<link id="cssfile2" type="text/css" rel="stylesheet" href="${S_COMMON_URL}/scripts/jquery.Jcrop/jquery.Jcrop.min.css">
 <script>
+
+    //裁剪图片后返回接收函数
+    function call_back(picname){
+        $('#articleImage').val(picname);
+        $('#view_img').attr('src','${S_URL}/att?path='+picname+'&'+Math.random());
+    }
+    $(function() {
+        $('input[class="type-file-file"]').change(uploadChange);
+        function uploadChange() {
+            var filepatd = $(this).val();
+            var extStart = filepatd.lastIndexOf(".");
+            var ext = filepatd.substring(extStart, filepatd.lengtd).toUpperCase();
+            if (ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                alert("file type error");
+                $(this).attr('value', '');
+                return false;
+            }
+            if ($(this).val() == '') return false;
+            ajaxFileUpload();
+        }
+
+        function ajaxFileUpload() {
+            $.ajaxFileUpload
+            (
+                    {
+                        url: '../pic/avatar_save',
+                        secureuri: false,
+                        fileElementId: '_pic',
+                        dataType: 'json',
+                        success: function (data, status) {
+                            if (data.status == 1) {
+                                ajax_form('cutpic', '裁剪', '../pic/pic_cut?x=60&y=50&resize=0&ratio=0&url=' + data.url, 690);
+                            } else {
+                                alert(data.msg);
+                            }
+                            $('input[class="type-file-file"]').bind('change', uploadChange);
+                        },
+                        error: function (data, status, e) {
+                            alert('图片上传失败！'+e);
+                            $('input[class="type-file-file"]').bind('change', uploadChange);
+                        }
+                    }
+            )
+        };
+    });
     //按钮先执行验证再提交表单
     $(function(){$("#submitBtn").click(function(){
         if($("#article_form").valid()){
@@ -176,36 +368,36 @@
                 error.appendTo(element.parent().parent().prev().find('td:first'));
             },
             rules : {
-                article_title : {
+                articleTitle : {
                     required   : true
                 },
-                ac_id : {
+                articleClassId : {
                     required   : true
                 },
-                article_url : {
+                articleLink : {
                     url : true
                 },
-                article_content : {
+                articleContent : {
                     required   : true
                 },
-                article_sort : {
+                articleSort : {
                     number   : true
                 }
             },
             messages : {
-                article_title : {
+                articleTitle : {
                     required   : '文章标题不能为空'
                 },
-                ac_id : {
+                articleClassId : {
                     required   : '文章分类不能为空'
                 },
-                article_url : {
+                articleLink : {
                     url : '链接格式不正确'
                 },
-                article_content : {
+                articleContent : {
                     required   : '文章内容不能为空'
                 },
-                article_sort  : {
+                articleSort  : {
                     number   : '文章排序仅能为数字'
                 }
             }
@@ -231,7 +423,7 @@
         $('#thumbnails').prepend(newImg);
     }
     function insert_editor(file_path){
-        KE.appendHtml('article_content', '<img src="'+ file_path + '" alt="'+ file_path + '">');
+        KE.appendHtml('articleContent', '<img src="'+ file_path + '" alt="'+ file_path + '">');
     }
     function del_file_upload(file_id)
     {

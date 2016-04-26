@@ -10,6 +10,9 @@ import com.goshop.manager.i.CmsArticleClassService;
 import com.goshop.manager.i.CmsArticleService;
 import com.goshop.manager.pojo.CmsArticle;
 import com.goshop.manager.pojo.CmsArticleClass;
+import com.goshop.manager.pojo.CmsArticleWithBLOBs;
+import com.goshop.manager.pojo.User;
+import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +57,18 @@ public class CmsArticleController {
         return "cms/article_add";
     }
 
+
+    @RequestMapping(value = "add",method = RequestMethod.POST)
+    public String add(User user,CmsArticleWithBLOBs cmsArticle,Model model, HttpServletRequest request) {
+        String url=request.getContextPath()+"/cms_article/cms_article_list";
+        //管理员投稿
+        cmsArticle.setArticleType(1);
+        cmsArticle.setArticlePublisherId(user.getId());
+        cmsArticle.setArticlePublisherName(user.getLoginName());
+        cmsArticleService.save(cmsArticle);
+        return Jump.get(url, "保存成功！");
+    }
+
     @RequestMapping("/article_pic_upload")
     @ResponseBody
     public void articlePicUpload(@RequestParam(value = "fileupload") MultipartFile fileUpload,
@@ -69,5 +84,12 @@ public class CmsArticleController {
             throw new PageException("文件上传错误！");
         }
         ResponseMessageUtils.textPlainResponse(response, JsonUtils.objectToJson(retMap));
+    }
+
+    @RequestMapping("delete")
+    public String delete(Long article_id,Model model, HttpServletRequest request) {
+        String url=request.getContextPath()+"/cms_article/cms_article_list";
+        cmsArticleService.delete(article_id);
+        return Jump.get(url, "删除成功！");
     }
 }

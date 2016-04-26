@@ -10,7 +10,7 @@
         <div class="column-menu">
             <ul id="seller_center_left_menu">
                 <li <#if P_CURRENT_OP=="GoodsAdd">class="current"</#if>>
-                <a href="${S_URL}/se/goods/addstep/one">
+                <a href="${S_URL}/goods_add/step_one">
                     商品发布
                 </a>
                 </li>
