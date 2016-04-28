@@ -1,8 +1,9 @@
 package com.goshop.manager.pojo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CmsArticle {
+public class CmsArticle implements Serializable {
     private Long articleId;
 
     private String articleTitle;

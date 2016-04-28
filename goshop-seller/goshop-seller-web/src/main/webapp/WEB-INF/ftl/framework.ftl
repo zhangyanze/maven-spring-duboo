@@ -52,7 +52,7 @@ catch(e){}
 // ]]>
 </script>
 <![endif]-->
-
+    <script src="${S_URL}/static/scripts/seller.js"></script>
     <script>
         var COOKIE_PRE = '5BF5_';
         var _CHARSET = 'utf-8';

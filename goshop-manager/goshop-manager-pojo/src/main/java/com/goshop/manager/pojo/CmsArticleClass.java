@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class CmsArticleClass {
+public class CmsArticleClass implements Serializable {
     @JsonProperty("sc_id")
     private Long classId;
     @JsonProperty("sc_parent_id")

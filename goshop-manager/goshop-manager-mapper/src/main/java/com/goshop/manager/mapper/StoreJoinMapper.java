@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface StoreJoinMapper {
 
-    //ÒÑÌá½»ÉêÇë
+    //å·²æäº¤ç”³è¯·
     static String JOIN_STATIC_APPLY = "10";
-    //½É·ÑÍê³É
+    //ç¼´è´¹å®Œæˆ
     static String JOIN_STATIC_PAY = "11";
-    //ÉóºË³É¹¦
+    //å®¡æ ¸æˆåŠŸ
     static String JOIN_STATIC_EXMINE_YES = "20";
-    //ÉóºËÊ§°Ü
+    //å®¡æ ¸å¤±è´¥
     static String JOIN_STATIC_EXMINE_NO = "30";
-    //½É·ÑÉóºËÊ§°Ü
+    //ç¼´è´¹å®¡æ ¸å¤±è´¥
     static String JOIN_STATIC_PAY_NO = "31";
-    //ÉóºËÍ¨¹ı¿ªµê
+    //å®¡æ ¸é€šè¿‡å¼€åº—
     static String JOIN_STATIC_YES = "40";
 
     int deleteByPrimaryKey(Long memberId);

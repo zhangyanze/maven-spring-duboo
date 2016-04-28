@@ -22,4 +22,16 @@ public interface CmsArticleMapper {
     int updateByPrimaryKey(CmsArticle record);
 
     List<CmsArticle> findBaseByArticleState(@Param("articleState")Integer articleState);
+
+    int updateByArticleCommendFlag(@Param("articleId")Long articleId, @Param("articleCommendFlag")Integer articleCommendFlag);
+
+    int updateByArticleCommendImageFlag(@Param("articleId")Long articleId, @Param("articleCommendImageFlag")Integer articleCommendImageFlag);
+
+    int updateByArticleAttitudeFlag(@Param("articleId")Long articleId, @Param("articleAttitudeFlag")Integer articleAttitudeFlag);
+
+    int updateByArticleCommentFlag(@Param("articleId")Long articleId, @Param("articleCommentFlag")Integer articleCommentFlag);
+
+    int updateByArticleSort(@Param("articleId")Long articleId, @Param("articleSort")Integer articleSort);
+
+    int updateByArticleClick(@Param("articleId")Long articleId, @Param("articleClick")Integer articleClick);
 }

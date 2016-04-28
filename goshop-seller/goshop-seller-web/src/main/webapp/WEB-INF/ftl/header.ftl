@@ -215,7 +215,7 @@
                     <li><a href="${S_URL}/se/warning/edit"> 库存警报 </a></li>
                     <li><a href="${S_URL}/se/plate/list"> 关联板式 </a></li>
                     <li><a href="${S_URL}/se/spec/list"> 商品规格 </a></li>
-                    <li><a href="${S_URL}/se/album/cate"> 图片空间 </a></li>
+                    <li><a href="${S_URL}/album/space"> 图片空间 </a></li>
                 </ul>
             </dd>
             <dd class="arrow"></dd>
@@ -224,18 +224,11 @@
                 <dt><a href="${S_URL}/se/order/orderQuery"> 订单 </a></dt>
                 <dd>
                     <ul>
-                        <%--<li> <a href="index.php?act=store_order&amp;op=index"> 订单管理 </a> </li>--%>
-                        <%--<li> <a href="index.php?act=store_deliver&amp;op=index"> 发货 </a> </li>--%>
-                        <%--<li> <a href="index.php?act=store_deliver_set&amp;op=daddress_list"> 发货设置 </a> </li>--%>
-                        <%--<li> <a href="index.php?act=store_evaluate&amp;op=list"> 评价管理 </a> </li>--%>
-                        <%--<li> <a href="index.php?act=store_printsetup&amp;op=index"> 打印设置 </a> </li>--%>
                         <li><a href="${S_URL}/se/order/orderQuery"> 订单管理 </a></li>
                         <li><a href="${S_URL}/se/deliver/deliverQuery"> 发货 </a></li>
                         <li><a href="${S_URL}/se/deliver/deliverSetQuery"> 发货设置 </a></li>
                         <li><a href="${S_URL}/se/evaluate/evaluateQuery"> 评价管理 </a></li>
                         <li><a href="${S_URL}/se/printsetup/printsetupQuery"> 打印设置 </a></li>
-
-
                     </ul>
                 </dd>
                 <dd class="arrow"></dd>

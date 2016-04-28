@@ -586,4 +586,40 @@
     from gs_cms_article
     where article_state = #{articleState,jdbcType=BIGINT}
   </select>
+
+  <update id="updateByArticleCommendFlag" >
+    update gs_cms_article
+    set article_commend_flag = #{articleCommendFlag,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByArticleCommendImageFlag" >
+    update gs_cms_article
+    set article_commend_image_flag = #{articleCommendImageFlag,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByArticleAttitudeFlag" >
+    update gs_cms_article
+    set article_attitude_flag = #{articleAttitudeFlag,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByArticleCommentFlag" >
+    update gs_cms_article
+    set article_comment_flag = #{articleCommentFlag,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByArticleSort" >
+    update gs_cms_article
+    set article_sort = #{articleSort,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByArticleClick" >
+    update gs_cms_article
+    set article_click = #{articleClick,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
 </mapper>

@@ -78,6 +78,10 @@
                 <td class="w84"><span><a href="edit?sc_id=${o.classId}">编辑</a> | <a href="javascript:if(confirm('删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗'))window.location = 'delete?sc_id=${o.classId}';">删除</a> </span></td>
             </tr>
             </#list>
+    <#if (P_PAGE.pages>1)>
+        <#import "../pagination.ftl" as pagination />
+        <@pagination.page  pageInfo=P_PAGE pageNumName="p" />
+    </#if>
 </tbody>
     <tfoot>
 

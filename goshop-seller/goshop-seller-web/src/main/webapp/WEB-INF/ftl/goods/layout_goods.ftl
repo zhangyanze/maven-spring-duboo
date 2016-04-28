@@ -40,7 +40,7 @@
                 </a>
                 </li>
                 <li <#if P_CURRENT_OP=="Album">class="current"</#if>>
-                <a href="${S_URL}/se/album/cate">
+                <a href="${S_URL}/album/space">
                     图片空间
                 </a>
                 </li>

@@ -26,7 +26,7 @@ $(document).ready(function(){
 		var max      = $(this).attr('maxvalue');
 		var ajax_branch      = $(this).attr('ajax_branch');
 		$('<input type="text">')
-			.attr({value:s_value})
+			.prop({value:s_value})
 			.insertAfter($(this))
 			.focus()
 			.select()
@@ -54,7 +54,7 @@ $(document).ready(function(){
 							return;
 						}
 					}
-					$(this).prev('span').show().text($(this).attr("value"));
+					$(this).prev('span').show().text($(this).prop("value"));
 					//branch ajax 分支
 					//id 修改内容索引标识
 					//column 修改字段名
@@ -116,7 +116,7 @@ $(document).ready(function(){
 		var max      = $(this).attr('maxvalue');
 		var ajax_branch      = $(this).attr('ajax_branch_textarea');
 		$('<textarea>')
-			.attr({value:s_value})
+			.prop({value:s_value})
 			.appendTo($(this).parent())
 			.focus()
 			.select()
@@ -144,7 +144,7 @@ $(document).ready(function(){
 							return;
 						}
 					}
-					$(this).prev('span').show().text($(this).attr("value"));
+					$(this).prev('span').show().text($(this).prop("value"));
 					//branch ajax 分支
 					//id 修改内容索引标识
 					//column 修改字段名
@@ -209,11 +209,11 @@ $(document).ready(function(){
 			{
 				if(i_val == 0)
 				{
-					$('img[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'src':i_src.replace('enabled','disabled'),'fieldvalue':i_val});
+					$('img[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').prop({'src':i_src.replace('enabled','disabled'),'fieldvalue':i_val});
 				}
 				else
 				{
-					$('img[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'src':i_src.replace('disabled','enabled'),'fieldvalue':i_val});
+					$('img[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').prop({'src':i_src.replace('disabled','enabled'),'fieldvalue':i_val});
 				}
 			}
 		});
@@ -229,16 +229,16 @@ $(document).ready(function(){
 			if(data == 'true')
 			{
 				if(i_val == 0){
-					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('enabled','disabled'),'title':('开启','关闭'),'fieldvalue':i_val});
+					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').prop({'class':('enabled','disabled'),'title':('开启','关闭'),'fieldvalue':i_val});
 				}else{
-					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').attr({'class':('disabled','enabled'),'title':('关闭','开启'),'fieldvalue':i_val});
+					$('a[fieldid="'+i_id+'"][fieldname="'+i_name+'"]').prop({'class':('disabled','enabled'),'title':('关闭','开启'),'fieldvalue':i_val});
 				}
 			}else{
 				alert('响应失败');
 			}
 		});
 	});
-	//给每个可编辑的小图片的父元素添加可编辑标题 $('img[nc_type="inline_edit"]').parent().attr('title','可编辑');
+	//给每个可编辑的小图片的父元素添加可编辑标题 $('img[nc_type="inline_edit"]').parent().prop('title','可编辑');
 
 	//给列表有排序行为的列添加鼠标手型效果
 	$('span[nc_type="order_by"]').hover(function(){$(this).css({cursor:'pointer'});},function(){});
@@ -357,11 +357,10 @@ function check_max(str,s_value,max,jqobj)
 				.select()
 				.val(old_value)
 				.blur(function(){
-					var new_value = $(this).attr("value");
+					var new_value = $(this).prop("value");
 					if(new_value != '') {
 						$.get('inline_edit?act='+settings.act+'&op='+settings.op+'&branch=ajax',{id:column_id,value:new_value},function(data){
-							data = $.parseJSON(data);
-							if(data.result) {
+							if(data) {
 								span.show().text(new_value);
 							} else {
 								span.show().text(old_value);
@@ -399,7 +398,7 @@ function check_max(str,s_value,max,jqobj)
 			$span.hide();
 
 			$btn_submit.click(function(){
-				var new_value = $input.attr("value");
+				var new_value = $input.prop("value");
 				if(new_value !== '' && new_value !== old_value) {
 					$.post('inline_edit?act=' + settings.act + '&op=' + settings.op, {id:column_id, value:new_value}, function(data) {
 						data = $.parseJSON(data);

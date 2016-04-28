@@ -3,6 +3,7 @@ package com.goshop.manager.controller;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.attachment.AttachmentService;
 import com.goshop.common.exception.PageException;
+import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.common.utils.IDUtils;
 import com.goshop.common.utils.JsonUtils;
 import com.goshop.common.utils.ResponseMessageUtils;
@@ -16,6 +17,8 @@ import com.goshop.manager.utils.Jump;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,5 +94,50 @@ public class CmsArticleController {
         String url=request.getContextPath()+"/cms_article/cms_article_list";
         cmsArticleService.delete(article_id);
         return Jump.get(url, "删除成功！");
+    }
+
+    @RequestMapping(value = "edit",method = RequestMethod.GET)
+    public String editPage(Long article_id,Model model, HttpServletRequest request) {
+        List<CmsArticleClass> classList =cmsArticleClassService.findTreeByParentId(null);
+        model.addAttribute("P_CLASS_LIST", classList);
+
+        CmsArticleWithBLOBs cmsArticle=cmsArticleService.findOne(article_id);
+        model.addAttribute("P_CMS_ARTICLE", cmsArticle);
+        return "cms/article_add";
+    }
+
+    @RequestMapping(value = "edit",method = RequestMethod.POST)
+    public String edit(CmsArticleWithBLOBs cmsArticle,Model model, HttpServletRequest request) {
+        String url=request.getContextPath()+"/cms_article/cms_article_list";
+        cmsArticleService.update(cmsArticle);
+        return Jump.get(url, "保存成功！");
+    }
+
+    @RequestMapping("/inline_edit")
+    @ResponseBody
+    public String inline_edit(String op,String branch,Long id,String column,Integer value){
+        if(!StringUtils.hasText(op)){
+            return ResponseStatus.get(false);
+        }
+        if(op.equals("ajax")) {
+            if (StringUtils.hasText(column)) {
+                if (column.equals("article_commend_flag")) {
+                    cmsArticleService.updateByArticleCommendFlag(id, value);
+                } else if (column.equals("article_commend_image_flag")) {
+                    cmsArticleService.updateByArticleCommendImageFlag(id, value);
+                } else if (column.equals("article_comment_flag")) {
+                    cmsArticleService.updateByArticleCommentFlag(id, value);
+                } else if (column.equals("article_attitude_flag")) {
+                    cmsArticleService.updateByArticleAttitudeFlag(id, value);
+                }
+            } else {
+                return ResponseStatus.get(false);
+            }
+        }else if(op.equals("update_article_sort")){
+            cmsArticleService.updateByArticleSort(id,value);
+        }else if(op.equals("update_article_click")){
+            cmsArticleService.updateByArticleClick(id,value);
+        }
+        return ResponseStatus.get(true);
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Service
 public class SessionMessage implements MessageService {
 
     @Autowired

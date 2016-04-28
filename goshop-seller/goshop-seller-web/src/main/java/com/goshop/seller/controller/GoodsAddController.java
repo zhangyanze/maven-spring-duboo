@@ -8,6 +8,7 @@ import com.goshop.manager.pojo.User;
 import com.goshop.seller.modle.JsonGoodsClass;
 import com.goshop.seller.pojo.GoodsClassStaple;
 import com.goshop.seller.service.GoodsClassStapleService;
+import com.goshop.seller.service.GoodsCommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ public class GoodsAddController {
 
     @Autowired
     GoodsClassService goodsClassService;
+
+    @Autowired
+    GoodsCommonService goodsCommonService;
 
     @RequestMapping("/step_one")
     public String one(Model model,

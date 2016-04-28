@@ -1,7 +1,5 @@
 package com.goshop.portal.controller;
 
-import com.goshop.common.context.ValidationCodeServlet;
-import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
 import com.goshop.portal.i.MemberService;

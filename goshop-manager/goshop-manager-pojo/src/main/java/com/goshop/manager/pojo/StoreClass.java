@@ -18,7 +18,7 @@ public class StoreClass implements Serializable {
     @JsonProperty("sc_parent_id")
     private Long parentId;
 
-    //ÐéÄâ×Ö¶Î
+    //è™šæ‹Ÿå­—æ®µ
     private Integer grade;
 
     public Integer getGrade() {

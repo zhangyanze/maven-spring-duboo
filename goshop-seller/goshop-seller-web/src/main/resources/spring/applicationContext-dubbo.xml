@@ -28,5 +28,4 @@
 
     <dubbo:reference id="goodsClassService"
                      interface="com.goshop.manager.i.GoodsClassService" />
-
 </beans>

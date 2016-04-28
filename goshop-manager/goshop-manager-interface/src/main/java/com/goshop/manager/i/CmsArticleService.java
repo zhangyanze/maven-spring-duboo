@@ -29,4 +29,26 @@ public interface CmsArticleService {
     int save(CmsArticleWithBLOBs cmsArticle);
 
     int delete(Long articleId);
+
+    CmsArticleWithBLOBs findOne(Long articleId);
+
+    int update(CmsArticleWithBLOBs cmsArticle);
+
+    /**
+     * 更新文章推荐标志
+     * @param articleId
+     * @param articleCommendFlag
+     * @return
+     */
+    int updateByArticleCommendFlag(Long articleId, Integer articleCommendFlag);
+
+    int updateByArticleCommendImageFlag(Long articleId, Integer articleCommendImageFlag);
+
+    int updateByArticleCommentFlag(Long articleId, Integer articleCommentFlag);
+
+    int updateByArticleAttitudeFlag(Long articleId, Integer articleAttitudeFlag);
+
+    int updateByArticleSort(Long articleId, Integer articleSort);
+
+    int updateByArticleClick(Long articleId, Integer articleClick);
 }

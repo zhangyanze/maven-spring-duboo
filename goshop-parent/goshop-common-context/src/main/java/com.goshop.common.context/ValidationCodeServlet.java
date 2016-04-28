@@ -12,8 +12,14 @@ import com.github.bingoohuang.patchca.service.Captcha;
 import com.github.bingoohuang.patchca.text.renderer.BestFitTextRenderer;
 import com.github.bingoohuang.patchca.text.renderer.TextRenderer;
 import com.github.bingoohuang.patchca.word.RandomWordFactory;
+import com.goshop.redis.service.JedisClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +37,7 @@ import java.util.Random;
 /**
  * Created by Administrator on 2016/3/16.
  */
+@Service
 public class ValidationCodeServlet extends HttpServlet {
     private static final long serialVersionUID = 5126616339795936447L;
     private ConfigurableCaptchaService configurableCaptchaService = null;
@@ -47,6 +54,8 @@ public class ValidationCodeServlet extends HttpServlet {
         super();
     }
 
+    @Autowired
+    JedisClient jedisClient;
 
     /**
      * Servlet销毁方法,负责销毁所使用资源.
@@ -68,6 +77,12 @@ public class ValidationCodeServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(jedisClient==null) {
+            ServletContext servletContext = this.getServletContext();
+            WebApplicationContext context =
+                    WebApplicationContextUtils.getWebApplicationContext(servletContext);
+            jedisClient = (JedisClient) context.getBean("jedisClient");
+        }
         response.setContentType("image/png");
         response.setHeader("cache", "no-cache");
         HttpSession session = request.getSession(true);
@@ -76,7 +91,8 @@ public class ValidationCodeServlet extends HttpServlet {
         Captcha captcha = configurableCaptchaService.getCaptcha();
         // 取得验证码字符串放入Session
         String validationCode = captcha.getChallenge();
-        session.setAttribute(ValidationCodeServlet.VALIDATION_CODE, validationCode);
+        //session.setAttribute(ValidationCodeServlet.VALIDATION_CODE, validationCode);
+        jedisClient.set(ValidationCodeServlet.VALIDATION_CODE+session.getId(),validationCode);
         // 取得验证码图片并输出
         BufferedImage bufferedImage = captcha.getImage();
         ImageIO.write(bufferedImage, "png", outputStream);
@@ -84,11 +100,12 @@ public class ValidationCodeServlet extends HttpServlet {
         outputStream.close();
     }
 
-    public static Boolean isCaptcha(HttpServletRequest request){
+    public Boolean isCaptcha(HttpServletRequest request){
         if (request.getParameterMap().containsKey(ValidationCodeServlet.VALIDATION_NAME)) {
             String captcha = request.getParameter(ValidationCodeServlet.VALIDATION_NAME);
             HttpSession session = request.getSession(true);
-            String validationCode = (String) session.getAttribute(ValidationCodeServlet.VALIDATION_CODE);
+            //String validationCode = (String) session.getAttribute(ValidationCodeServlet.VALIDATION_CODE);
+            String validationCode = jedisClient.get(ValidationCodeServlet.VALIDATION_CODE+session.getId());
             if (!captcha.equals(validationCode)) {
                 return false;
             }

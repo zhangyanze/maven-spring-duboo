@@ -1,6 +1,5 @@
 package com.goshop.portal.controller;
 
-import com.goshop.common.context.ValidationCodeServlet;
 import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;

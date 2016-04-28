@@ -41,4 +41,44 @@ public class CmsArticleServiceImpl implements CmsArticleService {
     public int delete(Long articleId) {
         return cmsArticleMapper.deleteByPrimaryKey(articleId);
     }
+
+    @Override
+    public CmsArticleWithBLOBs findOne(Long articleId) {
+        return cmsArticleMapper.selectByPrimaryKey(articleId);
+    }
+
+    @Override
+    public int update(CmsArticleWithBLOBs cmsArticle) {
+        return cmsArticleMapper.updateByPrimaryKeySelective(cmsArticle);
+    }
+
+    @Override
+    public int updateByArticleCommendFlag(Long articleId, Integer articleCommendFlag) {
+        return cmsArticleMapper.updateByArticleCommendFlag(articleId,articleCommendFlag);
+    }
+
+    @Override
+    public int updateByArticleCommendImageFlag(Long articleId, Integer articleCommendImageFlag) {
+        return cmsArticleMapper.updateByArticleCommendImageFlag(articleId, articleCommendImageFlag);
+    }
+
+    @Override
+    public int updateByArticleCommentFlag(Long articleId, Integer articleCommentFlag) {
+        return cmsArticleMapper.updateByArticleCommentFlag(articleId, articleCommentFlag);
+    }
+
+    @Override
+    public int updateByArticleAttitudeFlag(Long articleId, Integer articleAttitudeFlag) {
+        return cmsArticleMapper.updateByArticleAttitudeFlag(articleId, articleAttitudeFlag);
+    }
+
+    @Override
+    public int updateByArticleSort(Long articleId, Integer articleSort) {
+        return cmsArticleMapper.updateByArticleSort(articleId,articleSort);
+    }
+
+    @Override
+    public int updateByArticleClick(Long articleId, Integer articleClick) {
+        return cmsArticleMapper.updateByArticleClick(articleId,articleClick);
+    }
 }

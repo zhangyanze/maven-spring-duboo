@@ -7,7 +7,7 @@ public class GoodsType  implements Serializable {
 
     private String typeName;
 
-    private Boolean typeSort;
+    private Integer typeSort;
 
     private Integer classId;
 
@@ -29,11 +29,11 @@ public class GoodsType  implements Serializable {
         this.typeName = typeName == null ? null : typeName.trim();
     }
 
-    public Boolean getTypeSort() {
+    public Integer getTypeSort() {
         return typeSort;
     }
 
-    public void setTypeSort(Boolean typeSort) {
+    public void setTypeSort(Integer typeSort) {
         this.typeSort = typeSort;
     }
 

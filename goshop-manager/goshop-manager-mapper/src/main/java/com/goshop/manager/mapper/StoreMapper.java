@@ -27,12 +27,12 @@ public interface StoreMapper {
 
     /**
      *
-     * @param gradeId µÈ¼¶
-     * @param sellerName µêÖ÷
-     * @param storeName µêÆÌ
-     * @param storeState µêÆÌ×´Ì¬
-     * @param isExpire ÊÇ·ñ¼´½«¹ıÆÚ
-     * @param isExpired ÊÇ·ñ¹ıÆÚ
+     * @param gradeId ç­‰çº§
+     * @param sellerName åº—ä¸»
+     * @param storeName åº—é“º
+     * @param storeState åº—é“ºçŠ¶æ€
+     * @param isExpire æ˜¯å¦å³å°†è¿‡æœŸ
+     * @param isExpired æ˜¯å¦è¿‡æœŸ
      * @return
      */
     List<Store> find(@Param("gradeId")Integer gradeId, @Param("sellerName")String sellerName, @Param("storeName")String storeName, @Param("storeState")Integer storeState, @Param("isExpire")Boolean isExpire,@Param("isExpired") Boolean isExpired);
