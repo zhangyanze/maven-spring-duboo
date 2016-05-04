@@ -36,7 +36,7 @@
       #{apicSpec,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.goshop.manager.pojo.AlbumPic" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="apicId"  parameterType="com.goshop.manager.pojo.AlbumPic" >
     insert into gs_album_pic
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="apicId != null" >
@@ -138,5 +138,12 @@
       store_id = #{storeId,jdbcType=INTEGER},
       upload_time = #{uploadTime,jdbcType=TIMESTAMP}
     where apic_id = #{apicId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateToDefaultAlbumClass" >
+    UPDATE gs_album_pic
+    SET aclass_id = #{toAclassId}
+    WHERE
+        aclass_id = #{aclassId}
   </update>
 </mapper>

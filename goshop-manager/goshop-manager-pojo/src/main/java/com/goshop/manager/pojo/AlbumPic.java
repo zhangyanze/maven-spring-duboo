@@ -1,8 +1,12 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class AlbumPic {
+public class AlbumPic implements Serializable {
+
     private Integer apicId;
 
     private String apicName;

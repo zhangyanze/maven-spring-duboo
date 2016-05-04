@@ -21,10 +21,12 @@ public interface CmsArticleService {
      * 按文件类型查询
      * @param curPage
      * @param pageSize
-     * @param articleType
+     * @param articleState
      * @return
      */
-    PageInfo<CmsArticle> findBaseByArticleState(Integer curPage, Integer pageSize, Integer articleType);
+    PageInfo<CmsArticle> findBaseByArticleState(Integer curPage, Integer pageSize, Integer articleState);
+
+    PageInfo<CmsArticle> query(Integer curPage, Integer pageSize, Integer articleState, String articleTitle, String articlePublisherName);
 
     int save(CmsArticleWithBLOBs cmsArticle);
 
@@ -51,4 +53,5 @@ public interface CmsArticleService {
     int updateByArticleSort(Long articleId, Integer articleSort);
 
     int updateByArticleClick(Long articleId, Integer articleClick);
+
 }

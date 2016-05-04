@@ -110,4 +110,9 @@ public class StoreServiceImpl implements StoreService {
     public void update(StoreWithBLOBs store) {
         storeMapper.updateByPrimaryKeySelective(store);
     }
+
+    @Override
+    public Store findByMemberId(Long userId) {
+        return storeMapper.findByMemberId(userId);
+    }
 }

@@ -28,4 +28,10 @@
 
     <dubbo:reference id="goodsClassService"
                      interface="com.goshop.manager.i.GoodsClassService" />
+    <!-- 店铺 -->
+    <dubbo:reference id="storeService"
+                     interface="com.goshop.manager.i.StoreService" />
+    <!-- 相册图片-->
+    <dubbo:reference id="albumPicService"
+                     interface="com.goshop.manager.i.AlbumPicService" />
 </beans>

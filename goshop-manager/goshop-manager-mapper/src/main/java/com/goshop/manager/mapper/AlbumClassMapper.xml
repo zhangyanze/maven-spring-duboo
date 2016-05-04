@@ -140,13 +140,13 @@
     GROUP BY
         a.aclass_id
     ORDER BY
-    <if test="sortValue == null or sortValue == 5 " >
+    <if test="sortValue == 5 " >
       aclass_sort asc
     </if>
     <if test="sortValue == 0 " >
       upload_time desc
     </if>
-    <if test="sortValue == 1 " >
+    <if test="sortValue == null or sortValue == 1 " >
       upload_time asc
     </if>
     <if test="sortValue == 2 " >
@@ -159,4 +159,73 @@
       aclass_sort desc
     </if>
   </select>
+
+  <select id="findCountByStoreId" resultType="int">
+    SELECT
+        count(a.aclass_id)
+    FROM
+        gs_album_class a
+    LEFT JOIN gs_store s ON a.store_id = s.store_id
+    WHERE
+      s.member_id = #{memberId}
+  </select>
+
+  <select id="findOneByAclassNameAndStoreId" resultMap="BaseResultMap" >
+    SELECT
+    a.*
+    FROM
+    gs_album_class a
+    LEFT JOIN gs_store s ON a.store_id = s.store_id
+    WHERE
+    s.member_id = #{memberId}
+    and a.aclass_name = #{aclassName}
+  </select>
+
+  <select id="findDefaultAlbumClass" resultMap="BaseResultMap" >
+    SELECT
+    a.*
+    FROM
+    gs_album_class a
+    LEFT JOIN gs_store s ON a.store_id = s.store_id
+    WHERE
+    s.member_id = #{memberId}
+    and a.is_default = 1
+  </select>
+
+  <select id="findByAclassIdAndUserId" resultMap="BaseResultMap" >
+    SELECT
+    a.*
+    FROM
+    gs_album_class a
+    LEFT JOIN gs_store s ON a.store_id = s.store_id
+    WHERE
+    s.member_id = #{memberId}
+    and a.aclass_id = #{aclassId}
+  </select>
+
+  <update id="updateByStoreId" parameterType="com.goshop.manager.pojo.AlbumClass" >
+    update gs_album_class
+    <set >
+      <if test="aclassName != null" >
+        aclass_name = #{aclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="aclassDes != null" >
+        aclass_des = #{aclassDes,jdbcType=VARCHAR},
+      </if>
+      <if test="aclassSort != null" >
+        aclass_sort = #{aclassSort,jdbcType=TINYINT},
+      </if>
+      <if test="aclassCover != null" >
+        aclass_cover = #{aclassCover,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+    </set>
+    where aclass_id = #{aclassId,jdbcType=INTEGER}
+    and store_id = #{storeId,jdbcType=INTEGER}
+  </update>
 </mapper>

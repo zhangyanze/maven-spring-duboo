@@ -1,9 +1,10 @@
 package com.goshop.manager.pojo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class AlbumClass {
+public class AlbumClass implements Serializable {
     private Integer aclassId;
 
     private String aclassName;

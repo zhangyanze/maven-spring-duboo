@@ -580,7 +580,7 @@
     where article_id = #{articleId,jdbcType=BIGINT}
   </update>
 
-  <select id="findBaseByArticleState" resultMap="ResultMapWithBLOBs" >
+  <select id="findBaseByArticleState" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from gs_cms_article
@@ -622,4 +622,17 @@
     set article_click = #{articleClick,jdbcType=BIT}
     where article_id = #{articleId,jdbcType=BIGINT}
   </update>
+
+  <select id="query" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from gs_cms_article
+    where article_state = #{articleState,jdbcType=BIGINT}
+    <if test="articleTitle != null  and articleTitle !='' " >
+      and article_title  like CONCAT('%',#{articleTitle},'%')
+    </if>
+    <if test="articlePublisherName != null  and articlePublisherName !='' " >
+      and article_publisher_name  like CONCAT('%',#{articlePublisherName},'%')
+    </if>
+  </select>
 </mapper>

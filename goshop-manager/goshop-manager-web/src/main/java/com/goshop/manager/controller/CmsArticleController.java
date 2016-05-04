@@ -47,8 +47,18 @@ public class CmsArticleController {
 
     @RequestMapping(value = "cms_article_list",method = RequestMethod.GET)
     public String index(@RequestParam(value="p",required=false) Integer curPage,
+                        String article_title,String article_publisher_name,
+                        Integer article_state,
                         Model model, HttpServletRequest request) {
-        PageInfo<CmsArticle> page=cmsArticleService.findBaseByArticleState(curPage, 20, CmsArticleService.TYPE_PUBLISH);
+        if(article_state==null){
+            article_state=3;
+        }
+        PageInfo<CmsArticle> page=null;
+        if(StringUtils.hasText(article_title)||StringUtils.hasText(article_publisher_name)){
+            page=cmsArticleService.query(curPage, 20, article_state, article_title, article_publisher_name);
+        }else{
+            page=cmsArticleService.findBaseByArticleState(curPage, 20, article_state);
+        }
         model.addAttribute("P_PAGE",page);
         return "cms/article";
     }

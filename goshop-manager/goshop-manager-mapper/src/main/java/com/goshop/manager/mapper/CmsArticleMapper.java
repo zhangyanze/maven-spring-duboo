@@ -34,4 +34,6 @@ public interface CmsArticleMapper {
     int updateByArticleSort(@Param("articleId")Long articleId, @Param("articleSort")Integer articleSort);
 
     int updateByArticleClick(@Param("articleId")Long articleId, @Param("articleClick")Integer articleClick);
+
+    List<CmsArticle> query(@Param("articleState")Integer articleState, @Param("articleTitle")String articleTitle, @Param("articlePublisherName")String articlePublisherName);
 }

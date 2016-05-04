@@ -1,5 +1,6 @@
 package com.goshop.portal.controller;
 
+import com.goshop.common.context.ValidationCodeServlet;
 import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
@@ -24,6 +25,8 @@ public class RegisterController {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    ValidationCodeServlet validationCodeServlet;
 
     @RequestMapping
     public String register(HttpServletRequest request) {
@@ -47,7 +50,7 @@ public class RegisterController {
             ResponseMessageUtils.xmlCDataOut(response, "两次密码不同！", url);
         }
 
-        if (!ValidationCodeServlet.isCaptcha(request)) {
+        if (!validationCodeServlet.isCaptcha(request)) {
             ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
         }
 
@@ -75,7 +78,7 @@ public class RegisterController {
     @RequestMapping("/check/captcha")
     @ResponseBody
     public Object captcha(HttpServletRequest request) {
-        return ResponseStatus.get(ValidationCodeServlet.isCaptcha(request));
+        return ResponseStatus.get(validationCodeServlet.isCaptcha(request));
     }
 
 

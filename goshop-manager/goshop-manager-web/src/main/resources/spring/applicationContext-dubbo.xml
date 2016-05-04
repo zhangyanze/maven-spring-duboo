@@ -29,6 +29,10 @@
     <dubbo:service interface="com.goshop.manager.i.StoreClassService" ref="storeClassService" />
     <!-- 店铺等级 -->
     <dubbo:service interface="com.goshop.manager.i.StoreGradeService" ref="storeGradeService" />
+    <!-- 店铺 -->
+    <dubbo:service interface="com.goshop.manager.i.StoreService" ref="storeService" />
     <!-- 商品分类 -->
     <dubbo:service interface="com.goshop.manager.i.GoodsClassService" ref="goodsClassService" />
+    <!-- 相册图片-->
+    <dubbo:service interface="com.goshop.manager.i.AlbumPicService" ref="albumPicService" />
 </beans>

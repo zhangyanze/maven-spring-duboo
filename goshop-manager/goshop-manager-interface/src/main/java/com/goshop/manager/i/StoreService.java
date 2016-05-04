@@ -28,4 +28,6 @@ public interface StoreService {
     Store findOne(Integer storeId);
 
     void update(StoreWithBLOBs store);
+
+    Store findByMemberId(Long userId);
 }

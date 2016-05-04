@@ -1,14 +1,22 @@
 package com.goshop.portal.context;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goshop.common.context.MessageService;
 import com.goshop.common.context.MessageInfo;
 import com.goshop.common.exception.PageException;
+import com.goshop.common.pojo.ErrorData;
+import com.goshop.common.pojo.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 /**
  * 创 建 人：gugu
@@ -42,7 +50,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 
 			} else {
 
-				/*response.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				String result = null;
 				String type = "";
@@ -92,7 +100,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 					writer.close();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}*/
+				}
 			}
 
 		}

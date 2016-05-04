@@ -19,4 +19,14 @@ public interface AlbumClassMapper {
     int updateByPrimaryKey(AlbumClass record);
 
     List<AlbumClass> findByStoreId(@Param("memberId")Long memberId,@Param("sortValue")Integer sortValue);
+
+    Integer findCountByStoreId(@Param("memberId")Long memberId);
+
+    AlbumClass findOneByAclassNameAndStoreId(@Param("aclassName")String aclassName,@Param("memberId") Long memberId);
+
+    AlbumClass findDefaultAlbumClass(@Param("memberId") Long memberId);
+
+    AlbumClass findByAclassIdAndUserId(@Param("aclassId")Integer aclassId, @Param("memberId") Long memberId);
+
+    int updateByStoreId(AlbumClass albumClass);
 }

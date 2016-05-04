@@ -77,7 +77,7 @@
                 <td class="vatop rowform">
 			<span class="type-file-show">
 			<img class="show_image" src="${S_COMMON_URL}/images/preview.png">
-			<div class="type-file-preview" style="display: none;"><img id="view_img" src="<#if (P_CMS_ARTICLE.articleImage??&&P_CMS_ARTICLE.articleImage!='')>${S_URL}/att?path=${P_CMS_ARTICLE.articleImage}<#else>${S_COMMON_URL}/images/cms/no_cover.png</#if>"> </div>
+			<div class="type-file-preview" style="display: none;"><img id="view_img" src="<#if (P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleImage!='')>${S_URL}/att?path=${P_CMS_ARTICLE.articleImage}<#else>${S_COMMON_URL}/images/cms/no_cover.png</#if>"> </div>
 			</span>
             <span class="type-file-box">
               <input type="text" name="articleImage" id="articleImage" class="type-file-text">
@@ -92,7 +92,7 @@
                 <td class="required" colspan="2"><label for="articleForm">链接:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="articleLink" name="articleLink" value="<#if P_CMS_ARTICLE??>${P_CMS_ARTICLE.articleLink!}"></#if></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="articleLink" name="articleLink" value="<#if P_CMS_ARTICLE??>${P_CMS_ARTICLE.articleLink!}</#if>"></td>
                 <td class="vatop tips">当填写"链接"后点击文章标题将直接跳转至链接地址，不显示文章内容。链接格式请以http://开头</td>
             </tr>
 
@@ -200,7 +200,7 @@
                 <td class="required" colspan="2"><label for="articleForm">文章来源:</label></td>
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                <td class="vatop rowform"><input type="text" class="txt" id="articleOrigin" name="articleOrigin" value="<#if P_CMS_ARTICLE??>${P_CMS_ARTICLE.articleOrigin!}"></#if></td>
+                <td class="vatop rowform"><input type="text" class="txt" id="articleOrigin" name="articleOrigin" value="<#if P_CMS_ARTICLE??>${P_CMS_ARTICLE.articleOrigin!}</#if>"></td>
                 <td class="vatop tips"></td>
             </tr>
 
@@ -225,7 +225,7 @@
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="vatop rowform onoff">
-                    <label class="cb-enable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommendFlag==1>selected</#if>" for="articleCommendFlag1"><span>是</span></label>
+                    <label class="cb-enable <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendFlag==1>selected</#if><#else>selected</#if> " for="articleCommendFlag1"><span>是</span></label>
                     <label class="cb-disable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommendFlag==0>selected</#if>"  for="articleCommendFlag0"><span>否</span></label>
                     <input type="radio" value="1" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendFlag==1>checked="checked"</#if><#else>checked="checked"</#if> name="articleCommendFlag" id="articleCommendFlag1">
                     <input type="radio" value="0" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendFlag==0>checked="checked"</#if></#if> name="articleCommendFlag" id="articleCommendFlag0"></td>
@@ -262,7 +262,7 @@
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="vatop rowform onoff">
-                    <label class="cb-enable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommentFlag==1>selected</#if>" for="articleCommentFlag1"><span>是</span></label>
+                    <label class="cb-enable <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommentFlag==1>selected</#if><#else>selected</#if>" for="articleCommentFlag1"><span>是</span></label>
                     <label class="cb-disable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommentFlag==0>selected</#if>" for="articleCommentFlag0"><span>否</span></label>
                     <input type="radio" value="1" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommentFlag==1>checked="checked"</#if><#else>checked="checked"</#if> name="articleCommentFlag" id="articleCommentFlag1">
                     <input type="radio" value="0" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommentFlag==0>checked="checked"</#if></#if> name="articleCommentFlag" id="articleCommentFlag0"></td>
@@ -274,7 +274,7 @@
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="vatop rowform onoff">
-                    <label class="cb-enable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleAttitudeFlag==1>selected</#if>" for="articleAttitudeFlag1"><span>是</span></label>
+                    <label class="cb-enable <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleAttitudeFlag==1>selected</#if><#else>selected</#if>" for="articleAttitudeFlag1"><span>是</span></label>
                     <label class="cb-disable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleAttitudeFlag==0>selected</#if>"  for="articleAttitudeFlag0"><span>否</span></label>
                     <input type="radio" value="1" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleAttitudeFlag==1>checked="checked"</#if><#else>checked="checked"</#if> name="articleAttitudeFlag" id="articleAttitudeFlag1">
                     <input type="radio" value="0" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleAttitudeFlag==0>checked="checked"</#if></#if> name="articleAttitudeFlag" id="articleAttitudeFlag0"></td>
@@ -286,7 +286,7 @@
             </tr>
             <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="vatop rowform onoff">
-                    <label class="cb-enable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommendImageFlag==1>selected</#if>" for="articleCommendImageFlag1"><span>是</span></label>
+                    <label class="cb-enable <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendImageFlag==1>selected</#if><#else>selected</#if>" for="articleCommendImageFlag1"><span>是</span></label>
                     <label class="cb-disable <#if P_CMS_ARTICLE??&&P_CMS_ARTICLE.articleCommendImageFlag==0>selected</#if>"  for="articleCommendImageFlag0"><span>否</span></label>
                     <input type="radio" value="1" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendImageFlag==1>checked="checked"</#if><#else>checked="checked"</#if> name="articleCommendImageFlag" id="articleCommendImageFlag1">
                     <input type="radio" value="0" <#if P_CMS_ARTICLE??><#if P_CMS_ARTICLE.articleCommendImageFlag==0>checked="checked"</#if></#if> name="articleCommendImageFlag" id="articleCommendImageFlag0"></td>

@@ -91,10 +91,10 @@
         <div class="item-title">
             <h3>文章管理</h3>
             <ul class="tab-base">
-                <li><a class="current" href="#"><span>已发布列表</span></a></li>
-                <li><a href="#"><span>草稿列表</span></a></li>
-                <li><a href="#"><span>待审核列表</span></a></li>
-                <li><a href="#"><span>回收站列表</span></a></li>
+                <li><a <#if RequestParameters['article_state']??><#if RequestParameters['article_state']=='3'>class="current"</#if><#else>class="current"</#if> href="${S_URL}/cms_article/cms_article_list?article_state=3"><span>已发布列表</span></a></li>
+                <li><a <#if RequestParameters['article_state']??&&RequestParameters['article_state']=='1'>class="current"</#if> href="${S_URL}/cms_article/cms_article_list?article_state=1"><span>草稿列表</span></a></li>
+                <li><a <#if RequestParameters['article_state']??&&RequestParameters['article_state']=='2'>class="current"</#if> href="${S_URL}/cms_article/cms_article_list?article_state=2"><span>待审核列表</span></a></li>
+                <li><a <#if RequestParameters['article_state']??&&RequestParameters['article_state']=='4'>class="current"</#if> href="${S_URL}/cms_article/cms_article_list?article_state=4"><span>回收站列表</span></a></li>
                 <li><a href="${S_URL}/cms_article/add"><span>发布信息</span></a></li>
             </ul>
         </div>
@@ -107,17 +107,10 @@
             <tbody>
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <th><label for="article_title">标题</label></th>
-                <td><input type="text" class="txt" name="article_title" value=""></td>
+                <td><input type="text" class="txt" name="article_title" value="${RequestParameters['article_title']!}"></td>
                 <th><label for="article_publisher_name">作者</label></th>
-                <td><input type="text" class="txt" name="article_publisher_name" value=""></td>
-                <th><label for="article_state">状态</label></th>
-                <td><select name="article_state">
-                    <option value="0">请选择</option>
-                    <option value="1">草稿箱</option>
-                    <option value="2">待审核</option>
-                    <option value="3">已发布</option>
-                    <option value="4">回收站</option>
-                </select></td>
+                <td><input type="text" class="txt" name="article_publisher_name" value="${RequestParameters['article_publisher_name']!}"></td>
+
                 <td><a title="查询" class="btn-search " href="javascript:document.formSearch.submit();">&nbsp;</a></td>
             </tr>
             </tbody>

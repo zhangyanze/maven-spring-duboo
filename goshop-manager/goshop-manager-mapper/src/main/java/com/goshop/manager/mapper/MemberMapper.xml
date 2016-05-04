@@ -366,13 +366,13 @@
     select m.*,u.user_name,u.login_name,u.login_num,u.login_time,u.login_ip
     from gs_member m LEFT JOIN gs_user u on m.user_id=u.id
     where 1=1
-    <if test="loginName != null" >
+    <if test="loginName != null and loginName !=''  " >
      and u.login_name like CONCAT('%',#{loginName,jdbcType=VARCHAR},'%')
     </if>
-    <if test="memberEmail != null" >
+    <if test="memberEmail != null and memberEmail !='' " >
       and m.member_email like CONCAT('%',#{memberEmail,jdbcType=VARCHAR},'%')
     </if>
-    <if test="memberTruename != null" >
+    <if test="memberTruename != null and memberTruename != ''" >
       and member_truename like CONCAT('%',#{memberTruename,jdbcType=VARCHAR},'%')
     </if>
     <if test="informAllow != null" >

@@ -21,7 +21,7 @@
                         </li>
                     </ul>
                     <a style="right: 100px;" class="ncsc-btn ncsc-btn-green" dialog_title="创建相册"
-                       nc_type="dialog" uri="${S_URL}/se/album/addpage">
+                       nc_type="dialog" uri="${S_URL}/album/add_page">
                         <i class="icon-folder-open ">
                         </i>
                         创建相册
@@ -84,6 +84,7 @@
                                     <input type="hidden" value="store_album" name="act">
                                     <input type="hidden" value="album_cate" name="op">
                                     <select id="img_sort" name="sort">
+                                        <option value="">请选择</option>
                                         <option <#if RequestParameters['sort']??&&RequestParameters['sort']=='4'>selected="selected"</#if> value="4">
                                             按排序从大到小
                                         </option>
@@ -118,10 +119,10 @@
                                 <div class="covers">
                                     <a href="${S_URL}/se/albumpic/piclist?category_id=${album.aclassId}">
 
-                                        <#if album.aclassCover??>
-                                            <i class="icon-camera-retro"></i>
-                                        <#else>
+                                        <#if album.aclassCover??&&album.aclassCover!="">
                                             <img id="aclass_cover" src="${S_URL}/att?path=${album.aclassCover}">
+                                        <#else>
+                                            <i class="icon-camera-retro"></i>
                                         </#if>
                                     </a>
                                 </div>
@@ -135,7 +136,7 @@
                                     共${album.picNumber}张
                                 </dd>
                                 <dd class="buttons">
-              <span uri="${S_URL}/se/album/updatepage?id=${album.aclassId}" dialog_width="480"
+              <span uri="${S_URL}/album/update_page?id=${album.aclassId}" dialog_width="480"
                     dialog_id="album_1" dialog_title="编辑相册" nc_type="dialog">
                 <a href="JavaScript:void(0);">
                     <i class="icon-pencil">
@@ -144,7 +145,7 @@
                 </a>
               </span>
                                     <#if album.isDefault!=1>
-                                        <a onclick="ajax_get_confirm('删除相册?\n注意：相册内的图片将转移到默认相册', 'se/album/delclass?id=${album.aclassId}');" href="javascript:void(0)"><i class="icon-remove-sign"></i>删除</a>
+                                        <a onclick="ajax_get_confirm('删除相册?\n注意：相册内的图片将转移到默认相册', 'album/del_class?id=${album.aclassId}');" href="javascript:void(0)"><i class="icon-remove-sign"></i>删除</a>
                                     </#if>
                                 </dd>
                             </dl>
@@ -159,7 +160,7 @@
             <dl>
                 <dt>
                 <div class="covers">
-                    <a href="${S_URL}/se/albumpic/piclist?category_id=">
+                    <a href="${S_URL}/albumpic/piclist?category_id=">
                         <i class="icon-camera-retro"></i>
                     </a>
                 </div>
@@ -173,7 +174,7 @@
                     共0张
                 </dd>
                 <dd class="buttons">
-              <span uri="${S_URL}/se/album/updatepage?id=" dialog_width="480"
+              <span uri="${S_URL}/album/update_page?id=" dialog_width="480"
                     dialog_id="album_1" dialog_title="编辑相册" nc_type="dialog">
                 <a href="JavaScript:void(0);">
                     <i class="icon-pencil">
