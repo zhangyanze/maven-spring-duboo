@@ -44,4 +44,9 @@ public class FastDFSAttachmentImpl implements AttachmentService {
     public String upload(File file,String type) throws Exception {
         return null;
     }
+
+    @Override
+    public void delete(String id) {
+
+    }
 }

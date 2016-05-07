@@ -39,6 +39,7 @@
 				/validationCodeServlet.png**= anon
 				/static/** = anon
 				/refuse = anon
+				/att**=anon
 				<!-- 请求 logout.action地址，shiro去清除session-->
 				/logout = logout
 				/login.do = authc

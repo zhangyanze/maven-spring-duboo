@@ -32,6 +32,12 @@ public class LocalhostAttachmentImpl implements AttachmentService {
         return this.upload(in,fileName);
     }
 
+    @Override
+    public void delete(String id) {
+        String filePath=this.getPath()+id;
+        FileUtils.deleteFile(filePath);
+    }
+
     private String getFileName(String type) {
         StringBuffer sb = new StringBuffer();
         sb.append("/");

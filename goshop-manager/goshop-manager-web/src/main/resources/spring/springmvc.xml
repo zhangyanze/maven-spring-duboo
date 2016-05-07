@@ -23,7 +23,7 @@
     <bean id="superDirective" class="cn.org.rapid_framework.freemarker.directive.SuperDirective"/>
 
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-          p:prefix="" p:suffix=".ftl">
+          p:prefix="${TPL}" p:suffix=".ftl">
 
         <property name="cache" value="false" />
         <property name="viewClass"

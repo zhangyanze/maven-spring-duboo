@@ -39,4 +39,6 @@ public interface AttachmentService {
     File download(String id);
 
     String upload(File file,String type) throws Exception;
+
+    void delete(String id);
 }

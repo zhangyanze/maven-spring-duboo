@@ -1,5 +1,6 @@
 package com.goshop.portal.controller;
 
+import com.goshop.common.context.ValidationCodeServlet;
 import com.goshop.common.utils.ResponseMessageUtils;
 import com.goshop.common.utils.TokenUtils;
 import com.goshop.portal.i.MemberService;
@@ -23,6 +24,9 @@ public class LoginController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    ValidationCodeServlet validationCodeServlet;
     /**
      * 用户登陆
      */
@@ -112,7 +116,7 @@ public class LoginController {
         String url = request.getContextPath() + "/forget_password.html";
         if (!TokenUtils.getInstance().verifyToken(request)) {
             ResponseMessageUtils.xmlCDataOut(response, "你已提交了用户数据！", url);
-        }else if (!ValidationCodeServlet.isCaptcha(request)) {
+        }else if (!validationCodeServlet.isCaptcha(request)) {
             ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
         }else if(memberService.checkLoginName(username)){
             ResponseMessageUtils.xmlCDataOut(response, "系统没有此用户！", url);
@@ -147,7 +151,7 @@ public class LoginController {
         if(!password.equals(password_confirm)){
             ResponseMessageUtils.xmlCDataOut(response, "两次密码输入不一样，请检查！", url);
         }
-        if (!ValidationCodeServlet.isCaptcha(request)) {
+        if (!validationCodeServlet.isCaptcha(request)) {
             ResponseMessageUtils.xmlCDataOut(response, "验证码错误！", url);
         }
         try{
