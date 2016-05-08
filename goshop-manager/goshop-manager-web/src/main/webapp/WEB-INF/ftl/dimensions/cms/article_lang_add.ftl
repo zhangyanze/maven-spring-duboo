@@ -308,7 +308,7 @@
 
                                 <tr>
                                     <td style="border-top: 1px dotted #cbe9f3;" class="required" colspan="2"><label
-                                            class="validation">英文内容:</label></td>
+                                            class="validation">英文内容: </label></td>
                                 </tr>
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop rowform" colspan="2">
