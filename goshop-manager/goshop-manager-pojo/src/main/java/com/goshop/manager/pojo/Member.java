@@ -68,6 +68,16 @@ public class Member implements Serializable {
     private Timestamp loginTime;
     //虚拟user字段
     private String loginIp;
+    //虚拟是否为管理员字段
+    private Integer isAdmin;
+
+    public Integer getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     public String getMemberPrivacy() {
         return memberPrivacy;

@@ -232,6 +232,10 @@
             <dd><a onclick="openItem('article_list,article_lang,cms')" href="javascript:void(0)">文章管理</a></dd>
             <dd><a onclick="openItem('index,cms_article_class,cms')"   href="javascript:void(0)">文章分类</a></dd>
             <dd><a onclick="openItem('index,cms_slide,cms')" href="javascript:void(0)">幻灯片管理</a></dd>
+            <dd><a onclick="openItem('2,article_lang_type,cms')" href="javascript:void(0)">新聞管理</a></dd>
+            <dd><a onclick="openItem('1,article_lang_type,cms')" href="javascript:void(0)">藝術活動管理</a></dd>
+            <dd><a onclick="openItem('3,article_lang_type,cms')" href="javascript:void(0)">公眾活動管理</a></dd>
+            <dd><a onclick="openItem('4,article_lang_type,cms')" href="javascript:void(0)">网站文章管理</a></dd>
         </dl>
     </div>
 </div>

@@ -287,4 +287,37 @@ public class RequestUtils {
     	}
     	return parame;
     }
+
+    /**
+     * 去除给定参数
+     * @param request
+     * @param defaultParamName
+     * @return
+     */
+    public static String dislodgeParam(HttpServletRequest request, String defaultParamName) {
+        String qs = request.getQueryString();
+        if(StringUtils.isNoneEmpty(qs)) {
+            Map<String, String> urlParameter = new HashMap();
+            String[] qsArray = qs.split("&");
+            for (String parame : qsArray) {
+                String[] pArray = parame.split("=");
+                if (pArray.length == 2) {
+                    if (!pArray[0].equals(defaultParamName)) {
+                        urlParameter.put(pArray[0], pArray[1]);
+                    }
+                }
+            }
+            StringBuffer urlSB= new StringBuffer();
+            if(urlParameter.size()>0){
+                for(String key:urlParameter.keySet()){
+                    urlSB.append(key);
+                    urlSB.append("=");
+                    urlSB.append(urlParameter.get(key));
+                    urlSB.append("&");
+                }
+                return urlSB.substring(0, urlSB.length()-1);
+            }
+        }
+        return null;
+    }
 }

@@ -64,6 +64,34 @@
                   幻灯片管理
               </a>
             </li>
+              <li nc_type="">
+                  <a onclick="openItem('2,article_lang_type,cms');"
+                     id="item_2article_lang_type" name="item_2article_lang_type"
+                     href="JavaScript:void(0);">
+                      新聞管理
+                  </a>
+              </li>
+              <li nc_type="">
+                  <a onclick="openItem('1,article_lang_type,cms');"
+                     id="item_1article_lang_type" name="item_1article_lang_type"
+                     href="JavaScript:void(0);">
+                      藝術活動管理
+                  </a>
+              </li>
+              <li nc_type="">
+                  <a onclick="openItem('3,article_lang_type,cms');"
+                     id="item_3article_lang_type" name="item_3article_lang_type"
+                     href="JavaScript:void(0);">
+                      公眾活動管理
+                  </a>
+              </li>
+              <li nc_type="">
+                  <a onclick="openItem('4,article_lang_type,cms');"
+                     id="item_4article_lang_type" name="item_4article_lang_type"
+                     href="JavaScript:void(0);">
+                      网站文章管理
+                  </a>
+              </li>
 
           </ol>
         </dd>

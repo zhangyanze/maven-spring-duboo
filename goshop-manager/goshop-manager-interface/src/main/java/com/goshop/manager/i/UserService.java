@@ -3,6 +3,7 @@ package com.goshop.manager.i;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.manager.pojo.Permission;
+import com.goshop.manager.pojo.Role;
 import com.goshop.manager.pojo.StoreGrade;
 import com.goshop.manager.pojo.User;
 
@@ -23,15 +24,17 @@ public interface UserService {
 
     int updateByPrimaryKeySelective(User user);
 
-    User findOne(Long id);
+    User findOne(Long userId);
 
     User findByLoginName(String loginName);
 
-    int delete(Long id);
+    int delete(Long userId);
 
-    User findOfRoleOne(Long id);
+    User findOfRoleOne(Long userId);
 
     List<Permission> findPermissionListByUserId(Long userId);
 
     void updateLoginInfo(User user, String ip);
+
+    List<Role> findByRole(Long userId);
 }

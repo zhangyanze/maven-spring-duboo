@@ -1,6 +1,7 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.Permission;
+import com.goshop.manager.pojo.Role;
 import com.goshop.manager.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,8 @@ public interface UserMapper {
     int findByLoginNameCount(String loginName);
 
     void updateLoginInfo(User user);
+
+    List<Role> findByRole(Long userId);
+
+    int findByRoleCount(@Param("userId")Long userId, @Param("roleName")String roleName);
 }

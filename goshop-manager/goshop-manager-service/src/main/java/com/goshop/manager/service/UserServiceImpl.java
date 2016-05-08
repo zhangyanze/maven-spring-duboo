@@ -5,6 +5,7 @@ import com.goshop.common.utils.RandomUtils;
 import com.goshop.manager.i.UserService;
 import com.goshop.manager.mapper.UserMapper;
 import com.goshop.manager.pojo.Permission;
+import com.goshop.manager.pojo.Role;
 import com.goshop.manager.pojo.User;
 import com.goshop.shiro.service.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findOne(Long id) {
-        return userMapper.selectByPrimaryKey(id);
+    public User findOne(Long userId) {
+        return userMapper.selectByPrimaryKey(userId);
     }
 
     @Override
@@ -53,13 +54,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int delete(Long id) {
-        return userMapper.deleteByPrimaryKey(id);
+    public int delete(Long userId ){
+        return userMapper.deleteByPrimaryKey(userId);
     }
 
     @Override
-    public User findOfRoleOne(Long id) {
-        return userMapper.findOfRoleOne(id);
+    public User findOfRoleOne(Long userId) {
+        return userMapper.findOfRoleOne(userId);
     }
 
     @Override
@@ -77,6 +78,11 @@ public class UserServiceImpl implements UserService {
         loginUserInfo.setLoginTime(new Timestamp(System.currentTimeMillis()));
         loginUserInfo.setOldLoginTime(user.getLoginTime());
         userMapper.updateLoginInfo(loginUserInfo);
+    }
+
+    @Override
+    public List<Role> findByRole(Long userId) {
+        return userMapper.findByRole(userId);
     }
 
 

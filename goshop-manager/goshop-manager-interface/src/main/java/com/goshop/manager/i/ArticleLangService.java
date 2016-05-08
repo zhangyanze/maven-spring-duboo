@@ -11,8 +11,24 @@ import java.util.List;
  */
 public interface ArticleLangService {
 
-     PageInfo<ArticleLangMain> findAll(Integer curPage, Integer pageSize);
+     PageInfo<ArticleLangMain> findManyAll(Integer curPage, Integer pageSize);
 
+     PageInfo<ArticleLangMain> queryMany(Integer curPage, Integer pageSize, String articleTitle, String articlePublisherName, Integer articleState, Long articleClassId);
+
+     PageInfo<ArticleLangMain> findManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId);
 
      int save(ArticleLangMain articleLang, List<ArticleLangInfo> articleLangInfoList);
+
+     ArticleLangMain findManyOne(Long articleId);
+
+     int update(ArticleLangMain articleLang, List<ArticleLangInfo> articleLangInfoList);
+
+     ArticleLangMain findMainOne(Long articleId);
+
+     int update(ArticleLangMain articleLangMain);
+
+     int delete(Long articleId);
+
+     int updateByArticleSort(Long articleId, Integer articleSort);
+
 }

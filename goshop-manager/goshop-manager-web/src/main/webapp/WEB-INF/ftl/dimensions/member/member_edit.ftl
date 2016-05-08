@@ -123,6 +123,17 @@
                 <td class="vatop tips">支持格式gif,jpg,jpeg,png</td>
             </tr>
             <tr>
+                <td class="required" colspan="2"><label>设置管理员:</label></td>
+            </tr>
+            <tr class="noborder">
+                <td class="vatop rowform onoff"><label class="cb-enable <#if P_MEMBER.isAdmin==1>selected</#if>" for="is_admin1"><span>设置</span></label>
+                    <label class="cb-disable <#if P_MEMBER.isAdmin!=1>selected</#if>" for="is_admin2"><span>取消</span></label>
+                    <input type="radio" value="1" <#if P_MEMBER.isAdmin==1>checked="checked"</#if>  name="isAdmin" id="is_admin1">
+                    <input type="radio" value="0" <#if P_MEMBER.isAdmin!=1>checked="checked"</#if>   name="isAdmin" id="is_admin2"></td>
+                <td class="vatop tips"></td>
+            </tr>
+
+            <tr>
                 <td class="required" colspan="2"><label>举报商品:</label></td>
             </tr>
             <tr class="noborder">

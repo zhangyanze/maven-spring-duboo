@@ -30,6 +30,7 @@
       <result column="article_abstract" property="articleAbstract" jdbcType="VARCHAR" />
       <result column="article_keyword" property="articleKeyword" jdbcType="VARCHAR" />
       <result column="article_click" property="articleClick" jdbcType="INTEGER" />
+      <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
     </collection>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.goshop.manager.pojo.ArticleLangMain" extends="BaseResultMap" >
@@ -328,5 +329,53 @@
     FROM
         gs_article_lang_main m
     LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+     order by m.article_sort,m.article_publish_time
       </select>
+
+
+  <select id="findManyOne" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long"  >
+    SELECT
+    m.* ,i.*
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+     where m.article_id = #{articleId,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryMany" resultMap="BaseResultMap">
+    SELECT distinct m.* ,i.*
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+    where 1=1
+    <if test="articleTitle != null and articleTitle != ''" >
+     and i.article_title  like CONCAT('%',#{articleTitle},'%')
+    </if>
+    <if test="articleAuthor != null and articleAuthor != ''" >
+     and i.article_author  like CONCAT('%',#{articleTitle},'%')
+    </if>
+    <if test="articleState != null" >
+     and  m.article_state = #{articleState}
+    </if>
+    <if test="articleClassId != null" >
+     and m.article_class_id = #{articleClassId}
+    </if>
+    order by m.article_sort,m.article_publish_time
+  </select>
+
+  <update id="updateByArticleSort" >
+    update gs_article_lang_main
+    set article_sort = #{articleSort,jdbcType=BIT}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+
+  <select id="findManyByArticleClassId" resultMap="BaseResultMap" parameterType="java.lang.Long"  >
+    SELECT
+    m.* ,i.*
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+    where m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+  </select>
+
 </mapper>

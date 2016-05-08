@@ -7,7 +7,7 @@
             <li title="您好:<@shiro.principal property="loginName"/>" class="adminid">您好&nbsp;:&nbsp;<strong><@shiro.principal property="loginName"/></strong></li>
             <li><a target="workspace" href="#"><span>修改密码</span></a></li>
             <li><a title="退出" href="logout"><span>退出</span></a></li>
-            <li><a title="网站首页" target="_blank" href="#"><span>网站首页</span></a></li>
+            <li><a title="网站首页" target="_blank" href="${S_URL}/sf"><span>网站首页</span></a></li>
         </ul>
     </div>
     <!-- End of Top navigation -->

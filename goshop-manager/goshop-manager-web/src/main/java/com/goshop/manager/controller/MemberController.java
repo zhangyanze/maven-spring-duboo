@@ -7,6 +7,7 @@ import com.goshop.common.exception.PageException;
 import com.goshop.common.pojo.ResponseStatus;
 import com.goshop.common.utils.ImageUtils;
 import com.goshop.common.utils.JsonUtils;
+import com.goshop.manager.i.AdminService;
 import com.goshop.manager.i.MemberService;
 import com.goshop.manager.pojo.GoodsClass;
 import com.goshop.manager.pojo.Member;
@@ -36,6 +37,9 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    AdminService adminService;
+
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public String index(@RequestParam(value = "p", required = false) Integer curPage,
                         String search_field_name,String search_field_value,
@@ -55,6 +59,7 @@ public class MemberController {
     public String editPage(Long member_id,
                         Model model, HttpServletRequest request) {
         Member member=memberService.findOne(member_id);
+        member.setIsAdmin(adminService.getIsAdmin(member.getUserId()));
         model.addAttribute("P_MEMBER",member);
         return "member/member_edit";
     }
@@ -64,6 +69,7 @@ public class MemberController {
                       Model model, HttpServletRequest request) {
         String url = request.getContextPath();
         memberService.update(member_passwd, member);
+        adminService.setAdmin(member.getUserId(),member.getIsAdmin());
         return Jump.get(url + "/member/member", "修改成功！");
     }
 
@@ -78,6 +84,7 @@ public class MemberController {
                       Model model, HttpServletRequest request) {
         String url = request.getContextPath();
         memberService.add(loginName,password, member);
+        adminService.setAdmin(member.getUserId(),member.getIsAdmin());
         return Jump.get(url + "/member/member", "保存成功！");
     }
 

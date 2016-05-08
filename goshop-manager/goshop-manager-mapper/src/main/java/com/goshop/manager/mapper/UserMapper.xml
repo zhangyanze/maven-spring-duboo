@@ -34,6 +34,13 @@
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="enable" property="enable" jdbcType="INTEGER" />
   </resultMap>
+    <resultMap id="roleResultMap" type="com.goshop.manager.pojo.Role" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="alias" property="alias" jdbcType="VARCHAR" />
+        <result column="enable" property="enable" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+    </resultMap>
   <sql id="Base_Column_List" >
     id, user_name, login_name, password, salt, enable, type, created, upcreated,login_num,login_time,
     old_login_time, login_ip,old_login_ip
@@ -274,4 +281,27 @@ WHERE
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+    <select id="findByRole" resultMap="roleResultMap" parameterType="java.lang.Long" >
+        SELECT
+        r.*
+        FROM
+        gs_user u	LEFT JOIN gs_user_role o ON u.id = o.u_id
+        LEFT JOIN gs_role r ON o.r_id = r.id
+        WHERE
+        u.id  =  #{userId,jdbcType=BIGINT}
+    </select>
+
+    <select id="findByRoleCount" resultType="int"  >
+        SELECT
+        count(*)
+        FROM
+        gs_user u
+        LEFT JOIN gs_user_role o ON u.id = o.u_id
+        LEFT JOIN gs_role r ON o.r_id = r.id
+        WHERE
+        u.id =  #{userId}
+        AND r. NAME =  #{roleName}
+    </select>
+
 </mapper>

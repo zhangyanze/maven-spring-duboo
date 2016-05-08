@@ -3,6 +3,7 @@ package com.goshop.shiro.service;
 
 import com.goshop.manager.i.UserService;
 import com.goshop.manager.pojo.Permission;
+import com.goshop.manager.pojo.Role;
 import com.goshop.manager.pojo.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -90,6 +91,18 @@ public class CustomRealm extends AuthorizingRealm {
         //将getPrimaryPrincipal方法返回值转为真实身份类型（在上边的doGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo中身份类型），
         User activeUser =  (User) principals.getPrimaryPrincipal();
 
+
+
+
+        //从数据库获取角色
+        List<Role> roleList=userService.findByRole(activeUser.getId());
+        List<String> roles = new ArrayList<String>();
+        if(roleList!=null){
+            for(Role r:roleList){
+                //将数据库中的权限标签 符放入集合
+                roles.add(r.getName());
+            }
+        }
         //根据身份信息获取权限信息
         //从数据库获取到权限数据
         List<Permission> permissionList = null;
@@ -122,7 +135,7 @@ public class CustomRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         //将上边查询到授权信息填充到simpleAuthorizationInfo对象中
         simpleAuthorizationInfo.addStringPermissions(permissions);
-
+        simpleAuthorizationInfo.addRoles(roles);
         return simpleAuthorizationInfo;
     }
 

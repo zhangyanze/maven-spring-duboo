@@ -157,4 +157,8 @@
       article_click = #{articleClick,jdbcType=INTEGER}
     where article_info_id = #{articleInfoId,jdbcType=BIGINT}
   </update>
+  <delete id="deleteByArticleId" parameterType="java.lang.Long" >
+    delete from gs_article_lang_info
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </delete>
 </mapper>

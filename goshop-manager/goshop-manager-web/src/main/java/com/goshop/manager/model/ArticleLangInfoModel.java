@@ -17,14 +17,64 @@ public class ArticleLangInfoModel {
 
     private String articleContent_en;
 
-    private String file_id;
+    private Long articleInfoId_zh;
 
-    public String getFile_id() {
+    private Long articleInfoId_en;
+
+    private String articleAbstract_zh;
+
+    private String articleAbstract_en;
+
+    private String[] file_id;
+
+    private String[] file_path;
+
+    public String getArticleAbstract_zh() {
+        return articleAbstract_zh;
+    }
+
+    public void setArticleAbstract_zh(String articleAbstract_zh) {
+        this.articleAbstract_zh = articleAbstract_zh;
+    }
+
+    public String getArticleAbstract_en() {
+        return articleAbstract_en;
+    }
+
+    public void setArticleAbstract_en(String articleAbstract_en) {
+        this.articleAbstract_en = articleAbstract_en;
+    }
+
+    public Long getArticleInfoId_zh() {
+        return articleInfoId_zh;
+    }
+
+    public void setArticleInfoId_zh(Long articleInfoId_zh) {
+        this.articleInfoId_zh = articleInfoId_zh;
+    }
+
+    public Long getArticleInfoId_en() {
+        return articleInfoId_en;
+    }
+
+    public void setArticleInfoId_en(Long articleInfoId_en) {
+        this.articleInfoId_en = articleInfoId_en;
+    }
+
+    public String[] getFile_id() {
         return file_id;
     }
 
-    public void setFile_id(String file_id) {
+    public void setFile_id(String[] file_id) {
         this.file_id = file_id;
+    }
+
+    public String[] getFile_path() {
+        return file_path;
+    }
+
+    public void setFile_path(String[] file_path) {
+        this.file_path = file_path;
     }
 
     public String getArticleTitle_zh() {

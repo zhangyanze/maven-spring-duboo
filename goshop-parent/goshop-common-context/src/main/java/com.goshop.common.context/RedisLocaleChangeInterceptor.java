@@ -1,5 +1,6 @@
 package com.goshop.common.context;
 
+import com.goshop.common.utils.RequestUtils;
 import com.goshop.common.utils.SerializeUtils;
 import com.goshop.redis.service.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,8 @@ public class RedisLocaleChangeInterceptor extends HandlerInterceptorAdapter {
         }
         Locale locale = new SessionLocaleResolver().resolveLocale(request);
         request.setAttribute("S_LANG",locale.getLanguage());
-        request.setAttribute("S_URI",request.getRequestURI());
+        String queryString=RequestUtils.dislodgeParam(request, DEFAULT_PARAM_NAME);
+        request.setAttribute("S_QS",queryString);
         return true;
     }
 

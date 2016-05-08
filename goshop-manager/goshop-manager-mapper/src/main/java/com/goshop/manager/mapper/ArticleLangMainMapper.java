@@ -1,6 +1,7 @@
 package com.goshop.manager.mapper;
 
 import com.goshop.manager.pojo.ArticleLangMain;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +25,12 @@ public interface ArticleLangMainMapper {
      * @return
      */
     List<ArticleLangMain> findManyAll();
+
+    ArticleLangMain findManyOne(Long articleId);
+
+    List<ArticleLangMain> queryMany(@Param("articleTitle")String articleTitle, @Param("articleAuthor")String articleAuthor, @Param("articleState")Integer articleState, @Param("articleClassId")Long articleClassId);
+
+    int updateByArticleSort(@Param("articleId")Long articleId, @Param("articleSort")Integer articleSort);
+
+    List<ArticleLangMain> findManyByArticleClassId(Long articleClassId);
 }
