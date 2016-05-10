@@ -9,13 +9,9 @@
 
     <context:component-scan base-package="com.goshop.*.controller"/>
     <mvc:annotation-driven/>
-
-    <bean id="exceptionResolver" class="com.goshop.manager.context.ExceptionHandler" />
-    <bean id="message" class="com.goshop.common.context.RedisMessage" />
-
     <context:property-placeholder  ignore-resource-not-found="true"
-                                    location="classpath:resource/*.properties,
-                                  file:/root/web_home/dimensions/resource/*.properties" />
+                                   location="classpath:resource/*.properties,
+                                  file:/root/web_home/wechat/resource/*.properties" />
     <bean id="freemarkerConfiguration"
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:resource/freemarker.properties" />
@@ -80,5 +76,23 @@
     </bean>
 
     <bean id="attachmentService" class="com.goshop.common.attachment.LocalhostAttachmentImpl" />
+
+    <bean id="message" class="com.goshop.common.context.RedisMessage" />
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="resource/messages" />
+        <property name="useCodeAsDefaultMessage" value="false" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="cacheSeconds" value="60" />
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <bean class="com.goshop.common.context.RedisLocaleChangeInterceptor" />
+    </mvc:interceptors>
+
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
 
 </beans>

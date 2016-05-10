@@ -10,10 +10,219 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2016-04-27 20:35:20
+Date: 2016-05-08 21:48:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for gs_album_class
+-- ----------------------------
+DROP TABLE IF EXISTS `gs_album_class`;
+CREATE TABLE `gs_album_class` (
+  `aclass_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '相册id',
+  `aclass_name` varchar(100) NOT NULL COMMENT '相册名称',
+  `store_id` int(10) unsigned NOT NULL COMMENT '所属店铺id',
+  `aclass_des` varchar(255) DEFAULT NULL COMMENT '相册描述',
+  `aclass_sort` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `aclass_cover` varchar(255) DEFAULT NULL COMMENT '相册封面',
+  `upload_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '图片上传时间',
+  `is_default` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为默认相册,1代表默认',
+  PRIMARY KEY (`aclass_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='相册表';
+
+-- ----------------------------
+-- Records of gs_album_class
+-- ----------------------------
+INSERT INTO `gs_album_class` VALUES ('1', '默认相册2', '1', '2', '1', '', '2016-05-04 20:52:35', '0');
+INSERT INTO `gs_album_class` VALUES ('19', '默认相册', '1', '', '255', '', '2016-04-28 21:19:50', '1');
+
+-- ----------------------------
+-- Table structure for gs_album_pic
+-- ----------------------------
+DROP TABLE IF EXISTS `gs_album_pic`;
+CREATE TABLE `gs_album_pic` (
+  `apic_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '相册图片表id',
+  `apic_name` varchar(100) NOT NULL COMMENT '图片名称',
+  `apic_tag` varchar(255) NOT NULL COMMENT '图片标签',
+  `aclass_id` int(10) unsigned NOT NULL COMMENT '相册id',
+  `apic_cover` varchar(255) NOT NULL COMMENT '图片路径',
+  `apic_size` int(10) unsigned NOT NULL COMMENT '图片大小',
+  `apic_spec` varchar(100) NOT NULL COMMENT '图片规格',
+  `store_id` int(10) unsigned NOT NULL COMMENT '所属店铺id',
+  `upload_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '图片上传时间',
+  PRIMARY KEY (`apic_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=941 DEFAULT CHARSET=utf8 COMMENT='相册图片表';
+
+-- ----------------------------
+-- Records of gs_album_pic
+-- ----------------------------
+INSERT INTO `gs_album_pic` VALUES ('388', '11', '', '19', '1_04418206625430066.jpg', '174541', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('389', '12', '', '19', '1_04418207021778349.jpg', '336218', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('390', '13', '', '19', '1_04418207062633139.jpg', '457837', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('391', '14', '', '19', '1_04418207107006930.jpg', '314892', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('392', '31', '', '19', '1_04418207207476705.jpg', '282850', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('393', '32', '', '19', '1_04418207237197915.jpg', '521077', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('394', '33', '', '19', '1_04418207258840120.jpg', '502581', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('395', '34', '', '19', '1_04418207283569084.jpg', '383670', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('396', '12', '', '19', '1_04418207321967915.jpg', '336218', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('397', '13', '', '19', '1_04418207350682444.jpg', '457837', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('398', '14', '', '19', '1_04418207374719006.jpg', '314892', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('399', '21', '', '19', '1_04418207428759462.jpg', '161981', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('400', '21', '', '19', '1_04418207471410641.jpg', '161981', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('401', '22', '', '19', '1_04418207575073862.jpg', '384532', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('402', '23', '', '19', '1_04418207617911287.jpg', '427267', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('403', '24', '', '19', '1_04418207651522662.jpg', '491681', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('404', '41', '', '19', '1_04418207748921454.jpg', '239524', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('405', '42', '', '19', '1_04418207775017390.jpg', '129511', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('406', '43', '', '19', '1_04418207803169795.jpg', '356141', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('407', '44', '', '19', '1_04418207830061660.jpg', '146314', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('408', '11', '', '19', '1_04418211211965600.jpg', '131570', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('409', '22', '', '19', '1_04418211624146737.jpg', '251896', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('410', '21', '', '19', '1_04418211646104580.jpg', '234534', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('411', '23', '', '19', '1_04418211670177204.jpg', '311451', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('412', '24', '', '19', '1_04418211696227370.jpg', '287928', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('413', '12', '', '19', '1_04418211725315624.jpg', '239674', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('414', '13', '', '19', '1_04418211757384304.jpg', '465717', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('415', '14', '', '19', '1_04418211785719847.jpg', '425344', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('416', '32', '', '19', '1_04418211827276143.jpg', '239282', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('417', '31', '', '19', '1_04418211855225368.jpg', '233100', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('418', '33', '', '19', '1_04418211883385668.jpg', '239952', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('419', '34', '', '19', '1_04418211907013907.jpg', '241641', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('420', '11', '', '19', '1_04418239521122578.jpg', '263011', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('421', '21', '', '19', '1_04418240378724556.jpg', '227648', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('422', '22', '', '19', '1_04418240412383742.jpg', '177558', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('423', '23', '', '19', '1_04418240440076521.jpg', '365455', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('424', '24', '', '19', '1_04418240469700467.jpg', '324199', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('425', '51', '', '19', '1_04418240514917358.jpg', '151339', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('426', '52', '', '19', '1_04418240547037748.jpg', '190841', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('427', '53', '', '19', '1_04418240569316654.jpg', '148740', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('428', '54', '', '19', '1_04418240593223779.jpg', '187276', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('429', '31', '', '19', '1_04418240641767556.jpg', '359584', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('430', '32', '', '19', '1_04418240666885368.jpg', '283091', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('431', '33', '', '19', '1_04418240697199699.jpg', '332601', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('432', '34', '', '19', '1_04418240726658802.jpg', '281580', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('433', '41', '', '19', '1_04418240795665638.jpg', '142770', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('434', '42', '', '19', '1_04418240827143666.jpg', '131160', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('435', '43', '', '19', '1_04418240859146562.jpg', '374630', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('436', '44', '', '19', '1_04418240886330482.jpg', '346866', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('437', '51', '', '19', '1_04418240955916042.jpg', '151339', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('438', '52', '', '19', '1_04418240987274775.jpg', '190841', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('439', '53', '', '19', '1_04418241012342707.jpg', '148740', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('440', '54', '', '19', '1_04418241035889286.jpg', '187276', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('441', '1', '', '19', '1_04418241398474746.jpg', '208231', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('442', '11', '', '19', '1_04418242684128103.jpg', '263011', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('443', '12', '', '19', '1_04418242714323222.jpg', '189817', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('444', '13', '', '19', '1_04418242742004222.jpg', '65729', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('445', '14', '', '19', '1_04418242771276943.jpg', '334143', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('446', '1', '', '19', '1_04418242839438481.jpg', '208231', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('447', '1', '', '19', '1_04418242873386601.jpg', '208231', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('448', '1', '', '19', '1_04418242912771108.jpg', '208231', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('449', '12', '', '19', '1_04418253211770278.jpg', '165391', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('450', '11', '', '19', '1_04418253240878850.jpg', '171643', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('451', '12', '', '19', '1_04418253965368434.jpg', '165391', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('452', '13', '', '19', '1_04418253993341194.jpg', '128894', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('453', '14', '', '19', '1_04418254020459178.jpg', '111305', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('454', '22', '', '19', '1_04418254088878407.jpg', '198054', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('455', '21', '', '19', '1_04418254118588220.jpg', '277621', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('456', '23', '', '19', '1_04418254147327427.jpg', '261169', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('457', '24', '', '19', '1_04418254171863431.jpg', '258254', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('458', '31', '', '19', '1_04418254218437108.jpg', '177831', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('459', '32', '', '19', '1_04418254243309723.jpg', '192984', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('460', '33', '', '19', '1_04418254270788167.jpg', '299184', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('461', '34', '', '19', '1_04418254463390448.jpg', '244684', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('912', '5', '', '19', '1_04423392298369303.jpg', '175464', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('913', '副本', '', '19', '1_04423392645620711.jpg', '449848', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('914', '1', '', '19', '1_04423411880302392.png', '638634', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('915', '副本', '', '19', '1_04423412221350722.jpg', '868721', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('916', '2', '', '19', '1_04423412434387147.png', '346293', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('917', '3', '', '19', '1_04423412474341466.png', '446748', '1x1', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('918', '2', '', '19', '1_04919072257200649.jpg', '509606', '1000x1000', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('919', '2', '', '19', '1_04919072496045934.jpg', '509606', '1000x1000', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('920', '2', '', '19', '1_04919088646930110.jpg', '509606', '1000x1000', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('921', '2', '', '19', '1_04919088916028101.jpg', '509606', '1000x1000', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('922', 'IMAG2678', '', '19', '1_04919089075755533.jpg', '1031750', '1840x3264', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('923', '20', '', '19', '1_04919089348895922.jpg', '53324', '660x200', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('924', 'IMAG2678', '', '19', '1_04919089482543338.jpg', '1031750', '1840x3264', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('925', 'a1', '', '19', '1_04919243543239161.jpg', '70753', '539x960', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('926', '20', '', '19', '1_04919255413339215.jpg', '40212', '539x960', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('927', 'QQ图片20150609120852', '', '19', '1_04928585569474265.jpg', '81573', '801x798', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('928', 'QQ图片20150609120852', '', '19', '1_04928586044062761.jpg', '81573', '801x798', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('929', 'QQ图片20150609120907', '', '19', '1_04928628259220627.jpg', '102859', '803x803', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('930', 'QQ图片20150609120852', '', '19', '1_04928652283443171.jpg', '81573', '801x798', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('931', '69622954b9424c9992fa820a9e7b4061', '', '19', '1_04928757206146875.png', '27210', '392x124', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('932', '69622954b9424c9992fa820a9e7b4061', '', '19', '1_04931403208687929.png', '27210', '392x124', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('933', 'IMAG2678', '', '19', '1_04991902058352505.jpg', '1031750', '1840x3264', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('934', 'LZ-stand', '', '19', '1_05004022005562695.jpg', '765392', '1200x1800', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('935', '授权书2', '', '19', '1_05028085656945191.jpg', '119950', '1088x960', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('936', 'action_icon_default', '', '19', '1_05028085984323487.gif', '301', '15x13', '1', null);
+INSERT INTO `gs_album_pic` VALUES ('937', 'file', 'tab_zxzz_wlbtdy_1.gif', '1', '/2016-05-04/fa88f157-2d07-496b-80e8-11c5c2e1aede.gif', '192646', '1870x852', '1', '2016-05-04 22:04:19');
+INSERT INTO `gs_album_pic` VALUES ('938', 'file', 'tab_zxzz_wlbtdy_1.gif', '1', '/2016-05-04/fa88f157-2d07-496b-80e8-11c5c2e1aede.gif', '192646', '1870x852', '1', '2016-05-04 22:04:31');
+INSERT INTO `gs_album_pic` VALUES ('939', 'file', 'tab_zxzz_wlbtdy_1.gif', '1', '/2016-05-04/fa88f157-2d07-496b-80e8-11c5c2e1aede.gif', '192646', '1870x852', '1', '2016-05-04 22:04:32');
+INSERT INTO `gs_album_pic` VALUES ('940', 'file', 'tab_zxzz_wlbtdy_1.gif', '19', '/2016-05-04/1cf1518b-14be-4fd6-80ca-1258d6973417.gif', '192646', '1870x852', '1', '2016-05-04 22:07:21');
+
+-- ----------------------------
+-- Table structure for gs_article_lang_info
+-- ----------------------------
+DROP TABLE IF EXISTS `gs_article_lang_info`;
+CREATE TABLE `gs_article_lang_info` (
+  `article_info_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '文章详细主键',
+  `article_id` bigint(20) NOT NULL COMMENT '文章主表主键',
+  `lang_type` varchar(10) NOT NULL DEFAULT 'zh' COMMENT '语言类型:en英文，zh中文',
+  `article_title` varchar(255) NOT NULL COMMENT '文章标题',
+  `article_author` varchar(50) DEFAULT NULL COMMENT '文章作者',
+  `article_abstract` varchar(255) DEFAULT NULL COMMENT '文章摘要',
+  `article_content` text COMMENT '文章正文',
+  `article_keyword` varchar(255) DEFAULT NULL COMMENT '文章关键字',
+  `article_click` int(10) DEFAULT '1',
+  PRIMARY KEY (`article_info_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gs_article_lang_info
+-- ----------------------------
+INSERT INTO `gs_article_lang_info` VALUES ('5', '4', 'zh', '【精神见证】Antonio Rosario作品展', '我', '再要1', '<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:25.6px;background-color:#FFFFFF;\">開幕現場</span></strong> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879655661.jpg\" title=\"750 _MG_2155副本.JPG\" /><img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879649124.jpg\" title=\"750 _MG_2143副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879715369.jpg\" title=\"750 _MG_2186副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879755506.jpg\" title=\"750 _MG_2192副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/1460687982649.jpg\" title=\"750 DSC01260副本.JPG\" /> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:22.4px;background-color:#FFFFFF;\">展覽現場</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:22.4px;background-color:#FFFFFF;\"></span></strong> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881014794.jpg\" title=\"750 IMG_0764副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881053268.jpg\" title=\"750 IMG_0767.jpg\" /><img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881075037.jpg\" title=\"750 IMG_0777副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881093494.jpg\" title=\"750 IMG_0782副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881104632.jpg\" title=\"750 IMG_0783副本.JPG\" /> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<span style=\"font-size:14px;\"><br />\r\n</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<span style=\"font-size:14px;\"><br />\r\n</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<span style=\"font-size:14px;\"><br />\r\n<strong><span style=\"color:#3E3E3E;line-height:25.6px;background-color:#FFFFFF;\">展览信息</span></strong></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;\"><strong><span style=\"color:#3E3E3E;line-height:25.6px;background-color:#FFFFFF;\"><br />\r\n</span></strong></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"color:#AB1942;font-size:14px;line-height:1.6;\">&nbsp; 【精神見證】是一系列的體驗項目，雖然並不一定有實質的發生，但是仍然是人類體驗的一部分。這種體驗可以反映意識形態和一些無法感知的存在。我們為了生存體驗了各種人生項目。那麼我們在處理我們任性的掙扎的時候是一種什麼態度？一切都是莊嚴肅穆的嗎？</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;作為一個見證者，我努力刻畫各種內在的體驗，包括各種關係，社會，環境，工作以及生活本身。</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:right;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\"><br />\r\n</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;\"><img src=\"https://mmbiz.qlogo.cn/mmbiz/ZTyG8s085vK5qOh0RvQQFTSDA77ico4xQuHWVIcwUP9odEHia0LxFuicH7YfUwicibVcUulN07yMKY9IZ9icS0p9TWqw/0?wx_fmt=jpeg\" style=\"height:auto !important;\" /></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<strong><span style=\"color:#000000;\"><span style=\"font-size:14px;\">駐留藝術家</span><span style=\"font-size:14px;line-height:25.6px;\">:</span></span></strong><span style=\"color:#000000;font-size:14px;line-height:25.6px;\"></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<span style=\"font-size:14px;color:#AB1942;line-height:25.6px;\"><span style=\"line-height:25.6px;\">Antonio Rosario</span>&nbsp;(<span style=\"line-height:22.4px;\">波多黎各</span>)</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">策展人 &nbsp;:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;line-height:22.4px;color:#AB1942;\">曾途 &nbsp;</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">開幕酒會 &nbsp;:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">2016.1.20 &nbsp;19:30</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">展覽週期 &nbsp;:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">2016.1.21 - 2016.1.25</span><span style=\"color:#AB1942;font-size:14px;line-height:25.6px;\">（14:00 - 18:00）</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<strong><span style=\"font-size:14px;line-height:25.6px;color:#000000;\">地址 &nbsp;:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<span style=\"color:#AB1942;\"><span style=\"font-size:14px;line-height:25.6px;\">十方藝術中心 &nbsp;</span></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"font-size:14px;\">有關藝術家</span></strong> \r\n</p>\r\n<p class=\"p1\" style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"color:#AB1942;font-size:14px;line-height:1.6;\"></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;<span style=\"line-height:22.4px;\">Antonio Rosario</span>，出生並成長於波多黎各島嶼的畫家，通過人物畫像表達並組合各種生動的場景。除了人物畫，<span style=\"line-height:22.4px;\">Antonio</span>鐘情於運用斑駁的色彩和錯綜複雜的圖案來表達特別的情愫。他曾在聖胡安基多藝術學院學習油畫，也在佛羅倫薩聖雷帕拉塔國際藝術學院學習過一年。</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;<span style=\"line-height:22.4px;\">Antonio</span>為法國酒莊繪制大型壁畫。他展出了部分他在威尼斯畫報國際學校駐留，西西里島A\'jureka藝術駐留以及在目前美國加州地區舊金山駐留期間創作的作品。伯克利市在市政廳展覽中為他頒發了2014購買獎，橘子郡創意美術館在「藍」展覽中為他頒發了2015最佳展覽。<span style=\"line-height:22.4px;\">Antonio</span>也喜歡工程設計和釀酒。</span> \r\n</p>', null, '1');
+INSERT INTO `gs_article_lang_info` VALUES ('6', '4', 'en', '[Mental Witness] Solo Exhibition by Antonio Rosario', 'z', 'zz1', '<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:25.6px;background-color:#FFFFFF;\">THE PICTURES OF OPENING</span></strong> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879655661.jpg\" title=\"750 _MG_2155副本.JPG\" /><img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879649124.jpg\" title=\"750 _MG_2143副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879715369.jpg\" title=\"750 _MG_2186副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606879755506.jpg\" title=\"750 _MG_2192副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/1460687982649.jpg\" title=\"750 DSC01260副本.JPG\" /> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:25.6px;background-color:#FFFFFF;\">THE PICTURES OF EXHIBITION</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:25.6px;background-color:#FFFFFF;\"></span></strong> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881014794.jpg\" title=\"750 IMG_0764副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881053268.jpg\" title=\"750 IMG_0767.jpg\" /><img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881075037.jpg\" title=\"750 IMG_0777副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881093494.jpg\" title=\"750 IMG_0782副本.JPG\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://chongqingdac.org/ueditor/php/upload/20160415/14606881104632.jpg\" title=\"750 IMG_0783副本.JPG\" /> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"color:#3E3E3E;font-size:14px;line-height:25.6px;background-color:#FFFFFF;\"><br />\r\n</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<span style=\"font-size:14px;\"><br />\r\n<strong><span style=\"color:#3E3E3E;line-height:25.6px;background-color:#FFFFFF;\">ABOUT EXHIBITION</span></strong></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"color:#AB1942;font-size:14px;line-height:1.6;\">&nbsp;&nbsp;</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;[Mental Witness] refers to experiencing events that do not necessarily have a physical occurrence but are still part of a human experience. This experience can reflect consciousness and non perceivable realities. Events are experienced as we strive in life. What is our attitude for handling our struggle? Is everything solemn?</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;As a witness, I am depicting internal experiences of relationships, society, environment, work, and life itself.</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:right;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\"><br />\r\n</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:right;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">-Antonio Rosario</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:right;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">http://www.antoniofrosario.wix.com/arte</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:right;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<strong><span style=\"color:#000000;\"><span style=\"font-size:14px;\">R</span><span style=\"font-size:14px;line-height:25.6px;\">esident Artist:</span></span></strong><span style=\"color:#000000;font-size:14px;line-height:25.6px;\"></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<span style=\"font-size:14px;color:#AB1942;line-height:25.6px;\"><span style=\"line-height:25.6px;\">Antonio Rosario</span>&nbsp;(PUR)</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">Curator:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;line-height:22.4px;color:#AB1942;\">Tu Zeng</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">Opening Party:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">2016.1.20 &nbsp;19:30</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<strong><span style=\"font-size:14px;\">Exhibition Duration:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">2016.1.21 - 2016.1.25</span><span style=\"color:#AB1942;font-size:14px;line-height:25.6px;\">（14:00 - 18:00）</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<strong><span style=\"font-size:14px;line-height:25.6px;color:#000000;\">Address:</span></strong> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;color:#3E3E3E;background-color:#FFFFFF;\">\r\n	<span style=\"color:#AB1942;\"><span style=\"font-size:14px;line-height:25.6px;\">Dimensions Art Center</span></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;text-align:center;\">\r\n	<strong><span style=\"font-size:14px;\">ABOUT ANTONIO ROSARIO</span></strong> \r\n</p>\r\n<p class=\"p1\" style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"color:#AB1942;font-size:14px;line-height:1.6;\"></span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<br />\r\n</p>\r\n<p class=\"p1\" style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"color:#AB1942;font-size:14px;line-height:1.6;\">&nbsp; &nbsp;Antonio Rosario, born and raised in the island of Puerto Rico, is a painter who employs the human figure to explore and compose vivid situations.In addition to the human figure, Antonio is passionate about the use of color distortions and intricate patterns to communicate particular temperaments. He has studied painting at the Liga de Arte de San Juan and, for a year, at Firenze with the Santa Reparata International School of Art.</span> \r\n</p>\r\n<p style=\"font-family:\'Helvetica Neue\', Helvetica, \'Hiragino Sans GB\', \'Microsoft YaHei\', Arial, sans-serif;\">\r\n	<span style=\"font-size:14px;color:#AB1942;\">&nbsp; &nbsp;Antonio enjoyed composing a mural for a winery in France. He has created and exhibited as part of residencies at the Scuola Internationale di Grafica di Venezia, A\'jureka Art Residency in Sicily, and also in the San Francisco California area, where he currently resides. The city of Berkeley awarded him the purchase prize (2014) for the City Hall exhibition and the Orange County Creatives gallery awarded him “Best in Show” (2015) in the “Blue”exhibit. Antonio also enjoys engineering and winemaking.</span> \r\n</p>', null, '1');
+INSERT INTO `gs_article_lang_info` VALUES ('9', '6', 'zh', '藝術活動', '', '再要', '<h3>\r\n	藝術活動\r\n</h3>', null, '1');
+INSERT INTO `gs_article_lang_info` VALUES ('10', '6', 'en', 'ssss', '', 'zz', 'sssss', null, '1');
+INSERT INTO `gs_article_lang_info` VALUES ('11', '7', 'zh', '222', '', '再要', '222', null, '1');
+INSERT INTO `gs_article_lang_info` VALUES ('12', '7', 'en', '2222222222', '', 'zz', '222222222', null, '1');
+
+-- ----------------------------
+-- Table structure for gs_article_lang_main
+-- ----------------------------
+DROP TABLE IF EXISTS `gs_article_lang_main`;
+CREATE TABLE `gs_article_lang_main` (
+  `article_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章编号',
+  `article_class_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章分类编号',
+  `article_origin` varchar(50) DEFAULT NULL COMMENT '文章来源',
+  `article_origin_address` varchar(255) DEFAULT NULL COMMENT '文章来源链接',
+  `article_image` varchar(255) DEFAULT NULL COMMENT '文章图片',
+  `article_link` varchar(255) DEFAULT NULL COMMENT '相关文章',
+  `article_start_time` timestamp NULL DEFAULT NULL COMMENT '文章有效期开始时间',
+  `article_end_time` timestamp NULL DEFAULT NULL COMMENT '文章有效期结束时间',
+  `article_publish_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '文章发布时间',
+  `article_sort` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '文章排序0-255',
+  `article_digest` tinyint(1) NOT NULL DEFAULT '0' COMMENT '精华等级（0非精华,1精华I，2精华II,3精华III  ）',
+  `article_commend_flag` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '文章推荐标志0-未推荐，1-已推荐',
+  `article_comment_flag` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '文章是否允许评论1-允许，0-不允许',
+  `article_state` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1-草稿、2-待审核、3-已发布、4-回收站',
+  `article_publisher_name` varchar(50) DEFAULT NULL COMMENT '发布者用户名 ',
+  `article_publisher_id` bigint(20) unsigned DEFAULT NULL COMMENT '发布者编号',
+  `article_type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '文章类型1-管理员发布，2-用户投稿',
+  `article_attachment_path` varchar(50) DEFAULT NULL COMMENT '文章附件路径',
+  `article_image_all` text COMMENT '文章全部图片',
+  `article_modify_time` timestamp NULL DEFAULT NULL COMMENT '文章修改时间',
+  `article_share_count` int(10) unsigned DEFAULT '0' COMMENT '文章分享数',
+  PRIMARY KEY (`article_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='CMS文章表';
+
+-- ----------------------------
+-- Records of gs_article_lang_main
+-- ----------------------------
+INSERT INTO `gs_article_lang_main` VALUES ('4', '2', null, null, '/2016-05-08/864d035e-f374-46f5-9170-9dbc49164895.jpg', '', null, null, '2016-05-02 00:00:00', '0', '0', '0', '1', '3', 'admin', '0', '1', null, '[{\"id\":\"64c00e4be9a34da294dd207986709418\",\"path\":\"/2016-05-08/a99b0be6-a4e7-4cdd-932b-6c3842c38018.gif\"},{\"id\":\"0975e014e3e74fb3a9b0ee188f79d59f\",\"path\":\"/2016-05-08/363f11ff-896d-490a-ad0c-b8caa774c800.gif\"}]', null, '0');
+INSERT INTO `gs_article_lang_main` VALUES ('6', '1', null, null, '/2016-05-08/e7792be3-4f56-46cd-8f1a-ba73000f9426.gif', '', null, null, '2016-05-08 00:00:00', '255', '0', '0', '1', '3', 'admin', '0', '1', null, null, null, '0');
+INSERT INTO `gs_article_lang_main` VALUES ('7', '4', null, null, '', '', null, null, '2016-05-08 00:00:00', '255', '0', '0', '1', '3', 'admin', '0', '1', null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for gs_cms_article
@@ -63,12 +272,13 @@ CREATE TABLE `gs_cms_article` (
   `article_share_count` int(10) unsigned DEFAULT '0' COMMENT '文章分享数',
   `article_verify_reason` varchar(255) DEFAULT NULL COMMENT '审核失败原因',
   PRIMARY KEY (`article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='CMS文章表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='CMS文章表';
 
 -- ----------------------------
 -- Records of gs_cms_article
 -- ----------------------------
-INSERT INTO `gs_cms_article` VALUES ('3', '12345', '1', '', '', '', '', '发发发发发发发发发方法', '', null, '', null, null, null, '2016-04-26 14:41:08', '0', '255', '0', '1', '1', null, null, '3', 'admin', '0', '1', null, null, null, null, null, '0', '0', '0', '0', '0', '0', '', '1', '1', '0', null);
+INSERT INTO `gs_cms_article` VALUES ('3', '12345', '1', '', '', '', '', '发发发发发发发发发方法', '/2016-04-28/c830d318-497f-40b7-b156-7a054d74047d.gif', null, '', null, null, null, '2016-04-26 14:41:08', '1', '2', '1', '1', '1', null, null, '3', 'admin', '0', '1', null, null, null, null, null, '0', '0', '0', '0', '0', '0', '', '1', '0', '0', null);
+INSERT INTO `gs_cms_article` VALUES ('4', 'wwwww', '1', '', '', '', '', 'wwwwwww', '', null, '', null, null, null, '2016-04-29 15:25:42', '0', '0', '0', '1', '1', null, null, '1', 'admin', '0', '1', null, null, null, null, null, '0', '0', '0', '0', '0', '0', '', '0', '1', '0', null);
 
 -- ----------------------------
 -- Table structure for gs_cms_article_class
@@ -80,13 +290,34 @@ CREATE TABLE `gs_cms_article_class` (
   `class_name` varchar(50) DEFAULT NULL COMMENT '分类名称',
   `class_sort` tinyint(1) unsigned DEFAULT '255' COMMENT '排序',
   PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='cms文章分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='cms文章分类表';
 
 -- ----------------------------
 -- Records of gs_cms_article_class
 -- ----------------------------
-INSERT INTO `gs_cms_article_class` VALUES ('1', null, '帮助中心', '3');
-INSERT INTO `gs_cms_article_class` VALUES ('2', null, '头条', '0');
+INSERT INTO `gs_cms_article_class` VALUES ('1', null, '藝術活動', '1');
+INSERT INTO `gs_cms_article_class` VALUES ('2', null, '新聞', '0');
+INSERT INTO `gs_cms_article_class` VALUES ('3', null, '公眾活動', '2');
+INSERT INTO `gs_cms_article_class` VALUES ('4', null, '网站文章', '255');
+
+-- ----------------------------
+-- Table structure for gs_cms_slide
+-- ----------------------------
+DROP TABLE IF EXISTS `gs_cms_slide`;
+CREATE TABLE `gs_cms_slide` (
+  `slide_id` int(10) NOT NULL AUTO_INCREMENT,
+  `slide_path` varchar(500) DEFAULT NULL,
+  `slide_url` varchar(500) DEFAULT NULL,
+  `slide_sort` int(1) DEFAULT NULL,
+  PRIMARY KEY (`slide_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gs_cms_slide
+-- ----------------------------
+INSERT INTO `gs_cms_slide` VALUES ('1', '/2016-05-07/07550797-7b9f-41e6-bf21-1232fed2a6ce.jpg', 'http://11', '1');
+INSERT INTO `gs_cms_slide` VALUES ('2', '/2016-05-07/6309f1b9-dc94-48f9-bad3-be51ded4c9fe.jpg', 'http://2', '2');
+INSERT INTO `gs_cms_slide` VALUES ('3', '/2016-05-07/a62286c9-5018-4a46-a878-c83e3bd9c9b3.jpg', 'http://3', '3');
 
 -- ----------------------------
 -- Table structure for gs_find_password
@@ -1284,7 +1515,7 @@ CREATE TABLE `gs_goods_common` (
   `plateid_top` int(10) unsigned DEFAULT NULL COMMENT '顶部关联板式',
   `plateid_bottom` int(10) unsigned DEFAULT NULL COMMENT '底部关联板式',
   PRIMARY KEY (`goods_commonid`)
-) ENGINE=InnoDB AUTO_INCREMENT=100100 DEFAULT CHARSET=utf8 COMMENT='商品公共内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=100087 DEFAULT CHARSET=utf8 COMMENT='商品公共内容表';
 
 -- ----------------------------
 -- Records of gs_goods_common
@@ -1353,9 +1584,9 @@ CREATE TABLE `gs_member` (
 -- ----------------------------
 -- Records of gs_member
 -- ----------------------------
-INSERT INTO `gs_member` VALUES ('0', '0', '彭树洞', '/2016-04-20/a6a7cbef-cec5-4107-9cba-eb68a195d0c3.gif', '2', null, 'feng@shopnc.com', '46140184', 'www', '2016-03-06 09:36:04', '', '', '240', '0.00', '0.00', '2', '1', '1', '1', '0', null, null, null, null, null);
-INSERT INTO `gs_member` VALUES ('5', '46', '真实姓名', '/2016-04-21/deea2174-a012-40f0-910d-c942b355444d.gif', '2', '2016-04-20', 'pzh_DD@11.com', '111111', 'www', '2016-04-18 09:35:58', null, null, '0', '0.00', '0.00', '1', '1', '1', '1', '0', '1308', '2', '1', '{\"email\":0,\"truename\":1,\"sex\":2,\"birthday\":0,\"area\":1,\"qq\":2,\"ww\":0}', '');
-INSERT INTO `gs_member` VALUES ('6', '48', '彭术', '/2016-04-19/623a51b8-aabd-4844-8729-2280a24bc420.gif', '1', null, 'psd@126.com', '2222222', 'eeeee', '2016-04-19 14:27:06', null, null, '0', '0.00', '0.00', '1', '1', '1', '1', '0', null, null, null, null, null);
+INSERT INTO `gs_member` VALUES ('0', '0', '彭树洞', '', '2', null, 'feng@shopnc.com', '46140184', 'www', '2016-03-06 09:36:04', '', '', '240', '0.00', '0.00', '2', '0', '0', '0', '0', null, null, null, null, null);
+INSERT INTO `gs_member` VALUES ('5', '46', '真实姓名', '', '2', '2016-04-20', 'pzh_DD@11.com', '111111', 'www', '2016-04-18 09:35:58', null, null, '0', '0.00', '0.00', '1', '1', '1', '1', '0', '1308', '2', '1', '{\"email\":0,\"truename\":1,\"sex\":2,\"birthday\":0,\"area\":1,\"qq\":2,\"ww\":0}', '');
+INSERT INTO `gs_member` VALUES ('6', '47', '', '', '0', null, 'hy@126.com', '', '', '2016-05-08 17:21:05', null, null, '0', '0.00', '0.00', '1', '1', '1', '1', '0', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for gs_permission
@@ -1834,14 +2065,14 @@ CREATE TABLE `gs_user` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '当前登录ip',
   `old_login_ip` varchar(20) DEFAULT NULL COMMENT '上次登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of gs_user
 -- ----------------------------
-INSERT INTO `gs_user` VALUES ('0', '管理员', 'admin', '468570faadd8ee01480fb85b82278c3c', '4N05k', '1', '1', '2016-03-15 00:00:00', '2016-03-15 00:00:00', '36', '2016-04-27 16:24:22', '2016-04-27 15:10:10', '127.0.0.1', '127.0.0.1');
-INSERT INTO `gs_user` VALUES ('46', '古古', 'gugu', '067d33c46b9c1f15315a4619e2bc4c6a', 'pE1kn', '1', '1', '2016-03-20 00:00:00', '2016-03-20 00:00:00', '19', '2016-04-26 20:26:46', '2016-04-25 21:49:39', '127.0.0.1', '127.0.0.1');
-INSERT INTO `gs_user` VALUES ('48', null, 'psd', 'b2bcb614bc05c2d79d71c93ecd86ace6', 'wk9vs', null, null, null, null, '1', null, null, null, null);
+INSERT INTO `gs_user` VALUES ('0', '管理员', 'admin', '468570faadd8ee01480fb85b82278c3c', '4N05k', '1', '1', '2016-03-15 00:00:00', '2016-03-15 00:00:00', '64', '2016-05-08 21:05:06', '2016-05-08 16:41:06', '127.0.0.1', '127.0.0.1');
+INSERT INTO `gs_user` VALUES ('46', '古古', 'gugu', '067d33c46b9c1f15315a4619e2bc4c6a', 'pE1kn', '1', '1', '2016-03-20 00:00:00', '2016-03-20 00:00:00', '28', '2016-05-08 17:20:17', '2016-05-08 17:19:10', '127.0.0.1', '127.0.0.1');
+INSERT INTO `gs_user` VALUES ('47', null, 'hey', '9824a3d7a98b1e130992e1a23c83a5d2', 'k7ZMM', null, null, null, null, '2', '2016-05-08 17:22:05', null, '127.0.0.1', null);
 
 -- ----------------------------
 -- Table structure for gs_user_role
@@ -1857,3 +2088,4 @@ CREATE TABLE `gs_user_role` (
 -- ----------------------------
 INSERT INTO `gs_user_role` VALUES ('0', '0');
 INSERT INTO `gs_user_role` VALUES ('2', '46');
+INSERT INTO `gs_user_role` VALUES ('1', '0');
