@@ -17,6 +17,14 @@ public interface ArticleLangService {
 
      PageInfo<ArticleLangMain> findManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId);
 
+     /**
+      * 查询已发布文章
+      * @param curPage
+      * @param pageSize
+      * @return
+      */
+     PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId,String year,String langType);
+
      int save(ArticleLangMain articleLang, List<ArticleLangInfo> articleLangInfoList);
 
      ArticleLangMain findManyOne(Long articleId);

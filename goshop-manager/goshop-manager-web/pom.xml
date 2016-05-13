@@ -72,4 +72,36 @@
             <version>2.6</version>
         </dependency>
     </dependencies>
+
+    <build>
+          <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.1.1</version>
+                    <configuration>
+                        <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <!-- 重点是这个配置 -->
+                        <warName>admin</warName>
+                    </configuration>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <url>http://127.0.0.1/manager/text</url>
+                        <server>tomcat7</server>
+                        <warFile>${basedir}/target/admin.war</warFile>
+                        <path>/admin</path>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

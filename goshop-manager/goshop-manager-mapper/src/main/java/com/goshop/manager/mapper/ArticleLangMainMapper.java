@@ -33,4 +33,6 @@ public interface ArticleLangMainMapper {
     int updateByArticleSort(@Param("articleId")Long articleId, @Param("articleSort")Integer articleSort);
 
     List<ArticleLangMain> findManyByArticleClassId(Long articleClassId);
+
+    List<ArticleLangMain> findPublishManyByArticleClassId(@Param("articleClassId")Long articleClassId,@Param("year")String year,@Param("langType")String langType);
 }

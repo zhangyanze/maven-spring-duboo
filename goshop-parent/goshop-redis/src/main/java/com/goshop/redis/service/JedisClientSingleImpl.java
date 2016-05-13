@@ -215,7 +215,12 @@ public class JedisClientSingleImpl implements JedisClient{
 	@Override
 	public Set<byte[]> keys(String pattern) {
 		Set<byte[]> keys = null;
-		Jedis jedis = jedisPool.getResource();
+		Jedis jedis = null;
+		try {
+			jedis = jedisPool.getResource();
+		}catch (Exception e){
+			return null;
+		}
 		try {
 			keys = jedis.keys(pattern.getBytes());
 		} catch (Exception e) {

@@ -329,7 +329,7 @@
     FROM
         gs_article_lang_main m
     LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
-     order by m.article_sort,m.article_publish_time
+    order by m.article_sort,m.article_publish_time desc
       </select>
 
 
@@ -360,7 +360,7 @@
     <if test="articleClassId != null" >
      and m.article_class_id = #{articleClassId}
     </if>
-    order by m.article_sort,m.article_publish_time
+    order by m.article_sort,m.article_publish_time desc
   </select>
 
   <update id="updateByArticleSort" >
@@ -376,6 +376,22 @@
     gs_article_lang_main m
     LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
     where m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    order by m.article_sort,m.article_publish_time desc
+  </select>
+
+  <select id="findPublishManyByArticleClassId" resultMap="BaseResultMap">
+    SELECT
+    m.* ,i.*
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+    where m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    <if test="year != null and year != ''" >
+      and year(m.article_publish_time)= #{year}
+    </if>
+    and m.article_state=3
+    and i.lang_type=#{langType}
+    order by m.article_sort,m.article_publish_time desc
   </select>
 
 </mapper>

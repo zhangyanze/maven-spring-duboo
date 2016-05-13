@@ -19,7 +19,9 @@
     <bean id="overrideDirective" class="cn.org.rapid_framework.freemarker.directive.OverrideDirective"/>
     <bean id="superDirective" class="cn.org.rapid_framework.freemarker.directive.SuperDirective"/>
 
-    <context:property-placeholder location="classpath:resource/*.properties" />
+    <context:property-placeholder  ignore-resource-not-found="true"
+                                   location="classpath:resource/*.properties,
+                                  file:/root/web_home/seller/resource/*.properties" />
     <bean id="freemarkerConfiguration"
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:resource/freemarker.properties" />

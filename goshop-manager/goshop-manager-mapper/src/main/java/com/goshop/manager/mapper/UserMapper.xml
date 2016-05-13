@@ -290,6 +290,7 @@ WHERE
         LEFT JOIN gs_role r ON o.r_id = r.id
         WHERE
         u.id  =  #{userId,jdbcType=BIGINT}
+        and r.id is not null
     </select>
 
     <select id="findByRoleCount" resultType="int"  >

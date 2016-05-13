@@ -66,6 +66,20 @@ public class ArticleLangServiceImpl implements ArticleLangService {
     }
 
     @Override
+    public PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId,String year,String langType) {
+        //1、设置分页
+        if (curPage == null) {
+            curPage = 1;
+        }
+        if (pageSize == null) {
+            pageSize = 20;
+        }
+        PageHelper.startPage(curPage, pageSize);
+        List<ArticleLangMain> list = articleLangMainMapper.findPublishManyByArticleClassId(articleClassId,year,langType);
+        return new PageInfo<>(list);
+    }
+
+    @Override
     public int save(ArticleLangMain articleLang, List<ArticleLangInfo> articleLangInfoList) {
         articleLangMainMapper.insertSelective(articleLang);
         for(ArticleLangInfo o:articleLangInfoList){

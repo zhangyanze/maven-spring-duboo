@@ -142,6 +142,17 @@
             </tr>
 
             <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="required" colspan="2"><label>结束日期:</label></td>
+            </tr>
+            <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
+                <td class="vatop rowform"><input type="text" class="txt date" name="articleEndTime"
+                                                 id="articleEndTime"
+                                                 value="<#if (P_CMS_ARTICLE??)>${(P_CMS_ARTICLE.articleEndTime?string('yyyy-MM-dd'))!}</#if>"
+                                                 readonly="readonly"></td>
+                <td class="vatop tips">格式：2009-4-30，留空表示为空</td>
+            </tr>
+
+           <!-- <tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                 <td class="required" colspan="2">排序:
                 </td>
             </tr>
@@ -150,7 +161,7 @@
                                                  value="<#if P_CMS_ARTICLE??>${P_CMS_ARTICLE.articleSort!255}<#else>255</#if>">
                 </td>
                 <td class="vatop tips"></td>
-            </tr>
+            </tr>-->
             <#if P_CMS_ARTICLE??>
                 <#list P_CMS_ARTICLE.articleLangInfoList as infoList>
                     <#if (infoList.langType=="zh")>
@@ -193,7 +204,7 @@
                                 </tr>
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop rowform">
-                                        <input type="text" style="width:600px" id="articleAbstract_zh" name="articleAbstract_zh" value="<#if P_ZH??>${P_ZH.articleAbstract}</#if>">
+                                        <textarea rows="5" cols="20" style="width: 600px; height: 63px;" id="articleAbstract_zh" name="articleAbstract_zh" ><#if P_ZH??>${P_ZH.articleAbstract}</#if></textarea>
                                     </td>
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop tips"></td>
                                 </tr>
@@ -270,7 +281,7 @@
                             <table class="table tb-type2 nobdb">
                                 <tbody>
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                                    <td class="required" colspan="2"><label>英文标题:</label></td>
+                                    <td class="required" colspan="2"><label class="validation">英文标题:</label></td>
                                 </tr>
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop rowform"><input type="text"
@@ -283,11 +294,11 @@
                                 </tr>
 
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                                    <td class="required"  colspan="2"><label class="validation">英文摘要:</label></td>
+                                    <td class="required"  colspan="2"><label >英文摘要:</label></td>
                                 </tr>
                                 <tr class="noborder" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop rowform">
-                                        <input type="text" style="width:600px" id="articleAbstract_en" name="articleAbstract_en" value="<#if P_ZH??>${P_EN.articleAbstract}</#if>">
+                                        <textarea rows="5" cols="20" style="width: 600px; height: 63px;" id="articleAbstract_en" name="articleAbstract_en"><#if P_ZH??>${P_EN.articleAbstract}</#if></textarea>
                                     </td>
                                     <td style="border-top: 1px dotted #cbe9f3;" class="vatop tips"></td>
                                 </tr>
@@ -387,6 +398,7 @@
     });
 
     $('#articlePublishTime').datepicker();
+    $('#articleEndTime').datepicker();
 
     var KE;
     KindEditor.ready(function (K) {
@@ -498,7 +510,8 @@
                         dataType: 'json',
                         success: function (data, status) {
                             if (data.status == 1) {
-                                ajax_form('cutpic', '裁剪', '../pic/pic_cut?x=256&y=141&resize=0&ratio=0&url=' + data.url, 690);
+                                //ajax_form('cutpic', '裁剪', '../pic/pic_cut?x=256&y=141&resize=0&ratio=0&url=' + data.url, 690);
+                                call_back(data.url);
                             } else {
                                 alert(data.msg);
                             }
