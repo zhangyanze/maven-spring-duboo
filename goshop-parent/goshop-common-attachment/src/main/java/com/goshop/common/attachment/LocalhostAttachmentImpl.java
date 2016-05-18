@@ -1,11 +1,13 @@
 package com.goshop.common.attachment;
 
 import com.goshop.common.utils.DateTimeUtils;
+import com.goshop.common.utils.DownloadUtils;
 import com.goshop.common.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Date;
 import java.util.UUID;
@@ -21,8 +23,7 @@ public class LocalhostAttachmentImpl implements AttachmentService {
     @Override
     public String upload(MultipartFile multipartFile) throws IOException {
         String type = FileUtils.getFileType(multipartFile.getOriginalFilename()).toLowerCase();
-        String fileName=this.getFileName(type);
-        return this.upload(multipartFile.getInputStream(),fileName);
+        return this.upload(multipartFile.getInputStream(),type);
     }
 
     @Override
@@ -50,7 +51,8 @@ public class LocalhostAttachmentImpl implements AttachmentService {
     }
 
     @Override
-    public String upload(InputStream inputStream,String fileName) throws IOException {
+    public String upload(InputStream inputStream,String type) throws IOException {
+        String fileName=this.getFileName(type);
         FileUtils.saveFile(inputStream, filePath + fileName);
         return fileName;
     }
@@ -64,6 +66,12 @@ public class LocalhostAttachmentImpl implements AttachmentService {
     }
 
     @Override
+    public void download(String path, String fileName,HttpServletResponse response) {
+        String filePath=this.getPath()+path;
+        DownloadUtils.download(response,filePath,fileName);
+    }
+
+   @Override
     public File download(String id) {
         String filePath=this.getPath()+id;
         return new File(filePath);

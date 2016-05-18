@@ -69,6 +69,12 @@
         <url-pattern>/static/*</url-pattern>
     </servlet-mapping>
 
+    <!-- 不过滤html -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/www/*</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>validationCode</servlet-name>
         <servlet-class>com.goshop.common.context.ValidationCodeServlet</servlet-class>

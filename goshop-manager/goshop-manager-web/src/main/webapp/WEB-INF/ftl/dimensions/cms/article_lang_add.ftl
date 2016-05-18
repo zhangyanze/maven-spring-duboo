@@ -513,12 +513,17 @@
                                 //ajax_form('cutpic', '裁剪', '../pic/pic_cut?x=256&y=141&resize=0&ratio=0&url=' + data.url, 690);
                                 call_back(data.url);
                             } else {
-                                alert(data.msg);
+                                alert(data.message);
                             }
                             $('input[class="type-file-file"]').bind('change', uploadChange);
                         },
                         error: function (data, status, e) {
-                            alert('图片上传失败！' + e);
+                            if(!!data&&data.code==-1){
+                                alert(data.message);
+                            }else{
+                                alert('图片上传失败！' + e);
+                            }
+
                             $('input[class="type-file-file"]').bind('change', uploadChange);
                         }
                     }

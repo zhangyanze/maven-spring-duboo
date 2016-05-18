@@ -19,8 +19,9 @@ public class AttachmentController {
 
     @RequestMapping
     public void download(String path,String inline,String name,HttpServletResponse response) {
-        File file=attachmentService.download(path);
-        DownloadUtils.download(response, file, inline, name);
+        //File file=attachmentService.download(path);
+        //DownloadUtils.download(response, file, inline, name);
+        attachmentService.download(path,name,response);
     }
 
 }

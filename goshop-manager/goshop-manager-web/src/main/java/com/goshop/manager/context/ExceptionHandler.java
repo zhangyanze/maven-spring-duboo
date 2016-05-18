@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goshop.common.context.MessageInfo;
 import com.goshop.common.context.MessageService;
+import com.goshop.common.exception.AjaxException;
+import com.goshop.common.exception.GoShopException;
 import com.goshop.common.exception.PageException;
 import com.goshop.common.pojo.ErrorData;
 import com.goshop.common.pojo.ErrorMessage;
@@ -35,21 +37,9 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 			HttpServletResponse response, Object handler, Exception ex) {
 		//控制台打印错误
 		ex.printStackTrace();
-		if (ex instanceof PageException ||ex instanceof IllegalArgumentException) {
-			if (!"XMLHttpRequest".equalsIgnoreCase(request
-					.getHeader("X-Requested-With"))) {// 不是ajax请求
-				/*RedirectAttributesEx rae=new RedirectAttributesEx(request);
-				rae.setAttribute("ERROR_MESSAGE", message);*/
-				MessageInfo info = new MessageInfo();
-				info.setMessage(ex.getMessage());
-
-				messageService.set(request.getSession().getId(),info);
-				ModelAndView mav=new ModelAndView();
-				mav.setViewName("redirect:/msg");
-				return mav;
-
-			} else {
-
+		if (ex instanceof GoShopException ||ex instanceof IllegalArgumentException) {
+			if ("XMLHttpRequest".equalsIgnoreCase(request
+					.getHeader("X-Requested-With"))||ex instanceof AjaxException) {// 不是ajax请求
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				String result = null;
@@ -101,6 +91,15 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
+			} else {
+				MessageInfo info = new MessageInfo();
+				info.setMessage(ex.getMessage());
+
+				messageService.set(request.getSession().getId(),info);
+				ModelAndView mav=new ModelAndView();
+				mav.setViewName("redirect:/msg");
+				return mav;
 			}
 
 		}

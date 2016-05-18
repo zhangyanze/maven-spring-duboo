@@ -24,7 +24,7 @@ public interface AttachmentService {
      * @param inputStream
      * @return
      */
-    String upload(InputStream inputStream,String fileName) throws Exception;
+    String upload(InputStream inputStream,String type) throws Exception;
 
     /**
      * 获取文件路径
@@ -33,10 +33,12 @@ public interface AttachmentService {
 
     /**
      * 通过id获取文件
-     * @param id
+     * @param
      * @return
      */
     File download(String id);
+
+    void download(String path, String fileName,HttpServletResponse response);
 
     String upload(File file,String type) throws Exception;
 

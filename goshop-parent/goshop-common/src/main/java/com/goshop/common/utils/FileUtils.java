@@ -1,6 +1,9 @@
 package com.goshop.common.utils;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Formatter;
 
 /**
@@ -221,6 +224,17 @@ public class FileUtils {
         outStream.close();     
     }
 
+	public static void inputstreamtofile(InputStream stream,File file) throws IOException {
+		//得到图片的二进制数据，以二进制封装得到数据，具有通用性
+		byte[] data = readInputStream(stream);
+		//创建输出流
+		FileOutputStream outStream = new FileOutputStream(file);
+		//写入数据
+		outStream.write(data);
+		//关闭输出流
+		outStream.close();
+	}
+
 	public static void saveFile(byte[] buffer,String path) throws Exception
     {      
         //new一个文件对象用来保存图片，默认保存当前工程根目录  
@@ -251,5 +265,24 @@ public class FileUtils {
         inStream.close();  
         //把outStream里的数据写入内存  
         return outStream.toByteArray();  
-    }  
+    }
+
+	public static File urlToFile(String url,String fileName) throws IOException {
+		URL httpurl = new URL(url);
+		HttpURLConnection conn = (HttpURLConnection)httpurl.openConnection();
+		//设置超时间为3秒
+		conn.setConnectTimeout(3*1000);
+		//防止屏蔽程序抓取而返回403错误
+		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+		//得到输入流
+		InputStream inputStream = conn.getInputStream();
+		String folder=System.getProperty("java.io.tmpdir");
+		StringBuffer sb = new StringBuffer(folder);
+		sb.append("/");
+		sb.append(fileName);
+
+		File file = new File(sb.toString());
+		FileUtils.inputstreamtofile(inputStream,file);
+		return file;
+	}
 }

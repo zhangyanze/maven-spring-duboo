@@ -2,6 +2,7 @@ package com.goshop.manager.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.attachment.AttachmentService;
+import com.goshop.common.exception.AjaxException;
 import com.goshop.common.exception.PageException;
 import com.goshop.common.utils.*;
 import com.goshop.manager.pojo.Member;
@@ -47,7 +48,7 @@ public class PictureController {
             jsonMap.put("url",path);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new PageException("保存图片错误！");
+            throw new AjaxException("保存图片错误:"+e.getMessage());
         }
         ResponseMessageUtils.textPlainResponse(response, JsonUtils.objectToJson(jsonMap));
     }

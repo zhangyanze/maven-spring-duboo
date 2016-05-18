@@ -1,0 +1,21 @@
+<ion-view view-title="新闻中心">
+  <div class="bar bar-header "  >
+    <ion-scroll  direction="x" scrollbar-x="false" >
+      <div class="button-bar sub_header_list" id="sub_header_list" style="width: 390px;" >
+        <a class="button sub_button_select button-clear">头条</a>
+        <a class="button button-clear">推荐</a>
+        <a class="button button-clear">娱乐</a>
+        <a class="button button-clear">四川</a>
+        <a class="button button-clear">财经</a>
+        <a class="button button-clear">自媒体</a>
+        <a class="button button-clear">科技</a>
+      </div>
+    </ion-scroll>
+
+    <div class="icon ion-chevron-down subheader_r_icon" ></div>
+  </div>
+
+  <ion-content class="has-header" delegate-handle="news_list">
+    内容
+  </ion-content>
+</ion-view>
