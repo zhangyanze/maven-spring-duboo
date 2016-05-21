@@ -1,5 +1,8 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
 public class CmsArticleWithBLOBs extends CmsArticle {
     private String articleContent;
 

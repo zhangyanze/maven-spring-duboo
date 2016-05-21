@@ -1,8 +1,10 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CmsArticle implements Serializable {
     private Long articleId;
 

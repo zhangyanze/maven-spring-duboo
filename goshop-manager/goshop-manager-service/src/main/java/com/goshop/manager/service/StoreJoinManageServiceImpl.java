@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.PageException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.StoreJoinManageService;
 import com.goshop.manager.i.StoreService;
 import com.goshop.manager.mapper.StoreJoinMapper;
@@ -27,14 +28,7 @@ public class StoreJoinManageServiceImpl implements StoreJoinManageService {
 
     @Override
     public PageInfo<StoreJoin> findAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<StoreJoin> list = storeJoinMapper.findAll();
         return new PageInfo<>(list);
     }

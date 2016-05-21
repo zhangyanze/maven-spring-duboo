@@ -2,6 +2,7 @@ package com.goshop.manager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.StoreService;
 import com.goshop.manager.mapper.StoreMapper;
 import com.goshop.manager.pojo.Store;
@@ -23,14 +24,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public PageInfo<Store> findAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<Store> list=storeMapper.findAll();
         return new PageInfo<>(list);
     }
@@ -89,14 +83,7 @@ public class StoreServiceImpl implements StoreService {
                     break;
             }
         }
-//1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<Store> list=storeMapper.find(gradeId,sellerName,storeName,storeState,isExpire,isExpired);
         return new PageInfo<>(list);
     }

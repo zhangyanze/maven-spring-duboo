@@ -1,9 +1,11 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class AlbumClass implements Serializable {
     private Integer aclassId;
 

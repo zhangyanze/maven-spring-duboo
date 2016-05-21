@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.StoreGradeService;
 import com.goshop.manager.mapper.StoreGradeMapper;
 import com.goshop.manager.pojo.StoreGrade;
@@ -20,14 +21,7 @@ public class StoreGradeServiceImpl implements StoreGradeService {
 
     @Override
     public PageInfo<StoreGrade> findAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<StoreGrade> list = storeGradeMapper.findAll();
         //3、取分页后结果
         PageInfo<StoreGrade> pageInfo = new PageInfo<>(list);
@@ -93,14 +87,7 @@ public class StoreGradeServiceImpl implements StoreGradeService {
 
     @Override
     public PageInfo<StoreGrade> findBySgName(String sgName, Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<StoreGrade> list = storeGradeMapper.findByLikeSgName(sgName);
         //3、取分页后结果
         PageInfo<StoreGrade> pageInfo = new PageInfo<>(list);

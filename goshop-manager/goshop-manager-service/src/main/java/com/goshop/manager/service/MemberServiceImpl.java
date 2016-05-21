@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.MemberService;
 import com.goshop.manager.i.UserService;
 import com.goshop.manager.mapper.MemberMapper;
@@ -25,28 +26,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public PageInfo<Member> findAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<Member> list = memberMapper.findAll();
         return new PageInfo<>(list);
     }
 
     @Override
     public PageInfo<Member> findUserAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<Member> list = memberMapper.findUserAll();
         return new PageInfo<>(list);
     }
@@ -103,14 +90,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public PageInfo<Member> query(String searchFieldName, String searchFieldValue, String searchSort, String searchState, Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         //登录名
         String loginName=null;
         //email

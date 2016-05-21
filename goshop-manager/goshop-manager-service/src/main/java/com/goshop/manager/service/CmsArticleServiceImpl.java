@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.CmsArticleService;
 import com.goshop.manager.mapper.CmsArticleMapper;
 import com.goshop.manager.pojo.CmsArticle;
@@ -20,28 +21,14 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 
     @Override
     public PageInfo<CmsArticle> findBaseByArticleState(Integer curPage, Integer pageSize, Integer articleState) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<CmsArticle> list = cmsArticleMapper.findBaseByArticleState(articleState);
         return new PageInfo<>(list);
     }
 
     @Override
     public PageInfo<CmsArticle> query(Integer curPage, Integer pageSize, Integer articleState, String articleTitle, String articlePublisherName) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<CmsArticle> list = cmsArticleMapper.query(articleState,articleTitle,articlePublisherName);
         return new PageInfo<>(list);
     }

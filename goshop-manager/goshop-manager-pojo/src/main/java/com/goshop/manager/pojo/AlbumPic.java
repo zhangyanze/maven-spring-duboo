@@ -1,10 +1,11 @@
 package com.goshop.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Date;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class AlbumPic implements Serializable {
 
     private Integer apicId;

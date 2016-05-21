@@ -23,7 +23,29 @@ public interface ArticleLangService {
       * @param pageSize
       * @return
       */
-     PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId,String year,String langType);
+     PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType);
+
+     /**
+      * 查询已发布文章,精简版，用于列表查询
+      * @param curPage
+      * @param pageSize
+      * @param articleClassId
+      * @param year
+      * @param langType
+     * @return
+     */
+     PageInfo<ArticleLangMain> findRetrenchPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType);
+
+     /**
+      * 查询图片新闻
+      * @param curPage
+      * @param pageSize
+      * @param articleClassId
+      * @param year
+      * @param langType
+     * @return
+     */
+     PageInfo<ArticleLangMain> findRetrenchImagePublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType);
 
      int save(ArticleLangMain articleLang, List<ArticleLangInfo> articleLangInfoList);
 
@@ -39,4 +61,4 @@ public interface ArticleLangService {
 
      int updateByArticleSort(Long articleId, Integer articleSort);
 
-}
+   }

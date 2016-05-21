@@ -22,7 +22,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="goshop-common-attachment" />
     <orderEntry type="module" module-name="goshop-portal-interface" />
     <orderEntry type="module" module-name="goshop-manager-pojo" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.8" level="project" />

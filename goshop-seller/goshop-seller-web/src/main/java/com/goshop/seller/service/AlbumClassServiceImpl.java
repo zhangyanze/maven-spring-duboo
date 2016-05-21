@@ -2,6 +2,7 @@ package com.goshop.seller.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.StoreService;
 import com.goshop.manager.mapper.AlbumClassMapper;
 import com.goshop.manager.mapper.AlbumPicMapper;
@@ -27,13 +28,7 @@ public class AlbumClassServiceImpl implements AlbumClassService {
 
     @Override
     public PageInfo<AlbumClass> findByStoreId(Integer curPage, Integer pageSize, Long memberId,Integer sortValue) {
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<AlbumClass> list=albumClassMapper.findByStoreId(memberId,sortValue);
         return new PageInfo<>(list);
     }

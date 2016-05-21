@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.CmsArticleClassService;
 import com.goshop.manager.mapper.CmsArticleClassMapper;
 import com.goshop.manager.pojo.CmsArticleClass;
@@ -20,14 +21,7 @@ public class CmsArticleClassServiceImpl implements CmsArticleClassService{
 
     @Override
     public PageInfo<CmsArticleClass> findGradeByParentId(Integer curPage, Integer pageSize, Long parentId) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         //2、查询结果
         List<CmsArticleClass> list=cmsArticleClassMapper.findGradeByParentId(parentId);
         //3、取分页后结果

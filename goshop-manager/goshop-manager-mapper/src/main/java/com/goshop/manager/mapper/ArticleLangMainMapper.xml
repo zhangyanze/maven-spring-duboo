@@ -385,12 +385,54 @@
     FROM
     gs_article_lang_main m
     LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
-    where m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    where m.article_state=3
     <if test="year != null and year != ''" >
       and year(m.article_publish_time)= #{year}
     </if>
-    and m.article_state=3
+    <if test="articleClassId != null" >
+      and  m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    </if>
     and i.lang_type=#{langType}
+    order by m.article_sort,m.article_publish_time desc
+  </select>
+
+  <select id="findRetrenchPublishManyByArticleClassId" resultMap="BaseResultMap">
+    SELECT
+    m.article_id , m.article_class_id,m.article_image,m.article_start_time,m.article_end_time,
+    m.article_publish_time,m.article_sort,m.article_state,m.article_publisher_name,m.article_publisher_id,
+    i.article_info_id,i.article_title,i.article_author,i.article_abstract
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+    where m.article_state=3
+    <if test="year != null and year != ''" >
+      and year(m.article_publish_time)= #{year}
+    </if>
+    <if test="articleClassId != null" >
+      and  m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    </if>
+    and i.lang_type=#{langType}
+    order by m.article_sort,m.article_publish_time desc
+  </select>
+
+
+  <select id="findRetrenchImagePublishManyByArticleClassId" resultMap="BaseResultMap">
+    SELECT
+    m.article_id , m.article_class_id,m.article_image,m.article_start_time,m.article_end_time,
+    m.article_publish_time,m.article_sort,m.article_state,m.article_publisher_name,m.article_publisher_id,
+    i.article_info_id,i.article_title,i.article_author,i.article_abstract
+    FROM
+    gs_article_lang_main m
+    LEFT JOIN gs_article_lang_info i ON m.article_id = i.article_id
+    where m.article_state=3
+    <if test="year != null and year != ''" >
+      and year(m.article_publish_time)= #{year}
+    </if>
+    <if test="articleClassId != null" >
+      and  m.article_class_id = #{articleClassId,jdbcType=BIGINT}
+    </if>
+    and i.lang_type=#{langType}
+    and m.article_image is not null and m.article_image !=''
     order by m.article_sort,m.article_publish_time desc
   </select>
 

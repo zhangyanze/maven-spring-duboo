@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
 import com.goshop.common.exception.PageException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.StoreClassService;
 import com.goshop.manager.mapper.StoreClassMapper;
 import com.goshop.manager.pojo.StoreClass;
@@ -44,14 +45,7 @@ public class StoreClassServiceImpl implements StoreClassService {
 
     @Override
     public PageInfo<StoreClass> findTreePageByParentId(Integer curPage,Integer pageSize,Long parentId) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         //2、查询结果
          List<StoreClass> list=storeClassMapper.findTreeByParentId(parentId);
         //3、取分页后结果
@@ -127,14 +121,7 @@ public class StoreClassServiceImpl implements StoreClassService {
 
     @Override
     public PageInfo<StoreClass> findGradeByParentId(Integer curPage, Integer pageSize, Long parentId) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         //2、查询结果
         List<StoreClass> list=storeClassMapper.findGradeByParentId(parentId);
         //3、取分页后结果

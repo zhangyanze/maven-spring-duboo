@@ -35,4 +35,8 @@ public interface ArticleLangMainMapper {
     List<ArticleLangMain> findManyByArticleClassId(Long articleClassId);
 
     List<ArticleLangMain> findPublishManyByArticleClassId(@Param("articleClassId")Long articleClassId,@Param("year")String year,@Param("langType")String langType);
+
+    List<ArticleLangMain> findRetrenchPublishManyByArticleClassId(@Param("articleClassId")Long articleClassId,@Param("year")String year,@Param("langType")String langType);
+
+    List<ArticleLangMain> findRetrenchImagePublishManyByArticleClassId(@Param("articleClassId")Long articleClassId,@Param("year")String year,@Param("langType")String langType);
 }

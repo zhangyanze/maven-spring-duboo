@@ -22,7 +22,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="goshop-common-attachment" />
     <orderEntry type="module" module-name="goshop-seller-interface" />
     <orderEntry type="module" module-name="goshop-manager-security" />
     <orderEntry type="module" module-name="goshop-manager-mapper" />

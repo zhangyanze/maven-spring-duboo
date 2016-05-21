@@ -137,29 +137,29 @@
 .bar-subheader{
     border-bottom: none;
     position: relative;
-    height: 35px;
+    height: 44px;
     line-height: 35px;
     padding-top:2px;
     padding-bottom: 2px;
     padding-right: 34px;
-
+    top: 0px;
 
 }
 
 
 .bar-subheader .button:after{
 
-    height: 34px;
+height: 34px;
 }
 
-.bar .button.button-clear{
+ .bar .button.button-clear{
     font-size: 14px;
 }
 
 
 .has-subheader{
 
-    top: 82px;
+    top: 45px;
 }
 
 .subheader_r_icon{
@@ -216,7 +216,7 @@
 }
 .s_14{
     font-size: 14px;
-}
+  }
 .s_14 *{
     font-size: 14px;
     line-height: 180%;
@@ -366,7 +366,7 @@
 
 
 .popover_content_weather .temp_left .t_large{
-    font-size: 80px;
+   font-size: 80px;
     color: red;
     position: relative;
     display: inline-block;
@@ -430,7 +430,7 @@
 
 .popover_content_tab .row{
     height:120px;
-    margin-top:5px;
+margin-top:5px;
 }
 .popover_content_tab .row .col{
     height: 80px;
@@ -757,4 +757,12 @@
 .close{
 
 
+}
+.box{
+    width: 100%;
+    height: 160px;
+}
+div > img{
+    width: 100%;
+    height: 100%;
 }

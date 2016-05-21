@@ -3,6 +3,7 @@ package com.goshop.manager.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.exception.MapperException;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.GoodsClassService;
 import com.goshop.manager.mapper.GoodsClassMapper;
 import com.goshop.manager.pojo.GoodsClass;
@@ -52,28 +53,14 @@ public class GoodsClassServiceImpl implements GoodsClassService {
 
     @Override
     public PageInfo<GoodsClass> findAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<GoodsClass> list=goodsClassMapper.findAll();
         return new PageInfo<GoodsClass>(list);
     }
 
     @Override
     public PageInfo<GoodsClass> findGradeByGcParentId(Integer gcParentId, Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<GoodsClass> list=goodsClassMapper.findGradeByGcParentId(gcParentId);
         return new PageInfo<GoodsClass>(list);
     }

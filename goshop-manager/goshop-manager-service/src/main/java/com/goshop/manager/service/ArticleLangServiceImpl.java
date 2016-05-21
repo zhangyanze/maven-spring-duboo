@@ -2,6 +2,7 @@ package com.goshop.manager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.goshop.common.utils.PageUtils;
 import com.goshop.manager.i.ArticleLangService;
 import com.goshop.manager.mapper.ArticleLangInfoMapper;
 import com.goshop.manager.mapper.ArticleLangMainMapper;
@@ -25,57 +26,43 @@ public class ArticleLangServiceImpl implements ArticleLangService {
 
     @Override
     public PageInfo<ArticleLangMain> findManyAll(Integer curPage, Integer pageSize) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<ArticleLangMain> list =articleLangMainMapper.findManyAll();
         return new PageInfo<>(list);
     }
 
     @Override
     public PageInfo<ArticleLangMain> queryMany(Integer curPage, Integer pageSize, String articleTitle, String articlePublisherName, Integer articleState, Long articleClassId) {
-        //1、设置分页
-        if(curPage==null){
-            curPage=1;
-        }
-        if(pageSize==null){
-            pageSize=20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<ArticleLangMain> list =articleLangMainMapper.queryMany(articleTitle,articlePublisherName,articleState,articleClassId);
         return new PageInfo<>(list);
     }
 
     @Override
     public PageInfo<ArticleLangMain> findManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId) {
-        //1、设置分页
-        if (curPage == null) {
-            curPage = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+        PageUtils.startPage(curPage,pageSize);
         List<ArticleLangMain> list = articleLangMainMapper.findManyByArticleClassId(articleClassId);
         return new PageInfo<>(list);
     }
 
     @Override
-    public PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId,String year,String langType) {
-        //1、设置分页
-        if (curPage == null) {
-            curPage = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 20;
-        }
-        PageHelper.startPage(curPage, pageSize);
+    public PageInfo<ArticleLangMain> findPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType) {
+        PageUtils.startPage(curPage,pageSize);
         List<ArticleLangMain> list = articleLangMainMapper.findPublishManyByArticleClassId(articleClassId,year,langType);
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public PageInfo<ArticleLangMain> findRetrenchPublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType) {
+        PageUtils.startPage(curPage,pageSize);
+        List<ArticleLangMain> list = articleLangMainMapper.findRetrenchPublishManyByArticleClassId(articleClassId,year,langType);
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public PageInfo<ArticleLangMain> findRetrenchImagePublishManyByArticleClassId(Integer curPage, Integer pageSize, Long articleClassId, String year, String langType) {
+        PageUtils.startPage(curPage,pageSize);
+        List<ArticleLangMain> list = articleLangMainMapper.findRetrenchImagePublishManyByArticleClassId(articleClassId,year,langType);
         return new PageInfo<>(list);
     }
 
