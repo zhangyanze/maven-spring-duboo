@@ -4,9 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.goshop.common.utils.JsonUtils;
 import com.goshop.manager.i.ArticleLangService;
 import com.goshop.manager.pojo.ArticleLangMain;
+import com.goshop.manager.pojo.CmsArticleClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +27,7 @@ public class ArticleLanguageController {
 
     @RequestMapping("/query")
     @ResponseBody
-    public Object query(Model model,
-                           Long class_id,
+    public Object query(Model model,@RequestParam(value="cid",required=false) Long class_id,
                            @RequestParam(value="p",required=false) Integer curPage,
                            @RequestParam(value="p_year",required=false) String year,
                             String callback,
@@ -40,8 +41,7 @@ public class ArticleLanguageController {
 
     @RequestMapping("/image_query")
     @ResponseBody
-    public Object imageQuery(Model model,
-                        Long class_id,
+    public Object imageQuery(Model model, @RequestParam(value="cid",required=false) Long class_id,
                         @RequestParam(value="p",required=false) Integer curPage,
                         @RequestParam(value="p_year",required=false) String year,
                         String callback,
@@ -51,5 +51,17 @@ public class ArticleLanguageController {
         String lang=locale.getLanguage();
         PageInfo<ArticleLangMain> page=articleLangService.findRetrenchImagePublishManyByArticleClassId(curPage, 6, class_id, year,lang);
         return JsonUtils.jsonp(page, callback);
+    }
+
+    @RequestMapping("/page")
+    @ResponseBody
+    public Object page(Model model,
+                       Long id,
+                       String callback,
+                       HttpServletRequest request,
+                       HttpServletResponse response) {
+        ArticleLangMain articleLangMain=articleLangService.findManyOne(id);
+        Assert.notNull(articleLangMain,"此文章已不存在！");
+        return JsonUtils.jsonp(articleLangMain, callback);
     }
 }

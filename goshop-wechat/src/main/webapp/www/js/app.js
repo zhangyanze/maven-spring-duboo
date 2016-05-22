@@ -38,7 +38,40 @@ angular.module('ionicApp', ['ionic','starter.controllers','starter.config','star
                     }
                 }
             })
+          .state('tab.news_content', {
+              url: "/news_content/:aid",
+              views: {
+                  'tab-new': {
+                      templateUrl: 'templates/news/news-content.html',
+                      controller: 'NewsContentCtrl'
+                  }
+              }
+          })
+          .state('tab.hot', {
+              url: '/hot',
+              views: {
+                  'tab-hot': {
+                      templateUrl: 'templates/hot/tab-hot.html'
+                  }
+              }
+          })
+          .state('tab.user', {
+              url: '/user',
+              views: {
+                  'tab-user': {
+                      templateUrl: 'templates/user/tab-user.html'
+                  }
+              }
+          })
 
+          .state('tab.audio', {
+              url: '/audio',
+              views: {
+                  'tab-audio': {
+                      templateUrl: 'templates/audio/tab-audio.html'
+                  }
+              }
+          })
        $urlRouterProvider.otherwise('/tab/new');
 
     });

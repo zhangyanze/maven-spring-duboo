@@ -7,7 +7,6 @@ angular.module("starter.config", [])
             "categoryQueryUrl": S_URL_CMS_R+"cms_article_class/query",
             "newSlideUrl":S_URL_CMS_R+"cms_slide/new_slide",
             'articleLangUrl':S_URL_CMS_R+"article_lang/image_query",
-            'imgUrl':"http://www.lfdiapp.lfang.gov.cn/",
-            'videoUrl':"http://www.lfdiapp.lfang.gov.cn/",
+            'articleLangPageUrl':S_URL_CMS_R+"article_lang/page",
             'version':'1.0.1'
     });

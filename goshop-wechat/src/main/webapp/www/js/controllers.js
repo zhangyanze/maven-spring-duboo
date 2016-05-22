@@ -51,7 +51,6 @@ angular.module('starter.controllers', [])
 
         //点击tab的时候改变内容
         $scope.changeTab = function(catid,index) {
-
             $scope.index=index;
             // alert( angular.element(this).parent());
             //angular.element(this).parent().children().removeClass('sub_button_select');
@@ -65,13 +64,13 @@ angular.module('starter.controllers', [])
 
             $ionicScrollDelegate.$getByHandle('s_header').scrollTo(index*(w/4)-50,0,true);
 
-           // PortalsFactory.setCurrentCatgory(catid);
+           PortalsFactory.setCurrentCatgory(catid);
 
             $ionicScrollDelegate.$getByHandle('news_list').scrollTop();
 
 
 
-            //$ionicSlideBoxDelegate.update();  //更新ionic SlideBox
+            $ionicSlideBoxDelegate.update();  //更新ionic SlideBox
         };
 
         // 获取文章数据
@@ -106,4 +105,71 @@ angular.module('starter.controllers', [])
             //console.log(PortalsFactory.hasNextPage());
             return PortalsFactory.hasNextPage();
         };
-    }]);
+
+
+        //向左滑动的时候
+
+        $scope.onSwipeLeft=function(index){
+
+            //  console.log('onSwipeLeft'+index);
+
+
+            if(index < all_cate_width){
+                var a=document.getElementById('sub_header_list').getElementsByTagName('a');
+
+                for (var i = 0; i < all_cate_width; i++) {
+                    a[i].className = "button button-clear ";
+                }
+
+
+                a[index+1].className = "button button-clear sub_button_select";
+
+
+                var cate_id=a[index+1].getAttribute('cate_id');
+
+
+                $scope.index=index+1;
+                $ionicScrollDelegate.$getByHandle('s_header').scrollTo($scope.index*(w/4)-50,0,true);
+                PortalsFactory.setCurrentCatgory(cate_id);
+            }
+
+
+
+        }
+
+        //向右滑动的时候
+
+        $scope.onSwipeRight=function(index) {
+
+            console.log('onSwipeRight'+index);
+
+            if (index>0) {
+                var a = document.getElementById('sub_header_list').getElementsByTagName('a');
+
+                for (var i = 0; i < all_cate_width; i++) {
+                    a[i].className = "button button-clear ";
+                }
+                a[index - 1].className = "button button-clear sub_button_select";
+
+
+                var cate_id = a[index - 1].getAttribute('cate_id');
+                $scope.index=index - 1;
+                PortalsFactory.setCurrentCatgory(cate_id);
+
+                $ionicScrollDelegate.$getByHandle('s_header').scrollTo($scope.index*(w/4)-50,0,true);
+            }
+
+        }
+    }])
+
+ .controller('NewsContentCtrl', ['$scope','$stateParams','NewsContentFactory',function($scope,$stateParams,NewsContentFactory) {
+     $scope.showloading=true;
+     var aid=$stateParams.aid;
+     NewsContentFactory.get(aid);
+     $scope.$on('NewsContent.newsUpdated', function() {
+         $scope.contentData = NewsContentFactory.getPortal();
+         $scope.showloading=false;
+         $scope.c_size='14';
+     });
+ }])
+  

@@ -19,18 +19,20 @@
         <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
         </ion-refresher>
 
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval=2000 show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
-            <ion-slide ng-repeat='slide in newSlideListData'>
-                <div class="box">
-                    <img ng-src="{{S_URL}}att?path={{slide.file_name}}"/>
-                </div>
-            </ion-slide>
-        </ion-slide-box>
+        <div class="home-slide" ng-if="index==0||index==null">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval=2000 show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
+                <ion-slide ng-repeat='slide in newSlideListData'>
+                    <div class="box">
+                        <img ng-src="{{S_URL}}att?path={{slide.file_name}}"/>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
         <div ng-if="showloading" style="margin-top:60px; text-align: center">
             <ion-spinner icon="ios" style="height: 60px; width: 60px;;"></ion-spinner>
         </div>
         <ion-list class="topics_list" ng-if="showloading==false" on-swipe-left="onSwipeLeft(index)" on-swipe-right="onSwipeRight(index)">
-            <ion-item class="item-thumbnail-left" collection-repeat="topic in portalListData" href="#/tab/news_content/{{topic.id}}"
+            <ion-item class="item-thumbnail-left" collection-repeat="topic in portalListData" href="#/tab/news_content/{{topic.articleId}}"
                       collection-item-width="100%" collection-item-height="96px">
 
                 <img   ng-src="{{S_URL}}att?path={{topic.articleImage}}"/>

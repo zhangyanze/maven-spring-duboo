@@ -81,7 +81,7 @@ angular.module('starter.services', [])
         // 用来存储话题类别的数据结构，包含了下一页、是否有下一页等属性
             topics = {},
             focus, //焦点图
-            catid = 115;
+            catid = null;
         console.log(ApiUrl);
         var resource = $resource(ApiUrl, {}, {
             query: {
@@ -173,4 +173,60 @@ angular.module('starter.services', [])
         };
 
 
+    })
+    .factory('NewsContentFactory', function($resource, $rootScope,ENV) {
+
+        // 用来存储话题类别的数据结构，包含了下一页、是否有下一页等属性
+            var topic = '',
+
+            collections = {};
+
+        var resource = $resource(ENV.articleLangPageUrl, {}, {
+            query: {
+                method: 'get',
+                params: {
+                    id: '@id'
+                },
+                timeout: 20000
+            }
+        });
+        return {
+            get: function(aid) {
+                return resource.query({
+                    id: aid
+                }, function(response) {
+                    console.log(response);
+                    topic = response;
+                    $rootScope.$broadcast('NewsContent.newsUpdated', topic);
+                });
+
+            },
+            getPortal: function() {
+                return topic;
+            },
+            articleCollectionAdd: function(device_id,article_id) {    //文章收藏  为了方便放在这个服务里面
+                return resource.query({
+                    method:'articleCollectionAdd',
+                    device_id: device_id,
+                    article_id: article_id
+                }, function(response) {
+                    console.log(response);
+                });
+            },
+            fetchArticleCollectionList: function(device_id) {    //文章收藏列表  为了方便放在这个服务里面
+                return resource.query({
+                    method:'articleCollectionGet',
+                    device_id: device_id
+                }, function(response) {
+                    collections = response.result;
+                    $rootScope.$broadcast('ArticleCollection.newsUpdated');
+                });
+            },
+            getCollectionList: function() {
+                return collections;
+            }
+
+
+
+        };
     })
