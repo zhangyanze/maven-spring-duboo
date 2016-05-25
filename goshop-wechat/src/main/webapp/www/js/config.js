@@ -1,5 +1,5 @@
-var S_URL_CMS_R='http://localhost:8080/cms_r/';
-var S_URL='http://localhost:8080/wx/';
+var S_URL_CMS_R='http://211.149.161.219/cms_r/';
+var S_URL='http://211.149.161.219/wx/';
 angular.module("starter.config", [])
     .constant("ENV", {
             // "name": "production",

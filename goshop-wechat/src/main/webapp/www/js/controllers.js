@@ -51,6 +51,11 @@ angular.module('starter.controllers', [])
 
         //点击tab的时候改变内容
         $scope.changeTab = function(catid,index) {
+            //暂时改下
+            if(catid==2){
+                catid=null;
+            }
+            //--------------------
             $scope.index=index;
             // alert( angular.element(this).parent());
             //angular.element(this).parent().children().removeClass('sub_button_select');

@@ -3,7 +3,7 @@ package com.goshop.manager.pojo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+
 public class ArticleLangInfo implements Serializable {
     private Long articleInfoId;
 

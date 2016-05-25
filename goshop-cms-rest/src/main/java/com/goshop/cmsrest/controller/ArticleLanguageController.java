@@ -2,7 +2,9 @@ package com.goshop.cmsrest.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.goshop.common.utils.JsonUtils;
+import com.goshop.common.utils.RequestUtils;
 import com.goshop.manager.i.ArticleLangService;
+import com.goshop.manager.pojo.ArticleLangInfo;
 import com.goshop.manager.pojo.ArticleLangMain;
 import com.goshop.manager.pojo.CmsArticleClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,9 @@ public class ArticleLanguageController {
                        HttpServletResponse response) {
         ArticleLangMain articleLangMain=articleLangService.findManyOne(id);
         Assert.notNull(articleLangMain,"此文章已不存在！");
+        ArticleLangInfo info=articleLangMain.getArticleLangInfoList().get(0);
+        String content=info.getArticleContent().replaceAll("\\/admin\\/att", "http://211.149.161.219/admin/att");
+        info.setArticleContent(content);
         return JsonUtils.jsonp(articleLangMain, callback);
     }
 }
